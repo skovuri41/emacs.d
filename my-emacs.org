@@ -142,7 +142,6 @@ from *emacs*.
   multiple-cursors
   magit
   git-blame
-  git-commit-mode
   git-gutter-fringe
   git-messenger
   gitconfig-mode
@@ -316,8 +315,8 @@ achieved in the second expression.
 #+BEGIN_SRC emacs-lisp :tangle yes
 ;;(set-face-attribute 'default nil :family "Bitstream Vera Sans Mono" :height 89)
 ;;(set-face-attribute 'default nil :family "Inconsolata" :height 120)
-(set-default-font
-     "-outline-Consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
+;;(set-default-font
+;;     "-outline-Consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
 #+END_SRC
 
 *** Custom Functions
@@ -806,7 +805,6 @@ See: `xah-forward-block'"
 
 
 #+end_src
-
 
 *** Advices
 
@@ -2072,19 +2070,4 @@ Workgroups. You can save your workgroups to a file with <prefix> C-s
 
 #+END_SRC
 
-* Work Items                                                          :emacs:
-
-*** TODO text-increase and text-decrease conflict with smartparen key bindings
-*** DONE goto-linum remap keybinding not working
-*** DONE configure cider and lein, version 0.8 not working yet.
-*** DONE cider newer version not working, missing package queue
-*** DONE configure helm and projectile key bindings
-*** TODO work on copy rectangle emacs-lisp script
-*** TODO ido m-x mode and helm m-x mode , compare and research
-*** TODO clj-refactor, cljdoc configuration
-*** TODO Color Identifiers Mode
-*** IN-PROGRESS checkout yasnippet, setup clojure yasnippet, org-capture yasnippet for links, compare with abbreva + skeleton available in emacs by default.
-*** TODO emacs etags, usage study
-*** DONE emacs start maximized disabled, revisit
-*** IN-PROGRESS multiple cursors
-*** DONE undo tree
+
