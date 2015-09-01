@@ -150,6 +150,7 @@ from *emacs*.
   page-break-lines 
   direx 
   popwin
+  org
   )
  
  "A list of packages to ensure
@@ -314,7 +315,7 @@ achieved in the second expression.
 
 #+BEGIN_SRC emacs-lisp :tangle yes
 ;;(set-face-attribute 'default nil :family "Bitstream Vera Sans Mono" :height 89)
-;;(set-face-attribute 'default nil :family "Inconsolata" :height 120)
+(set-face-attribute 'default nil :family "Inconsolata" :height 110)
 ;;(set-default-font
 ;;     "-outline-Consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
 #+END_SRC
