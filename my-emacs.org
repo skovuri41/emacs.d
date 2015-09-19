@@ -50,9 +50,7 @@ My emacs configuration based on org-mode literate programming style.
 #+BEGIN_SRC emacs-lisp :tangle yes
 (modify-all-frames-parameters '((fullscreen . maximized)))
 #+END_SRC
-
 This will maximize the current and all future Emacs frames. The parameter has been added in Emacs 24.4
-
 ***** Load Path
 #+BEGIN_SRC emacs-lisp
 (let ((default-directory "~/.emacs.d/elisp/"))
@@ -321,9 +319,9 @@ achieved in the second expression.
 ;;(set-face-attribute 'default nil
   ;;              :family "Inconsolata" :height 145 :weight 'normal)
 ;;(set-face-attribute 'default nil :family "Anonymous Pro" :height 140)
-(set-default-font "-apple-Monaco-normal-normal-normal-*-12-*-*-*-*-0-iso10646-1")
+;;(set-default-font "-apple-Monaco-normal-normal-normal-*-12-*-*-*-*-0-iso10646-1")
 ;;(set-default-font "monaco")
-;;(set-face-attribute 'default nil :family "Monaco" :height 130)
+(set-face-attribute 'default nil :family "Monaco" :height 120)
 ;;Terminus Font
 ;;(set-face-attribute 'default nil :family "Terminus" :height 140)
 ;;(set-default-font "Terminus")
@@ -830,8 +828,8 @@ See: `xah-forward-block'"
 
 #+end_src
 
-
 ***** xah backup current file
+def
 ***** 
 *** Advices
 
@@ -1931,7 +1929,7 @@ Workgroups. You can save your workgroups to a file with <prefix> C-s
 #+end_src
 ***** yasnippet
 ******* Installation
- #+BEGIN_SRC emacs-lisp
+ #+BEGIN_SRC emacs-lisp :tangle yes
 (require 'yasnippet)
 (yas-reload-all)
 (add-to-list 'yas-snippet-dirs (concat user-emacs-directory "snippets") t)
@@ -1939,7 +1937,7 @@ Workgroups. You can save your workgroups to a file with <prefix> C-s
     (add-hook hook (lambda () (yas-minor-mode))))
 #+END_SRC 
 ******* Org Mode Conflicts
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle yes
  (defun yas/org-very-safe-expand ()
             (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
  (add-hook 'org-mode-hook
