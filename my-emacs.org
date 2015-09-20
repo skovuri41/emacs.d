@@ -2102,7 +2102,8 @@ Workgroups. You can save your workgroups to a file with <prefix> C-s
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
-
+;;iterm2 hack to send C-` , add iterm2 pref with C-` map Esc Seq to [aa
+(global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 ;;(global-set-key (kbd "C-x C-r") 'recentf-open-files)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
