@@ -48,7 +48,7 @@ My emacs configuration based on org-mode literate programming style.
 #+END_SRC
 ***** Always maximize Emacs
 #+BEGIN_SRC emacs-lisp :tangle yes
-(modify-all-frames-parameters '((fullscreen . maximized)))
+;;(modify-all-frames-parameters '((fullscreen . maximized)))
 #+END_SRC
 This will maximize the current and all future Emacs frames. The parameter has been added in Emacs 24.4
 ***** Load Path

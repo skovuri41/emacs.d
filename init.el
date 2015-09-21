@@ -50,9 +50,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (git-commit-mode zoom-frm zenburn-theme workgroups2 workgroups use-package undo-tree smex smartparens smart-mode-line rainbow-delimiters plantuml-mode page-break-lines org-plus-contrib org-journal org-bullets org multiple-cursors magit latest-clojure-libraries jump-char json-mode ipretty inf-mongo iedit ido-vertical-mode htmlize helm-swoop helm-projectile helm-orgcard helm-gtags helm-descbinds guide-key grizzl gitignore-mode gitconfig-mode git-messenger git-gutter-fringe git-blame flx-ido expand-region drag-stuff direx deft company clojure-snippets clojure-cheatsheet buffer-move bookmark+ ace-window ace-jump-buffer ac-cider 4clojure)))
 
 '(org-bullets-bullet-list (quote ("◉" "○" "►" "✿")))
  )
