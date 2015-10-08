@@ -245,13 +245,13 @@ Disk space is cheap. Save lots.
 #+END_SRC
 ******* Default Settings
  #+BEGIN_SRC emacs-lisp
-(setq-default
- tab-width 4
- indent-tabs-mode nil                   ;use spaces instead of tabs
- c-basic-offset 4                       ;"tab" with in c-related modes
- c-hungry-delete-key t                  ;delete more than one space
- )
-
+ (setq-default
+  tab-width 4
+  indent-tabs-mode nil                   ;use spaces instead of tabs
+  c-basic-offset 4                       ;"tab" with in c-related modes
+  c-hungry-delete-key t                  ;delete more than one space
+  )
+ (setq initial-major-mode (quote text-mode))
 #+END_SRC
 
 Some variables like =tab-width= cannot be set globally:
@@ -2159,6 +2159,8 @@ Workgroups. You can save your workgroups to a file with <prefix> C-s
 
 (global-set-key (kbd "<prior>") 'xah-backward-block) ; page up key
 (global-set-key (kbd "<next>") 'xah-forward-block) ; page down key
+
+(global-set-key (kbd "<C-S-n>") 'xah-new-empty-buffer) ; new empty buffer
 
 (global-set-key (kbd "<f2>") 'xah-cut-line-or-region) ; cut
 (global-set-key (kbd "<f3>") 'xah-copy-line-or-region) ; copy
