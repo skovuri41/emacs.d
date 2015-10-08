@@ -829,7 +829,6 @@ See: `xah-forward-block'"
 #+end_src
 
 ***** xah backup current file
-def
 #+BEGIN_SRC emacs-lisp
 (defun xah-make-backup ()
   "Make a backup copy of current file or dired marked files.
@@ -855,7 +854,35 @@ Version 2015-08-17"
               (message (concat "Backup saved at: " ξbackup-name))))
           ξfile-list)))
 #+END_SRC
-***** 
+***** xah search word at cursor
+
+#+BEGIN_SRC emacs-lisp
+(defun xah-search-current-word ()
+  "Call `isearch' on current word or text selection.
+“word” here is A to Z, a to z, and hyphen 「-」 and underline 「_」, independent of syntax table.
+URL `http://ergoemacs.org/emacs/modernization_isearch.html'
+Version 2015-04-09"
+  (interactive)
+  (let ( ξp1 ξp2 )
+    (if (use-region-p)
+        (progn
+          (setq ξp1 (region-beginning))
+          (setq ξp2 (region-end)))
+      (save-excursion
+        (skip-chars-backward "-_A-Za-z0-9")
+        (setq ξp1 (point))
+        (right-char)
+        (skip-chars-forward "-_A-Za-z0-9")
+        (setq ξp2 (point))))
+    (setq mark-active nil)
+    (when (< ξp1 (point))
+      (goto-char ξp1))
+    (isearch-mode t)
+    (isearch-yank-string (buffer-substring-no-properties ξp1 ξp2))))
+
+#+END_SRC
+
+
 *** Advices
 
 #+BEGIN_SRC emacs-lisp
@@ -2098,6 +2125,9 @@ Workgroups. You can save your workgroups to a file with <prefix> C-s
 
 (global-set-key (kbd "<S-f11>") 'xah-previous-emacs-buffer)
 (global-set-key (kbd "<S-f12>") 'xah-next-emacs-buffer)
+
+;;xah-search-current-word
+(global-set-key (kbd "<f8>") 'xah-search-current-word)
 
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
