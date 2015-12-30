@@ -11,7 +11,6 @@
 ;git
 (depends-on "magit")
 
-
 (depends-on "popwin")
 (depends-on "projectile")
 (depends-on "grizzl")
@@ -40,8 +39,6 @@
 (depends-on "rainbow-mode")
 (depends-on "clojure-cheatsheet")
 
-
-
 (depends-on "guide-key")
 (depends-on "flx-ido")
 (depends-on "ido-vertical-mode")
@@ -59,15 +56,26 @@
 (depends-on "multiple-cursors")
 (depends-on "wrap-region")
 (depends-on "move-text")
+(depends-on "hl-line+")
 
-
-;helm
+;;helm
 (depends-on "helm")
 (depends-on "helm-swoop")
 (depends-on "helm-google")
 (depends-on "helm-projectile")
 (depends-on "helm-gtags")
 (depends-on "helm-descbinds")
+;;(depends-on "helm-config")
+
+;;evil mode
+(depends-on "evil")
+(depends-on "evil-leader")
+(depends-on "evil-cleverparens")
+(depends-on "evil-surround")
+(depends-on "evil-org")
+(depends-on "evil-escape")
+;;themes
+(depends-on "zenburn-theme")
 
 
 
