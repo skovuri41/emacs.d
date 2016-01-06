@@ -16,7 +16,8 @@
 (use-package better-defaults)
 (require 'init-powerline)
 (require 'init-evil)
-(require 'init-guidekey)
+;;(require 'init-guidekey)
+(require 'init-whichkey)
 (require 'init-yasnippet)
 (require 'init-projectile)
 (require 'init-ido)
@@ -25,12 +26,14 @@
 (require 'init-org)
 (require 'init-clojure)
 (require 'init-zenburn)
-(require 'init-minor-modes)
+;;(require 'init-minor-modes)
+(require 'init-programming)
 (require 'init-helm)
 (require 'init-expand-region)
 (require 'init-undotree)
 (require 'init-smartparens)
 (require 'init-hl-line)
+(require 'init-drag-stuff)
 
 ;; No slow flyspell. 
 (eval-after-load "flyspell"

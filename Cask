@@ -20,10 +20,15 @@
 (depends-on "yaml-mode")
 (depends-on "markdown-mode")
 (depends-on "json-mode")
-
+(depends-on "js2-mode")
+(depends-on "css-mode")
+;;(depends-on "js-mode")
+;;(depends-on "emacs-lisp-mode")
+(depends-on "web-mode")
 (depends-on "powerline")
 (depends-on "diminish")
 (depends-on "company")
+(depends-on "rainbow-delimiters")
 
 ;;org
 (depends-on "org")
@@ -45,6 +50,7 @@
 (depends-on "fancy-narrow")
 (depends-on "aggressive-indent")
 (depends-on "smex")
+(depends-on "which-key")
 
 (depends-on "ace-jump-buffer")
 (depends-on "ace-window")
