@@ -1,6 +1,7 @@
 (setq inhibit-startup-message t)
 (blink-cursor-mode 0)
-(menu-bar-mode 1)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
 
 ;; Disable visible bell
 (setq visible-bell nil)
