@@ -347,7 +347,7 @@ Version 2015-08-17"
               (copy-file ξfname ξbackup-name t)
               (message (concat "Backup saved at: " ξbackup-name))))
           ξfile-list)))
-xah search word at cursor
+;;xah search word at cursor
 
 (defun xah-search-current-word ()
   "Call `isearch' on current word or text selection.
@@ -381,3 +381,5 @@ Version 2015-06-12"
     (switch-to-buffer ξbuf)
     (funcall (and initial-major-mode))
     (setq buffer-offer-save t)))
+
+(provide 'init-defuns)

@@ -34,6 +34,8 @@
 (require 'init-smartparens)
 (require 'init-hl-line)
 (require 'init-drag-stuff)
+(require 'init-defuns)
+(require 'init-company)
 
 ;; No slow flyspell. 
 (eval-after-load "flyspell"

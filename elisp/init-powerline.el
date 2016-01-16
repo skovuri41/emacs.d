@@ -17,6 +17,7 @@
       (eval-after-load "typed-clojure-mode" '(diminish 'typed-clojure-mode " typ"))
       (eval-after-load "org-indent" '(diminish 'org-indent-mode))
       (eval-after-load "evil-org" '(diminish 'evil-org-mode))))
-      (eval-after-load "smartparens" '(diminish 'smartparens-mode)))
+      (eval-after-load "smartparens" '(diminish 'smartparens-mode))
+      (eval-after-load "drag-stuff" '(diminish 'drag-stuff-mode)))
 
 (provide 'init-powerline)
