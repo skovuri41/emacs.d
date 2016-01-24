@@ -83,6 +83,9 @@
 ;;themes
 (depends-on "zenburn-theme")
 
+;;avy
+(depends-on "avy")
+
 
 
 

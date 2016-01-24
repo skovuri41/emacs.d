@@ -219,7 +219,6 @@ See also: `xah-copy-to-register-1', `insert-register'."
   (insert-register ?1 t))
 
 
-
 (defvar xah-switch-buffer-ignore-dired t "If t, ignore dired buffer when calling `xah-next-user-buffer' or `xah-previous-user-buffer'")
 (setq xah-switch-buffer-ignore-dired t)
 
@@ -381,5 +380,7 @@ Version 2015-06-12"
     (switch-to-buffer ξbuf)
     (funcall (and initial-major-mode))
     (setq buffer-offer-save t)))
+
+
 
 (provide 'init-defuns)

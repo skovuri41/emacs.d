@@ -36,6 +36,7 @@
 (require 'init-drag-stuff)
 (require 'init-defuns)
 (require 'init-company)
+(require 'init-avy)
 
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
@@ -61,3 +62,20 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "C-M-%") 'query-replace)
 
+;;switch prev nex user buffers
+(global-set-key (kbd "<f11>") 'xah-previous-user-buffer)
+(global-set-key (kbd "<f12>") 'xah-next-user-buffer)
+
+(global-set-key (kbd "<S-f11>") 'xah-previous-emacs-buffer)
+(global-set-key (kbd "<S-f12>") 'xah-next-emacs-buffer)
+
+;;xah-search-current-word
+(global-set-key (kbd "<f8>") 'xah-search-current-word)
+(global-set-key (kbd "<prior>") 'xah-backward-block) ; page up key
+(global-set-key (kbd "<next>") 'xah-forward-block) ; page down key
+
+(global-set-key (kbd "M-n") 'xah-new-empty-buffer) ; new empty buffer
+
+(global-set-key (kbd "<f2>") 'xah-cut-line-or-region) ; cut
+(global-set-key (kbd "<f3>") 'xah-copy-line-or-region) ; copy
+(global-set-key (kbd "<f4>") 'yank) ; paste
