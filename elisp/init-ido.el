@@ -4,6 +4,7 @@
   (progn
     (evil-leader/set-key "bs" 'ido-switch-buffer)
     (evil-leader/set-key "bk" 'ido-kill-buffer)
+    (evil-leader/set-key "bn" 'xah-new-empty-buffer)
     (evil-leader/set-key "ff" 'ido-find-file)))
 
 (use-package flx-ido
