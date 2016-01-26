@@ -25,7 +25,8 @@
         "hb" 'helm-buffers-list
         "hh" 'helm-projectile-find-file
         "hr" 'helm-recentf
-        "hp" 'helm-projectile)))
+        "hp" 'helm-projectile
+        "h'" 'helm-all-mark-rings))) 
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
     (use-package evil-surround
@@ -33,7 +34,7 @@
       :config
       (progn
         (add-to-list 'evil-surround-operator-alist '(evil-paredit-change . change))
-        (add-to-list 'evil-surround-operator-alist '(evil-paredit-delete . delete)))))
+        (add-to-list 'evil-surround-operator-alist '(evil-paredit-delete . delete))))
     (use-package evil-escape
       :ensure t
       :diminish evil-escape-mode
@@ -41,13 +42,14 @@
       (evil-escape-mode)
       (setq-default evil-escape-key-sequence "kj")
       (setq-default evil-escape-delay 0.2))
+    (use-package evil-lisp-state
+      :init (setq evil-lisp-state-global t)
+      :config (evil-lisp-state-leader ", l")))
   :config
   (progn
     (setq evil-cross-lines t)
     (setq evil-move-cursor-back nil)
     ;; colorful mode line
-
-   
     (defface my-evil-state-emacs-face
       '((t (:background "Orange" :foreground "White")))
       "Evil Mode Emacs State Face")
@@ -76,8 +78,6 @@
                         'help-echo (evil-state-property state :name)
                         'mouse-face 'mode-line-highlight)
           tag)))
-
-    
     ;; gui mode
     (when (window-system)
      (setq evil-emacs-state-cursor '("red" box))
@@ -86,11 +86,11 @@
      (setq evil-insert-state-cursor '("red" bar))
      (setq evil-replace-state-cursor '("red" bar))
      (setq evil-operator-state-cursor '("red" hollow)))
-
     ;;; esc quits
     (defun minibuffer-keyboard-quit ()
         "Abort recursive edit.
          In Delete Selection mode, if the mark is active, just deactivate it;
+
          then it takes a second \\[keyboard-quit] to abort the minibuffer."
         (interactive)
         (if (and delete-selection-mode transient-mark-mode mark-active)
@@ -105,7 +105,6 @@
     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
     ;;(define-key helm-map [escape] 'helm-keyboard-quit)
-
     ;;(define-key evil-normal-state-map "\C-j"  'evil-window-down)
     ;;(define-key evil-normal-state-map "\C-k"  'evil-window-up)
     ;;(define-key evil-normal-state-map "\C-h"  'evil-window-left)

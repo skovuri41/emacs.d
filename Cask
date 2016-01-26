@@ -80,6 +80,7 @@
 (depends-on "evil-surround")
 (depends-on "evil-org")
 (depends-on "evil-escape")
+(depends-on "evil-lisp-state")
 ;;themes
 (depends-on "zenburn-theme")
 
