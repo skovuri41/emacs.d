@@ -381,6 +381,132 @@ Version 2015-06-12"
     (funcall (and initial-major-mode))
     (setq buffer-offer-save t)))
 
+(defun save-buffer-always ()
+    "Save the buffer even if it is not modified.
+Useful if something is watching file modification times."
+    (interactive)
+    (set-buffer-modified-p t)
+    (save-buffer))
 
+(defun insert-date-string ()
+  "Insert a nicely formated date string."
+  (interactive)
+  (insert (format-time-string "%a %b %d %H:%M:%S %Y")))
+
+(defun delete-this-file ()
+    "Delete the current file, and kill the buffer. The `delete-file'
+function does not kill the buffer."
+    (interactive)
+    (or (buffer-file-name) (error "No file is currently being edited"))
+    (when (yes-or-no-p (format "Really delete '%s'?"
+                               (file-name-nondirectory
+                                buffer-file-name)))
+      (delete-file (buffer-file-name))
+      (kill-this-buffer)))
+
+(defun rename-this-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (unless filename
+      (error "Buffer '%s' is not visiting a file!" name))
+    (if (get-buffer new-name)
+        (message "A buffer named '%s' already exists!" new-name)
+      (progn
+        (rename-file name new-name 1)
+        (rename-buffer new-name)
+        (set-visited-file-name new-name)
+        (set-buffer-modified-p nil)))))
+
+(defun browse-current-file ()
+  "Open the current file as a URL using `browse-url'."
+  (interactive)
+  (browse-url (concat "file://" (buffer-file-name))))
+
+(defun show-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name)))
+
+(defun smarter-move-beginning-of-line (arg)
+  "Toggle between beginning-of-line and back-to-indentation"
+  (interactive "^p")
+  (setq arg (or arg 1))
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+(global-set-key [remap move-beginning-of-line]
+                'smarter-move-beginning-of-line)
+(defun dos2unix ()
+  "Not exactly but it's easier to remember"
+  (interactive)
+  (set-buffer-file-coding-system 'unix 't))
+
+(defun open-terminal-at (directory)
+    "Open a terminal at the `directory' passed in using a name derived
+from the directory.  If a terminal by that name already exists, just
+switch to it instead of creating a new one.
+If the directory does not exist, an error message is displayed."
+    (interactive)
+    (if (not (file-exists-p directory))
+        (message (concat
+                  "Terminal not created, Directory does not exist: "
+                  directory))
+      (let* ((name (concat "term-" directory))
+             (term-name (concat "*" name "*"))
+             (default-directory directory))
+        (if (get-buffer term-name)
+            (switch-to-buffer term-name)
+          (progn
+            (ansi-term "/bin/bash" name) ;; wraps name with *'s
+            (process-send-string
+             (get-process term-name)
+             (concat "cd " directory "\nclear\n")))))))
+(defun open-eshell-at (directory)
+    "Open an eshell at the `directory' passed in using a name derived
+from the directory.  If an eashll by that name already exists, just
+switch to it instead of creating a new one.
+If the directory does not exit, an error message is displayed."
+    (interactive)
+    (if (not (file-exists-p directory))
+        (message (concat
+                  "Eshell not created, Directory does not exist: "
+                  directory))
+      (let* ((name (concat "*eshell-" directory "*"))
+             (default-directory directory))
+        (if (not (get-buffer name))
+            (progn
+              (setq eshell-buffer-name name)
+              (eshell)
+              (setq eshell-buffer-name "*eshell*")))
+        (switch-to-buffer name))))
+
+(defun current-location ()
+    "Function that works in buffers, dired, term and eshell to return
+current location."
+    (interactive)
+    (or (if (buffer-file-name) (file-name-directory (buffer-file-name)))
+        (if (fboundp 'eshell/pwd) (eshell/pwd))
+        (if (fboundp 'default-directory) (default-directory))
+        (getenv "HOME")))
+
+(defun eshell-here ()
+  "Open an eshell at the `current-location'"
+  (interactive)
+  (open-eshell-at (current-location)))
+(defalias 'ee 'eshell-here) 
+
+(defun terminal-here ()
+  "Open a terminal at the `current-location'"
+  (interactive)
+  (open-terminal-at (current-location)))
+
+(defalias 'tt 'terminal-here)
 
 (provide 'init-defuns)

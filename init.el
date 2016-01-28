@@ -8,9 +8,7 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq default-directory (getenv "HOME"))
-
 ;;(server-start)
-
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (require 'init-defaults)
 (use-package better-defaults)
@@ -38,6 +36,43 @@
 (require 'init-company)
 (require 'init-avy)
 
+;; Platform specific settings
+(defvar *is-a-mac*)
+(defvar *is-carbon-emacs*)
+(defvar *is-cocoa-emacs*)
+(defvar *is-gnu-linux*)
+(setq
+ *is-a-mac* (eq system-type 'darwin)
+ *is-carbon-emacs* (and *is-a-mac* (eq window-system 'mac))
+ *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns))
+ *is-gnu-linux* (eq system-type 'gnu/linux))
+(when *is-a-mac*
+  (setq
+   ;; for multilingual environments
+   default-input-method "MacOSX"
+   ;; font
+   default-frame-alist '((font . "Menlo-13"))
+   ;; Work around a bug on OS X where system-name is FQDN
+   system-name (car (split-string system-name "\\."))
+   ;; make emacs open in existing frames
+   ;;ns-pop-up-frames nil
+   ;; brew install hunspell, https://joelkuiper.eu/spellcheck_emacs
+   ispell-program-name "hunspell"
+   ;; modifier keys meta and cmd swapped in system preferences
+   ;; but could do it here with
+   ;;mac-command-modifier 'meta
+   ;;mac-option-modifier 'super
+   ;; hitting cmd still gets me in trouble in emacs though
+   mac-command-modifier nil))
+(when *is-gnu-linux*
+  (setq
+   ;; font
+   default-frame-alist '((font . "Monospace-12"))
+   ;; make emacs use the clipboard
+   x-select-enable-clipboard t
+   ;; use hunspell
+   ispell-program-name "hunspell"))
+
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
@@ -45,9 +80,6 @@
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
-;;(add-hook 'prog-mode-hook 'relative-line-numbers-mode t)
-;;(add-hook 'prog-mode-hook 'line-number-mode t)
-;;(add-hook 'prog-mode-hook 'column-number-mode t)
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 (add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
