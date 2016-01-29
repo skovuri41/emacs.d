@@ -51,7 +51,7 @@
    ;; for multilingual environments
    default-input-method "MacOSX"
    ;; font
-   default-frame-alist '((font . "Menlo-13"))
+   default-frame-alist '((font . "Monaco-13"))
    ;; Work around a bug on OS X where system-name is FQDN
    system-name (car (split-string system-name "\\."))
    ;; make emacs open in existing frames
