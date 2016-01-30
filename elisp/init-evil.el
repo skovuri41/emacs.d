@@ -44,11 +44,13 @@
       (setq-default evil-escape-delay 0.2))
     (use-package evil-lisp-state
       :init (setq evil-lisp-state-global t)
+      :disabled t
       :config (evil-lisp-state-leader ", l"))
-    (use-package evil-cleverparens
-      :init 
-      (add-hook 'emacs-lisp-mode-hook 'evil-cleverparens-mode)
-      (add-hook 'clojure-mode-hook 'evil-cleverparens-mode)))
+    ;;(use-package evil-cleverparens
+      ;;:ensure t
+     ;; :diminish evil-cleverparens-mode
+     ;; :init)
+    )
   :config
   (progn
     (setq evil-cross-lines t)
