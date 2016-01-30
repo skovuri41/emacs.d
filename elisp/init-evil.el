@@ -46,10 +46,12 @@
       :init (setq evil-lisp-state-global t)
       :disabled t
       :config (evil-lisp-state-leader ", l"))
-    ;;(use-package evil-cleverparens
-      ;;:ensure t
-     ;; :diminish evil-cleverparens-mode
-     ;; :init)
+    (use-package evil-cleverparens
+      :ensure t
+      :diminish evil-cleverparens-mode
+      :init
+      (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+      (add-hook 'clojure-mode-hook #'evil-cleverparens-mode))
     )
   :config
   (progn

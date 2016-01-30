@@ -13,7 +13,7 @@
 (use-package better-defaults)
 (require 'init-powerline)
 (require 'init-evil)
-(require 'init-cleverparens)
+;;(require 'init-cleverparens)
 (require 'init-whichkey)
 (require 'init-yasnippet)
 (require 'init-projectile)
