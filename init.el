@@ -51,7 +51,10 @@
    ;; for multilingual environments
    default-input-method "MacOSX"
    ;; font
-   default-frame-alist '((font . "Monaco-13"))
+   default-frame-alist '((font . "Monaco-13")
+                         (width . 120)  ;character
+                         (height . 52)) ; lines
+
    ;; Work around a bug on OS X where system-name is FQDN
    system-name (car (split-string system-name "\\."))
    ;; make emacs open in existing frames
@@ -72,7 +75,6 @@
    x-select-enable-clipboard t
    ;; use hunspell
    ispell-program-name "hunspell"))
-
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
@@ -113,3 +115,4 @@
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
+(global-set-key [remap mark-sexp] 'easy-mark)

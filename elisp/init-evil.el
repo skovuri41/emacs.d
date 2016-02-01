@@ -27,7 +27,8 @@
         "hh" 'helm-projectile-find-file
         "hr" 'helm-recentf
         "hp" 'helm-projectile
-        "h'" 'helm-all-mark-rings))) 
+        "h'" 'helm-all-mark-rings
+        "hi" 'helm-imenu-anywhere))) 
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
     (use-package evil-surround
@@ -145,6 +146,7 @@
     (evil-set-initial-state 'magit-mode 'normal)
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
+    (add-hook 'git-commit-mode-hook 'evil-insert-state)
     (evil-set-initial-state 'magit-log-mode 'normal)))
 (provide 'init-evil)
 
