@@ -1,8 +1,11 @@
 (use-package clojure-mode
   :mode (("\\.edn$" . clojure-mode)
-         ("\\.cljc$" . clojure-mode))
+         ("\\.cljc$" . clojure-mode)
+         ("\\.clj$" . clojure-mode))
   :config
   (progn
+    ;;(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+
     (define-clojure-indent
       (defroutes 'defun)
       (GET 2)

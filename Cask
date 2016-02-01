@@ -43,6 +43,7 @@
 (depends-on "clj-refactor")
 (depends-on "rainbow-mode")
 (depends-on "clojure-cheatsheet")
+(depends-on "typed-clojure-mode")
 
 (depends-on "guide-key")
 (depends-on "flx-ido")
@@ -63,6 +64,7 @@
 (depends-on "wrap-region")
 (depends-on "move-text")
 (depends-on "hl-line+")
+(depends-on "easy-kill")
 
 ;;helm
 (depends-on "helm")

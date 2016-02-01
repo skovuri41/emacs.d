@@ -33,6 +33,7 @@
 (require 'init-defuns)
 (require 'init-company)
 (require 'init-avy)
+(require 'init-easy-kill)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)
@@ -71,16 +72,11 @@
    ;; use hunspell
    ispell-program-name "hunspell"))
 
-;; No slow flyspell. 
-(eval-after-load "flyspell"
-  '(defun flyspell-mode (&optional arg)))
-
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 ;;(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
-;;(add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
 
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
@@ -116,3 +112,39 @@
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
+
+;; (eval-after-load 'emacs-lisp-mode (progn 
+;;                                     (message "evil-clepanare-mode")
+;;                                    ;; (evil-cleverparens-mode)
+;;                                     (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
+;;                                     (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+;;                                     (setq evil-move-beyond-eol nil)))
+;; (eval-after-load 'evil-mode (progn 
+;;    (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
+;;    (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+;;    (setq evil-move-beyond-eol nil)
+;;    (evil-cleverparens-mode t)
+;;    ))
+;; (defun set-cleverparens-key-bindings ()
+;;     (progn  (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
+;;             (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+;;             (setq evil-move-beyond-eol nil)
+;;             (evil-cleverparens-mode t)
+;;             )
+;;    )
+;; (add-hook 'evil-cleverparens-mode 'set-cleverparens-key-bindings)
+ 
+                                        ; (progn
+;;     ;;(add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+;;     (evil-cleverparens-mode)
+;;     (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
+;;     (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+;;    )
+
+;; (defun set-cleverparens-key-bindings ()
+;;   (progn  (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
+;;           (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+;;           (setq evil-move-beyond-eol nil)
+;;           ;;(evil-cleverparens-mode t)
+;;           ))
+;; (add-hook 'evil-cleverparens-enabled-hook 'set-cleverparens-key-bindings)

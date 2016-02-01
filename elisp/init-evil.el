@@ -1,6 +1,7 @@
 (use-package evil
   :init
   (progn
+    (setq evil-move-beyond-eol t)
     (evil-mode 1)
     (use-package evil-leader
       :init (global-evil-leader-mode)
@@ -42,16 +43,20 @@
       (evil-escape-mode)
       (setq-default evil-escape-key-sequence "kj")
       (setq-default evil-escape-delay 0.2))
-    (use-package evil-lisp-state
-      :init (setq evil-lisp-state-global t)
-      :disabled t
-      :config (evil-lisp-state-leader ", l"))
     (use-package evil-cleverparens
-      :ensure t
       :diminish evil-cleverparens-mode
       :init
-      (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
-      (add-hook 'clojure-mode-hook #'evil-cleverparens-mode))
+      (progn
+        (defun set-cleverparens-key-bindings ()
+          (progn  (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
+                  (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+                  (setq evil-move-beyond-eol nil)
+                  ))
+        (add-hook 'evil-cleverparens-enabled-hook 'set-cleverparens-key-bindings)
+        (add-hook 'emacs-lisp-mode-hook 'evil-cleverparens-mode)
+        (add-hook 'clojure-mode-hook 'evil-cleverparens-mode)
+        )
+      )
     )
   :config
   (progn
@@ -116,10 +121,6 @@
     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
     ;;(define-key helm-map [escape] 'helm-keyboard-quit)
-    ;;(define-key evil-normal-state-map "\C-j"  'evil-window-down)
-    ;;(define-key evil-normal-state-map "\C-k"  'evil-window-up)
-    ;;(define-key evil-normal-state-map "\C-h"  'evil-window-left)
-    ;;(define-key evil-normal-state-map "\C-l"  'evil-window-right)
 
     ;; Split and move the cursor to the new split
     (define-key evil-normal-state-map (kbd "-")

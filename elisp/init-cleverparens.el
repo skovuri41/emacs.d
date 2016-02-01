@@ -47,6 +47,8 @@
           (message "suppport-iterm2")
           )
         (support-iterm2)
+        (evil-define-key 'normal evil-cleverparens-mode-map  (kbd "M-w") nil)
+        (evil-define-key 'normal evil-cleverparens-mode-map  (kbd "M-[") nil)
         )
       )
 (provide 'init-cleverparens)
