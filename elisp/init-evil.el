@@ -50,6 +50,7 @@
         (defun set-cleverparens-key-bindings ()
           (progn  (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-w") nil)
                   (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-[") nil)
+                  (evil-define-key 'normal evil-cleverparens-mode-map (kbd "M-z") nil)
                   (setq evil-move-beyond-eol nil)
                   ))
         (add-hook 'evil-cleverparens-enabled-hook 'set-cleverparens-key-bindings)

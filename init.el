@@ -13,7 +13,6 @@
 (use-package better-defaults)
 (require 'init-powerline)
 (require 'init-evil)
-;;(require 'init-cleverparens)
 (require 'init-whichkey)
 (require 'init-yasnippet)
 (require 'init-projectile)
@@ -34,7 +33,9 @@
 (require 'init-company)
 (require 'init-avy)
 (require 'init-easy-kill)
-
+(require 'init-imenu-anywhere)
+(require 'init-dired)
+(require 'init-zop-to-char)
 ;; Platform specific settings
 (defvar *is-a-mac*)
 (defvar *is-carbon-emacs*)

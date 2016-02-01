@@ -29,6 +29,9 @@
 (depends-on "diminish")
 (depends-on "company")
 (depends-on "rainbow-delimiters")
+;;(depends-on "zop-to-char")
+;;(depends-on "imenu-anywhere")
+
 
 ;;org
 (depends-on "org")
