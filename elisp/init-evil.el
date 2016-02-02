@@ -98,7 +98,7 @@
                         'mouse-face 'mode-line-highlight)
           tag)))
     ;; gui mode
-    (when (window-system)
+    (when (display-graphic-p)
      (setq evil-emacs-state-cursor '("red" box))
      (setq evil-normal-state-cursor '("green" box))
      (setq evil-visual-state-cursor '("orange" box))
