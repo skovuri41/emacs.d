@@ -4,7 +4,7 @@
          ("\\.clj$" . clojure-mode))
   :config
   (progn
-    ;;(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+    (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
 
     (define-clojure-indent
       (defroutes 'defun)
@@ -23,7 +23,8 @@
     (define-clojure-indent
       (match 1)
       (are 2)
-      (checking 2))
+      (checking 2)
+      (async 1))
 
     (define-clojure-indent
       (select 1)
@@ -64,23 +65,39 @@
       (save-buffer)
       (call-interactively 'cider-refresh))
 
+    (defun cider-send-and-evaluate-sexp ()
+      "Sends the s-expression located before the point or the active
+       region to the REPL and evaluates it. Then the Clojure buffer is
+       activated as if nothing happened."
+      (interactive)
+      (if (not (region-active-p))
+          (cider-insert-last-sexp-in-repl)
+        (cider-insert-in-repl
+         (buffer-substring (region-beginning) (region-end)) nil))
+      (cider-switch-to-repl-buffer)
+      (cider-repl-closing-return)
+      (cider-switch-to-last-clojure-buffer)
+      (message ""))
+
     (evil-leader/set-key "eb" 'cider-eval-buffer)
     (evil-leader/set-key "ee" 'cider-eval-last-sexp)
     (evil-leader/set-key "er" 'cider-eval-region)
     (evil-leader/set-key "ef" 'cider-eval-defun-at-point)
+    (evil-leader/set-key "es" 'cider-send-and-evaluate-sexp)
 
     (evil-leader/set-key "cd" 'cider-doc)
     (evil-leader/set-key "cc" 'cider-connect)
     (evil-leader/set-key "ct" 'cider-test-run-tests)
     (evil-leader/set-key "cr" 'toggle-nrepl-buffer)
-    (evil-leader/set-key "cf" 'cider-save-and-refresh)
-
-    (global-set-key (kbd "s-r") 'cider-save-and-refresh)))
+    (evil-leader/set-key "cf" 'cider-save-and-refresh)))
 
 (use-package cider
+  :commands (cider cider-connect cider-jack-in)
   :init
   (progn
     (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+    (add-hook 'cider-repl-mode-hook 'company-mode)
+    (add-hook 'cider-mode-hook 'company-mode)
     (add-hook 'cider-repl-mode-hook 'subword-mode))
   :config
   (progn
@@ -89,7 +106,11 @@
     (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
     (setq cider-repl-pop-to-buffer-on-connect nil)
     (setq cider-repl-use-clojure-font-lock nil)
-    (setq cider-auto-select-error-buffer nil)
+    (setq cider-auto-select-error-buffer t)
+    (setq cider-show-error-buffer t)
+    (setq cider-repl-use-clojure-font-lock t)
+    (setq nrepl-hide-special-buffers t)
+    (setq nrepl-popup-stacktraces nil)
     (setq cider-prompt-save-file-on-load nil)
     (setq cider-refresh-before-fn "reloaded.repl/suspend")
     (setq cider-refresh-after-fn "reloaded.repl/resume")))
@@ -117,5 +138,9 @@
     (evil-leader/set-key "rcp" 'cljr-cycle-privacy)
     (evil-leader/set-key "rcs" 'clojure-toggle-keyword-string)
     (evil-leader/set-key "rfe" 'cljr-create-fn-from-example)))
+
+(use-package ob-clojure
+  :init
+  (setq org-babel-clojure-backend 'cider))
 
 (provide 'init-clojure)

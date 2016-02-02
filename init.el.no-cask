@@ -69,6 +69,8 @@
                     easy-kill
                     imenu-anywhere
                     zop-to-char
+                    web-mode
+                    rainbow-delimiters
                     ))
 
 (dolist (p my-packages)
@@ -80,7 +82,7 @@
 (use-package better-defaults)
 (require 'init-powerline)
 (require 'init-evil)
-(require 'init-guidekey)
+(require 'init-whichkey)
 (require 'init-yasnippet)
 (require 'init-projectile)
 (require 'init-ido)
@@ -99,6 +101,7 @@
 (require 'init-easy-kill)
 (require 'init-imenu-anywhere)
 (require 'init-zop-to-char)
+(require 'init-programming)
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
@@ -135,7 +138,7 @@
 (when *is-gnu-linux*
   (setq
    ;; font
-   default-frame-alist '((font . "Monospace-10"))
+   default-frame-alist '((font . "Monaco-10"))
    ;; make emacs use the clipboard
    x-select-enable-clipboard t
    ;; use hunspell
