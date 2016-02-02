@@ -61,11 +61,6 @@
    ;;ns-pop-up-frames nil
    ;; brew install hunspell, https://joelkuiper.eu/spellcheck_emacs
    ispell-program-name "hunspell"
-   ;; modifier keys meta and cmd swapped in system preferences
-   ;; but could do it here with
-   ;;mac-command-modifier 'meta
-   ;;mac-option-modifier 'super
-   ;; hitting cmd still gets me in trouble in emacs though
    mac-command-modifier nil))
 (when *is-gnu-linux*
   (setq
@@ -91,7 +86,6 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "C-M-%") 'query-replace)
-
 ;;switch prev nex user buffers
 (global-set-key (kbd "<f11>") 'xah-previous-user-buffer)
 (global-set-key (kbd "<f12>") 'xah-next-user-buffer)
@@ -116,3 +110,5 @@
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
+(global-set-key (kbd "<f7>") 'repeat-complex-command)
+ 
