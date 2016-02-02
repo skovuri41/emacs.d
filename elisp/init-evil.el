@@ -28,6 +28,7 @@
         "hr" 'helm-recentf
         "hp" 'helm-projectile
         "h'" 'helm-all-mark-rings
+        "hs" 'helm-swoop
         "hi" 'helm-imenu-anywhere))) 
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
