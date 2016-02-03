@@ -139,8 +139,5 @@
     (evil-leader/set-key "rcs" 'clojure-toggle-keyword-string)
     (evil-leader/set-key "rfe" 'cljr-create-fn-from-example)))
 
-(use-package ob-clojure
-  :init
-  (setq org-babel-clojure-backend 'cider))
 
 (provide 'init-clojure)

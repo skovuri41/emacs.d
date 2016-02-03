@@ -15,21 +15,21 @@
         (evil-leader/set-key "wv" 'split-window-vertically)
         (evil-leader/set-key "ww" 'other-window)
         (evil-leader/set-key
-        "hf" 'helm-for-files
-        "hl" 'helm-locate
-        "hy" 'helm-show-kill-ring
-        "ht" 'helm-top
-        "hm" 'helm-man-woman
-        "ho" 'helm-occur
-        "hx" 'helm-M-x
-        "he" 'helm-find-files
-        "hb" 'helm-buffers-list
-        "hh" 'helm-projectile-find-file
-        "hr" 'helm-recentf
-        "hp" 'helm-projectile
-        "h'" 'helm-all-mark-rings
-        "hs" 'helm-swoop
-        "hi" 'helm-imenu-anywhere))) 
+          "hf" 'helm-for-files
+          "hl" 'helm-locate
+          "hy" 'helm-show-kill-ring
+          "ht" 'helm-top
+          "hm" 'helm-man-woman
+          "ho" 'helm-occur
+          "hx" 'helm-M-x
+          "he" 'helm-find-files
+          "hb" 'helm-buffers-list
+          "hh" 'helm-projectile-find-file
+          "hr" 'helm-recentf
+          "hp" 'helm-projectile
+          "h'" 'helm-all-mark-rings
+          "hs" 'helm-swoop
+          "hi" 'helm-imenu-anywhere))) 
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
     (use-package evil-surround
@@ -97,25 +97,33 @@
                         'help-echo (evil-state-property state :name)
                         'mouse-face 'mode-line-highlight)
           tag)))
+    
     ;; gui mode
-    (when (display-graphic-p)
-     (setq evil-emacs-state-cursor '("red" box))
-     (setq evil-normal-state-cursor '("green" box))
-     (setq evil-visual-state-cursor '("orange" box))
-     (setq evil-insert-state-cursor '("red" bar))
-     (setq evil-replace-state-cursor '("red" bar))
-     (setq evil-operator-state-cursor '("red" hollow)))
+    (defun evil-set-cursor-by-state ()
+      (message "evil-set-cursor-by-state")
+      (when (display-graphic-p)
+        (setq evil-emacs-state-cursor '("red" box)
+         evil-normal-state-cursor '("green" box)
+         evil-visual-state-cursor '("orange" box)
+         evil-insert-state-cursor '("red" bar)
+         evil-replace-state-cursor '("red" bar)
+         evil-operator-state-cursor '("red" hollow))))
+
     ;;; esc quits
     (defun minibuffer-keyboard-quit ()
-        "Abort recursive edit.
+      "Abort recursive edit.
          In Delete Selection mode, if the mark is active, just deactivate it;
-
          then it takes a second \\[keyboard-quit] to abort the minibuffer."
-        (interactive)
-        (if (and delete-selection-mode transient-mark-mode mark-active)
-            (setq deactivate-mark  t)
-          (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-          (abort-recursive-edit)))
+      (interactive)
+      (if (and delete-selection-mode transient-mark-mode mark-active)
+          (setq deactivate-mark  t)
+        (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+        (abort-recursive-edit)))
+
+    ;;(add-hook 'evil-normal-state-entry-hook 'evil-set-cursor-by-state)
+    ;;(add-hook 'evil-leader-mode-hook 'evil-set-cursor-by-state)
+    ;;(eval-after-load 'evil-local-mode 'evil-set-cursor-by-state)
+
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
     (define-key evil-visual-state-map [escape] 'keyboard-quit)
     (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -123,7 +131,6 @@
     (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-    ;;(define-key helm-map [escape] 'helm-keyboard-quit)
     (define-key evil-normal-state-map ";" 'evil-ex)
     (define-key evil-visual-state-map ";" 'evil-ex)
 
@@ -137,7 +144,7 @@
       (lambda ()
         (interactive)
         (split-window-horizontally)
-            (other-window 1)))
+        (other-window 1)))
 
     ;; Set the initial evil state that certain major modes will be in.
     (evil-set-initial-state 'magit-log-edit-mode 'emacs)
