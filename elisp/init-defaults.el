@@ -117,4 +117,6 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+(setq initial-major-mode 'org-mode)
+(setq  initial-scratch-message nil)
 (provide 'init-defaults)
