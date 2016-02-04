@@ -54,13 +54,14 @@
    default-frame-alist '((font . "Monaco-13")
                          (width . 120)  ;character
                          (height . 52)) ; lines
-
    ;; Work around a bug on OS X where system-name is FQDN
    system-name (car (split-string system-name "\\."))
    ;; make emacs open in existing frames
    ;;ns-pop-up-frames nil
    ;; brew install hunspell, https://joelkuiper.eu/spellcheck_emacs
    ispell-program-name "hunspell"
+   interprogram-cut-function 'paste-to-osx
+   interprogram-paste-function 'copy-from-osx
    mac-command-modifier nil))
 (when *is-gnu-linux*
   (setq
@@ -112,3 +113,13 @@
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
  
+;;(getenv "LANG")
+(setenv "DICTIONARY" "en_US.UTF-8")
+(setq ispell-program-name "hunspell")
+(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
+;; No slow stupid flyspell. Die!
+(eval-after-load "flyspell"
+  '(defun flyspell-mode (&optional arg)))
+                               

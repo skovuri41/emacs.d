@@ -8,6 +8,7 @@
       :config
       (progn
         (evil-leader/set-leader "SPC")
+        (setq evil-leader/in-all-states 1) 
         (evil-leader/set-key "wd" 'delete-window)
         (evil-leader/set-key "wo" 'delete-other-windows)
         (evil-leader/set-key "ws" 'split-window-below)
@@ -120,9 +121,10 @@
         (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
         (abort-recursive-edit)))
 
-    ;;(add-hook 'evil-normal-state-entry-hook 'evil-set-cursor-by-state)
+    (add-hook 'evil-visual-state-entry-hook 'evil-set-cursor-by-state)
+    ;;(add-hook 'global-evil-leader-mode-hook 'evil-set-cursor-by-state)
     ;;(add-hook 'evil-leader-mode-hook 'evil-set-cursor-by-state)
-    ;;(eval-after-load 'evil-local-mode 'evil-set-cursor-by-state)
+   ;; (eval-after-load 'turn-on-evil-mode 'evil-set-cursor-by-state)
 
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
     (define-key evil-visual-state-map [escape] 'keyboard-quit)
@@ -159,4 +161,3 @@
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
     (evil-set-initial-state 'magit-log-mode 'normal)))
 (provide 'init-evil)
-
