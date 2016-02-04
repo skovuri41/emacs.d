@@ -98,6 +98,7 @@
 (require 'init-smartparens)
 (require 'init-hl-line)
 (require 'init-defuns)
+(require 'init-company)
 (require 'init-easy-kill)
 (require 'init-imenu-anywhere)
 (require 'init-zop-to-char)
