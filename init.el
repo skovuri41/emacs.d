@@ -36,6 +36,7 @@
 (require 'init-imenu-anywhere)
 (require 'init-dired)
 (require 'init-zop-to-char)
+(require 'init-iedit)
 ;; Platform specific settings
 (defvar *is-a-mac*)
 (defvar *is-carbon-emacs*)

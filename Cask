@@ -55,6 +55,7 @@
 (depends-on "aggressive-indent")
 (depends-on "smex")
 (depends-on "which-key")
+(depends-on "iedit")
 
 (depends-on "ace-jump-buffer")
 (depends-on "ace-window")
@@ -92,7 +93,8 @@
 ;;avy
 (depends-on "avy")
 
-
+;;emacs eclim
+(depends-on "emacs-eclim")
 
 
 
