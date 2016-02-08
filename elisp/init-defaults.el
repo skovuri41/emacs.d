@@ -128,12 +128,10 @@
 
 
 ;; make sure $PATH is set correctly
-(use-package exec-path-from-shell
-  :ensure exec-path-from-shell
-  :config
-  (progn
-    (exec-path-from-shell-copy-env "PATH")
-    (exec-path-from-shell-copy-env "PYTHONPATH")
-))
+;;(use-package exec-path-from-shell
+;;  :ensure exec-path-from-shell
+;;  :config
+;;  (progn
+;;    (exec-path-from-shell-copy-env "PATH")))
 
 (provide 'init-defaults)

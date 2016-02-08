@@ -34,27 +34,29 @@
   (interactive)
   (eclim-maven-run "install"))
 
-(use-package eclim
-    :defer t
-    :diminish eclim-mode
-    :functions (eclim--project-dir eclim--project-name)
-    :commands (eclim-mode global-eclim-mode)
-    :init
-    (add-hook 'java-mode-hook 'eclim-mode)
-    (setq eclim-eclipse-dirs '("/Applications/eclipse")
-          eclim-executable     "/Applications/eclipse/eclim")
-    :config
-    (progn
-      (setq help-at-pt-display-when-idle t
-            help-at-pt-timer-delay 0.1)
-      (help-at-pt-set-timer)
-
-      (add-to-list 'minor-mode-alist
-                   '(eclim-mode (:eval (eclim-modeline-string))))
-
+(use-package emacs-eclim
+  :ensure t
+  :diminish eclim-mode
+  :commands (eclim-mode global-eclim-mode)
+  :init
+  (add-hook 'java-mode-hook (lambda () (eclim-mode 1)))
+  (setq eclim-eclipse-dirs '("~/eclipse")
+        eclim-executable     "~/eclipse/eclim")
+  :config
+  (progn
+    (setq help-at-pt-display-when-idle t
+          help-at-pt-timer-delay 0.1)
+    (help-at-pt-set-timer)
+    (add-to-list 'minor-mode-alist
+                 '(eclim-mode (:eval (eclim-modeline-string))))
+    ;; company completion.
+    (require 'company-emacs-eclim)
+    (company-emacs-eclim-setup)
+    (require 'eclimd)
+    (with-eval-after-load 'cc-mode 
       (evil-define-key 'insert java-mode-map
-        (kbd ".") 'nil
-        (kbd ":") 'nil
+        (kbd ".") 'java-completing-dot
+        (kbd ":") 'java-completing-double-colon
         (kbd "M-.") 'eclim-java-find-declaration
         (kbd "M-,") 'pop-tag-mark
         (kbd "M-<mouse-3>") 'eclim-java-find-declaration
@@ -144,8 +146,8 @@
         "mpp" 'eclim-project-mode
         "mpu" 'eclim-project-update
 
-        "mtt" 'eclim-run-junit)))
+        "mtt" 'eclim-run-junit))))
 
-(use-package company-emacs-eclim
-      :functions company-emacs-eclim-setup
-      :config (company-emacs-eclim-setup))
+
+
+(provide 'init-eclim)
