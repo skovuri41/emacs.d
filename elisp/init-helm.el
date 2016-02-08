@@ -14,6 +14,14 @@
 (use-package helm-gtags )
 (use-package helm-projectile)
 (use-package helm-swoop)
+(use-package helm-company
+  :ensure t
+  :config
+  (eval-after-load 'company
+    '(progn
+       (define-key company-mode-map (kbd "C-:") 'helm-company)
+       (define-key company-active-map (kbd "C-:") 'helm-company)))
+  )
 
 
 (provide 'init-helm)

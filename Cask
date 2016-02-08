@@ -80,6 +80,7 @@
 (depends-on "helm-projectile")
 (depends-on "helm-gtags")
 (depends-on "helm-descbinds")
+(depends-on "helm-company")
 ;;(depends-on "helm-config")
 
 ;;evil mode

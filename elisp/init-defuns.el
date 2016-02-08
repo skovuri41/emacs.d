@@ -384,7 +384,8 @@ Version 2015-06-12"
 (defun new-scratch-buffer ()
   "Open a new empty buffer."
   (interactive)
-  (scratch))
+  (scratch)
+  (delete-other-windows))
 
 (defun save-buffer-always ()
   "Save the buffer even if it is not modified.
