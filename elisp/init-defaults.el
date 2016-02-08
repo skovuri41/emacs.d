@@ -119,4 +119,21 @@
 
 (setq initial-major-mode 'org-mode)
 (setq  initial-scratch-message nil)
+
+(defmacro after (feature &rest body)
+  "After FEATURE is loaded, evaluate BODY."
+  (declare (indent defun))
+  `(eval-after-load ,feature
+     '(progn ,@body)))
+
+
+;; make sure $PATH is set correctly
+(use-package exec-path-from-shell
+  :ensure exec-path-from-shell
+  :config
+  (progn
+    (exec-path-from-shell-copy-env "PATH")
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+))
+
 (provide 'init-defaults)

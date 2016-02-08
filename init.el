@@ -37,6 +37,8 @@
 (require 'init-dired)
 (require 'init-zop-to-char)
 (require 'init-iedit)
+(require 'init-elisp-slime-nav)
+(require 'init-aggressive-indent)
 ;; Platform specific settings
 (defvar *is-a-mac*)
 (defvar *is-carbon-emacs*)
@@ -101,7 +103,8 @@
 (global-set-key (kbd "<f8>") 'xah-search-current-word)
 (global-set-key (kbd "<prior>") 'xah-backward-block) ; page up key
 (global-set-key (kbd "<next>") 'xah-forward-block) ; page down key
-(global-set-key (kbd "M-n") 'xah-new-empty-buffer) ; new empty buffer
+;;(global-set-key (kbd "M-n") 'xah-new-empty-buffer) ; new empty buffer
+(global-set-key (kbd "M-n") 'new-scratch-buffer) ; new empty buffer
 (global-set-key (kbd "<f2>") 'xah-cut-line-or-region) ; cut
 (global-set-key (kbd "<f3>") 'xah-copy-line-or-region) ; copy
 (global-set-key (kbd "<f4>") 'yank) ; paste

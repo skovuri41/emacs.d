@@ -10,5 +10,8 @@
 (use-package js2-mode
   :defer t)
 
+(use-package scratch
+	  :ensure t)
+	
 
 (provide 'init-minor-modes)

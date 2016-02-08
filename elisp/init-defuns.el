@@ -381,6 +381,14 @@ Version 2015-06-12"
     (funcall (and initial-major-mode))
     (setq buffer-offer-save t)))
 
+(defun new-scratch-buffer ()
+  "Open a new empty buffer."
+  (interactive)
+  (let ((ξbuf (scratch)))
+    (switch-to-buffer ξbuf)
+    (setq buffer-offer-save t)
+    (delete-other-windows)))
+
 (defun save-buffer-always ()
     "Save the buffer even if it is not modified.
 Useful if something is watching file modification times."

@@ -56,6 +56,7 @@
 (depends-on "smex")
 (depends-on "which-key")
 (depends-on "iedit")
+(depends-on "smartrep")
 
 (depends-on "ace-jump-buffer")
 (depends-on "ace-window")
@@ -69,7 +70,9 @@
 (depends-on "move-text")
 (depends-on "hl-line+")
 (depends-on "easy-kill")
-
+(depends-on "scratch")
+(depends-on "exec-path-from-shell")
+(depends-on "aggressive-indent")
 ;;helm
 (depends-on "helm")
 (depends-on "helm-swoop")
