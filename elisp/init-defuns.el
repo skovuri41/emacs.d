@@ -384,17 +384,14 @@ Version 2015-06-12"
 (defun new-scratch-buffer ()
   "Open a new empty buffer."
   (interactive)
-  (let ((ξbuf (scratch)))
-    (switch-to-buffer ξbuf)
-    (setq buffer-offer-save t)
-    (delete-other-windows)))
+  (scratch))
 
 (defun save-buffer-always ()
-    "Save the buffer even if it is not modified.
+  "Save the buffer even if it is not modified.
 Useful if something is watching file modification times."
-    (interactive)
-    (set-buffer-modified-p t)
-    (save-buffer))
+  (interactive)
+  (set-buffer-modified-p t)
+  (save-buffer))
 
 (defun insert-date-string ()
   "Insert a nicely formated date string."
