@@ -49,6 +49,7 @@
     (setq help-at-pt-display-when-idle t
           help-at-pt-timer-delay 0.1)
     (help-at-pt-set-timer)
+    (require 'eclimd)
 
     (add-to-list 'minor-mode-alist
                  '(eclim-mode (:eval (eclim-modeline-string))))
@@ -150,3 +151,4 @@
 (use-package company-emacs-eclim
       :functions company-emacs-eclim-setup
       :config (company-emacs-eclim-setup))
+(provide  'init-eclim)
