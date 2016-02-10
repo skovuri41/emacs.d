@@ -84,6 +84,8 @@
 
 ;; Never insert tabs
 (set-default 'indent-tabs-mode nil)
+;; smart tab behavior - indent or complete
+(setq tab-always-indent 'complete)
 
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)
@@ -108,9 +110,14 @@
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)
 
-;; Add parts of each file's directory to the buffer name if not unique
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward uniquify-separator ":")
+(use-package uniquify
+  :config
+  (setq uniquify-separator "/")
+  ;; rename after killing uniquified
+  (setq uniquify-after-kill-buffer-p t)
+  ;; don't muck with special buffers
+  (setq uniquify-ignore-buffers-re "^\\*")
+  (setq uniquify-buffer-name-style 'post-forward uniquify-separator ":"))
 
 ;; A saner ediff
 (setq ediff-diff-options "-w")

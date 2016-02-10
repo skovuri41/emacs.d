@@ -30,7 +30,11 @@
           "hp" 'helm-projectile
           "h'" 'helm-all-mark-rings
           "hs" 'helm-swoop
-          "hi" 'helm-imenu-anywhere))) 
+          "ha" 'helm-do-ag
+          "hA" 'helm-ag-project-root
+          "hi" 'helm-imenu
+          "hI" 'helm-imenu-anywhere
+          ))) 
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
     (use-package evil-surround
@@ -104,11 +108,11 @@
       (message "evil-set-cursor-by-state")
       (when (display-graphic-p)
         (setq evil-emacs-state-cursor '("red" box)
-         evil-normal-state-cursor '("green" box)
-         evil-visual-state-cursor '("orange" box)
-         evil-insert-state-cursor '("red" bar)
-         evil-replace-state-cursor '("red" bar)
-         evil-operator-state-cursor '("red" hollow))))
+              evil-normal-state-cursor '("green" box)
+              evil-visual-state-cursor '("orange" box)
+              evil-insert-state-cursor '("red" bar)
+              evil-replace-state-cursor '("red" bar)
+              evil-operator-state-cursor '("red" hollow))))
 
     ;;; esc quits
     (defun minibuffer-keyboard-quit ()
@@ -124,7 +128,7 @@
     (add-hook 'evil-visual-state-entry-hook 'evil-set-cursor-by-state)
     ;;(add-hook 'global-evil-leader-mode-hook 'evil-set-cursor-by-state)
     ;;(add-hook 'evil-leader-mode-hook 'evil-set-cursor-by-state)
-   ;; (eval-after-load 'turn-on-evil-mode 'evil-set-cursor-by-state)
+    ;; (eval-after-load 'turn-on-evil-mode 'evil-set-cursor-by-state)
 
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
     (define-key evil-visual-state-map [escape] 'keyboard-quit)
