@@ -11,13 +11,13 @@
       (eval-after-load "highlight-parentheses" '(diminish 'highlight-parentheses-mode))
       (eval-after-load "elisp-slime-nav" '(diminish 'elisp-slime-nav-mode " sln"))
       (eval-after-load "projectile" '(diminish 'projectile-mode " prj"))
-      (eval-after-load "paredit" '(diminish 'paredit-mode " par"))
       (eval-after-load "company" '(diminish 'company-mode " cmp"))
       (eval-after-load "cider" '(diminish 'cider-mode " cid"))
       (eval-after-load "typed-clojure-mode" '(diminish 'typed-clojure-mode " typ"))
       (eval-after-load "org-indent" '(diminish 'org-indent-mode))
-      (eval-after-load "evil-org" '(diminish 'evil-org-mode))))
+      (eval-after-load "evil-org" '(diminish 'evil-org-mode))
       (eval-after-load "smartparens" '(diminish 'smartparens-mode))
-      (eval-after-load "drag-stuff" '(diminish 'drag-stuff-mode)))
+      (eval-after-load "drag-stuff" '(diminish 'drag-stuff-mode)))))
+
 
 (provide 'init-powerline)

@@ -22,6 +22,7 @@
 		    cider
 		    clojure-cheatsheet
 		    clojure-mode
+                    typed-clojure-mode
 		    clojure-snippets
 		    company
 		    direx
@@ -48,6 +49,7 @@
 		    helm-gtags
 		    helm-projectile
 		    helm-swoop
+                    helm-ag
 		    ido-vertical-mode
 		    json-mode
 		    magit
@@ -71,6 +73,16 @@
                     zop-to-char
                     web-mode
                     rainbow-delimiters
+                    imenu-anywhere
+                    aggressive-indent
+                    iedit
+                    drag-stuff
+                    elisp-slime-nav
+                    emacs-eclim
+                    better-defaults
+                    powerline
+                    anzu
+                    ag
                     ))
 
 (dolist (p my-packages)
@@ -103,6 +115,14 @@
 (require 'init-imenu-anywhere)
 (require 'init-zop-to-char)
 (require 'init-programming)
+(require 'init-eclim)
+(require 'init-elisp-slime-nav)
+(require 'init-aggressive-indent)
+(require 'init-avy)
+(require 'init-drag-stuff)
+(require 'init-dired)
+(require 'init-anzu)
+(require 'init-ag)
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
@@ -129,7 +149,7 @@
    ;; Work around a bug on OS X where system-name is FQDN
    system-name (car (split-string system-name "\\."))
    ;; make emacs open in existing frames
-   ;;ns-pop-up-frames nil
+   ;; ns-pop-up-frames nil
    ;; brew install hunspell, https://joelkuiper.eu/spellcheck_emacs
    ispell-program-name "hunspell"
    mac-command-modifier nil
@@ -157,13 +177,12 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-; Use regex searches by default.
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
-(global-set-key (kbd "C-M-%") 'query-replace)
+;;(global-set-key (kbd "M-%") 'query-replace-regexp)
+;;(global-set-key (kbd "C-M-%") 'query-replace)
 
 ;;switch prev nex user buffers
 (global-set-key (kbd "<f11>") 'xah-previous-user-buffer)
@@ -186,3 +205,11 @@
 (global-set-key '[(shift f1)] 'toggle-kbd-macro-recording-on)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
+(global-set-key [remap mark-sexp] 'easy-mark)
+(global-set-key (kbd "<f7>") 'repeat-complex-command)
+ 
+(setenv "DICTIONARY" "en_US.UTF-8")
+(setq ispell-program-name "hunspell")
+(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
