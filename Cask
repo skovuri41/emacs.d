@@ -73,6 +73,11 @@
 (depends-on "scratch")
 (depends-on "exec-path-from-shell")
 (depends-on "aggressive-indent")
+(depends-on "ag")
+(depends-on "anzu")
+(depends-on "swiper")
+(depends-on "counsel")
+
 ;;helm
 (depends-on "helm")
 (depends-on "helm-swoop")
@@ -81,6 +86,7 @@
 (depends-on "helm-gtags")
 (depends-on "helm-descbinds")
 (depends-on "helm-company")
+(depends-on "helm-ag")
 ;;(depends-on "helm-config")
 
 ;;evil mode

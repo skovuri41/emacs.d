@@ -1,5 +1,5 @@
 (use-package ag
-  :ensure ag
+  :ensure t
   :commands (ag ag-mode ag-files ag-regexp)
   :init
   (progn
@@ -17,9 +17,8 @@
       ;; unbind kill window
       )
     )
-  :config
   (progn
-    (define-key ag-mode-map (kbd "k") 'nil)
+    ;;(define-key ag-mode-map (kbd "k") 'nil)
     (evil-define-key 'normal ag-mode-map (kbd "k") 'nil)
     (evil-leader/set-key
       "agg" 'ag

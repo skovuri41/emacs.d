@@ -12,7 +12,7 @@
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-agenda-include-all-todo t)
   (setq org-agenda-include-diary t)
-  ;(setq org-agenda-ndays 7)
+                                        ;(setq org-agenda-ndays 7)
   (setq org-agenda-show-all-dates t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-skip-scheduled-if-done t)
@@ -34,7 +34,7 @@
 	  ("b" "Bookmark" plain (file "~/notes/bookmarks.org" "Bookmarks"))
 	  ;; capture Tasks
           ("t" "Todo" entry (file+headline "~/notes/gtd.org" "Tasks")
-            "* TODO %?\n  %i\n  %c")
+           "* TODO %?\n  %i\n  %c")
           ))
   (setq org-tags-column 0)
   (setq org-agenda-text-search-extra-files '(agenda-archives))
@@ -65,10 +65,10 @@
 
   (defun set-org-mode-app-defaults ()
     (setq org-file-apps
-	'(((auto-mode . emacs)
-           ("\\.mm\\'" . default)
-           ("\\.x?html?\\'" . system)
-           ("\\.pdf\\'" . system)))))
+          '(((auto-mode . emacs)
+             ("\\.mm\\'" . default)
+             ("\\.x?html?\\'" . system)
+             ("\\.pdf\\'" . system)))))
   (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
   (setq org-html-postamble nil)
 

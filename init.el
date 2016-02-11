@@ -1,5 +1,4 @@
 ;;;; Initialize ;;;;
-
 (require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
 (cask-initialize)
 
@@ -39,6 +38,9 @@
 (require 'init-iedit)
 (require 'init-elisp-slime-nav)
 (require 'init-aggressive-indent)
+(require 'init-ag)
+(require 'init-anzu)
+(require 'init-ivy)
 ;; Platform specific settings
 (defvar *is-a-mac*)
 (defvar *is-carbon-emacs*)
@@ -83,13 +85,12 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-; Use regex searches by default.
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "M-%") 'query-replace-regexp)
+;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
-(global-set-key (kbd "C-M-%") 'query-replace)
+;;(global-set-key (kbd "M-%") 'query-replace-regexp)
+;;(global-set-key (kbd "C-M-%") 'query-replace)
 ;;switch prev nex user buffers
 (global-set-key (kbd "<f11>") 'xah-previous-user-buffer)
 (global-set-key (kbd "<f12>") 'xah-next-user-buffer)
@@ -116,14 +117,16 @@
 (global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
- 
+;;(global-set-key (kbd "SPC a") nil)
+(global-set-key "\C-ca" 'org-agenda)
+
 ;;(getenv "LANG")
 (setenv "DICTIONARY" "en_US.UTF-8")
 (setq ispell-program-name "hunspell")
 (setq ispell-local-dictionary "en_US")
 (setq ispell-local-dictionary-alist
       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
-;; No slow stupid flyspell. Die!
+;; No flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
                                

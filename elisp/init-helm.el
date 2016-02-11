@@ -5,11 +5,15 @@
   :init
   (setq helm-buffers-fuzzy-matching t)
   :config
-  (helm-mode 1)
   (setq helm-autoresize-mode t)
   (setq helm-buffer-max-length 40)
-  (bind-key "S-SPC" 'helm-toggle-visible-mark helm-map)
-  (bind-key "C-k" 'helm-find-files-up-one-level helm-find-files-map))
+  (helm-mode 1)
+  (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
+  (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
+  ;;(define-key helm-map (kbd "C-j") 'helm-next-line)
+  ;;(define-key helm-map (kbd "C-k") 'helm-previous-line)
+  )
+
 (use-package helm-descbinds )
 (use-package helm-gtags )
 (use-package helm-projectile)
