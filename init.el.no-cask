@@ -37,6 +37,8 @@
                     evil-lisp-state
                     flx-ido
 		    flyspell
+                    flycheck
+                    flycheck-clojure
                     fancy-narrow
 		    git-blame
 		    git-gutter-fringe
@@ -85,6 +87,8 @@
                     ag
                     swiper
                     counsel
+                    super-save
+                    smooth-scrolling
                     ))
 
 (dolist (p my-packages)
@@ -94,6 +98,7 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (require 'init-defaults)
 (use-package better-defaults)
+(require 'init-flycheck)
 (require 'init-powerline)
 (require 'init-evil)
 (require 'init-whichkey)
@@ -126,6 +131,10 @@
 (require 'init-anzu)
 (require 'init-ag)
 (require 'init-ivy)
+(require 'init-super-save)
+(require 'init-smooth-scrolling)
+(require 'init-link-hint)
+(require 'init-beacon)
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
@@ -207,4 +216,5 @@
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
+
 
