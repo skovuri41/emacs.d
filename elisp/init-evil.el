@@ -65,6 +65,19 @@
         (add-hook 'clojure-mode-hook 'evil-cleverparens-mode)
         )
       )
+    (use-package evil-terminal-cursor-changer
+      ;; Change the cursor face when switching evil states
+      ;; Homepage: https://github.com/7696122/evil-terminal-cursor-changer
+      :ensure t
+      :config
+      (progn
+        (setq evil-normal-state-cursor '("white" box)
+              evil-insert-state-cursor '("orange" bar)
+              evil-replace-state-cursor '("orange" hbar)
+              evil-visual-state-cursor '("yellow" box)
+              evil-motion-state-cursor '("violet" box)
+              evil-operator-state-cursor '("magenta" hollow)
+              evil-emacs-state-cursor '("red" bar))))
     )
   :config
   (progn
@@ -125,7 +138,7 @@
         (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
         (abort-recursive-edit)))
 
-    (add-hook 'evil-visual-state-entry-hook 'evil-set-cursor-by-state)
+    ;; (add-hook 'evil-visual-state-entry-hook 'evil-set-cursor-by-state)
     ;;(add-hook 'global-evil-leader-mode-hook 'evil-set-cursor-by-state)
     ;;(add-hook 'evil-leader-mode-hook 'evil-set-cursor-by-state)
     ;; (eval-after-load 'turn-on-evil-mode 'evil-set-cursor-by-state)
