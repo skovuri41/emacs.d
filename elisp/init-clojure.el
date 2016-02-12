@@ -140,4 +140,10 @@
     (evil-leader/set-key "rfe" 'cljr-create-fn-from-example)))
 
 
+(use-package flycheck-clojure
+  :ensure t
+  :config
+  (eval-after-load 'flycheck '(flycheck-clojure-setup)))
+
+
 (provide 'init-clojure)

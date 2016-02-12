@@ -83,6 +83,8 @@
                     powerline
                     anzu
                     ag
+                    swiper
+                    counsel
                     ))
 
 (dolist (p my-packages)
@@ -123,6 +125,7 @@
 (require 'init-dired)
 (require 'init-anzu)
 (require 'init-ag)
+(require 'init-ivy)
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
@@ -148,10 +151,6 @@
 
    ;; Work around a bug on OS X where system-name is FQDN
    system-name (car (split-string system-name "\\."))
-   ;; make emacs open in existing frames
-   ;; ns-pop-up-frames nil
-   ;; brew install hunspell, https://joelkuiper.eu/spellcheck_emacs
-   ispell-program-name "hunspell"
    mac-command-modifier nil
    interprogram-cut-function 'paste-to-osx
    interprogram-paste-function 'copy-from-osx)
@@ -162,9 +161,10 @@
    default-frame-alist '((font . "Monaco-10"))
    ;; make emacs use the clipboard
    x-select-enable-clipboard t
-   ;; use hunspell
-   ispell-program-name "hunspell"))
-
+   ))
+(when (executable-find "hunspell")
+  (setq-default ispell-program-name "hunspell")
+  (setq ispell-really-hunspell t))
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
@@ -177,10 +177,10 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
+;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
 ;;(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;;(global-set-key (kbd "C-M-%") 'query-replace)
 
@@ -207,9 +207,4 @@
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
- 
-(setenv "DICTIONARY" "en_US.UTF-8")
-(setq ispell-program-name "hunspell")
-(setq ispell-local-dictionary "en_US")
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
+

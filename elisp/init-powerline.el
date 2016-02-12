@@ -1,4 +1,3 @@
-;; Custom mode-line
 (use-package powerline
   :init
   (use-package diminish
@@ -17,6 +16,8 @@
       (eval-after-load "org-indent" '(diminish 'org-indent-mode))
       (eval-after-load "evil-org" '(diminish 'evil-org-mode))
       (eval-after-load "smartparens" '(diminish 'smartparens-mode))
+      (eval-after-load "super-save" '(diminish 'super-save-mode))
+      (eval-after-load "flycheck" '(diminish 'flycheck-mode))
       (eval-after-load "drag-stuff" '(diminish 'drag-stuff-mode)))))
 
 
