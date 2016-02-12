@@ -30,7 +30,7 @@
           "hp" 'helm-projectile
           "h'" 'helm-all-mark-rings
           "hs" 'helm-swoop
-          "ha" 'helm-do-ag 
+          "ha"'helm-do-ag 
           "hA" 'helm-ag-project-root
           "hi" 'helm-imenu
           "hI" 'helm-imenu-anywhere
