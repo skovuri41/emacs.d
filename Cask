@@ -29,8 +29,9 @@
 (depends-on "diminish")
 (depends-on "company")
 (depends-on "rainbow-delimiters")
-;;(depends-on "zop-to-char")
-;;(depends-on "imenu-anywhere")
+(depends-on "flycheck")
+(depends-on "zop-to-char")
+(depends-on "imenu-anywhere")
 
 
 ;;org
@@ -57,6 +58,10 @@
 (depends-on "which-key")
 (depends-on "iedit")
 (depends-on "smartrep")
+(depends-on "smooth-scrolling")
+(depends-on "beacon")
+(depends-on "super-save")
+(depends-on "link-hint")
 
 (depends-on "ace-jump-buffer")
 (depends-on "ace-window")
@@ -97,6 +102,9 @@
 (depends-on "evil-org")
 (depends-on "evil-escape")
 (depends-on "evil-lisp-state")
+(depends-on "evil-terminal-cursor-changer")
+(depends-on "evil-terminal-cursor-changer")
+(depends-on "evil-nerd-commenter")
 ;;themes
 (depends-on "zenburn-theme")
 

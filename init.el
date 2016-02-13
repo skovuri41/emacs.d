@@ -19,6 +19,7 @@
 (require 'init-magit)
 (require 'init-fancy-narrow)
 (require 'init-org)
+(require 'init-org-bullets)
 (require 'init-clojure)
 (require 'init-zenburn)
 (require 'init-programming)
@@ -41,6 +42,13 @@
 (require 'init-ag)
 (require 'init-anzu)
 (require 'init-ivy)
+(require 'init-smooth-scrolling)
+(require 'init-beacon)
+(require 'init-super-save)
+(require 'init-link-hint)
+(require 'init-flycheck)
+(require 'init-git)
+
 ;; Platform specific settings
 (defvar *is-a-mac*)
 (defvar *is-carbon-emacs*)
@@ -63,8 +71,6 @@
    system-name (car (split-string system-name "\\."))
    ;; make emacs open in existing frames
    ;;ns-pop-up-frames nil
-   ;; brew install hunspell, https://joelkuiper.eu/spellcheck_emacs
-   ispell-program-name "hunspell"
    interprogram-cut-function 'paste-to-osx
    interprogram-paste-function 'copy-from-osx
    mac-command-modifier nil))
@@ -73,9 +79,11 @@
    ;; font
    default-frame-alist '((font . "Monospace-12"))
    ;; make emacs use the clipboard
-   x-select-enable-clipboard t
-   ;; use hunspell
-   ispell-program-name "hunspell"))
+   x-select-enable-clipboard t))
+(when (executable-find "hunspell")
+  (setq-default ispell-program-name "hunspell")
+  (setq ispell-really-hunspell t))
+
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
@@ -100,10 +108,7 @@
 (global-set-key (kbd "<end>") 'xah-forward-right-bracket)
 (global-set-key (kbd "<prior>") 'xah-backward-block) ; page up key
 (global-set-key (kbd "<next>") 'xah-forward-block) ; page down key
-;;xah-search-current-word
 (global-set-key (kbd "<f8>") 'xah-search-current-word)
-(global-set-key (kbd "<prior>") 'xah-backward-block) ; page up key
-(global-set-key (kbd "<next>") 'xah-forward-block) ; page down key
 ;;(global-set-key (kbd "M-n") 'xah-new-empty-buffer) ; new empty buffer
 (global-set-key (kbd "M-n") 'new-scratch-buffer) ; new empty buffer
 (global-set-key (kbd "<f2>") 'xah-cut-line-or-region) ; cut
@@ -117,16 +122,10 @@
 (global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
-;;(global-set-key (kbd "SPC a") nil)
 (global-set-key "\C-ca" 'org-agenda)
 
-;;(getenv "LANG")
-(setenv "DICTIONARY" "en_US.UTF-8")
 (setq ispell-program-name "hunspell")
-(setq ispell-local-dictionary "en_US")
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
 ;; No flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
-                               
+

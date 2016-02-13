@@ -65,6 +65,17 @@
         (add-hook 'clojure-mode-hook 'evil-cleverparens-mode)
         )
       )
+    (use-package evil-nerd-commenter
+      :bind
+      ("M-;" . evilnc-comment-or-uncomment-lines)
+      :config
+      (evil-leader/set-key
+        "/i" 'evilnc-comment-or-uncomment-lines
+        "/l" 'evilnc-quick-comment-or-uncomment-to-the-line
+        "/y" 'evilnc-copy-and-comment-lines
+        "/p" 'evilnc-comment-or-uncomment-paragraphs
+        "/r" 'comment-or-uncomment-region
+        "/v" 'evilnc-toggle-invert-comment-line-by-line))
     (use-package evil-terminal-cursor-changer
       ;; Change the cursor face when switching evil states
       ;; Homepage: https://github.com/7696122/evil-terminal-cursor-changer

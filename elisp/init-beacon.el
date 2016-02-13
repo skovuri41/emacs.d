@@ -6,9 +6,11 @@
   :diminish beacon-mode
   :init
   (progn
-    (setq  beacon-blink-when-buffer-changes t
-           beacon-blink-when-window-changes t
-           beacon-blink-when-window-scrolls t
-           beacon-blink-duration 1)
+    (setq
+     beacon-blink-when-buffer-changes t
+     beacon-blink-when-window-changes t
+     beacon-blink-when-window-scrolls t
+     beacon-blink-when-focused t
+     beacon-blink-duration 1)
     (beacon-mode 1)))
 (provide 'init-beacon)

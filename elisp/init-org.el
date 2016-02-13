@@ -12,7 +12,7 @@
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-agenda-include-all-todo t)
   (setq org-agenda-include-diary t)
-                                        ;(setq org-agenda-ndays 7)
+  ;;(setq org-agenda-ndays 7)
   (setq org-agenda-show-all-dates t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-skip-scheduled-if-done t)
@@ -49,15 +49,6 @@
               (evil-insert-state)))
   (add-hook 'org-mode-hook
             (lambda ()
-              (setq-local my-timer
-                          (run-with-idle-timer 1 t
-                                               (lambda ()
-                                                 (when (and (eq major-mode 'org-mode)
-                                                            (and evil-state
-                                                                 (not (eq evil-state 'insert)))
-                                                            (buffer-file-name)
-                                                            (buffer-modified-p))
-                                                   (save-buffer)))))
               (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
               (auto-fill-mode)
               (flyspell-mode)
@@ -89,31 +80,23 @@
   
   )
 
-(use-package org-bullets
-  :ensure t
-  :disabled t
-  :init
-  (setq org-bullets-bullet-list
-      '("▶" "◉" "★" "○" "◇"  "◉" "○" "►" ))
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package ob-clojure
-   :config
-   (setq org-babel-clojure-backend 'cider)
-   (org-babel-do-load-languages
-    'org-babel-load-languages
-    '((sh         . t)
-      (js         . t)
-      (emacs-lisp . t)
-      (perl       . t)
-      (scala      . t)
-      (clojure    . t)
-      (python     . t)
-      (dot        . t)
-      (css        . t)
-      (plantuml   . t))
-    
-    ))
+  :config
+  (setq org-babel-clojure-backend 'cider)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((sh         . t)
+     (js         . t)
+     (emacs-lisp . t)
+     (perl       . t)
+     (scala      . t)
+     (clojure    . t)
+     (python     . t)
+     (dot        . t)
+     (css        . t)
+     (plantuml   . t))
+   
+   ))
 
 (provide 'init-org)
