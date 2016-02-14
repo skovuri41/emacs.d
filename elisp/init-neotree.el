@@ -14,7 +14,8 @@
       (neo-buffer--newline-and-begin))
     (after 'evil
       (evil-leader/set-key "nt" 'neotree-toggle)
-      (evil-leader/set-key "ns" 'neotree-find)
+      (evil-leader/set-key "ne" 'neotree-find)
+      (evil-leader/set-key "ns" 'neotree-show)
       (evil-set-initial-state 'neotree-mode 'normal)
       (add-to-list 'evil-motion-state-modes 'neotree-mode)
       (evil-define-key 'normal neotree-mode-map
@@ -26,7 +27,7 @@
         (kbd "k")   'neotree-previous-line
         (kbd "SPC") 'neotree-change-root
         (kbd "q")   'neotree-hide
-        (kbd "H")   'neotree-hidden-file-toggle
+        (kbd ".")   'neotree-hidden-file-toggle
         (kbd "a")   'neotree-stretch-toggle
         (kbd "|")   'neotree-enter-vertical-split
         (kbd "-")   'neotree-enter-horizontal-split
@@ -37,6 +38,5 @@
         )
       )
     ))
-
 
 (provide 'init-neotree)
