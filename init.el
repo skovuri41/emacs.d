@@ -49,6 +49,7 @@
 (require 'init-flycheck)
 (require 'init-git)
 (require 'init-neotree)
+(require 'init-weather)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)
@@ -124,6 +125,8 @@
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-c I") 'find-user-init-file)
+(global-set-key (kbd "C-c E")  'erase-buffer)
 
 (setq ispell-program-name "hunspell")
 ;; No flyspell. 

@@ -26,6 +26,8 @@
 ;;(depends-on "emacs-lisp-mode")
 (depends-on "web-mode")
 (depends-on "powerline")
+(depends-on "powerline-evil")
+
 (depends-on "diminish")
 (depends-on "company")
 (depends-on "rainbow-delimiters")
@@ -35,6 +37,9 @@
 (depends-on "dired+")
 (depends-on "wdired")
 (depends-on "neotree")
+
+(depends-on "sunshine")
+(depends-on "forecast")
 
 
 ;;org

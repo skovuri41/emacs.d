@@ -7,7 +7,8 @@
     (evil-leader/set-key "pa" 'projectile-ag)
     (evil-leader/set-key "pk" 'projectile-kill-buffers)
     (evil-leader/set-key "pm" 'projectile-command-map)
-
+    (evil-leader/set-key "pt" 'neotree-find-project-root)
+    
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")
     (add-to-list 'projectile-globally-ignored-files "*.pyc")
     (add-to-list 'projectile-globally-ignored-files "*.python-version")
@@ -29,7 +30,7 @@
             ".svn"
             "build")
           )
-
+    (setq projectile-switch-project-action 'neotree-projectile-action)
     ))
 
 (provide 'init-projectile)
