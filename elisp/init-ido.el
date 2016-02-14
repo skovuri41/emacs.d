@@ -19,9 +19,11 @@
 ;(setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)  
 (use-package smex
   :defer t
-  :bind (("M-x" . smex)
+  :bind (
+         ;; ("M-x" . smex)
          ("M-X" . smex-major-mode-commands))
   :config
   (progn
-        (smex-initialize)))
+    (smex-initialize)))
+
 (provide 'init-ido)

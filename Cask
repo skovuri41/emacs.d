@@ -32,6 +32,9 @@
 (depends-on "flycheck")
 (depends-on "zop-to-char")
 (depends-on "imenu-anywhere")
+(depends-on "dired+")
+(depends-on "wdired")
+(depends-on "neotree")
 
 
 ;;org

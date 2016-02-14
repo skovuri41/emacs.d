@@ -17,6 +17,18 @@
     (add-to-list 'projectile-globally-ignored-directories ".venv")
     (add-to-list 'projectile-globally-ignored-directories ".cask")
     (add-to-list 'projectile-globally-ignored-directories ".cache")
+    (setq projectile-globally-ignored-directories
+          '(".idea"
+            ".eunit"
+            ".git"
+            ".hg"
+            ".fslckout"
+            ".bzr"
+            "_darcs"
+            ".tox"
+            ".svn"
+            "build")
+          )
 
     ))
 

@@ -48,6 +48,7 @@
 (require 'init-link-hint)
 (require 'init-flycheck)
 (require 'init-git)
+(require 'init-neotree)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)
