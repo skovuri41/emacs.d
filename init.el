@@ -49,6 +49,7 @@
 (require 'init-flycheck)
 (require 'init-git)
 (require 'init-neotree)
+(require 'init-highlight-parentheses)
 (require 'init-weather)
 
 ;; Platform specific settings

@@ -7,7 +7,7 @@
         '(byte-compile chgrp chmod chown copy delete load move symlink))
   (setq dired-deletion-confirmer (lambda (x) t))
   ;; dired - reuse current buffer by pressing 'a'
-  (put 'dired-find-alternate-file 'disabled nil)
+  ;;(put 'dired-find-alternate-file 'disabled nil)
 
   ;; always delete and copy recursively
   (setq dired-recursive-deletes 'always)

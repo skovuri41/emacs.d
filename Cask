@@ -37,6 +37,7 @@
 (depends-on "dired+")
 (depends-on "wdired")
 (depends-on "neotree")
+(depends-on "pbcopy")
 
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -54,6 +55,7 @@
 (depends-on "cider")
 (depends-on "clj-refactor")
 (depends-on "rainbow-mode")
+(depends-on "highlight-parentheses")
 (depends-on "clojure-cheatsheet")
 (depends-on "typed-clojure-mode")
 
@@ -121,6 +123,8 @@
 
 ;;emacs eclim
 (depends-on "emacs-eclim")
+
+(depends-on "quickrun")
 
 
 
