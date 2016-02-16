@@ -52,6 +52,7 @@
 		    helm-projectile
 		    helm-swoop
                     helm-ag
+                    helm-backup
 		    ido-vertical-mode
 		    json-mode
 		    magit
@@ -89,6 +90,12 @@
                     counsel
                     super-save
                     smooth-scrolling
+                    link-hint
+                    highlight-parentheses
+                    neotree
+                    quickrun
+                    kurecolor
+                    rainbow-mode
                     ))
 
 (dolist (p my-packages)
@@ -98,7 +105,7 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (require 'init-defaults)
 (use-package better-defaults)
-(require 'init-flycheck)
+;;(require 'init-flycheck)
 (require 'init-powerline)
 (require 'init-evil)
 (require 'init-whichkey)
@@ -135,6 +142,12 @@
 (require 'init-smooth-scrolling)
 (require 'init-link-hint)
 (require 'init-beacon)
+(require 'init-eval-sexp-fu)
+(require 'init-highlight-parentheses)
+(require 'init-neotree)
+(require 'init-quickrun)
+(require 'init-kurecolor)
+(require 'init-rainbow-mode)
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))

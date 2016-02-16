@@ -145,4 +145,18 @@
   (progn
     (exec-path-from-shell-copy-env "PATH")))
 
+(setq display-time-day-and-date t)
+(setq display-time-string-forms
+      '((format "%s:%s  "
+                24-hours minutes)
+        (if display-time-day-and-date
+            (format "%s %s %s" dayname monthname day) "")))
+(setq display-time-interval 30)
+(display-time-mode 1)
+
+(setq frame-title-format
+      '("emacs@" (:eval (system-name)) ": "(:eval (if (buffer-file-name)
+                                                      (abbreviate-file-name (buffer-file-name))
+                                                    "%b")) " [%*]"))
+
 (provide 'init-defaults)
