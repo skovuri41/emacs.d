@@ -58,6 +58,9 @@
 (depends-on "highlight-parentheses")
 (depends-on "clojure-cheatsheet")
 (depends-on "typed-clojure-mode")
+(depends-on "eval-sexp-fu")
+(depends-on "cider-eval-sexp-fu")
+
 
 (depends-on "guide-key")
 (depends-on "flx-ido")

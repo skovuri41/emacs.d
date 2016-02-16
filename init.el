@@ -51,6 +51,7 @@
 (require 'init-neotree)
 (require 'init-highlight-parentheses)
 (require 'init-weather)
+(require 'init-eval-sexp)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)
