@@ -11,6 +11,6 @@
      beacon-blink-when-window-changes t
      beacon-blink-when-window-scrolls t
      beacon-blink-when-focused t
-     beacon-blink-duration 1)
+     beacon-blink-duration 0.6)
     (beacon-mode 1)))
 (provide 'init-beacon)
