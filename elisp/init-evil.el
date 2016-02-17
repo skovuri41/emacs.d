@@ -14,7 +14,8 @@
         (evil-leader/set-key "ws" 'split-window-below)
         (evil-leader/set-key "wh" 'split-window-horizontally)
         (evil-leader/set-key "wv" 'split-window-vertically)
-        (evil-leader/set-key "ww" 'other-window)
+        ;;(evil-leader/set-key "ww" 'other-window)
+        (evil-leader/set-key "ww" 'ace-window)
         (evil-leader/set-key
           "hf" 'helm-for-files
           "hl" 'helm-locate
@@ -70,7 +71,7 @@
       ("M-;" . evilnc-comment-or-uncomment-lines)
       :init
       (evil-leader/set-key
-        "/i" 'evilnc-comment-or-uncomment-lines
+        "//" 'evilnc-comment-or-uncomment-lines
         "/l" 'evilnc-quick-comment-or-uncomment-to-the-line
         "/y" 'evilnc-copy-and-comment-lines
         "/p" 'evilnc-comment-or-uncomment-paragraphs
