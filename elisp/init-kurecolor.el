@@ -29,7 +29,5 @@ Get          _gj_ ^^ brightness      _gk_ ^^ saturation      _gl_ ^^ hue
     (global-set-key (kbd  "C-c C-k") #'hydra-kurecolor/body)))
 
 (provide 'init-kurecolor)
-;;(custom-set-faces
-;;'(eval-sexp-fu-flash
-;;((((class color)) (:background "#F2DD94" :foreground "#3F3F3F")))))
+
 

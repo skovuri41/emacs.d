@@ -48,10 +48,14 @@
 (require 'init-link-hint)
 (require 'init-flycheck)
 (require 'init-git)
-(require 'init-neotree)
 (require 'init-highlight-parentheses)
 (require 'init-weather)
-(require 'init-eval-sexp)
+(require 'init-eval-sexp-fu)
+(require 'init-ace-window)
+(require 'init-rainbow-mode)
+(require 'init-kurecolor)
+(require 'init-golden-ratio)
+(require 'init-neotree)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)

@@ -38,6 +38,7 @@
 (depends-on "wdired")
 (depends-on "neotree")
 (depends-on "pbcopy")
+(depends-on "kurecolor")
 
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -76,7 +77,7 @@
 (depends-on "super-save")
 (depends-on "link-hint")
 
-(depends-on "ace-jump-buffer")
+;;(depends-on "ace-jump-buffer")
 (depends-on "ace-window")
 (depends-on "buffer-move")
 (depends-on "undo-tree")
@@ -95,6 +96,7 @@
 (depends-on "anzu")
 (depends-on "swiper")
 (depends-on "counsel")
+(depends-on "golden-ratio")
 
 ;;helm
 (depends-on "helm")
@@ -105,6 +107,7 @@
 (depends-on "helm-descbinds")
 (depends-on "helm-company")
 (depends-on "helm-ag")
+(depends-on "helm-backup")
 ;;(depends-on "helm-config")
 
 ;;evil mode
