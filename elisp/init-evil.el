@@ -9,12 +9,12 @@
       (progn
         (evil-leader/set-leader "SPC")
         (setq evil-leader/in-all-states 1) 
+        (setq evil-leader/non-normal-prefix "S-")
         (evil-leader/set-key "wd" 'delete-window)
         (evil-leader/set-key "wo" 'delete-other-windows)
         (evil-leader/set-key "ws" 'split-window-below)
         (evil-leader/set-key "wh" 'split-window-horizontally)
         (evil-leader/set-key "wv" 'split-window-vertically)
-        ;;(evil-leader/set-key "ww" 'other-window)
         (evil-leader/set-key "ww" 'ace-window)
         (evil-leader/set-key
           "hf" 'helm-for-files
@@ -138,6 +138,28 @@
           (setq deactivate-mark  t)
         (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
         (abort-recursive-edit)))
+    
+    (defadvice keyboard-quit (before evil-insert-to-nornal-state activate)
+      "C-g back to normal state"
+      (when  (evil-insert-state-p)
+        (cond
+         ((equal (evil-initial-state major-mode) 'normal)
+          (evil-normal-state))
+         ((equal (evil-initial-state major-mode) 'insert)
+          (evil-normal-state))
+         ((equal (evil-initial-state major-mode) 'motion)
+          (evil-motion-state))
+         (t
+          (if (equal last-command 'keyboard-quit)
+              (evil-normal-state)           
+            (evil-change-to-initial-state)) 
+          ))))
+    
+    (with-eval-after-load 'diff-mode
+      (evil-add-hjkl-bindings diff-mode-map 'insert
+        (kbd "SPC") evil-leader--default-map
+        "t" 'toggle-diff-whitespace-eol
+        ))
 
     (define-key evil-normal-state-map [escape] 'keyboard-quit)
     (define-key evil-visual-state-map [escape] 'keyboard-quit)
@@ -146,8 +168,20 @@
     (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-    (define-key evil-normal-state-map ";" 'evil-ex)
-    (define-key evil-visual-state-map ";" 'evil-ex)
+    ;; (define-key evil-normal-state-map ";" 'evil-ex)
+    ;; (define-key evil-visual-state-map ";" 'evil-ex)
+    (define-key evil-normal-state-map "\C-n" nil)
+    (define-key evil-normal-state-map "\C-p" nil)
+    (define-key evil-normal-state-map "\C-v" nil)
+    (define-key evil-motion-state-map "\C-v" nil)
+    (define-key evil-normal-state-map "\C-e" nil)
+    (define-key evil-motion-state-map (kbd "C-w") nil)
+    (define-key evil-motion-state-map (kbd "C-i") nil)
+    (define-key evil-motion-state-map (kbd "C-b") nil)
+    (define-key evil-motion-state-map (kbd "C-d") nil)
+    (define-key evil-motion-state-map (kbd "C-e") nil)
+    (define-key evil-motion-state-map (kbd "C-f") nil)
+    (define-key evil-motion-state-map (kbd "C-y") nil)
 
     ;; Split and move the cursor to the new split
     (define-key evil-normal-state-map (kbd "-")

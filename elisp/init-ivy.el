@@ -56,6 +56,7 @@
          ("C-x l" . counsel-locate))
   :bind
   (:map evil-leader--default-map
-        ("ff" . counsel-find-file)))
+        ("ff" . counsel-find-file)
+        (":" . counsel-M-x)))
 
 (provide 'init-ivy)

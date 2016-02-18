@@ -34,6 +34,7 @@
                     evil-leader
                     evil-org
                     evil-surround
+                    evil-nerd-commenter
                     evil-lisp-state
                     flx-ido
 		    flyspell
@@ -69,6 +70,7 @@
 		    yasnippet
 		    zenburn-theme
                     ace-jump-buffer
+                    ace-window
                     clj-refactor
                     projectile 
                     easy-kill
@@ -148,6 +150,8 @@
 (require 'init-quickrun)
 (require 'init-kurecolor)
 (require 'init-rainbow-mode)
+(require 'init-ace-window)
+
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
