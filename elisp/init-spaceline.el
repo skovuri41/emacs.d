@@ -19,6 +19,7 @@
       (spaceline-spacemacs-theme)
       ;; (spaceline-emacs-theme)
       (spaceline-toggle-flycheck-warning-off)
+      (spaceline-toggle-flycheck--off)
       (setq powerline-default-separator 'arrow-fade))))
 
 
