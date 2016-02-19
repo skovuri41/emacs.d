@@ -17,13 +17,7 @@
 ;; ;; update the package metadata
 (package-refresh-contents)
 
-(setq my-packages '(ac-cider
-		    ace-window
-		    cider
-		    clojure-cheatsheet
-		    clojure-mode
-                    typed-clojure-mode
-		    clojure-snippets
+(setq my-packages '(ace-window
 		    company
 		    direx
 		    drag-stuff
@@ -39,7 +33,6 @@
                     flx-ido
 		    flyspell
                     flycheck
-                    flycheck-clojure
                     fancy-narrow
 		    git-blame
 		    git-gutter-fringe
@@ -71,7 +64,6 @@
 		    zenburn-theme
                     ace-jump-buffer
                     ace-window
-                    clj-refactor
                     projectile 
                     easy-kill
                     imenu-anywhere
@@ -98,6 +90,10 @@
                     quickrun
                     kurecolor
                     rainbow-mode
+                    golden-ratio
+                    golden-ratio-scroll-screen
+                    git-timemachine
+		    hydra
                     ))
 
 (dolist (p my-packages)
@@ -115,9 +111,10 @@
 (require 'init-projectile)
 (require 'init-ido)
 (require 'init-magit)
+(require 'init-git)
 (require 'init-fancy-narrow)
 (require 'init-org)
-(require 'init-clojure)
+;;(require 'init-clojure)
 (require 'init-zenburn)
 (require 'init-minor-modes)
 (require 'init-helm)
@@ -151,6 +148,7 @@
 (require 'init-kurecolor)
 (require 'init-rainbow-mode)
 (require 'init-ace-window)
+(require 'init-golden-ratio)
 
 ;; No slow flyspell. 
 (eval-after-load "flyspell"
@@ -233,5 +231,4 @@
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
-
 
