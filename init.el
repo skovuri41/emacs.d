@@ -10,7 +10,7 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (require 'init-defaults)
 (use-package better-defaults)
-(require 'init-powerline)
+;; (require 'init-powerline)
 (require 'init-evil)
 (require 'init-whichkey)
 (require 'init-yasnippet)
@@ -56,6 +56,8 @@
 (require 'init-kurecolor)
 (require 'init-golden-ratio)
 (require 'init-neotree)
+(require 'init-fancy-battery)
+(require 'init-spaceline)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)

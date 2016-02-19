@@ -145,5 +145,9 @@
   :config
   (eval-after-load 'flycheck '(flycheck-clojure-setup)))
 
+(use-package
+  4clojure
+  :ensure t
+  :defer t)
 
 (provide 'init-clojure)

@@ -150,7 +150,7 @@
       '((format "%s:%s  "
                 24-hours minutes)
         (if display-time-day-and-date
-            (format "%s %s %s" dayname monthname day) "")))
+            (format "%s %s %s " dayname monthname day) "")))
 (setq display-time-interval 30)
 (display-time-mode 1)
 

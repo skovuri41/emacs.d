@@ -39,6 +39,8 @@
 (depends-on "neotree")
 (depends-on "pbcopy")
 (depends-on "kurecolor")
+(depends-on "fancy-battery")
+(depends-on "spaceline")
 
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -61,6 +63,7 @@
 (depends-on "typed-clojure-mode")
 (depends-on "eval-sexp-fu")
 (depends-on "cider-eval-sexp-fu")
+(depends-on "4clojure")
 
 
 (depends-on "guide-key")
