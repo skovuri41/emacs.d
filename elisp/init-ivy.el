@@ -36,7 +36,7 @@
   ("C-x b" . nil)
   :bind
   (:map evil-leader--default-map
-        ("bs" . ivy-switch-buffer))
+        ("bb" . ivy-switch-buffer))
   :config (progn
             ;; partial complete without exiting
             (define-key ivy-minibuffer-map
@@ -56,7 +56,7 @@
          ("C-x l" . counsel-locate))
   :bind
   (:map evil-leader--default-map
-        ("ff" . counsel-find-file)
+        ("fc" . counsel-find-file)
         (":" . counsel-M-x)))
 
 (provide 'init-ivy)

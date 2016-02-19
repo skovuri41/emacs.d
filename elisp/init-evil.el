@@ -15,9 +15,12 @@
         (evil-leader/set-key "ws" 'split-window-below)
         (evil-leader/set-key "wh" 'split-window-horizontally)
         (evil-leader/set-key "wv" 'split-window-vertically)
+        (evil-leader/set-key "bS" 'save-some-buffers)
+        (evil-leader/set-key "bs" 'save-buffer)
         (evil-leader/set-key "ww" 'ace-window)
         (evil-leader/set-key
           "hf" 'helm-for-files
+          "ff" 'helm-for-files
           "hl" 'helm-locate
           "hy" 'helm-show-kill-ring
           "ht" 'helm-top
@@ -28,7 +31,9 @@
           "hb" 'helm-buffers-list
           "hh" 'helm-projectile-find-file
           "hr" 'helm-recentf
+          "fr" 'helm-recentf
           "hp" 'helm-projectile
+          "fp" 'helm-projectile
           "h'" 'helm-all-mark-rings
           "hs" 'helm-swoop
           "ha" 'helm-do-ag 
@@ -199,12 +204,13 @@
     (evil-set-initial-state 'magit-log-edit-mode 'emacs)
     (evil-set-initial-state 'nav-mode 'emacs)
     (evil-set-initial-state 'grep-mode 'emacs)
-    (evil-set-initial-state 'ibuffer-mode 'normal)
     (evil-set-initial-state 'eshell-mode 'emacs)
     (evil-set-initial-state 'shell-mode 'emacs)
+    (evil-set-initial-state 'ibuffer-mode 'normal)
     (evil-set-initial-state 'magit-mode 'normal)
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
+    (evil-set-initial-state 'magit-log-mode 'normal)
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
-    (evil-set-initial-state 'magit-log-mode 'normal)))
+    ))
 (provide 'init-evil)

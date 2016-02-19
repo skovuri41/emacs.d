@@ -41,6 +41,7 @@
 (depends-on "kurecolor")
 (depends-on "fancy-battery")
 (depends-on "spaceline")
+(depends-on "hydra")
 
 (depends-on "sunshine")
 (depends-on "forecast")
