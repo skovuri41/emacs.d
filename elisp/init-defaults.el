@@ -93,8 +93,14 @@
 ;; Easily navigate sillycased words
 (global-subword-mode 1)
 
+;;quickly pop mark several times
+(setq set-mark-command-repeat-pop t)
+
 ;; Don't break lines for me, please
 (setq-default truncate-lines t)
+
+;;keep cursor at same position when scrolling
+(setq scroll-preserve-screen-position 1)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)

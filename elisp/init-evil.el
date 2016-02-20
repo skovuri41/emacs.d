@@ -60,10 +60,10 @@
       (define-key evil-motion-state-map ";" 'evil-iedit-state/iedit-mode))
     (use-package evil-matchit
       :ensure t
-      :requires 'evil
+      :init
+      (global-evil-matchit-mode 1)
       :config
       (progn
-        (global-evil-matchit-mode 1)
         (define-key evil-normal-state-map (kbd "go") 'evilmi-jump-items)))
     (use-package evil-surround
       :init (global-evil-surround-mode 1)

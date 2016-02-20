@@ -1,4 +1,3 @@
-
 (use-package ido
   :config
   (progn
@@ -15,7 +14,7 @@
   :config
   (progn
     (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)))
-;(setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)  
+
 (use-package smex
   :defer t
   :bind (

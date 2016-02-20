@@ -113,6 +113,7 @@
   (interactive)
   (nxml-pretty-print-region (point-min) (point-max)))
 
+
 ;; XML pretty print
 (defun pretty-print-xml-region (begin end)
   (interactive "r")
@@ -537,6 +538,18 @@ current location."
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
-       (process-send-eof proc))))
+      (process-send-eof proc))))
+
+;; Faster pop-to-mark command
+(defun modi/multi-pop-to-mark (orig-fun &rest args)
+  "Call ORIG-FUN until the cursor moves.
+Try the repeated popping up to 10 times."
+  (let ((p (point)))
+    (dotimes (i 10)
+      (when (= p (point))
+        (apply orig-fun args)))))
+
+(advice-add 'pop-to-mark-command :around
+            #'modi/multi-pop-to-mark)
 
 (provide 'init-defuns)
