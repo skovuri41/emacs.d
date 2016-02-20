@@ -136,7 +136,6 @@
   `(eval-after-load ,feature
      '(progn ,@body)))
 
-
 ;; make sure $PATH is set correctly
 (use-package exec-path-from-shell
   :ensure exec-path-from-shell
@@ -144,6 +143,13 @@
   :config
   (progn
     (exec-path-from-shell-copy-env "PATH")))
+
+(use-package hungry-delete
+  :config
+  (progn
+    (setq hungry-delete-chars-to-skip " \t\r\f\v")
+    (global-hungry-delete-mode nil)
+    (add-hook 'prog-mode-hook 'hungry-delete-mode)))
 
 (setq display-time-day-and-date t)
 (setq display-time-string-forms

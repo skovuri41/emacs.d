@@ -1,5 +1,6 @@
 (use-package company
   :init (global-company-mode)
+  :diminish company-mode
   :config
   (progn
     (defun indent-or-complete ()

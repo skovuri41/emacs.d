@@ -42,6 +42,7 @@
 (depends-on "fancy-battery")
 (depends-on "spaceline")
 (depends-on "hydra")
+(depends-on "hungry-delete")
 
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -101,6 +102,7 @@
 (depends-on "swiper")
 (depends-on "counsel")
 (depends-on "golden-ratio")
+(depends-on "workgroups2")
 
 ;;helm
 (depends-on "helm")
@@ -125,6 +127,10 @@
 (depends-on "evil-terminal-cursor-changer")
 (depends-on "evil-terminal-cursor-changer")
 (depends-on "evil-nerd-commenter")
+(depends-on "evil-visualstar")
+(depends-on "evil-matchit")
+(depends-on "evil-iedit-state")
+(depends-on "evil-numbers")
 ;;themes
 (depends-on "zenburn-theme")
 

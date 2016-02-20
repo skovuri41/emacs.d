@@ -11,6 +11,7 @@
 (require 'init-defaults)
 (use-package better-defaults)
 ;; (require 'init-powerline)
+(require 'init-diminish)
 (require 'init-evil)
 (require 'init-whichkey)
 (require 'init-yasnippet)
@@ -30,6 +31,7 @@
 (require 'init-hl-line)
 (require 'init-drag-stuff)
 (require 'init-defuns)
+(require 'init-nxml)
 (require 'init-company)
 (require 'init-avy)
 (require 'init-easy-kill)
@@ -58,6 +60,7 @@
 (require 'init-neotree)
 (require 'init-fancy-battery)
 (require 'init-spaceline)
+(require 'init-workgroups2)
 
 ;; Platform specific settings
 (defvar *is-a-mac*)

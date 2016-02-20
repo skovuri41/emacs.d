@@ -1,8 +1,20 @@
-
 (use-package projectile
   :init (projectile-global-mode)
+  (defun projectile-custom-mode-line ()
+    (if (projectile-project-p)
+        (let* ((project-name (projectile-project-name))
+               (project-name-mode-line (if (> (length project-name) 12)
+                                           (substring project-name 0 8)
+                                         project-name)))
+          (format " P[%s] " project-name-mode-line))
+      ""))
   :config
   (progn
+    (setq-default projectile-mode-line '(:eval (projectile-custom-mode-line)))
+    (setq projectile-known-projects-file
+          (expand-file-name "cache/projectile-bookmarks.eld" user-emacs-directory))
+    (setq projectile-cache-file
+          (expand-file-name "cache/projectile.cache" user-emacs-directory))
     (evil-leader/set-key "pf" 'projectile-find-file)
     (evil-leader/set-key "pa" 'projectile-ag)
     (evil-leader/set-key "pk" 'projectile-kill-buffers)

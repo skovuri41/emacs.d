@@ -21,6 +21,8 @@
         (evil-leader/set-key
           "hf" 'helm-for-files
           "ff" 'helm-for-files
+          "bn" 'xah-new-empty-buffer
+          "by" 'bury-buffer
           "hl" 'helm-locate
           "hy" 'helm-show-kill-ring
           "ht" 'helm-top
@@ -43,6 +45,26 @@
           ))) 
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
+    (use-package evil-visualstar
+      :ensure t
+      :init
+      (global-evil-visualstar-mode))
+    (use-package evil-iedit-state
+      :ensure t
+      :config
+      (setq evil-iedit-state-tag  "R+")
+      (custom-set-faces
+       '(iedit-occurrence ((t (:inherit lazy-highlight)))))
+      (require 'evil-iedit-state)
+      (define-key evil-motion-state-map (kbd ";") nil)
+      (define-key evil-motion-state-map ";" 'evil-iedit-state/iedit-mode))
+    (use-package evil-matchit
+      :ensure t
+      :requires 'evil
+      :config
+      (progn
+        (global-evil-matchit-mode 1)
+        (define-key evil-normal-state-map (kbd "go") 'evilmi-jump-items)))
     (use-package evil-surround
       :init (global-evil-surround-mode 1)
       :config
@@ -69,8 +91,7 @@
         (add-hook 'evil-cleverparens-enabled-hook 'set-cleverparens-key-bindings)
         (add-hook 'emacs-lisp-mode-hook 'evil-cleverparens-mode)
         (add-hook 'clojure-mode-hook 'evil-cleverparens-mode)
-        )
-      )
+        ))
     (use-package evil-nerd-commenter
       :bind
       ("M-;" . evilnc-comment-or-uncomment-lines)
@@ -82,6 +103,18 @@
         "/p" 'evilnc-comment-or-uncomment-paragraphs
         "/r" 'comment-or-uncomment-region
         "/v" 'evilnc-toggle-invert-comment-line-by-line))
+    (use-package evil-numbers
+      :ensure t
+      :commands (evil-numbers/inc-at-pt evil-numbers/dec-at-pt)
+      :init
+      (progn
+        (defhydra init/hydra-numbers ()
+          "numbers"
+          ("i" evil-numbers/inc-at-pt "increase")
+          ("d" evil-numbers/dec-at-pt "decrease"))
+        (evil-leader/set-key
+          "ni" 'init/hydra-numbers/evil-numbers/inc-at-pt
+          "nd" ' init/hydra-numbers/evil-numbers/dec-at-pt)))
     (use-package evil-terminal-cursor-changer
       ;; Change the cursor face when switching evil states
       ;; Homepage: https://github.com/7696122/evil-terminal-cursor-changer
@@ -94,6 +127,7 @@
               evil-visual-state-cursor '("yellow" box)
               evil-motion-state-cursor '("violet" box)
               evil-operator-state-cursor '("magenta" hollow)
+              evil-iedit-state-cursor '("pink" box)
               evil-emacs-state-cursor '("red" bar))))
     )
   :config
