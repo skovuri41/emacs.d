@@ -35,6 +35,8 @@
         '(("SCHEDULED" . warning)
           ("WAITING" . font-lock-doc-face)
           ("FUTURE" . "white")))
+  ;; Block entries from changing state to DONE while they have children
+  ;; that are not DONE
   (setq org-enforce-todo-dependencies t)
   (defun set-org-mode-app-defaults ()
     (setq org-file-apps
@@ -68,6 +70,7 @@
               (auto-fill-mode)
               (org-indent-mode)))
   (add-hook 'org-mode-hook 'yas-minor-mode-on)
+  (add-hook 'org-mode-hook 'company-mode)
   :config
   (require 'ox-org)
   (require 'ox-md)
@@ -175,6 +178,13 @@
     )
 
 
+  (use-package org-plus-contrib
+    :ensure t)
+
+  (use-package org-pomodoro
+    :commands (org-pomodoro))
+
+
   (use-package notifications
     :config
     (defun my-appt-disp-window-function (min-to-app new-time msg)
@@ -215,9 +225,6 @@
       (setq org-clock-x11idle-program-name "xprintidle"))
 
     :config (org-clock-persistence-insinuate))
-
-  (use-package org-plus-contrib
-    :ensure t)
 
   (use-package ox-html
     :init

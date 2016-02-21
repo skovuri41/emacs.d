@@ -24,11 +24,9 @@
     ;;       wg-mode-line-decor-right-brace "]"  ; how to surround it
     ;;       wg-mode-line-decor-divider ":")
     )
-  :config 
+  :config
   (progn
     (defun wg-change-modeline () nil)
-    (add-hook 'workgroups-mode-hook 'spaceline-spacemacs-theme)
-
     (evil-leader/set-key
       "Wf" 'wg-open-session
       "Ws" 'wg-save-session
@@ -61,7 +59,7 @@
       "W?" 'wg-help
       )
 
-    (workgroups-mode 1) 
+    (workgroups-mode 1)
     (wg-open-session wg-session-file)
     )
   )

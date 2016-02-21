@@ -43,6 +43,7 @@
 (depends-on "spaceline")
 (depends-on "hydra")
 (depends-on "hungry-delete")
+(depends-on "window-numbering")
 
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -52,6 +53,9 @@
 (depends-on "org")
 (depends-on "org-bullets")
 (depends-on "org-journal")
+(depends-on "org-plus-contrib")
+(depends-on "ox-reveal")
+(depends-on "org-pomodoro")
 
 ;;clojure
 (depends-on "smartparens")
