@@ -13,6 +13,7 @@
 (setq default-indicate-empty-lines t)
 (setq require-final-newline t)
 (setq show-trailing-whitespace t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
@@ -157,6 +158,15 @@
     (global-hungry-delete-mode nil)
     (add-hook 'prog-mode-hook 'hungry-delete-mode)))
 
+;; Note: for every project, run the following command:
+;; ctags -e -R .
+
+(use-package ctags-update
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook  'turn-on-ctags-auto-update-mode)
+  :diminish ctags-auto-update-mode)
+
 (setq display-time-day-and-date t)
 (setq display-time-string-forms
       '((format "%s:%s  "
@@ -170,5 +180,10 @@
       '("emacs@" (:eval (system-name)) ": "(:eval (if (buffer-file-name)
                                                       (abbreviate-file-name (buffer-file-name))
                                                     "%b")) " [%*]"))
+(setq ispell-program-name "hunspell")
+;; No flyspell. 
+(eval-after-load "flyspell"
+  '(defun flyspell-mode (&optional arg)))
+
 
 (provide 'init-defaults)

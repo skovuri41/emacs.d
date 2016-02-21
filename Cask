@@ -51,6 +51,7 @@
 ;;org
 (depends-on "org")
 (depends-on "org-bullets")
+(depends-on "org-journal")
 
 ;;clojure
 (depends-on "smartparens")
@@ -103,6 +104,7 @@
 (depends-on "counsel")
 (depends-on "golden-ratio")
 (depends-on "workgroups2")
+(depends-on "ctags-update")
 
 ;;helm
 (depends-on "helm")
@@ -141,7 +143,3 @@
 (depends-on "emacs-eclim")
 
 (depends-on "quickrun")
-
-
-
-

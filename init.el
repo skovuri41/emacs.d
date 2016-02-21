@@ -19,7 +19,7 @@
 (require 'init-ido)
 (require 'init-magit)
 (require 'init-fancy-narrow)
-(require 'init-org)
+(require 'init-org-2)
 (require 'init-org-bullets)
 (require 'init-clojure)
 (require 'init-zenburn)
@@ -101,15 +101,14 @@
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
-;;(add-to-list 'magic-mode-alist '(";;; " . emacs-lisp-mode))
 
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
+;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 ;;(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;;(global-set-key (kbd "C-M-%") 'query-replace)
 ;;switch prev nex user buffers
@@ -127,8 +126,8 @@
 (global-set-key (kbd "<f2>") 'xah-cut-line-or-region) ; cut
 (global-set-key (kbd "<f3>") 'xah-copy-line-or-region) ; copy
 (global-set-key (kbd "<f4>") 'yank) ; paste
-(global-set-key '[(f1)]          'call-last-kbd-macro)
-(global-set-key '[(shift f1)]    'toggle-kbd-macro-recording-on)
+(global-set-key '[(f1)] 'call-last-kbd-macro)
+(global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
@@ -138,9 +137,3 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
-
-(setq ispell-program-name "hunspell")
-;; No flyspell. 
-(eval-after-load "flyspell"
-  '(defun flyspell-mode (&optional arg)))
-
