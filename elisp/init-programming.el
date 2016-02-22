@@ -55,7 +55,12 @@
   :mode ("\\.yml$" . yaml-mode))
 
 (use-package scratch
-	  :ensure t)
-	
+  :ensure t)
+
+(use-package highlight-numbers
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook 'highlight-numbers-mode)
+  )
 
 (provide 'init-programming)

@@ -44,7 +44,7 @@
 (depends-on "hydra")
 (depends-on "hungry-delete")
 (depends-on "window-numbering")
-
+(depends-on "highlight-numbers")
 (depends-on "sunshine")
 (depends-on "forecast")
 
