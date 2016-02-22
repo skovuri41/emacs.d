@@ -41,6 +41,9 @@
 (depends-on "kurecolor")
 (depends-on "fancy-battery")
 (depends-on "spaceline")
+(depends-on "hydra")
+(depends-on "hungry-delete")
+(depends-on "window-numbering")
 
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -49,6 +52,10 @@
 ;;org
 (depends-on "org")
 (depends-on "org-bullets")
+(depends-on "org-journal")
+(depends-on "org-plus-contrib")
+(depends-on "ox-reveal")
+(depends-on "org-pomodoro")
 
 ;;clojure
 (depends-on "smartparens")
@@ -100,6 +107,8 @@
 (depends-on "swiper")
 (depends-on "counsel")
 (depends-on "golden-ratio")
+(depends-on "workgroups2")
+(depends-on "ctags-update")
 
 ;;helm
 (depends-on "helm")
@@ -124,6 +133,11 @@
 (depends-on "evil-terminal-cursor-changer")
 (depends-on "evil-terminal-cursor-changer")
 (depends-on "evil-nerd-commenter")
+(depends-on "evil-visualstar")
+(depends-on "evil-matchit")
+(depends-on "evil-iedit-state")
+(depends-on "evil-numbers")
+(depends-on "evil-snipe")
 ;;themes
 (depends-on "zenburn-theme")
 
@@ -134,7 +148,3 @@
 (depends-on "emacs-eclim")
 
 (depends-on "quickrun")
-
-
-
-

@@ -1,11 +1,8 @@
-
 (use-package ido
   :config
   (progn
     ;;(evil-leader/set-key "bs" 'ido-switch-buffer)
     (evil-leader/set-key "bk" 'ido-kill-buffer)
-    (evil-leader/set-key "bn" 'xah-new-empty-buffer)
-
     (evil-leader/set-key "ff" 'ido-find-file)))
 
 (use-package flx-ido
@@ -17,7 +14,7 @@
   :config
   (progn
     (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)))
-;(setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)  
+
 (use-package smex
   :defer t
   :bind (

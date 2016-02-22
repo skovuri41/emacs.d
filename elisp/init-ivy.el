@@ -10,6 +10,7 @@
   :init
   (progn
     (setq projectile-completion-system 'ivy)
+    (setq swiper-completion-method 'ivy)
     (global-set-key (kbd "C-s") 'swiper)
     (with-eval-after-load "ivy"
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
@@ -35,17 +36,23 @@
   :bind
   ("C-x b" . nil)
   :bind
-  (:map evil-leader--default-map
-        ("bs" . ivy-switch-buffer))
-  :config (progn
-            ;; partial complete without exiting
-            (define-key ivy-minibuffer-map
-              (kbd "TAB") #'ivy-partial)
-
-            ;; fancier colors
-            (setq ivy-display-style 'fancy))
-  :init (progn
-          (ivy-mode 1)))
+  (:map evil-leader--default-map ("bb" . ivy-switch-buffer))
+  :config
+  (progn
+    ;; partial complete without exiting
+    (define-key ivy-minibuffer-map
+      (kbd "TAB") #'ivy-partial)
+    ;;advise swiper to recenter on exit
+    (defun bjm-swiper-recenter (&rest args)
+      "recenter display after swiper"
+      (recenter)
+      )
+    (advice-add 'swiper :after #'bjm-swiper-recenter)
+    ;; fancier colors
+    (setq ivy-display-style 'fancy))
+  :init
+  (progn
+    (ivy-mode 1)))
 
 (use-package counsel
   :ensure t
@@ -54,7 +61,9 @@
          ("C-c k" . counsel-ag)
          ("C-c g" . counsel-git)
          ("C-x l" . counsel-locate))
-  (("ff" . counsel-find-file)
-   (":" . counsel-M-x)))
+  :bind
+  (:map evil-leader--default-map
+        ("ff" . counsel-find-file)
+        (":" . counsel-M-x)))
 
 (provide 'init-ivy)
