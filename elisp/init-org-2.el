@@ -2,7 +2,7 @@
   :mode ("\\.org\\'" . org-mode)
   :init
   (add-to-list 'auto-mode-alist '("\\.txt$" . org-mode))
-  (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode))   ;; Journal entries
+  (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode)) ;; Journal entries
   (setq org-directory "~/notes/")
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-replace-disputed-keys t)
@@ -60,7 +60,7 @@
          (interactive)
          (surround-text "="))
 
-  (setq org-log-into-drawer t) ;don't clutter files with state logs
+  (setq org-log-into-drawer t)    ;don't clutter files with state logs
   (setq org-log-done (quote time))
   (setq org-log-redeadline (quote time))
   (setq org-log-reschedule (quote time))
@@ -91,19 +91,19 @@
     "Call this after creating an org-mode heading for where the notes for the meeting
      should be. After calling this function, call 'meeting-done' to reset the environment."
     (interactive)
-    (outline-mark-subtree)                              ;; Select org-mode section
-    (narrow-to-region (region-beginning) (region-end))  ;; Only show that region
+    (outline-mark-subtree) ;; Select org-mode section
+    (narrow-to-region (region-beginning) (region-end)) ;; Only show that region
     (deactivate-mark)
-    (delete-other-windows)                              ;; Get rid of other windows
-    (text-scale-set 2)                                  ;; Text is now readable by others
+    (delete-other-windows) ;; Get rid of other windows
+    (text-scale-set 2)     ;; Text is now readable by others
     (fringe-mode 0)
     (message "When finished taking your notes, run meeting-done."))
 
   (defun meeting-done ()
     "Attempt to 'undo' the effects of taking meeting notes."
     (interactive)
-    (widen)                                       ;; Opposite of narrow-to-region
-    (text-scale-set 0)                            ;; Reset the font size increase
+    (widen)            ;; Opposite of narrow-to-region
+    (text-scale-set 0) ;; Reset the font size increase
     (fringe-mode 1)
     (winner-undo))
 
@@ -178,12 +178,8 @@
     )
 
 
-  (use-package org-plus-contrib
-    :ensure t)
-
   (use-package org-pomodoro
     :commands (org-pomodoro))
-
 
   (use-package notifications
     :config
@@ -265,7 +261,7 @@
        (css        . t)
        (plantuml   . t))))
 
-;;;; ox-latex
+
   (use-package ox-latex
     :config
     (setq org-latex-listings 'minted)
@@ -280,6 +276,33 @@
     (setq org-reveal-root (concat "file://" (getenv "HOME") "/Public/js/reveal.js"))
     (setq org-reveal-postamble "ox reveal presentation"))
 
-  )
+  (use-package org-mobile
+    :disabled t
+    :init
+    (progn
+      (setq org-mobile-directory "~/Documents/mobileorg"
+            org-mobile-files (list
+                              "~/Documents/org"
+                              "~/Documents/Work/org")
+            org-mobile-inbox-for-pull "~/Documents/org/inbox.org")
+      ))
+
+  (use-package org-crypt
+    :commands (org-decrypt-entries
+               org-encrypt-entries
+               org-crypt-use-before-save-magic)
+    :init
+    (progn
+      ;; GPG key to use for encryption
+      ;; Either the Key ID or set to nil to use symmetric encryption.
+      (setq org-crypt-key nil)
+      )
+    :config
+    (progn
+      (org-crypt-use-before-save-magic)
+      (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+      ))
+
+  (use-package org-protocol))
 
 (provide 'init-org-2)

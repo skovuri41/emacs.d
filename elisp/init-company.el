@@ -28,4 +28,13 @@
     (define-key company-active-map (kbd "j") 'company-select-next)
     (define-key company-active-map (kbd "k") 'company-select-previous)))
 
+(use-package company-quickhelp
+  :ensure t
+  :init
+  (progn
+    ;; (company-quickhelp-mode 1)
+    (eval-after-load 'company
+      '(define-key company-active-map (kbd "M-h") #'company-quickhelp-manual-begin))
+    ))
+
 (provide 'init-company)

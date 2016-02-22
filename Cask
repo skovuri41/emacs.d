@@ -56,6 +56,10 @@
 (depends-on "org-plus-contrib")
 (depends-on "ox-reveal")
 (depends-on "org-pomodoro")
+(depends-on "org-crypt")
+(depends-on "org-mobile")
+(depends-on "org-protocol")
+
 
 ;;clojure
 (depends-on "smartparens")

@@ -1,3 +1,14 @@
+;; Platform specific settings
+(defvar *is-a-mac*)
+(defvar *is-carbon-emacs*)
+(defvar *is-cocoa-emacs*)
+(defvar *is-gnu-linux*)
+(setq
+ *is-a-mac* (eq system-type 'darwin)
+ *is-carbon-emacs* (and *is-a-mac* (eq window-system 'mac))
+ *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns))
+ *is-gnu-linux* (eq system-type 'gnu/linux))
+
 ;; masteringemacs.org fixing mark commands tmm
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region
@@ -18,16 +29,16 @@
   (exchange-point-and-mark)
   (deactivate-mark nil))
 
-(defun save-macro (name)                  
+(defun save-macro (name)
    "save a macro. Take a name as argument
-    and save the last defined macro under 
+    and save the last defined macro under
     this name at the end of your .emacs"
-    (interactive "SName of the macro :")  ; ask for the name of the macro    
-    (kmacro-name-last-macro name)         ; use this name for the macro    
-    (find-file user-init-file)            ; open ~/.emacs or other user init file 
+    (interactive "SName of the macro :")  ; ask for the name of the macro
+    (kmacro-name-last-macro name)         ; use this name for the macro
+    (find-file user-init-file)            ; open ~/.emacs or other user init file
     (goto-char (point-max))               ; go to the end of the .emacs
     (newline)                             ; insert a newline
-    (insert-kbd-macro name)               ; copy the macro 
+    (insert-kbd-macro name)               ; copy the macro
     (newline)                             ; insert a newline
     (switch-to-buffer nil))               ; return to the initial buffer
 
@@ -522,7 +533,7 @@ current location."
   "Open an eshell at the `current-location'"
   (interactive)
   (open-eshell-at (current-location)))
-(defalias 'ee 'eshell-here) 
+(defalias 'ee 'eshell-here)
 
 (defun terminal-here ()
   "Open a terminal at the `current-location'"
@@ -533,7 +544,7 @@ current location."
 
 (defun copy-from-osx ()
     (shell-command-to-string "pbpaste"))
-  
+
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))

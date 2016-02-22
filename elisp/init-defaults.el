@@ -18,6 +18,15 @@
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
 
+;; window focus follows the mouse pointer
+(setq  mouse-autoselect-window t)
+
+;;make mouse scrolling smooth
+(setq  mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
+
+;;Suppress symbolic link warnings
+(setq find-file-visit-truename t)
+
 ;; Auto refresh buffers
 (global-auto-revert-mode 1)
 
@@ -181,7 +190,7 @@
                                                       (abbreviate-file-name (buffer-file-name))
                                                     "%b")) " [%*]"))
 (setq ispell-program-name "hunspell")
-;; No flyspell. 
+;; No flyspell.
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
 

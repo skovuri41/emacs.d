@@ -5,11 +5,13 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives 
+(add-to-list 'package-archives
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
-(add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t) 
-(add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t) 
+(add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(cider-eval-sexp-fu. "melpa-stable") t)
 
 ;; keep the installed packages in .emacs.d
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
@@ -19,6 +21,7 @@
 
 (setq my-packages '(ace-window
 		    company
+                    company-quickhelp
 		    direx
 		    drag-stuff
 		    expand-region
@@ -30,6 +33,11 @@
                     evil-surround
                     evil-nerd-commenter
                     evil-lisp-state
+                    evil-snipe
+                    evil-numbers
+                    evil-matchit
+                    evil-iedit-state
+                    evil-visualstar
                     flx-ido
 		    flyspell
                     flycheck
@@ -53,6 +61,13 @@
 		    multiple-cursors
 		    org
 		    org-bullets
+                    org-journal
+                    org-pomodoro
+                    org-capture
+                    org-crypt
+                    org-mobile
+                    org-protocol
+                    ox-reveal
 		    projectile
 		    smart-mode-line
 		    smartparens
@@ -64,7 +79,7 @@
 		    zenburn-theme
                     ace-jump-buffer
                     ace-window
-                    projectile 
+                    projectile
                     easy-kill
                     imenu-anywhere
                     zop-to-char
@@ -94,6 +109,22 @@
                     golden-ratio-scroll-screen
                     git-timemachine
 		    hydra
+                    spaceline
+                    window-numbering
+                    hungry-delete
+                    pbcopy
+                    ctags-update
+                    workgroups2
+                    smartparens
+                    clojure-mode
+                    clojure-snippets
+                    cider
+                    clojure-cheatsheet
+                    cider-eval-sexp-fu
+                    4clojure
+                    paren-face
+                    clj-refactor
+                    typed-clojure-mode
                     ))
 
 (dolist (p my-packages)
@@ -103,8 +134,9 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (require 'init-defaults)
 (use-package better-defaults)
+(require 'init-defuns)
 ;;(require 'init-flycheck)
-(require 'init-powerline)
+;; (require 'init-powerline)
 (require 'init-evil)
 (require 'init-whichkey)
 (require 'init-yasnippet)
@@ -113,8 +145,8 @@
 (require 'init-magit)
 (require 'init-git)
 (require 'init-fancy-narrow)
-(require 'init-org)
-;;(require 'init-clojure)
+(require 'init-org-2)
+(require 'init-clojure)
 (require 'init-zenburn)
 (require 'init-minor-modes)
 (require 'init-helm)
@@ -122,7 +154,6 @@
 (require 'init-undotree)
 (require 'init-smartparens)
 (require 'init-hl-line)
-(require 'init-defuns)
 (require 'init-company)
 (require 'init-easy-kill)
 (require 'init-imenu-anywhere)
@@ -149,21 +180,14 @@
 (require 'init-rainbow-mode)
 (require 'init-ace-window)
 (require 'init-golden-ratio)
+(require 'init-spaceline)
+(require 'init-window-numbering)
+(require 'init-workgroups2)
 
-;; No slow flyspell. 
+;; No slow flyspell.
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))
 
-;; Platform specific settings
-(defvar *is-a-mac*)
-(defvar *is-carbon-emacs*)
-(defvar *is-cocoa-emacs*)
-(defvar *is-gnu-linux*)
-(setq
- *is-a-mac* (eq system-type 'darwin)
- *is-carbon-emacs* (and *is-a-mac* (eq window-system 'mac))
- *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns))
- *is-gnu-linux* (eq system-type 'gnu/linux))
 (when *is-a-mac*
   (setq
    ;; for multilingual environments
@@ -172,7 +196,6 @@
    default-frame-alist '((font . "Monaco-13")
                          (width . 120)  ;character
                          (height . 52)) ; lines
-
    ;; Work around a bug on OS X where system-name is FQDN
    system-name (car (split-string system-name "\\."))
    mac-command-modifier nil
@@ -231,4 +254,4 @@
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
-
+(global-set-key (kbd "<XF86Reload>") 'helm-M-x)
