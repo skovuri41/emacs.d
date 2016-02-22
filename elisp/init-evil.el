@@ -115,6 +115,21 @@
         (evil-leader/set-key
           "ni" 'init/hydra-numbers/evil-numbers/inc-at-pt
           "nd" ' init/hydra-numbers/evil-numbers/dec-at-pt)))
+    (use-package evil-snipe
+      :ensure t
+      :init
+      (setq-default
+       evil-snipe-smart-case t
+       evil-snipe-repeat-keys nil ; using space to repeat
+       evil-snipe-scope 'line
+       evil-snipe-repeat-scope 'visible
+       evil-snipe-override-evil-repeat-keys nil ; causes problems with remapped ;
+       evil-snipe-symbol-groups '((?\[ "[[{(]")
+                                  (?\] "[]})]")
+                                  (?\; "[;:]")))
+      :config
+      (evil-snipe-mode 1)
+      (evil-snipe-override-mode 1))
     (use-package evil-terminal-cursor-changer
       ;; Change the cursor face when switching evil states
       ;; Homepage: https://github.com/7696122/evil-terminal-cursor-changer
@@ -245,6 +260,23 @@
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
+    ;; modes to map to different default states
+    (dolist (mode-map '((compilation-mode       . normal)
+                        (help-mode              . normal)
+                        (message-mode           . normal)
+                        (debugger-mode          . normal)
+                        (profile-report-mode    . emacs)
+                        (Info-mode              . emacs)
+                        (view-mode              . emacs)
+                        (comint-mode            . emacs)
+                        (cider-repl-mode        . emacs)
+                        (term-mode              . emacs)
+                        (calendar-mode          . emacs)
+                        (Man-mode               . emacs)
+                        (grep-mode              . emacs)
+                        (image-mode             . normal)
+                        ))
+      (evil-set-initial-state `,(car mode-map) `,(cdr mode-map)))
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
     ))
 (provide 'init-evil)

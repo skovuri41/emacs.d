@@ -137,6 +137,7 @@
 (depends-on "evil-matchit")
 (depends-on "evil-iedit-state")
 (depends-on "evil-numbers")
+(depends-on "evil-snipe")
 ;;themes
 (depends-on "zenburn-theme")
 
