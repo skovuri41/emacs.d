@@ -7,21 +7,22 @@
   (setq org-default-notes-file (concat org-directory "/notes.org"))
   (setq org-replace-disputed-keys t)
   (setq org-startup-folded t)
-  (setq org-startup-indented nil)
+  (setq org-startup-indented t)
   (setq org-startup-with-inline-images t)
   (setq org-startup-truncated t)
   (setq org-hide-leading-stars t)
   (setq org-odd-levels-only nil)
   (setq org-list-allow-alphabetical t)
+  (setq org-cycle-include-plain-lists t)
+  (setq org-cycle-separator-lines 0)
+  (setq org-blank-before-new-entry (quote ((heading)
+                                           (plain-list-item . auto))))
   (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-  (setq org-edit-src-content-indentation 0)
-  (setq org-confirm-babel-evaluate nil)
   (setq org-use-speed-commands t)
   (setq org-hide-emphasis-markers t)
+  (setq org-reverse-note-order nil)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   (setq org-refile-use-outline-path 'file)
-  (setq org-html-postamble nil)
   (setq org-tags-column 0)
   (setq org-todo-keywords
         '((sequence
@@ -38,6 +39,7 @@
   ;; Block entries from changing state to DONE while they have children
   ;; that are not DONE
   (setq org-enforce-todo-dependencies t)
+  (setq org-use-fast-todo-selection t)
   (defun set-org-mode-app-defaults ()
     (setq org-file-apps
           '(((auto-mode . emacs)
@@ -45,11 +47,6 @@
              ("\\.x?html?\\'" . system)
              ("\\.pdf\\'" . system)))))
   (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
-  ;; Let's have pretty source code blocks
-  (setq org-edit-src-content-indentation 0
-        org-src-tab-acts-natively t
-        org-src-fontify-natively t
-        org-confirm-babel-evaluate nil)
   (defun org-text-bold () "Wraps the region with asterisks."
          (interactive)
          (surround-text "*"))
@@ -106,6 +103,27 @@
     (text-scale-set 0) ;; Reset the font size increase
     (fringe-mode 1)
     (winner-undo))
+
+  (use-package org-src
+    :init
+    ;; Let's have pretty source code blocks
+    (setq org-edit-src-content-indentation 0
+          org-src-tab-acts-natively t
+          org-src-fontify-natively t
+          org-confirm-babel-evaluate nil)
+    (setq org-src-tab-acts-natively t)
+    (setq org-confirm-babel-evaluate nil)
+    )
+
+  (use-package org-indent
+    :init)
+
+  (use-package org-table
+    :init)
+
+  (use-package org-archive
+    :init)
+
 
 ;;;;; org-agenda
   (use-package org-agenda
@@ -199,7 +217,6 @@
             ;;captureTasks
             ("t" "Todo" entry (file+headline "~/notes/gtd.org" "Tasks")
              "* TODO %?\n  %i\n  %c")))
-
     :config
     (add-hook 'org-capture-mode-hook
               (lambda ()
@@ -226,7 +243,10 @@
     :init
     (setq org-html-postamble nil)
     (setq org-export-with-section-numbers nil)
+    (setq org-cycle-include-plain-lists t)
+    (setq org-export-coding-system 'utf-8)
     (setq org-export-with-toc nil)
+    (setq org-export-with-timestamps nil)
     (setq org-html-head-extra "
      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
      <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>

@@ -117,11 +117,14 @@
           "nd" ' init/hydra-numbers/evil-numbers/dec-at-pt)))
     (use-package evil-snipe
       :ensure t
+      :diminish evil-snipe-mode
+      :diminish evil-snipe-local-mode
       :init
       (setq-default
        evil-snipe-smart-case t
        evil-snipe-repeat-keys nil ; using space to repeat
-       evil-snipe-scope 'line
+       ;; evil-snipe-scope 'line
+       evil-snipe-scope 'whole-buffer
        evil-snipe-repeat-scope 'visible
        evil-snipe-override-evil-repeat-keys nil ; causes problems with remapped ;
        evil-snipe-symbol-groups '((?\[ "[[{(]")

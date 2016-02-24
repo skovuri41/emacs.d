@@ -59,6 +59,7 @@
 (set-keyboard-coding-system 'utf-8) ; pretty
 (set-selection-coding-system 'utf-8) ; please
 (prefer-coding-system 'utf-8) ; with sugar on top
+(set-charset-priority 'unicode)
 
 ;; Show active region
 (transient-mark-mode 1)
@@ -189,7 +190,11 @@
       '("emacs@" (:eval (system-name)) ": "(:eval (if (buffer-file-name)
                                                       (abbreviate-file-name (buffer-file-name))
                                                     "%b")) " [%*]"))
-(setq ispell-program-name "hunspell")
+(when (executable-find "hunspell")
+  (setq ispell-program-name "hunspell")
+  (setq-default ispell-program-name "hunspell")
+  (setq ispell-really-hunspell t))
+
 ;; No flyspell.
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))

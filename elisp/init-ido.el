@@ -3,7 +3,12 @@
   (progn
     ;;(evil-leader/set-key "bs" 'ido-switch-buffer)
     (evil-leader/set-key "bk" 'ido-kill-buffer)
-    (evil-leader/set-key "ff" 'ido-find-file)))
+    (evil-leader/set-key "ff" 'ido-find-file)
+    ;; Use the current window when visiting files and buffers with ido
+    (setq ido-default-file-method 'selected-window)
+    (setq ido-default-buffer-method 'selected-window)
+
+    ))
 
 (use-package flx-ido
   :init (flx-ido-mode 1)
