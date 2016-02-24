@@ -563,4 +563,66 @@ Try the repeated popping up to 10 times."
 (advice-add 'pop-to-mark-command :around
             #'modi/multi-pop-to-mark)
 
+(defun xah-html-decode-percent-encoded-url ()
+  "Decode percent encoded URI of URI under cursor or selection.
+
+Example:
+    http://en.wikipedia.org/wiki/Saint_Jerome_in_His_Study_%28D%C3%BCrer%29
+becomes
+    http://en.wikipedia.org/wiki/Saint_Jerome_in_His_Study_(Dürer)
+
+Example:
+    http://zh.wikipedia.org/wiki/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8
+becomes
+    http://zh.wikipedia.org/wiki/文本编辑器
+
+For string version, see `xah-html-url-percent-decode-string'.
+To encode, see `xah-html-encode-percent-encoded-url'.
+URL `http://ergoemacs.org/emacs/elisp_decode_uri_percent_encoding.html'
+Version 2015-09-14."
+  (interactive)
+  (let (ξboundaries ξp1 ξp2 ξinput-str)
+    (if (use-region-p)
+        (progn
+          (setq ξp1 (region-beginning))
+          (setq ξp2 (region-end)))
+      (progn
+        (setq ξboundaries (bounds-of-thing-at-point 'url))
+        (setq ξp1 (car ξboundaries))
+        (setq ξp2 (cdr ξboundaries))))
+    (setq ξinput-str (buffer-substring-no-properties ξp1 ξp2))
+    (require 'url-util)
+    (delete-region ξp1 ξp2)
+    (insert (decode-coding-string (url-unhex-string ξinput-str) 'utf-8))))
+
+(defun xah-html-encode-percent-encoded-url ()
+  "Percent encode URL under cursor or selection.
+
+Example:
+    http://en.wikipedia.org/wiki/Saint_Jerome_in_His_Study_(Dürer)
+becomes
+    http://en.wikipedia.org/wiki/Saint_Jerome_in_His_Study_(D%C3%BCrer)
+
+Example:
+    http://zh.wikipedia.org/wiki/文本编辑器
+becomes
+    http://zh.wikipedia.org/wiki/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8
+
+URL `http://ergoemacs.org/emacs/elisp_decode_uri_percent_encoding.html'
+Version 2015-09-14."
+  (interactive)
+  (let (ξboundaries ξp1 ξp2 ξinput-str)
+    (if (use-region-p)
+        (progn
+          (setq ξp1 (region-beginning))
+          (setq ξp2 (region-end)))
+      (progn
+        (setq ξboundaries (bounds-of-thing-at-point 'url))
+        (setq ξp1 (car ξboundaries))
+        (setq ξp2 (cdr ξboundaries))))
+    (setq ξinput-str (buffer-substring-no-properties ξp1 ξp2))
+    (require 'url-util)
+    (delete-region ξp1 ξp2)
+    (insert (url-encode-url ξinput-str))))
+
 (provide 'init-defuns)

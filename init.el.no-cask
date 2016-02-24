@@ -61,13 +61,7 @@
 		    multiple-cursors
 		    org
 		    org-bullets
-                    org-journal
                     org-pomodoro
-                    org-capture
-                    org-crypt
-                    org-mobile
-                    org-protocol
-                    ox-reveal
 		    projectile
 		    smart-mode-line
 		    smartparens
@@ -110,7 +104,10 @@
                     git-timemachine
 		    hydra
                     spaceline
+                    restclient
+                    htmlize
                     window-numbering
+                    highlight-numbers
                     hungry-delete
                     pbcopy
                     ctags-update
@@ -181,12 +178,10 @@
 (require 'init-ace-window)
 (require 'init-golden-ratio)
 (require 'init-spaceline)
+(require 'init-restclient)
+(require 'init-htmlize)
 (require 'init-window-numbering)
 (require 'init-workgroups2)
-
-;; No slow flyspell.
-(eval-after-load "flyspell"
-  '(defun flyspell-mode (&optional arg)))
 
 (when *is-a-mac*
   (setq
@@ -209,9 +204,6 @@
    ;; make emacs use the clipboard
    x-select-enable-clipboard t
    ))
-(when (executable-find "hunspell")
-  (setq-default ispell-program-name "hunspell")
-  (setq ispell-really-hunspell t))
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
@@ -255,3 +247,8 @@
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key (kbd "<XF86Reload>") 'helm-M-x)
+
+
+(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
+  (when (file-exists-p local-config)
+    (load local-config)))

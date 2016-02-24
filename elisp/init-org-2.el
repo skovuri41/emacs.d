@@ -207,7 +207,7 @@
     (setq appt-delete-window-function (lambda (&rest args))))
 
 ;;;;; org-capture
-  (use-package org-capture
+  (use-package org
     :init
     (setq org-capture-templates
           '(("t" "Task" entry (file "") "* TODO %?\n %a")
