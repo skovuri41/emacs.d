@@ -42,7 +42,11 @@
           "hA" 'helm-ag-project-root
           "hi" 'helm-imenu
           "hI" 'helm-imenu-anywhere
-          )))
+          )
+        (define-key evil-normal-state-map (kbd "q") nil)
+        (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
+        (evil-leader/set-key "q" 'popwin:close-popup-window)
+        ))
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
     (use-package evil-visualstar

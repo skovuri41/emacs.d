@@ -8,9 +8,6 @@
              quickrun-replace-region
              helm-quickrun)
   :bind
-  (:map evil-leader--default-map
-        ("qr" . quickrun)
-        ("qR" . quickrun-with-arg))
   :config
   (setq quickrun-focus-p nil)
   (setq quickrun-focus-p nil)
