@@ -28,7 +28,7 @@
           "ht" 'helm-top
           "hm" 'helm-man-woman
           "ho" 'helm-occur
-          "hx" 'helm-M-x
+          "h" 'helm-M-x
           "he" 'helm-find-files
           "hb" 'helm-buffers-list
           "hh" 'helm-projectile-find-file
@@ -45,7 +45,8 @@
           )
         (define-key evil-normal-state-map (kbd "q") nil)
         (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
-        (evil-leader/set-key "q" 'popwin:close-popup-window)
+        (define-key evil-normal-state-map (kbd "q") 'popwin:close-popup-window )
+        ;;(evil-leader/set-key "q" 'popwin:close-popup-window)
         ))
     (use-package evil-org
       :init (add-hook 'org-mode-hook 'evil-org-mode))
