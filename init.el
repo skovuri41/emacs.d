@@ -8,6 +8,7 @@
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq default-directory (getenv "HOME"))
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (require 'init-defaults)
 (use-package better-defaults)
 ;; (require 'init-powerline)
@@ -58,8 +59,11 @@
 (require 'init-kurecolor)
 (require 'init-golden-ratio)
 (require 'init-neotree)
+(require 'init-popwin)
+(require 'init-restclient)
 (require 'init-fancy-battery)
 (require 'init-window-numbering)
+(require 'init-mu4e)
 (require 'init-spaceline)
 (require 'init-workgroups2)
 
@@ -138,15 +142,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(iedit-occurrence ((t (:inherit lazy-highlight)))))
+
+(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
+  (when (file-exists-p local-config)
+    (load local-config)))

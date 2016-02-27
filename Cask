@@ -37,6 +37,7 @@
 (depends-on "dired+")
 (depends-on "wdired")
 (depends-on "neotree")
+(depends-on "ztree")
 (depends-on "pbcopy")
 (depends-on "kurecolor")
 (depends-on "fancy-battery")
@@ -56,10 +57,11 @@
 (depends-on "org-plus-contrib")
 (depends-on "ox-reveal")
 (depends-on "org-pomodoro")
-(depends-on "org-crypt")
-(depends-on "org-mobile")
-(depends-on "org-protocol")
 
+;;mail
+
+(depends-on "mu4e-maildirs-extension")
+(depends-on "mu4e-alert")
 
 ;;clojure
 (depends-on "smartparens")
@@ -90,6 +92,7 @@
 (depends-on "beacon")
 (depends-on "super-save")
 (depends-on "link-hint")
+(depends-on "restclient")
 
 ;;(depends-on "ace-jump-buffer")
 (depends-on "ace-window")

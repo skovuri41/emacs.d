@@ -11,7 +11,12 @@
                         (setq web-mode-enable-css-colorization t)
                         (setq web-mode-markup-indent-offset 2)
                         (setq web-mode-style-padding 2)
-                        (setq web-mode-script-padding 2)))))
+                        (setq web-mode-script-padding 2)))
+            (setq web-mode-css-indent-offset 2
+                  web-mode-code-indent-offset 2
+                  web-mode-enable-auto-pairing t
+                  web-mode-enable-engine-detection t
+                  web-mode-enable-current-element-highlight t)))
 (use-package css-mode
   :config (setq css-indent-offset 2))
 

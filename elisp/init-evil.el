@@ -28,7 +28,7 @@
           "ht" 'helm-top
           "hm" 'helm-man-woman
           "ho" 'helm-occur
-          "h" 'helm-M-x
+          "hx" 'helm-M-x
           "he" 'helm-find-files
           "hb" 'helm-buffers-list
           "hh" 'helm-projectile-find-file

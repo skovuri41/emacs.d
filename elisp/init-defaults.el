@@ -154,6 +154,13 @@
      '(progn ,@body)))
 
 ;; make sure $PATH is set correctly
+(when(eq system-type 'darwin)
+  (use-package exec-path-from-shell
+    :ensure t
+    :config
+    (progn
+      (exec-path-from-shell-initialize))))
+
 (use-package exec-path-from-shell
   :ensure exec-path-from-shell
   :disabled t

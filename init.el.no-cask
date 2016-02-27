@@ -180,6 +180,7 @@
 (require 'init-spaceline)
 (require 'init-restclient)
 (require 'init-htmlize)
+(require 'init-mu4e)
 (require 'init-window-numbering)
 (require 'init-workgroups2)
 

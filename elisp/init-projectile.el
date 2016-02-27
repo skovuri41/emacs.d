@@ -20,7 +20,7 @@
     (evil-leader/set-key "pk" 'projectile-kill-buffers)
     (evil-leader/set-key "pm" 'projectile-command-map)
     (evil-leader/set-key "pt" 'neotree-find-project-root)
-    
+
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")
     (add-to-list 'projectile-globally-ignored-files "*.pyc")
     (add-to-list 'projectile-globally-ignored-files "*.python-version")
@@ -30,6 +30,7 @@
     (add-to-list 'projectile-globally-ignored-directories ".venv")
     (add-to-list 'projectile-globally-ignored-directories ".cask")
     (add-to-list 'projectile-globally-ignored-directories ".cache")
+    (which-key-add-key-based-replacements "SPC p" "Project")
     (setq projectile-globally-ignored-directories
           '(".idea"
             ".eunit"
