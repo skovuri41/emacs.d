@@ -19,8 +19,7 @@
 ;; ;; update the package metadata
 (package-refresh-contents)
 
-(setq my-packages '(ace-window
-		    company
+(setq my-packages '(company
                     company-quickhelp
 		    direx
 		    drag-stuff
@@ -49,6 +48,7 @@
 		    grizzl
 		    guide-key
 		    helm
+                    helm-flx
 		    helm-descbinds
 		    helm-gtags
 		    helm-projectile
@@ -65,6 +65,7 @@
 		    projectile
 		    smart-mode-line
 		    smartparens
+                    transpose-frame
 		    smex
 		    undo-tree
 		    use-package
@@ -78,16 +79,23 @@
                     imenu-anywhere
                     zop-to-char
                     web-mode
+                    csv-mode
+                    csv-nav
                     rainbow-delimiters
                     imenu-anywhere
                     aggressive-indent
                     iedit
+                    tidy
                     drag-stuff
                     elisp-slime-nav
                     emacs-eclim
                     better-defaults
+                    color-identifiers-mode
+                    whitespace-cleanup-mode
                     powerline
                     anzu
+                    thingatpt
+                    keyfreq
                     ag
                     swiper
                     counsel
@@ -98,9 +106,12 @@
                     neotree
                     quickrun
                     kurecolor
+                    java-imports
+                    origami
                     rainbow-mode
                     golden-ratio
                     golden-ratio-scroll-screen
+                    popwin
                     git-timemachine
 		    hydra
                     spaceline
@@ -136,6 +147,7 @@
 ;; (require 'init-powerline)
 (require 'init-evil)
 (require 'init-whichkey)
+(require 'init-hydra)
 (require 'init-yasnippet)
 (require 'init-projectile)
 (require 'init-ido)
@@ -149,6 +161,7 @@
 (require 'init-helm)
 (require 'init-expand-region)
 (require 'init-undotree)
+(require 'init-keyfreq)
 (require 'init-smartparens)
 (require 'init-hl-line)
 (require 'init-company)
@@ -164,7 +177,9 @@
 (require 'init-dired)
 (require 'init-anzu)
 (require 'init-ag)
+(require 'init-keyfreq)
 (require 'init-ivy)
+(require 'init-color-identifiers)
 (require 'init-super-save)
 (require 'init-smooth-scrolling)
 (require 'init-link-hint)
@@ -180,31 +195,9 @@
 (require 'init-spaceline)
 (require 'init-restclient)
 (require 'init-htmlize)
-(require 'init-mu4e)
 (require 'init-window-numbering)
+(require 'init-popwin)
 (require 'init-workgroups2)
-
-(when *is-a-mac*
-  (setq
-   ;; for multilingual environments
-   default-input-method "MacOSX"
-   ;; font
-   default-frame-alist '((font . "Monaco-13")
-                         (width . 120)  ;character
-                         (height . 52)) ; lines
-   ;; Work around a bug on OS X where system-name is FQDN
-   system-name (car (split-string system-name "\\."))
-   mac-command-modifier nil
-   interprogram-cut-function 'paste-to-osx
-   interprogram-paste-function 'copy-from-osx)
-  )
-(when *is-gnu-linux*
-  (setq
-   ;; font
-   default-frame-alist '((font . "Monaco-10"))
-   ;; make emacs use the clipboard
-   x-select-enable-clipboard t
-   ))
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
@@ -253,3 +246,5 @@
 (let ((local-config (expand-file-name "local.el" user-emacs-directory)))
   (when (file-exists-p local-config)
     (load local-config)))
+
+

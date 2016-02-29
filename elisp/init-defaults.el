@@ -12,8 +12,6 @@
 ;; Buffer settings
 (setq default-indicate-empty-lines t)
 (setq require-final-newline t)
-(setq show-trailing-whitespace t)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)

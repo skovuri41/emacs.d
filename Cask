@@ -25,6 +25,8 @@
 ;;(depends-on "js-mode")
 ;;(depends-on "emacs-lisp-mode")
 (depends-on "web-mode")
+(depends-on "csv-mode")
+(depends-on "csv-nav")
 (depends-on "powerline")
 (depends-on "powerline-evil")
 
@@ -47,6 +49,8 @@
 (depends-on "hungry-delete")
 (depends-on "window-numbering")
 (depends-on "highlight-numbers")
+(depends-on "whitespace-cleanup-mode")
+(depends-on "tidy")
 (depends-on "sunshine")
 (depends-on "forecast")
 (depends-on "origami")

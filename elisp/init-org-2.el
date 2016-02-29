@@ -124,7 +124,7 @@
   (use-package org-archive
     :init)
 
-  (use-package org-plus-contrib
+  (use-package org
     :ensure t
     :init (progn
             (setq org-startup-indented t
