@@ -238,4 +238,40 @@
   '(defun flyspell-mode (&optional arg)))
 
 
+(defun my/setup-osx-fonts ()
+  (interactive)
+  (when (eq system-type 'darwin)
+    (set-fontset-font "fontset-default" 'symbol "Monaco")
+    ;;(set-default-font "Fantasque Sans Mono")
+    ;;(set-default-font "Monaco")
+    ;;(set-default-font "Anonymous Pro")
+    ;;(set-default-font "Inconsolata")
+    (set-default-font "Bitstream Vera Sans Mono")
+    ;;(set-default-font "Menlo")
+    ;;(set-default-font "Source Code Pro")
+    ;;(set-default-font "Mensch")
+    (set-face-attribute 'default nil :height 120)
+    (set-face-attribute 'fixed-pitch nil :height 120)
+    ;; Anti-aliasing
+    (setq mac-allow-anti-aliasing t)))
+
+;; (when (eq system-type 'darwin)
+;;   (add-hook 'after-init-hook #'my/setup-osx-fonts))
+
+
+(defun my/setup-x11-fonts ()
+  (interactive)
+  (when (eq window-system 'x)
+    ;; Font family
+    (set-frame-font "DejaVu Sans Mono")
+    ;; (set-frame-font "Ubuntu Mono")
+    ;; (set-frame-font "Hack")
+    ;; (set-frame-font "Fantasque Sans Mono")
+    ;; (set-frame-font "Anonymous Pro")
+    ;; (set-frame-font "Inconsolata")
+    (set-face-attribute 'default nil :height 105)))
+
+;; (when (eq window-system 'x)
+;;   (add-hook 'after-init-hook #'my/setup-x11-fonts))
+
 (provide 'init-defaults)

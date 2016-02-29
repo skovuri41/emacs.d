@@ -12,7 +12,12 @@
 
 (use-package flx-ido
   :init (flx-ido-mode 1)
-  :config (setq ido-use-faces nil))
+  :config
+  (setq ido-use-faces nil)
+  ;; disable ido faces to see flx highlights.
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil)
+  )
 
 (use-package ido-vertical-mode
   :init (ido-vertical-mode 1)

@@ -49,6 +49,7 @@
 (depends-on "highlight-numbers")
 (depends-on "sunshine")
 (depends-on "forecast")
+(depends-on "origami")
 
 
 ;;org

@@ -1,6 +1,5 @@
 (use-package symon
-  :if window-system
-  :disabled t
+  :ensure t
   :init
   (setq symon-refresh-rate 2
         symon-delay 5)
