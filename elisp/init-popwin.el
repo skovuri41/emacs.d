@@ -15,6 +15,9 @@
     (push '("*magit-diff*" :noselect t :height 0.3 :width 80) popwin:special-display-config)
     (push '("*magit-edit-log*" :noselect t :height 0.2 :width 80) popwin:special-display-config)
     (push '("*magit-process*" :noselect t :height 0.2 :width 80) popwin:special-display-config)
+    ;; git-gutter
+    (push '("*git-gutter:diff*" :width 0.5 :stick t)
+          popwin:special-display-config)
     (push '(slime-repl-mode :stick t) popwin:special-display-config)
     (push '(cider-repl-mode :stick t) popwin:special-display-config)
     (push '("*compilation*" :stick t) popwin:special-display-config)
@@ -22,6 +25,7 @@
     (push '(direx:direx-mode :position left :width 40 :dedicated t :noselect t)
           popwin:special-display-config)
     (push '("*Completions*" :stick t :noselect t) popwin:special-display-config)
+
     (push "*vc-diff*" popwin:special-display-config)
     (push "*vc-change-log*" popwin:special-display-config)
     (push '(" *undo-tree*" :width 0.3 :position right) popwin:special-display-config)

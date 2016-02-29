@@ -11,7 +11,6 @@
             "gC" 'magit-commit
             "gt" 'git-timemachine
             "gl" 'magit-log-all
-            "gL" 'magit-log-buffer-file)
-          (which-key-add-key-based-replacements "SPC g" "Magit")))
+            "gL" 'magit-log-buffer-file)))
 
 (provide 'init-magit)

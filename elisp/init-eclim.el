@@ -149,6 +149,12 @@
       "mtt" 'eclim-run-junit)))
 
 (use-package company-emacs-eclim
-      :functions company-emacs-eclim-setup
-      :config (company-emacs-eclim-setup))
+  :functions company-emacs-eclim-setup
+  :config (company-emacs-eclim-setup))
+
+(use-package java-imports
+  :config
+  ;; Elasticsearch's import style
+  (setq java-imports-find-block-function 'java-imports-find-place-sorted-block))
+
 (provide  'init-eclim)

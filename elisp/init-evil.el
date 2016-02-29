@@ -43,6 +43,12 @@
           "hi" 'helm-imenu
           "hI" 'helm-imenu-anywhere
           )
+        ;; Elisp Editing Bindings
+        (evil-leader/set-key-for-mode 'emacs-lisp-mode
+          "m e b" 'eval-buffer
+          "m e r" 'eval-region
+          "m e c" 'eval-sexp-fu-eval-sexp-inner-list
+          "m e e" 'eval-sexp-fu-eval-sexp-inner-sexp)
         (define-key evil-normal-state-map (kbd "q") nil)
         (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
         (define-key evil-normal-state-map (kbd "q") 'popwin:close-popup-window )

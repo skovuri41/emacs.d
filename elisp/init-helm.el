@@ -1,9 +1,24 @@
-(use-package helm
+(use-package helm-flx
   :ensure t
+  :init
+  (helm-flx-mode +1))
+
+(use-package helm
+  :ensure helm-flx
   :defer t
   :diminish helm-mode
   :init
-  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match t
+        helm-locate-fuzzy-match nil ;; locate fuzzy is worthless
+        helm-M-x-fuzzy-match t
+        helm-buffers-fuzzy-matching t
+        helm-semantic-fuzzy-match t
+        helm-apropos-fuzzy-match t
+        helm-imenu-fuzzy-match t
+        helm-lisp-fuzzy-completion t
+        helm-completion-in-region-fuzzy-match t)
+
   :config
   (setq helm-autoresize-mode t)
   (setq helm-buffer-max-length 40)
@@ -13,6 +28,7 @@
   )
 
 (use-package helm-descbinds )
+(use-package helm-mu)
 (use-package helm-gtags )
 (use-package helm-projectile)
 (use-package helm-swoop)

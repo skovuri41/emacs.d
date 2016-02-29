@@ -37,6 +37,9 @@
 ;; Show keystrokes in progress
 (setq echo-keystrokes 0.1)
 
+;; Hide the mouse while typing:
+(setq make-pointer-invisible t)
+
 ;; Move files to trash when deleting
 (setq delete-by-moving-to-trash t)
 
@@ -84,10 +87,13 @@
 (recentf-mode 1)
 (setq recentf-max-saved-items 1000) ;; just 20 is too recent
 (setq delete-old-versions t) ;; dont ask to delete excess backup versions
+
 ;; Remember the current position of files when re-opening them
-(setq save-place-file (expand-file-name "saveplace" user-emacs-directory))
-(setq-default save-place t)
-(require 'saveplace)
+(use-package saveplace
+  :defer t
+  :init
+  (setq-default save-place t)
+  (setq save-place-file (expand-file-name ".saveplaces" user-emacs-directory)))
 
 
 ;; Undo/redo window configuration with C-c <left>/<right>
@@ -130,6 +136,8 @@
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)
 
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 (use-package uniquify
   :config
   (setq uniquify-separator "/")
@@ -139,10 +147,27 @@
   (setq uniquify-ignore-buffers-re "^\\*")
   (setq uniquify-buffer-name-style 'post-forward uniquify-separator ":"))
 
+(when (boundp 'global-prettify-symbols-mode)
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (push '("lambda" . ?λ) prettify-symbols-alist)))
+  (global-prettify-symbols-mode +1))
+
 ;; A saner ediff
-(setq ediff-diff-options "-w")
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(use-package ediff
+  :config
+  (progn
+    (setq ediff-diff-options "-w")
+    (setq ediff-split-window-function 'split-window-horizontally)
+    (setq ediff-window-setup-function 'ediff-setup-windows-plain)))
+
+
+;; Match fringe colour to background colour
+(set-face-attribute 'fringe nil
+                    :foreground (face-foreground 'default)
+                    :background (face-background 'default))
+;; Indicate where a buffer starts and stops
+(setq-default indicate-buffer-boundaries 'right)
 
 (setq initial-major-mode 'org-mode)
 (setq  initial-scratch-message nil)
@@ -159,6 +184,8 @@
     :ensure t
     :config
     (progn
+      (setq exec-path-from-shell-variables '("PATH"
+                                             "MANPATH"))
       (exec-path-from-shell-initialize))))
 
 (use-package exec-path-from-shell
@@ -200,8 +227,12 @@
 (when (executable-find "hunspell")
   (setq ispell-program-name "hunspell")
   (setq-default ispell-program-name "hunspell")
+  (setq ispell-extra-args '("-d en_US"))
   (setq ispell-really-hunspell t))
-
+(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
 ;; No flyspell.
 (eval-after-load "flyspell"
   '(defun flyspell-mode (&optional arg)))

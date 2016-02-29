@@ -30,7 +30,6 @@
     (add-to-list 'projectile-globally-ignored-directories ".venv")
     (add-to-list 'projectile-globally-ignored-directories ".cask")
     (add-to-list 'projectile-globally-ignored-directories ".cache")
-    (which-key-add-key-based-replacements "SPC p" "Project")
     (setq projectile-globally-ignored-directories
           '(".idea"
             ".eunit"

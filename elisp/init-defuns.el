@@ -625,4 +625,12 @@ Version 2015-09-14."
     (delete-region ξp1 ξp2)
     (insert (url-encode-url ξinput-str))))
 
+(defun beautify-json ()
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+                             "python -mjson.tool" (current-buffer) t)))
+
+
 (provide 'init-defuns)

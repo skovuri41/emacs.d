@@ -124,8 +124,22 @@
   (use-package org-archive
     :init)
 
+  (use-package org-plus-contrib
+    :ensure t
+    :init (progn
+            (setq org-startup-indented t
+                  org-modules '(org-drill))
+            (setq org-latex-pdf-process
+                  '("latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
+            (evil-leader/set-key-for-mode 'org-mode
+              "m E" 'org-export-dispatch
+              "m p l" 'org-preview-latex-fragment
+              "m p i" 'org-toggle-inline-images))
+    :config (progn
+              (org-load-modules-maybe)))
 
-;;;;; org-agenda
+
+  ;; org-agenda
   (use-package org-agenda
     :init
     (setq org-agenda-start-with-log-mode t)
@@ -167,12 +181,40 @@
     (add-hook 'org-mode-hook 'my-org-mode-hook))
 
 
+  (use-package org-research
+    :init
+    (progn
+      (setq org-research-root "~/research")
+      (evil-leader/set-key-for-mode 'org-research-mode
+        "m r o" 'org-research-open-paper
+        "m r a" 'org-research-add-reference)))
+
   (use-package org-journal
     :ensure t
     :init
-    (setq org-journal-dir "~/journal/")
-    (setq org-journal-date-format "#+TITLE: Journal Entry- %Y-%b-%d (%A)")
-    (setq org-journal-time-format "")
+    (progn
+      (evil-leader/set-key
+        "+" 'org-journal-new-entry
+        "=" '(lambda () (interactive) (org-journal-new-entry t)))
+      (which-key-add-key-based-replacements
+        "SPC +" "Add entry to journal"
+        "SPC =" "View today's journal")
+      (setq org-journal-dir (expand-file-name "~/journal/")
+            org-journal-file-format "%Y-%m-%d.org"
+            org-journal-date-format "%A, %d-%m-%Y"
+            org-journal-enable-encryption nil)
+      (evil-leader/set-key-for-mode 'calendar-mode
+        "m j j" 'org-journal-read-entry
+        "m j i" 'org-journal-new-date-entry
+        "m j [" 'org-journal-previous-entry
+        "m j ]" 'org-journal-next-entry
+        "m j f f" 'org-journal-search-forever
+        "m j f m" 'org-journal-search-calendar-month
+        "m j f w" 'org-journal-search-calender-week
+        "m j f y" 'org-journal-search-calendar-year)
+      (evil-leader/set-key-for-mode 'org-journal-mode
+        "m j [" 'org-journal-open-previous-entry
+        "m j ]" 'org-journal-open-next-entry))
     :config
     (defun get-journal-file-today ()
       "Return filename for today's journal entry."
@@ -197,7 +239,16 @@
 
 
   (use-package org-pomodoro
-    :commands (org-pomodoro))
+    :commands (org-pomodoro)
+    :ensure t
+    :config
+    (setq pomodoro-break-time 2)
+    (setq pomodoro-long-break-time 5)
+    (setq pomodoro-work-time 15)
+    ;; (setq-default mode-line-format
+    ;;               (cons '(pomodoro-mode-line-string pomodoro-mode-line-string)
+    ;;                     mode-line-format))
+    )
 
   (use-package notifications
     :config
@@ -206,7 +257,7 @@
     (setq appt-disp-window-function 'my-appt-disp-window-function)
     (setq appt-delete-window-function (lambda (&rest args))))
 
-;;;;; org-capture
+  ;; org-capture
   (use-package org
     :init
     (setq org-capture-templates
@@ -223,7 +274,7 @@
                 (evil-insert-state)))
     )
 
-;;;;; org-clock
+  ;; org-clock
   (use-package org-clock
     :init
     (setq org-clock-idle-time 15)
@@ -260,7 +311,7 @@
      </style>"))
 
 
-;;;;;;;; ob-clojure
+  ;; ob-clojure
   (use-package ob-clojure
     :config
     (setq org-babel-clojure-backend 'cider))

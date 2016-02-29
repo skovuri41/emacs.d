@@ -30,6 +30,7 @@
 
 (depends-on "diminish")
 (depends-on "company")
+(depends-on "thingatpt")
 (depends-on "rainbow-delimiters")
 (depends-on "flycheck")
 (depends-on "zop-to-char")
@@ -62,6 +63,7 @@
 
 (depends-on "mu4e-maildirs-extension")
 (depends-on "mu4e-alert")
+(depends-on "w3m")
 
 ;;clojure
 (depends-on "smartparens")
@@ -116,6 +118,10 @@
 (depends-on "golden-ratio")
 (depends-on "workgroups2")
 (depends-on "ctags-update")
+(depends-on "keyfreq")
+(depends-on "color-identifiers-mode")
+(depends-on "vlf")
+(depends-on "symon")
 
 ;;helm
 (depends-on "helm")
@@ -127,6 +133,8 @@
 (depends-on "helm-company")
 (depends-on "helm-ag")
 (depends-on "helm-backup")
+(depends-on "helm-mu")
+(depends-on "helm-flx")
 ;;(depends-on "helm-config")
 
 ;;evil mode
@@ -145,13 +153,17 @@
 (depends-on "evil-iedit-state")
 (depends-on "evil-numbers")
 (depends-on "evil-snipe")
+(depends-on "evil-anzu")
+(depends-on "evil-mu4e")
 ;;themes
 (depends-on "zenburn-theme")
+(depends-on "monokai-theme")
 
 ;;avy
 (depends-on "avy")
 
 ;;emacs eclim
 (depends-on "emacs-eclim")
+(depends-on "java-imports")
 
 (depends-on "quickrun")
