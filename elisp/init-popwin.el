@@ -48,9 +48,12 @@
   :ensure t
   :config
   (define-key popup-menu-keymap [escape] 'keyboard-quit)
+  (setq psw-popup-position 'center)
+  (setq psw-use-flx t)
+  (setq psw-popup-menu-max-length 15)
   (set-face-foreground 'popup-menu-face "firebrick")
   (set-face-background 'popup-menu-face "grey")
-  (set-face-background 'popup-menu-selection-face "yellow")
+  (set-face-background 'poaapup-menu-selection-face "yellow")
   ;; (set-face-foreground 'popup-menu-selection-face "blue")
   (setq psw-use-flx t))
 
