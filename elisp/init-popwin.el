@@ -44,4 +44,14 @@
     (popwin-mode t))
   )
 
+(use-package popup-switcher
+  :ensure t
+  :config
+  (define-key popup-menu-keymap [escape] 'keyboard-quit)
+  (set-face-foreground 'popup-menu-face "firebrick")
+  (set-face-background 'popup-menu-face "grey")
+  (set-face-background 'popup-menu-selection-face "yellow")
+  ;; (set-face-foreground 'popup-menu-selection-face "blue")
+  (setq psw-use-flx t))
+
 (provide 'init-popwin)

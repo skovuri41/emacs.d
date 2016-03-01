@@ -17,10 +17,15 @@
         (evil-leader/set-key "wv" 'split-window-vertically)
         (evil-leader/set-key "bS" 'save-some-buffers)
         (evil-leader/set-key "bs" 'save-buffer)
+        (evil-leader/set-key "bk" 'ido-kill-buffer)
+        (evil-leader/set-key "bp" 'psw-switch-buffer)
+        (evil-leader/set-key "br" 'psw-switch-recentf)
+        (evil-leader/set-key "ff" 'ido-find-file)
         (evil-leader/set-key "ww" 'ace-window)
         (evil-leader/set-key
           "hf" 'helm-for-files
           "ff" 'helm-for-files
+          "fs" 'toggle-full-window
           "bn" 'xah-new-empty-buffer
           "by" 'bury-buffer
           "hl" 'helm-locate
@@ -256,15 +261,6 @@
       (lambda ()
         (interactive)
         (split-window-vertically)
-        (other-window 1)))
-    (define-key evil-normal-state-map (kbd "|")
-      (lambda ()
-        (interactive)
-        (split-window-horizontally)
-        (other-window 1)))
-
-    ;; Set the initial evil state that certain major modes will be in.
-    (evil-set-initial-state 'magit-log-edit-mode 'emacs)
     (evil-set-initial-state 'nav-mode 'emacs)
     (evil-set-initial-state 'grep-mode 'emacs)
     (evil-set-initial-state 'eshell-mode 'emacs)

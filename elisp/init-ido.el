@@ -2,18 +2,17 @@
   :config
   (progn
     ;;(evil-leader/set-key "bs" 'ido-switch-buffer)
-    (evil-leader/set-key "bk" 'ido-kill-buffer)
-    (evil-leader/set-key "ff" 'ido-find-file)
     ;; Use the current window when visiting files and buffers with ido
     (setq ido-default-file-method 'selected-window)
     (setq ido-default-buffer-method 'selected-window)
-
     ))
 
 (use-package flx-ido
   :init (flx-ido-mode 1)
   :config
-  (setq ido-use-faces nil)
+  (set-face-foreground 'flx-highlight-face (face-foreground 'isearch))
+  (set-face-background 'flx-highlight-face (face-background 'isearch))
+  (set-face-attribute 'flx-highlight-face nil :inherit 'font-lock-keyword-face)
   ;; disable ido faces to see flx highlights.
   (setq ido-enable-flex-matching t)
   (setq ido-use-faces nil)

@@ -1,10 +1,11 @@
 (use-package helm-flx
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :init
   (helm-flx-mode +1))
 
 (use-package helm
-  :ensure helm-flx
+  :ensure t
   :defer t
   :diminish helm-mode
   :init

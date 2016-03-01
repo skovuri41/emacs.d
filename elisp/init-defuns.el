@@ -63,6 +63,15 @@
     'toggle-kbd-macro-recording-on)
   (end-kbd-macro))
 
+(defun toggle-full-window()
+  "Toggle the full view of selected window"
+  (interactive)
+  ;; @see http://www.gnu.org/software/emacs/manual/html_node/elisp/Splitting-Windows.html
+  (if (window-parent)
+      (delete-other-windows)
+    (winner-undo)
+    ))
+
 
 ;;; Open Lines
 
