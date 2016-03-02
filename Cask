@@ -12,6 +12,7 @@
 (depends-on "magit")
 
 (depends-on "popwin")
+(depends-on "popup-switcher")
 (depends-on "projectile")
 (depends-on "grizzl")
 
@@ -48,6 +49,7 @@
 (depends-on "hydra")
 (depends-on "hungry-delete")
 (depends-on "window-numbering")
+(depends-on "transpose-frame")
 (depends-on "highlight-numbers")
 (depends-on "whitespace-cleanup-mode")
 (depends-on "tidy")
@@ -139,7 +141,6 @@
 (depends-on "helm-ag")
 (depends-on "helm-backup")
 (depends-on "helm-mu")
-(depends-on "helm-flx")
 ;;(depends-on "helm-config")
 
 ;;evil mode

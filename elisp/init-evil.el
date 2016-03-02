@@ -25,7 +25,7 @@
         (evil-leader/set-key
           "hf" 'helm-for-files
           "ff" 'helm-for-files
-          "fs" 'toggle-full-window
+          "fw" 'toggle-full-window
           "bn" 'xah-new-empty-buffer
           "by" 'bury-buffer
           "hl" 'helm-locate
@@ -261,6 +261,15 @@
       (lambda ()
         (interactive)
         (split-window-vertically)
+        (other-window 1)))
+
+    (define-key evil-normal-state-map (kbd "|")
+      (lambda ()
+        (interactive)
+        (split-window-horizontally)
+        (other-window 1)))
+
+
     (evil-set-initial-state 'nav-mode 'emacs)
     (evil-set-initial-state 'grep-mode 'emacs)
     (evil-set-initial-state 'eshell-mode 'emacs)
@@ -289,4 +298,8 @@
       (evil-set-initial-state `,(car mode-map) `,(cdr mode-map)))
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
     ))
+
 (provide 'init-evil)
+
+
+
