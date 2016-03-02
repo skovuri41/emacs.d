@@ -7,7 +7,6 @@
              quickrun-compile-only
              quickrun-replace-region
              helm-quickrun)
-  :bind
   :config
   (setq quickrun-focus-p nil)
   (setq quickrun-focus-p nil)

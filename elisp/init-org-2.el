@@ -127,8 +127,7 @@
   (use-package org
     :ensure t
     :init (progn
-            (setq org-startup-indented t
-                  org-modules '(org-drill))
+            (setq org-startup-indented t)
             (setq org-latex-pdf-process
                   '("latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
             (evil-leader/set-key-for-mode 'org-mode
@@ -182,6 +181,7 @@
 
 
   (use-package org-research
+    :disabled t
     :init
     (progn
       (setq org-research-root "~/research")
@@ -343,6 +343,7 @@
     (add-to-list 'org-latex-packages-alist '("" "minted")))
 
   (use-package ox-reveal
+    :disabled t
     :init
     (setq org-reveal-root (concat "file://" (getenv "HOME") "/Public/js/reveal.js"))
     (setq org-reveal-postamble "ox reveal presentation"))

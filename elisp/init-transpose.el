@@ -1,7 +1,5 @@
 (use-package transpose-frame
   :ensure t
-  ;; :disabled t
-  ;; :commands (transpose-frame)
   :init
   (progn 
     (defhydra hydra-transpose-frame(:color red :hint nil)

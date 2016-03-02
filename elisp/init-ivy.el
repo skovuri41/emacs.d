@@ -33,10 +33,8 @@
 (use-package ivy
   :ensure swiper
   :diminish ivy-mode
-  :bind
-  ("C-x b" . nil)
-  :bind
-  (:map evil-leader--default-map ("bb" . ivy-switch-buffer))
+  :bind (("C-x b" . nil)
+         (:map evil-leader--default-map ("bb" . ivy-switch-buffer)))
   :config
   (progn
     ;; partial complete without exiting
@@ -60,10 +58,9 @@
          ;;("C-x C-f" . counsel-find-file)
          ("C-c k" . counsel-ag)
          ("C-c g" . counsel-git)
-         ("C-x l" . counsel-locate))
-  :bind
-  (:map evil-leader--default-map
-        ("ff" . counsel-find-file)
-        (":" . counsel-M-x)))
+         ("C-x l" . counsel-locate)
+         (:map evil-leader--default-map
+               ("ff" . counsel-find-file)
+               (":" . counsel-M-x))))
 
 (provide 'init-ivy)

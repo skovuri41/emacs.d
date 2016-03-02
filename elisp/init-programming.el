@@ -84,7 +84,6 @@
   :ensure t
   :config
   (autoload 'csv-nav-mode "csv-nav" "Major mode for navigating comma-separated value files." t)
-  :config
   (setq csv-separators '("," ";" "|" " "))
   )
 
@@ -101,10 +100,11 @@
 (use-package whitespace
   :commands (whitespace-mode)
   :config
-  (setq show-trailing-whitespace t)
-  ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
-  (setq whitespace-style '(face tabs spaces newline empty
-                                trailing tab-mark newline-mark)))
+  (progn
+    (setq show-trailing-whitespace t)
+    ;;(add-hook'before-save-hook'delete-trailing-whitespace)
+    (setq whitespace-style '(face tabs spaces newline empty
+                                  trailing tab-mark newline-mark))))
 
 (use-package whitespace-cleanup-mode
   :ensure t
@@ -114,7 +114,7 @@
 ;; Origami code folding
 (use-package origami
   :ensure t
-  :commands origami-mode
+  :commands (origami-mode)
   :init
   (global-origami-mode t)
   :config
