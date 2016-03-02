@@ -55,12 +55,13 @@
 (use-package counsel
   :ensure t
   :bind (("M-x" . counsel-M-x)
-         ;;("C-x C-f" . counsel-find-file)
+         ("C-x C-f" . counsel-find-file)
          ("C-c k" . counsel-ag)
+         ("C-c y" . counsel-yank-pop)
          ("C-c g" . counsel-git)
          ("C-x l" . counsel-locate)
          (:map evil-leader--default-map
-               ("ff" . counsel-find-file)
-               (":" . counsel-M-x))))
+               ("ff" . counsel-find-file))))
+
 
 (provide 'init-ivy)

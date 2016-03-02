@@ -16,15 +16,16 @@
         (evil-leader/set-key "wh" 'split-window-horizontally)
         (evil-leader/set-key "wv" 'split-window-vertically)
         (evil-leader/set-key "bS" 'save-some-buffers)
+        (evil-leader/set-key "bb" 'ivy-switch-buffer)
         (evil-leader/set-key "bs" 'save-buffer)
         (evil-leader/set-key "bk" 'ido-kill-buffer)
-        (evil-leader/set-key "bp" 'psw-switch-buffer)
+        (evil-leader/set-key "bp" 'psw-switch-projectile-files)
         (evil-leader/set-key "br" 'psw-switch-recentf)
-        (evil-leader/set-key "ff" 'ido-find-file)
+        (evil-leader/set-key "ff" 'counsel-find-file)                                          
         (evil-leader/set-key "ww" 'ace-window)
         (evil-leader/set-key
-          "hf" 'helm-for-files
-          "ff" 'helm-for-files
+          "hf" 'counsel-find-file
+          "ff" 'counsel-find-file
           "fw" 'toggle-full-window
           "bn" 'xah-new-empty-buffer
           "by" 'bury-buffer
@@ -38,7 +39,7 @@
           "hb" 'helm-buffers-list
           "hh" 'helm-projectile-find-file
           "hr" 'helm-recentf
-          "fr" 'helm-recentf
+          "fr" 'ivy-recentf
           "hp" 'helm-projectile
           "fp" 'helm-projectile
           "h'" 'helm-all-mark-rings
@@ -64,6 +65,7 @@
     (use-package evil-visualstar
       :ensure t
       :init
+      (setq evil-visualstar/persistent t)
       (global-evil-visualstar-mode))
     (use-package evil-iedit-state
       :ensure t
