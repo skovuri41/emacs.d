@@ -63,7 +63,7 @@
   :ensure t
   :mode  (("\\.csv\\'" . csv-mode))
   :mode ("\\.tsv\\'" . csv-mode)
-  :mode ("\\.[Cc][Ss][Vv]\\'")
+  :mode ("\\.[Cc][Ss][Vv]\\'". csv-mode)
   :config
   (evil-leader/set-key-for-mode 'csv-mode
     "mt"  'csv-transpose
