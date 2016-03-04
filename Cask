@@ -10,6 +10,8 @@
 
 ;git
 (depends-on "magit")
+(depends-on "git-gutter-fringe+")
+(depends-on "git-gutter+")
 
 (depends-on "popwin")
 (depends-on "popup-switcher")
