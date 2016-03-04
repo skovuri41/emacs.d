@@ -12,12 +12,7 @@
             "gt" 'git-timemachine
             "gl" 'magit-log-all
             "gL" 'magit-log-buffer-file
-            "gn" 'git-gutter+-next-hunk
-            "gp" 'git-gutter+-previous-hunk
-            "gu" 'global-git-gutter+-mode
-            "ge" 'git-gutter+-stage-hunks
-            "gc" 'git-gutter+-commit
-            "gm" 'git-gutter+-stage-and-commit
+            "gg" 'hydra-git-gutter/body
             )))
 
 (provide 'init-magit)
