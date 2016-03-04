@@ -10,7 +10,6 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (require 'init-defaults)
-(use-package better-defaults)
 (require 'init-diminish)
 (require 'init-helm)
 (require 'init-evil)
@@ -23,7 +22,7 @@
 (require 'init-org-2)
 (require 'init-org-bullets)
 (require 'init-clojure)
-(require 'init-zenburn)
+(require 'init-color-theme)
 (require 'init-programming)
 (require 'init-expand-region)
 (require 'init-undotree)
@@ -31,6 +30,7 @@
 (require 'init-hl-line)
 (require 'init-drag-stuff)
 (require 'init-defuns)
+(require 'init-hydra)
 (require 'init-nxml)
 (require 'init-company)
 (require 'init-avy)
@@ -68,17 +68,6 @@
 (require 'init-mu4e)
 (require 'init-spaceline)
 (require 'init-workgroups2)
-
-;; Platform specific settings
-(defvar *is-a-mac*)
-(defvar *is-carbon-emacs*)
-(defvar *is-cocoa-emacs*)
-(defvar *is-gnu-linux*)
-(setq
- *is-a-mac* (eq system-type 'darwin)
- *is-carbon-emacs* (and *is-a-mac* (eq window-system 'mac))
- *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns))
- *is-gnu-linux* (eq system-type 'gnu/linux))
 (when *is-a-mac*
   (setq
    ;; for multilingual environments

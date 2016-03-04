@@ -11,6 +11,13 @@
             "gC" 'magit-commit
             "gt" 'git-timemachine
             "gl" 'magit-log-all
-            "gL" 'magit-log-buffer-file)))
+            "gL" 'magit-log-buffer-file
+            "gn" 'git-gutter+-next-hunk
+            "gp" 'git-gutter+-previous-hunk
+            "gu" 'global-git-gutter+-mode
+            "ge" 'git-gutter+-stage-hunks
+            "gc" 'git-gutter+-commit
+            "gm" 'git-gutter+-stage-and-commit
+            )))
 
 (provide 'init-magit)

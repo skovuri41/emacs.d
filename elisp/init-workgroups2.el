@@ -52,8 +52,8 @@
       "Wk" 'wg-kill-workgroup
       "W C-k" 'wg-kill-workgroup-and-buffers
       "WS" 'wg-save-wconfig
-      "Wu" 'wg-undo-wconfig-change
-      "WU" 'wg-redo-wconfig-change
+      ;; "Wu" 'wg-undo-wconfig-change
+      ;; "WU" 'wg-redo-wconfig-change
       "W C-r" 'wg-revert-all-workgroups
       "W!" 'wg-reset
       "W?" 'wg-help

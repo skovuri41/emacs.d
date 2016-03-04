@@ -272,4 +272,6 @@
 ;; (when (eq window-system 'x)
 ;;   (add-hook 'after-init-hook #'my/setup-x11-fonts))
 
+(use-package better-defaults)
+
 (provide 'init-defaults)

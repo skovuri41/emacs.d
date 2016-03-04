@@ -1,5 +1,7 @@
 (use-package rainbow-delimiters
-  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package web-mode
   :init (progn
@@ -110,6 +112,39 @@
   :ensure t
   :diminish whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode))
+
+(use-package abbrev
+  :config
+  (setq save-abbrevs 'silently)
+  (setq-default abbrev-mode t))
+
+(use-package abbrev
+  :config
+  (progn
+    (setq abbrev-file-name (locate-user-emacs-file "abbrev_defs"))
+    (unless (file-exists-p abbrev-file-name)
+      (with-temp-buffer (write-file abbrev-file-name)))
+    (setq save-abbrevs 'silently) ; Silently save abbrevs on quitting emacs
+
+    (defconst my/abbrev-hooks '( emacs-lisp-mode-hook
+                                 org-mode-hook)
+      "List of hooks of major modes in which abbrev should be enabled.")
+
+    (defun my/turn-on-abbrev-mode ()
+      "Turn on abbrev only for specific modes."
+      (interactive)
+      (dolist (hook my/abbrev-hooks)
+        (add-hook hook #'abbrev-mode)))
+
+    (defun my/turn-of-abbrev-mode ()
+      "Turn off abbrev only for specific modes."
+      (interactive)
+      (dolist (hook my/abbrev-hooks)
+        (remove-hook hook #'abbrev-mode)))
+
+    (my/turn-on-abbrev-mode)
+    (quietly-read-abbrev-file))) ; Reads the abbreviations file on startup
+
 
 ;; Origami code folding
 (use-package origami

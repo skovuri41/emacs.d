@@ -15,6 +15,8 @@
         (evil-leader/set-key "ws" 'split-window-below)
         (evil-leader/set-key "wh" 'split-window-horizontally)
         (evil-leader/set-key "wv" 'split-window-vertically)
+        (evil-leader/set-key "wu" 'winner-undo)
+        (evil-leader/set-key "wU" 'winner-redo)
         (evil-leader/set-key "bS" 'save-some-buffers)
         (evil-leader/set-key "bb" 'ivy-switch-buffer)
         (evil-leader/set-key "bs" 'save-buffer)
@@ -55,8 +57,10 @@
           "m e r" 'eval-region
           "m e c" 'eval-sexp-fu-eval-sexp-inner-list
           "m e e" 'eval-sexp-fu-eval-sexp-inner-sexp)
-        (define-key evil-normal-state-map (kbd "q") nil)
         (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
+        (define-key evil-normal-state-map (kbd "m") 'push-mark-no-activate)
+        (define-key evil-normal-state-map (kbd "`") 'helm-all-mark-rings)
+        (define-key evil-normal-state-map (kbd "q") nil)
         (define-key evil-normal-state-map (kbd "q") 'popwin:close-popup-window )
         ;;(evil-leader/set-key "q" 'popwin:close-popup-window)
         ))
