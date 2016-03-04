@@ -113,12 +113,9 @@
   :diminish whitespace-cleanup-mode
   :init (global-whitespace-cleanup-mode))
 
-(use-package abbrev
-  :config
-  (setq save-abbrevs 'silently)
-  (setq-default abbrev-mode t))
 
 (use-package abbrev
+  :diminish ""
   :config
   (progn
     (setq abbrev-file-name (locate-user-emacs-file "abbrev_defs"))
