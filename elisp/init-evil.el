@@ -285,6 +285,7 @@
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
+    (evil-set-initial-state 'git-gutter+-commit-mode 'insert)
     ;; modes to map to different default states
     (dolist (mode-map '((compilation-mode       . normal)
                         (help-mode              . normal)
