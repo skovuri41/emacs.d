@@ -161,9 +161,11 @@
 
 
 ;; Match fringe colour to background colour
-(set-face-attribute 'fringe nil
-                    :foreground (face-foreground 'default)
-                    :background (face-background 'default))
+(defun my/set-fringe-bg()
+  (set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default)))
+
 ;; Indicate where a buffer starts and stops
 (setq-default indicate-buffer-boundaries 'right)
 
