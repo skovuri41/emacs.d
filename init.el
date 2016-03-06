@@ -10,6 +10,8 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (require 'init-defaults)
+(require 'init-defuns)
+(require 'init-platform)
 (require 'init-diminish)
 (require 'init-helm)
 (require 'init-evil)
@@ -29,7 +31,6 @@
 (require 'init-smartparens)
 (require 'init-hl-line)
 (require 'init-drag-stuff)
-(require 'init-defuns)
 (require 'init-hydra)
 (require 'init-nxml)
 (require 'init-company)
@@ -69,31 +70,6 @@
 (require 'init-mu4e)
 (require 'init-spaceline)
 (require 'init-workgroups2)
-(when *is-a-mac*
-  (setq
-   ;; for multilingual environments
-   default-input-method "MacOSX"
-   ;; font
-   default-frame-alist '((font . "Monaco-13")
-                         (width . 120)  ;character
-                         (height . 52)) ; lines
-   ;; Work around a bug on OS X where system-name is FQDN
-   system-name (car (split-string system-name "\\."))
-   ;; make emacs open in existing frames
-   ;;ns-pop-up-frames nil
-   interprogram-cut-function 'paste-to-osx
-   interprogram-paste-function 'copy-from-osx
-   mac-command-modifier nil))
-(when *is-gnu-linux*
-  (setq
-   ;; font
-   default-frame-alist '((font . "Monospace-12"))
-   ;; make emacs use the clipboard
-   x-select-enable-clipboard t))
-(when (executable-find "hunspell")
-  (setq-default ispell-program-name "hunspell")
-  (setq ispell-really-hunspell t))
-
 ;;;; Modes ;;;;
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
