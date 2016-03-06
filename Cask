@@ -58,6 +58,7 @@
 (depends-on "sunshine")
 (depends-on "forecast")
 (depends-on "origami")
+(depends-on "discover-my-major")
 
 
 ;;org

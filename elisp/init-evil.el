@@ -34,7 +34,6 @@
           "hl" 'helm-locate
           "hy" 'helm-show-kill-ring
           "ht" 'helm-top
-          "hm" 'helm-man-woman
           "ho" 'helm-occur
           "hx" 'helm-M-x
           "he" 'helm-find-files

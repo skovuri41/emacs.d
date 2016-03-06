@@ -57,6 +57,7 @@
 (require 'init-transpose)
 (require 'init-rainbow-mode)
 (require 'init-kurecolor)
+(require 'init-help)
 (require 'init-golden-ratio)
 (require 'init-neotree)
 (require 'init-popwin)
