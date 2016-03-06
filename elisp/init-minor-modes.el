@@ -11,7 +11,13 @@
   :defer t)
 
 (use-package scratch
-	  :ensure t)
-	
+  :ensure t)
+
+;;;; Modes ;;;;
+(add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
+(add-hook 'clojure-mode-hook 'prettify-symbols-mode)
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+
+
 
 (provide 'init-minor-modes)

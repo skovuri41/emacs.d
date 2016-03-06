@@ -102,6 +102,7 @@
 (depends-on "smartrep")
 (depends-on "smooth-scrolling")
 (depends-on "beacon")
+(depends-on "highlight-tail")
 (depends-on "super-save")
 (depends-on "link-hint")
 (depends-on "restclient")

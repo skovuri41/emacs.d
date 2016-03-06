@@ -10,6 +10,7 @@
     (which-key-add-key-based-replacements
       "SPC W" "Workgroups"
       "SPC w" "Windows"
+      "SPC H" "Help"
       "SPC p" "Project"
       "SPC g" "Magit"
       "SPC f" "Files"

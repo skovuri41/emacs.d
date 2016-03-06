@@ -13,4 +13,5 @@
      beacon-blink-when-focused t
      beacon-blink-duration 0.6)
     (beacon-mode 1)))
+
 (provide 'init-beacon)

@@ -306,6 +306,3 @@
     ))
 
 (provide 'init-evil)
-
-
-
