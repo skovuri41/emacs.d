@@ -1,5 +1,7 @@
 ;; Initialize ;;;;
 (require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+;; Keep track of loading time
+(defconst emacs-start-time (current-time))
 (cask-initialize)
 
 (require 'use-package)
@@ -70,6 +72,10 @@
 (require 'init-spaceline)
 (require 'init-workgroups2)
 (require 'init-keybindings)
+
+(let ((elapsed (float-time (time-subtract (current-time)
+                                          emacs-start-time))))
+  (message "Loaded packages in %.3fs" elapsed))
 
 (let ((local-config (expand-file-name "local.el" user-emacs-directory)))
   (when (file-exists-p local-config)
