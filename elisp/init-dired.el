@@ -55,19 +55,33 @@
     (end-of-buffer)
     (dired-next-line -1))
 
-  (defun my/move-up ()
-    "Move to previous file"
+  (defun my/dired-diff ()
+    "Ediff marked files in dired or selected files in separate window"
     (interactive)
-    (dired-previous-line 1)
-    (if (bobp)
-        (dired-next-line 1)))
-
-  (defun my/move-down ()
-    "Move to next file"
-    (interactive)
-    (dired-next-line 1)
-    (if (eobp)
-        (dired-next-line -1)))
+    (let* ((marked-files (dired-get-marked-files nil nil))
+           (other-win (get-window-with-predicate
+                       (lambda (window)
+                         (with-current-buffer (window-buffer window)
+                           (and (not (eq window (selected-window)))
+                                (eq major-mode 'dired-mode))))))
+           (other-marked-files (and other-win
+                                    (with-current-buffer (window-buffer other-win)
+                                      (dired-get-marked-files nil)))))
+      (cond ((= (length marked-files) 2)
+             (ediff-files (nth 0 marked-files)
+                          (nth 1 marked-files)))
+            ((= (length marked-files) 3)
+             (ediff-files3 (nth 0 marked-files)
+                           (nth 1 marked-files)
+                           (nth 2 marked-files)
+                           ))
+            ((and (= (length marked-files) 1)
+                  (= (length other-marked-files) 1))
+             (ediff-files (nth 0 marked-files)
+                          (nth 0 other-marked-files)))
+            ((= (length marked-files) 1)
+             (dired-diff))
+            (t (error "mark exactly 2 files, at least 1 locally")))))
 
   (evil-define-key 'normal dired-mode-map "k" 'dired-previous-line)
   (evil-define-key 'normal dired-mode-map "j" 'dired-next-line)
@@ -81,9 +95,13 @@
   (evil-define-key 'normal dired-mode-map "u" 'dired-unmark)
   (evil-define-key 'normal dired-mode-map "U" 'dired-unmark-all-marks)
   (evil-define-key 'normal dired-mode-map "c" 'dired-create-directory)
+  (evil-define-key 'normal dired-mode-map "r" 'revert-buffer)
   (evil-define-key 'normal dired-mode-map "gg" 'my/back-to-top)
   (evil-define-key 'normal dired-mode-map "G" 'my/jump-to-bottom)
   (evil-define-key 'normal dired-mode-map "." 'my/dotfiles-toggle)
+  (evil-define-key 'normal dired-mode-map "=" 'my/dired-diff)
+  (evil-define-key 'normal dired-mode-map "n" 'evil-search-next)
+  (evil-define-key 'normal dired-mode-map "N" 'evil-search-previous)
 
   (use-package wdired
     :init
@@ -121,7 +139,7 @@
   (setq ranger-width-parents 0.25)
   (setq ranger-max-parent-width 0.25)
   (setq ranger-width-preview 0.50)
-  (setq ranger-override-dired t)
+  (setq ranger-override-dired nil)
   (setq ranger-preview-file t)
   (setq ranger-max-preview-size 10)
   (setq ranger-dont-show-binary t)
@@ -132,7 +150,6 @@
   (defun my/ranger-hooks ()
     "Hooks to run in ranger buffers."
     (interactive)
-    ;; (setq mode-line-format nil)
     (linum-mode -1)
     )
   (add-hook 'ranger-mode-hook 'my/ranger-hooks)
