@@ -63,6 +63,7 @@
 (require 'init-golden-ratio)
 (require 'init-neotree)
 (require 'init-popwin)
+(require 'init-popup)
 (require 'init-keyfreq)
 (require 'init-color-identifiers)
 (require 'init-restclient)

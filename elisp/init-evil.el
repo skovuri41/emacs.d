@@ -10,22 +10,22 @@
         (evil-leader/set-leader "SPC")
         (setq evil-leader/in-all-states 1)
         (setq evil-leader/non-normal-prefix "S-")
-        (evil-leader/set-key "wd" 'delete-window)
-        (evil-leader/set-key "wo" 'delete-other-windows)
-        (evil-leader/set-key "ws" 'split-window-below)
-        (evil-leader/set-key "wh" 'split-window-horizontally)
-        (evil-leader/set-key "wv" 'split-window-vertically)
-        (evil-leader/set-key "wu" 'winner-undo)
-        (evil-leader/set-key "wU" 'winner-redo)
-        (evil-leader/set-key "bS" 'save-some-buffers)
-        (evil-leader/set-key "bb" 'ivy-switch-buffer)
-        (evil-leader/set-key "bs" 'save-buffer)
-        (evil-leader/set-key "bk" 'ido-kill-buffer)
-        (evil-leader/set-key "bp" 'psw-switch-projectile-files)
-        (evil-leader/set-key "br" 'psw-switch-recentf)
-        (evil-leader/set-key "ff" 'counsel-find-file)                                          
-        (evil-leader/set-key "ww" 'ace-window)
         (evil-leader/set-key
+          "wd" 'delete-window
+          "wo" 'delete-other-windows
+          "ws" 'split-window-below
+          "wh" 'split-window-horizontally
+          "wv" 'split-window-vertically
+          "wu" 'winner-undo
+          "wU" 'winner-redo
+          "bS" 'save-some-buffers
+          "bb" 'ivy-switch-buffer
+          "bs" 'save-buffer
+          "bk" 'ido-kill-buffer
+          "bp" 'psw-switch-projectile-files
+          "br" 'psw-switch-recentf
+          "ff" 'counsel-find-file
+          "ww" 'ace-window
           "hf" 'counsel-find-file
           "ff" 'counsel-find-file
           "fw" 'toggle-full-window

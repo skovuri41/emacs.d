@@ -3,7 +3,7 @@
   :diminish golden-ratio-mode
   :config
   (setq golden-ratio-exclude-modes
-        '( "sr-mode" "neotree-mode""ediff-mode" "gnus-summary-mode" ))
+        '( "sr-mode" "neotree-mode""ediff-mode" "gnus-summary-mode" "ranger-mode" "dired-mode" ))
   (setq golden-ratio-extra-commands
         (append golden-ratio-extra-commands
                 '(evil-window-left

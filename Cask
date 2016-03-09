@@ -14,6 +14,7 @@
 (depends-on "git-gutter+")
 
 (depends-on "popwin")
+(depends-on "popup")
 (depends-on "popup-switcher")
 (depends-on "projectile")
 (depends-on "grizzl")
@@ -42,6 +43,8 @@
 (depends-on "imenu-anywhere")
 (depends-on "dired+")
 (depends-on "wdired")
+(depends-on "dired-narrow")
+(depends-on "ranger")
 (depends-on "neotree")
 (depends-on "ztree")
 (depends-on "pbcopy")

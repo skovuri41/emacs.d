@@ -64,9 +64,9 @@
         (kbd "a")   'neotree-stretch-toggle
         (kbd "|")   'neotree-enter-vertical-split
         (kbd "-")   'neotree-enter-horizontal-split
-        (kbd "H")   'neotree-select-previous-sibling-node
-        (kbd "J")   'neotree-select-next-sibling-node
-        (kbd "K")   'neotree-select-up-node
+        (kbd "[")   'neotree-select-previous-sibling-node
+        (kbd "]")   'neotree-select-next-sibling-node
+        (kbd "h")   'neotree-select-up-node
         (kbd "o")   'find-file-next-in-dir
         (kbd "O")   'find-file-prev-in-dir
         (kbd "l")   'neotree-enter
