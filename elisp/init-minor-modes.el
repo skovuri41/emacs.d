@@ -19,5 +19,20 @@
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 
+(use-package with-editor
+  :ensure t
+  :init
+  (progn
+    (add-hook 'shell-mode-hook  'with-editor-export-editor)
+    (add-hook 'eshell-mode-hook 'with-editor-export-editor)))
+
+(use-package smartscan
+  :ensure t
+  :init
+  (add-hook #'prog-mode-hook #'smartscan-mode)
+  :config
+  (define-key evil-normal-state-map "gn" 'smartscan-symbol-go-forward)
+  (define-key evil-normal-state-map "gp" 'smartscan-symbol-go-backward))
+
 
 (provide 'init-minor-modes)

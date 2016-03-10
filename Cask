@@ -26,6 +26,8 @@
 (depends-on "json-mode")
 (depends-on "js2-mode")
 (depends-on "css-mode")
+(depends-on "sql-indent")
+(depends-on "sqlup-mode")
 ;;(depends-on "js-mode")
 ;;(depends-on "emacs-lisp-mode")
 (depends-on "web-mode")
@@ -62,6 +64,9 @@
 (depends-on "forecast")
 (depends-on "origami")
 (depends-on "discover-my-major")
+(depends-on "know-your-http-well")
+(depends-on "with-editor")
+(depends-on "smartscan")
 
 
 ;;org

@@ -209,6 +209,7 @@
   :ensure t
   :config
   (add-hook 'prog-mode-hook  'turn-on-ctags-auto-update-mode)
+  (ctags-auto-update-mode)
   :diminish ctags-auto-update-mode)
 
 (setq display-time-day-and-date t)

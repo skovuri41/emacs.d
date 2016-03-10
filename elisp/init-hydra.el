@@ -45,6 +45,36 @@ _h_   _l_   _q_uit        _y_ank
       ("q" nil nil))
     (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
 
+    (defhydra hydra-toggle-map nil
+      "
+     Toggle^
+     ^^^^^^^--------------------
+     d_: debug-on-error
+     D_: debug-on-quit
+     f_: auto-fill-mode
+     l_: toggle-truncate-lines
+     h_: hl-line-mode
+     r_: read-only-mode
+     v_: viewing-mode
+     n_: narrow-or-widen-dwim
+     g_: golden-ratio-mode
+     q_: quit
+    "
+      ("d" toggle-debug-on-error :exit t)
+      ("D" toggle-debug-on-quit :exit t)
+      ("g" golden-ratio-mode :exit t)
+      ("f" auto-fill-mode :exit t)
+      ("l" toggle-truncate-lines :exit t)
+      ("r" read-only-mode :exit t)
+      ("h" hl-line-mode :exit t)
+      ("v" my/turn-on-viewing-mode :exit t)
+      ("n" my/narrow-or-widen-dwim :exit t)
+      ("q" nil :exit t))
+
+    (global-set-key (kbd "C-x t") 'hydra-toggle-map/body)
+
+
+
     ;; YASnippet
     (defhydra hydra-yasnippet (:color blue :hint nil)
       "

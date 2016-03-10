@@ -8,4 +8,6 @@
   (evil-leader/set-key "Hk" 'describe-key)
   (evil-leader/set-key "Hv" 'describe-variable))
 
+(use-package know-your-http-well :ensure t :defer t)
+
 (provide 'init-help)

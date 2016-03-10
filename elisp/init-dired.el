@@ -30,6 +30,9 @@
   ;; make copy use ido and not helm
   (put 'dired-do-copy 'ido 'find-file)
 
+  (defun my/dired-mode-hook ()
+    (toggle-truncate-lines 1))
+
   (defun my/dotfiles-toggle ()
     "Show/hide dot-files"
     (interactive)
@@ -102,6 +105,9 @@
   (evil-define-key 'normal dired-mode-map "=" 'my/dired-diff)
   (evil-define-key 'normal dired-mode-map "n" 'evil-search-next)
   (evil-define-key 'normal dired-mode-map "N" 'evil-search-previous)
+  (evil-define-key 'normal dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)
+  (add-hook 'dired-mode-hook #'hl-line-mode)
+  (add-hook 'dired-mode-hook #'my/dired-mode-hook)
 
   (use-package wdired
     :init
