@@ -7,6 +7,7 @@
     (push '("*helm*" :height 20) popwin:special-display-config)
     (push '("^\*helm .+\*$" :regexp t :height 20) popwin:special-display-config)
     (push '("*Help*" :stick t) popwin:special-display-config)
+    ;; (push '("*Backtrace*" :stick t) popwin:special-display-config)
     (push '("*Register Preview*" :noselect t) popwin:special-display-config)
     (push '(magit-status-mode :stick t :noselect t :position right) popwin:special-display-config)
     (push '(ag-mode :stick t) popwin:special-display-config)

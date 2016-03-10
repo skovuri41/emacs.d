@@ -70,6 +70,7 @@
 (require 'init-restclient)
 (require 'init-fancy-battery)
 (require 'init-window-numbering)
+(require 'init-pbcopy)
 (require 'init-mu4e)
 (require 'init-spaceline)
 (require 'init-workgroups2)
@@ -82,6 +83,14 @@
 (let ((local-config (expand-file-name "local.el" user-emacs-directory)))
   (when (file-exists-p local-config)
     (load local-config)))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (select-frame frame)
+                (setq ns-use-srgb-colorspace nil)
+                (load-theme 'spacemacs-dark t)))
+  (load-theme 'spacemacs-dark t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

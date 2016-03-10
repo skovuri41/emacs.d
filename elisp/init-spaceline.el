@@ -8,7 +8,7 @@
       (if *is-a-mac*
           (setq  spaceline-window-numbers-unicode t)
         (setq  spaceline-window-numbers-unicode nil))
-      (setq powerline-height 25)
+      (setq powerline-height 20)
       (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
       (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
       (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
@@ -60,6 +60,7 @@
 
       (defface mode-line-is-modified nil "Face for mode-line modified symbol")
       (defface mode-line-buffer-file nil "Face for mode-line buffer file path")
+      ;; (setq ns-use-srgb-colorspace nil)
 
       (spaceline-define-segment *buffer-modified
         (concat

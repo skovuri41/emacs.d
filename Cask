@@ -53,6 +53,7 @@
 (depends-on "kurecolor")
 (depends-on "fancy-battery")
 (depends-on "spaceline")
+(depends-on "spacemacs-theme")
 (depends-on "hydra")
 (depends-on "hungry-delete")
 (depends-on "window-numbering")

@@ -308,4 +308,10 @@
 
 (use-package better-defaults)
 
+(show-paren-mode 1)
+(setq show-paren-priority -50) ; without this matching parens aren't highlighted in region
+(setq show-paren-delay 0)
+(set-face-attribute 'show-paren-match nil :weight 'normal :foreground "lemon chiffon" :background "default")
+
+
 (provide 'init-defaults)
