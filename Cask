@@ -67,7 +67,9 @@
 (depends-on "discover-my-major")
 (depends-on "know-your-http-well")
 (depends-on "with-editor")
-(depends-on "smartscan")
+(depends-on "visual-fill-column")
+(depends-on "wgrep")
+(depends-on "wgrep-ag")
 
 
 ;;org

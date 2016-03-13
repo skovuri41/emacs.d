@@ -2,13 +2,13 @@
   :init
   (progn
     (setq evil-move-beyond-eol nil)
-    (evil-mode 1)
     (use-package evil-leader
-      :init (global-evil-leader-mode)
+      :init
+      (global-evil-leader-mode)
+      (setq evil-leader/in-all-states 1)
       :config
       (progn
         (evil-leader/set-leader "SPC")
-        (setq evil-leader/in-all-states 1)
         (setq evil-leader/non-normal-prefix "S-")
         (evil-leader/set-key
           "wd" 'delete-window
@@ -49,6 +49,7 @@
           "hA" 'helm-ag-project-root
           "hi" 'helm-imenu
           "hI" 'helm-imenu-anywhere
+          "el" 'flycheck-list-errors
           )
         ;; Elisp Editing Bindings
         (evil-leader/set-key-for-mode 'emacs-lisp-mode
@@ -61,10 +62,79 @@
         (define-key evil-normal-state-map (kbd "`") 'helm-all-mark-rings)
         (define-key evil-normal-state-map (kbd "q") nil)
         (define-key evil-normal-state-map (kbd "q") 'popwin:close-popup-window )
-        ;;(evil-leader/set-key "q" 'popwin:close-popup-window)
+
+        (defun my/evil-org ()
+          (progn
+            (evil-leader/set-key-for-mode 'org-mode
+              "mt"  'org-show-todo-tree
+              "ma"  'org-agenda
+              "mc"  'org-archive-subtree
+              "mo"  org-mode-map
+              )
+            (defun clever-insert-item ()
+              "Clever insertion of org item."
+              (if (not (org-in-item-p))
+                  (insert "\n")
+                (org-insert-item))
+              )
+            (defun evil-org-eol-call (fun)
+              "Go to end of line and call provided function.
+               FUN function callback"
+              (end-of-line)
+              (funcall fun)
+              (evil-append nil)
+              )
+            ;; normal state shortcuts
+            (evil-define-key 'normal org-mode-map
+              "gh" 'outline-up-heading
+              "gp" 'outline-previous-heading
+              "gj" (if (fboundp 'org-forward-same-level) ;to be backward compatible with older org version
+                       'org-forward-same-level
+                     'org-forward-heading-same-level)
+              "gk" (if (fboundp 'org-backward-same-level)
+                       'org-backward-same-level
+                     'org-backward-heading-same-level)
+              "gl" 'outline-next-visible-heading
+              "t" 'org-todo
+              "T" '(lambda () (interactive) (evil-org-eol-call (lambda() (org-insert-todo-heading nil))))
+              "H" 'org-shiftleft
+              "J" 'org-shiftdown
+              "K" 'org-shiftup
+              "L" 'org-shiftright
+              "o" '(lambda () (interactive) (evil-org-eol-call 'clever-insert-item))
+              "O" '(lambda () (interactive) (evil-org-eol-call 'org-insert-heading))
+              "$" 'org-end-of-line
+              "^" 'org-beginning-of-line
+              "<" 'org-metaleft
+              ">" 'org-metaright
+              "-" 'org-cycle-list-bullet
+              (kbd "<tab>") 'org-cycle)
+            ;;normal & insert state shortcuts.
+            (mapc (lambda (state)
+                    (evil-define-key state org-mode-map
+                      (kbd "M-l") 'org-metaright
+                      (kbd "M-h") 'org-metaleft
+                      (kbd "M-k") 'org-metaup
+                      (kbd "M-j") 'org-metadown
+                      (kbd "M-L") 'org-shiftmetaright
+                      (kbd "M-H") 'org-shiftmetaleft
+                      (kbd "M-K") 'org-shiftmetaup
+                      (kbd "M-J") 'org-shiftmetadown
+                      (kbd "M-o") '(lambda () (interactive)
+                                     (evil-org-eol-call
+                                      '(lambda()
+                                         (org-insert-heading)
+                                         (org-metaright))))
+                      (kbd "M-t") '(lambda () (interactive)
+                                     (evil-org-eol-call
+                                      '(lambda()
+                                         (org-insert-todo-heading nil)
+                                         (org-metaright))))
+                      ))
+                  '(normal insert))
+            ))
+        (add-hook 'org-mode-hook #'my/evil-org)
         ))
-    (use-package evil-org
-      :init (add-hook 'org-mode-hook 'evil-org-mode))
     (use-package evil-visualstar
       :ensure t
       :init
@@ -160,7 +230,7 @@
       :ensure t
       :config
       (progn
-        (setq evil-normal-state-cursor '("white" box)
+        (setq evil-normal-state-cursor '("white" bar )
               evil-insert-state-cursor '("orange" bar)
               evil-replace-state-cursor '("orange" hbar)
               evil-visual-state-cursor '("yellow" box)
@@ -169,6 +239,7 @@
               evil-iedit-state-cursor '("pink" box)
               evil-emacs-state-cursor '("red" bar))))
     )
+  (evil-mode 1)
   :config
   (progn
     (setq evil-cross-lines t)

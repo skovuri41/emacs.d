@@ -33,8 +33,18 @@
       )
     (add-hook 'ag-mode-hook
               (lambda ()
+                (wgrep-ag-setup)
                 (define-key ag-mode-map "j" 'evil-next-line)
                 (define-key ag-mode-map "k" 'evil-previous-line)
                 (define-key ag-mode-map "n" 'evil-ex-search-next)
                 (define-key ag-mode-map "N" 'evil-ex-search-previous)))))
+(use-package wgrep
+  :ensure t
+  :config
+  (setq wgrep-auto-save-buffer t))
+
+(use-package wgrep-ag
+  :ensure t
+  :commands (wgrep-ag-setup))
+
 (provide 'init-ag)

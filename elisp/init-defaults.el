@@ -212,6 +212,9 @@
   (ctags-auto-update-mode)
   :diminish ctags-auto-update-mode)
 
+(use-package visual-fill-column
+  :ensure t)
+
 (setq display-time-day-and-date t)
 (setq display-time-string-forms
       '((format "%s:%s  "
@@ -308,7 +311,7 @@
 
 (use-package better-defaults)
 
-(show-paren-mode 1)
+
 (setq show-paren-priority -50) ; without this matching parens aren't highlighted in region
 (setq show-paren-delay 0)
 (set-face-attribute 'show-paren-match nil :weight 'normal :foreground "lemon chiffon" :background "default")
