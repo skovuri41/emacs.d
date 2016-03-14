@@ -308,7 +308,7 @@
                           ,(file-truename "~/org/todo.org")
                           ,(file-truename "~/org/bibliography.org")
                           ,(file-truename "~/org/notes.org")
-                          ,(file-truename "~/org/journal.org")))
+                          ))
 
       ;;Custom agenda command definitions
       (setq org-agenda-custom-commands
@@ -385,8 +385,9 @@
           ("e" "Emacs note" entry
            (file+headline "~/org/notes.org" "Emacs Links")
            "* %? :NOTE:\n%U\n")
-          ("j" "Journal" entry (file+datetree "~/org/journal.org")
-           "* %?\n%U\n")
+          ("j" "Journal Note"     entry
+           (file (get-journal-file-today))
+           "* %?\n\n  %i\n\n  From: %a" :empty-lines 1)
           ("B" "Book/Bibliography" entry
            (file+headline "~/org/bibliography.org" "Refile")
            "* %?%^{TITLE}p%^{AUTHOR}p%^{TYPE}p")))
@@ -398,7 +399,7 @@
 
 (use-package org-journal
   :ensure t
-  :config
+  :init
   (progn
     (evil-leader/set-key
       "+" 'org-journal-new-entry
@@ -406,11 +407,11 @@
     (which-key-add-key-based-replacements
       "SPC +" "Add entry to journal"
       "SPC =" "View today's journal")
-    (setq org-journal-dir (expand-file-name "~/journal/")
-          org-journal-file-format "%Y-%m-%d.org"
-          org-journal-date-format "%A, %d-%m-%Y"
-          org-journal-enable-encryption nil)
-    (evil-leader/set-key-for-mode 'calendar-mode
+    (setq org-journal-dir "~/journal/")
+    (setq org-journal-date-format "#+TITLE: Journal Entry- %Y-%b-%d (%A)")
+    (setq org-journal-time-format "")
+
+    (evil-leader/set-key-for-mode 'org-journal-mode
       "m j j" 'org-journal-read-entry
       "m j i" 'org-journal-new-date-entry
       "m j [" 'org-journal-previous-entry
@@ -422,6 +423,22 @@
     (evil-leader/set-key-for-mode 'org-journal-mode
       "m j [" 'org-journal-open-previous-entry
       "m j ]" 'org-journal-open-next-entry))
+
+  (defun journal-file-insert ()
+    "Insert's the journal heading based on the file's name."
+    (interactive)
+    (when (string-match "\\(20[0-9][0-9]\\)\\([0-9][0-9]\\)\\([0-9][0-9]\\)" (buffer-name))
+      (let ((year  (string-to-number (match-string 1 (buffer-name))))
+            (month (string-to-number (match-string 2 (buffer-name))))
+            (day   (string-to-number (match-string 3 (buffer-name))))
+            (datim nil))
+        (setq datim (encode-time 0 0 0 day month year))
+        (insert (format-time-string org-journal-date-format datim))
+        (insert "\n\n"))))  ; Start with a blank separating line
+
+  (add-hook 'find-file-hook 'auto-insert)
+  (add-to-list 'auto-insert-alist '(".*/[0-9]*$" . journal-file-insert))
+
   (defun get-journal-file-today ()
     "Return filename for today's journal entry."
     (let ((daily-name (format-time-string "%Y%m%d")))
