@@ -316,5 +316,11 @@
 (setq show-paren-delay 0)
 (set-face-attribute 'show-paren-match nil :weight 'normal :foreground "lemon chiffon" :background "default")
 
+(require 'autoinsert)
+;; (setq auto-insert-directory "~/.emacs.d/template/")
+(auto-insert-mode)
+(setq auto-insert-query nil)
+(add-hook 'find-file-hook 'auto-insert)
+(add-hook 'find-file-not-found-hooks 'auto-insert)
 
 (provide 'init-defaults)

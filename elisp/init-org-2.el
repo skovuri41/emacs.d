@@ -381,13 +381,13 @@
           ("n" "Notes" entry (file+headline "~/org/notes.org" "Notes")
            "* %? :NOTE:\n%U\n")
           ;;capture bookmarks
-          ("b" "Bookmark" plain (file "~/notes/bookmarks.org" "Bookmarks"))
+          ("b" "Bookmark" plain (file "~/org/bookmarks.org" "Bookmarks"))
           ("e" "Emacs note" entry
            (file+headline "~/org/notes.org" "Emacs Links")
            "* %? :NOTE:\n%U\n")
           ("j" "Journal Note"     entry
            (file (get-journal-file-today))
-           "* %?\n\n  %i\n\n  From: %a" :empty-lines 1)
+           "* %?\n\n  %i\n\n  From: %f" :empty-lines 1)
           ("B" "Book/Bibliography" entry
            (file+headline "~/org/bibliography.org" "Refile")
            "* %?%^{TITLE}p%^{AUTHOR}p%^{TYPE}p")))
@@ -436,8 +436,10 @@
         (insert (format-time-string org-journal-date-format datim))
         (insert "\n\n"))))  ; Start with a blank separating line
 
-  (add-hook 'find-file-hook 'auto-insert)
-  (add-to-list 'auto-insert-alist '(".*/[0-9]*$" . journal-file-insert))
+  (setq auto-insert-alist (append '(
+                                    (".*/[0-9]*$" . journal-file-insert)
+                                    )
+                                  auto-insert-alist))
 
   (defun get-journal-file-today ()
     "Return filename for today's journal entry."

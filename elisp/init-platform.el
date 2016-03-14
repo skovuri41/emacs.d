@@ -17,7 +17,7 @@
 (when *is-gnu-linux*
   (setq
    ;; font
-   default-frame-alist '((font . "Monospace-12"))
+   default-frame-alist '((font . "Monaco-10"))
    ;; make emacs use the clipboard
    x-select-enable-clipboard t))
 

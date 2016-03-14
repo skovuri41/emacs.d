@@ -1,7 +1,6 @@
 (use-package yasnippet
   :ensure t
   :defer t
-  :diminish Eldoc
   :init
   (yas-global-mode 1)
   :config

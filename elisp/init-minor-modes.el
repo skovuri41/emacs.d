@@ -31,6 +31,9 @@
   :init
   (add-hook #'prog-mode-hook #'smartscan-mode)
   :config
+  (define-key smartscan-map (kbd "M-n") nil)
+  (define-key smartscan-map (kbd "M-p") nil)
+  (define-key smartscan-map (kbd "M-'") nil)
   (define-key evil-normal-state-map "gn" 'smartscan-symbol-go-forward)
   (define-key evil-normal-state-map "gp" 'smartscan-symbol-go-backward))
 
