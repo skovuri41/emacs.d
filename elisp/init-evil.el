@@ -59,8 +59,8 @@
           "m e e" 'eval-sexp-fu-eval-sexp-inner-sexp)
         (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
         (define-key evil-normal-state-map (kbd "m") 'push-mark-no-activate)
-        (define-key evil-normal-state-map (kbd "`") 'helm-all-mark-rings)
-        (define-key evil-normal-state-map (kbd "q") nil)
+        (define-key evil-normal-state-map (kbd "gm") 'helm-all-mark-rings)
+        ;; (define-key evil-normal-state-map (kbd "`") 'helm-all-mark-rings)
         (define-key evil-normal-state-map (kbd "q") 'popwin:close-popup-window )
 
         (defun my/evil-org ()
