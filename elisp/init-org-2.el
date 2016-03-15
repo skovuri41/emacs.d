@@ -62,7 +62,7 @@
   (setq org-use-speed-commands t)
   (setq org-hide-emphasis-markers t)
   (setq org-reverse-note-order nil)
-  (setq org-tags-column 0)
+  (setq org-tags-column 80)
   ;; Block entries from changing state to DONE while they have children
   ;; that are not DONE
   (setq org-enforce-todo-dependencies t)
@@ -310,6 +310,9 @@
                           ,(file-truename "~/org/notes.org")
                           ))
 
+      ;; (setq org-agenda-file-regexp "\\`[^.].*\\.org'\\|[0-9]+")
+      (setq org-agenda-file-regexp "\\([^.].*\\.org\\)\\|\\([0-9]+\\)")
+
       ;;Custom agenda command definitions
       (setq org-agenda-custom-commands
             '(("N" "Notes" tags "NOTE"
@@ -399,6 +402,7 @@
 
 (use-package org-journal
   :ensure t
+  :mode (".*/[0-9]*-[0-9]*-[0-9]*$" . org-journal-mode)
   :init
   (progn
     (evil-leader/set-key
@@ -408,10 +412,12 @@
       "SPC +" "Add entry to journal"
       "SPC =" "View today's journal")
     (setq org-journal-dir "~/journal/")
-    (setq org-journal-date-format "#+TITLE: Journal Entry- %Y-%b-%d (%A)")
+    (setq org-journal-date-format "Journal Entry- %Y-%b-%d (%A)")
     (setq org-journal-time-format "")
-
-    (evil-leader/set-key-for-mode 'org-journal-mode
+    (setq org-journal-file-format "%Y-%m-%d.org"
+          org-journal-file-pattern (org-journal-format-string->regex org-journal-file-format)
+          org-journal-hide-entries-p nil)
+    (evil-leader/set-key-for-mode 'calendar-mode
       "m j j" 'org-journal-read-entry
       "m j i" 'org-journal-new-date-entry
       "m j [" 'org-journal-previous-entry
@@ -441,10 +447,12 @@
                                     )
                                   auto-insert-alist))
 
+  (add-to-list 'org-agenda-files (expand-file-name "~/journal"))
+
   (defun get-journal-file-today ()
     "Return filename for today's journal entry."
-    (let ((daily-name (format-time-string "%Y%m%d")))
-      (expand-file-name (concat org-journal-dir daily-name))))
+    (let ((daily-name (format-time-string "%Y-%m-%d")))
+      (expand-file-name (concat org-journal-dir daily-name ".org"))))
 
   (defun journal-file-today ()
     "Create and load a journal file based on today's date."
@@ -453,8 +461,8 @@
 
   (defun get-journal-file-yesterday ()
     "Return filename for yesterday's journal entry."
-    (let ((daily-name (format-time-string "%Y%m%d" (time-subtract (current-time) (days-to-time 1)))))
-      (expand-file-name (concat org-journal-dir daily-name))))
+    (let ((daily-name (format-time-string "%Y-%m-%d" (time-subtract (current-time) (days-to-time 1)))))
+      (expand-file-name (concat org-journal-dir daily-name ".org"))))
 
   (defun journal-file-yesterday ()
     "Creates and load a file based on yesterday's date."

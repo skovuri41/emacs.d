@@ -31,6 +31,8 @@
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key "\C-ca" 'org-agenda)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 

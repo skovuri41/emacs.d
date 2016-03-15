@@ -374,6 +374,26 @@
                         ))
       (evil-set-initial-state `,(car mode-map) `,(cdr mode-map)))
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
+
+    (eval-after-load 'calendar
+      '(progn
+         (evil-set-initial-state 'calendar-mode 'emacs)
+         (add-hook 'calendar-mode-hook
+                   (lambda ()
+                     (define-key calendar-mode-map "l" 'calendar-forward-day)
+                     (define-key calendar-mode-map "h" 'calendar-backward-day)
+                     (define-key calendar-mode-map "j" 'calendar-forward-week)
+                     (define-key calendar-mode-map "k" 'calendar-backward-week)
+                     (define-key calendar-mode-map "{" 'calendar-forward-month)
+                     (define-key calendar-mode-map "}" 'calendar-backward-month)
+                     (define-key calendar-mode-map "0" 'calendar-beginning-of-week)
+                     (define-key calendar-mode-map "$" 'calendar-end-of-week)
+                     (define-key calendar-mode-map "[" 'calendar-beginning-of-month)
+                     (define-key calendar-mode-map "]" 'calendar-end-of-month)
+                     (define-key calendar-mode-map (kbd "s") 'avy-goto-char)
+                     (define-key calendar-mode-map "gg" 'calendar-beginning-of-year)
+                     (define-key calendar-mode-map "G" 'calendar-end-of-year)))))
+
     ))
 
 (provide 'init-evil)
