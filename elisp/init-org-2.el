@@ -406,7 +406,11 @@
   :init
   (progn
     (evil-leader/set-key
-      "+" 'org-journal-new-entry
+      "+" '(lambda ()
+             (interactive)
+             (org-journal-new-entry nil)
+             (evil-insert-state)
+             )
       "=" '(lambda () (interactive) (org-journal-new-entry t)))
     (which-key-add-key-based-replacements
       "SPC +" "Add entry to journal"

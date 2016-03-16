@@ -84,6 +84,8 @@
          (((minor-modes :separator " ") process) :when active)
          *buffer-modified
          (version-control :when active)
+         (org-pomodoro :when active)
+         (org-clock :when active)
          (battery :when active))
        `(selection-info
          ((*selection-info buffer-encoding-abbrev point-position line-column) :separator " | ")

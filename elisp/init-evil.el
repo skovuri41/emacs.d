@@ -137,18 +137,18 @@
               (interactive)
               (find-file org-default-notes-file))
 
-            (evil-leader/set-key
-              "oa" 'org-agenda
-              "og" 'helm-org-agenda-files-headings
-              "oo" 'org-clock-out
-              "oi" 'org-clock-in
-              "oc" 'org-capture
-              "oC" 'helm-org-capture-templates
-              "or" 'org-goto-refile-target
-              "oL" 'org-insert-link
-              "ol" 'org-store-link)
             ))
         (add-hook 'org-mode-hook #'my/evil-org)
+        (evil-leader/set-key
+          "oa" 'org-agenda
+          "og" 'helm-org-agenda-files-headings
+          "oo" 'org-clock-out
+          "oi" 'org-clock-in
+          "oc" 'org-capture
+          "oC" 'helm-org-capture-templates
+          "or" 'org-goto-refile-target
+          "oL" 'org-insert-link
+          "ol" 'org-store-link)
         ))
     (use-package evil-visualstar
       :ensure t
