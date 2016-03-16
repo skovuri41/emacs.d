@@ -147,6 +147,7 @@
           "oc" 'org-capture
           "oC" 'helm-org-capture-templates
           "or" 'org-goto-refile-target
+          "op" 'org-pomodoro
           "oL" 'org-insert-link
           "ol" 'org-store-link)
         ))

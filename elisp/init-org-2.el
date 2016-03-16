@@ -490,9 +490,9 @@
   :commands (org-pomodoro)
   :ensure t
   :config
-  (setq org-pomodoro-length 20)
-  (setq org-pomodoro-long-break-length 15)
-  (setq org-pomodoro-short-break-length 5)
+  (setq org-pomodoro-length 2)
+  (setq org-pomodoro-long-break-length 1)
+  (setq org-pomodoro-short-break-length 1)
   )
 
 (use-package notifications
