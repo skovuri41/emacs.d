@@ -1,14 +1,3 @@
-;; Platform specific settings
-(defvar *is-a-mac*)
-(defvar *is-carbon-emacs*)
-(defvar *is-cocoa-emacs*)
-(defvar *is-gnu-linux*)
-(setq
- *is-a-mac* (eq system-type 'darwin)
- *is-carbon-emacs* (and *is-a-mac* (eq window-system 'mac))
- *is-cocoa-emacs* (and *is-a-mac* (eq window-system 'ns))
- *is-gnu-linux* (eq system-type 'gnu/linux))
-
 ;; masteringemacs.org fixing mark commands tmm
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region
@@ -641,5 +630,21 @@ Version 2015-09-14."
     (shell-command-on-region b e
                              "python -mjson.tool" (current-buffer) t)))
 
+(defun paste-from-x-clipboard()
+  (interactive)
+  (shell-command
+   (cond
+    (*cygwin* "getclip")
+    (*is-a-mac* "pbpaste")
+    (t "xsel -ob")
+    )
+   1)
+  )
+
+(defun my/paste-in-minibuffer ()
+  (local-set-key (kbd "M-y") 'paste-from-x-clipboard)
+  )
+
+(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
 
 (provide 'init-defuns)

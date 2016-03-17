@@ -1,18 +1,16 @@
 ;; Initialize ;;;;
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+
 ;; Keep track of loading time
 (defconst emacs-start-time (current-time))
-(cask-initialize)
-
-(require 'use-package)
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq default-directory (getenv "HOME"))
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+(require 'init-platform)
+(require 'use-package)
 (require 'init-defaults)
 (require 'init-defuns)
-(require 'init-platform)
 (require 'init-diminish)
 (require 'init-helm)
 (require 'init-evil)
