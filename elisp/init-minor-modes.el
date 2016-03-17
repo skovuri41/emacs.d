@@ -37,5 +37,7 @@
   (define-key evil-normal-state-map "gn" 'smartscan-symbol-go-forward)
   (define-key evil-normal-state-map "gp" 'smartscan-symbol-go-backward))
 
+(use-package bug-hunter                            ; Search init file for bugs
+  :ensure t)
 
 (provide 'init-minor-modes)

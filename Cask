@@ -70,6 +70,7 @@
 (depends-on "visual-fill-column")
 (depends-on "wgrep")
 (depends-on "wgrep-ag")
+(depends-on "bug-hunter")
 
 
 ;;org
