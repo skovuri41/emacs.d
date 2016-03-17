@@ -71,6 +71,9 @@
 (depends-on "wgrep")
 (depends-on "wgrep-ag")
 (depends-on "bug-hunter")
+(depends-on "calfw")
+(depends-on "calfw-org")
+(depends-on "calfw-cal")
 
 
 ;;org

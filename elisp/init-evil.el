@@ -386,6 +386,8 @@
                         (calendar-mode          . emacs)
                         (Man-mode               . emacs)
                         (grep-mode              . emacs)
+                        (cfw:calendar-mode      . emacs)
+                        (cfw:details-mode       . emacs)
                         (image-mode             . normal)
                         ))
       (evil-set-initial-state `,(car mode-map) `,(cdr mode-map)))
