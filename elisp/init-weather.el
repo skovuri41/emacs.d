@@ -10,7 +10,7 @@
     ;; The "openweathermap-api" file is supposed to contain this line:
     ;;     (setq sunshine-appid "<YOUR_API>")
     ;; Sign up at http://openweathermap.org/ to get your API KEY.
-    (load (locate-user-emacs-file "openweathermap-api") :noerror :nomessage)
+    ;; (load (locate-user-emacs-file "openweathermap-api") :noerror :nomessage)
     (setq sunshine-location "07751,USA")
     (setq sunshine-show-icons t)))
 
@@ -33,7 +33,7 @@
     ;; The "forecast-api" file is supposed to contain this line:
     ;;     (setq forecast-api-key "<YOUR_API>")
     ;; Register at https://developer.forecast.io/ to get your API KEY.
-    (load (locate-user-emacs-file "forecast-api") :noerror :nomessage)
+    ;; (load (locate-user-emacs-file "forecast-api") :noerror :nomessage)
     (setq forecast-latitude  40.3616)
     (setq forecast-longitude  -74.2630)
     (setq forecast-city      "Morganville, NJ")

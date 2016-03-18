@@ -4,7 +4,7 @@
   :config
   (require 'calfw-ical)
   (require 'calfw-org)
-  (require 'calfw-gcal)
+  ;; (require 'calfw-gcal)
   (require 'calfw-cal)
   (defun keymaps/calfw ()
     "Keymaps for calfw."
@@ -28,7 +28,7 @@
     (define-key cfw:calendar-mode-map "o" 'cfw:navi-goto-date-command)
     )
   (add-hook 'cfw:calendar-mode-hook 'keymaps/calfw)
-  (setq cfw:org-agenda-schedule-args '(:timestamp))
+  ;; (setq cfw:org-agenda-schedule-args '(:timestamp))
   (add-hook 'cfw:calendar-mode-hook #'(lambda () (visual-line-mode -1)))
   (add-hook 'cfw:calendar-mode-hook #'(lambda ()
                                         (setq-local global-hl-line-mode nil)))
@@ -37,8 +37,12 @@
     (cfw:open-calendar-buffer
      :contents-sources
      (list
-      ;; google calendar ICS
-      ;; (cfw:ical-create-source "gcal" "https://..../basic.ics" "IndianRed")
+      ;; (setq begin (cfw:date 1 1 2015))
+      ;; (setq end (cfw:date 1 1 2018))
+      (when (boundp 'gcal-url)
+        ;;googlecalendarICS
+        (cfw:ical-create-source "gcal" gcal-url "IndianRed"))
+      ;; (cfw:open-ical-calendar gcal-url)
 
       ;; orgmode source
       (cfw:org-create-source "Green")
@@ -65,16 +69,15 @@
         cfw:fchar-top-left-corner ?╔
         cfw:fchar-top-right-corner ?╗)
 
-  (when (file-readable-p "~/.emacs.d/tokens.el")
-    (load "~/.emacs.d/tokens.el"))
-
   (when (and (boundp 'gcal-client-id) (boundp 'gcal-client-secret) (boundp 'gcal-email))
     (use-package org-gcal
       :ensure t
       :config
       (setq org-gcal-client-id gcal-client-id
             org-gcal-client-secret gcal-client-secret
-            org-gcal-file-alist `((,gcal-email .  "~/.emacs.d/agenda/gcal.org")))))
+            org-gcal-file-alist `((,gcal-email .  "~/org/gcal.org")))))
+  (setq org-gcal-up-days 30)
+  (setq org-gcal-down-days 180)
 
   )
 (provide 'init-cal)
