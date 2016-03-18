@@ -38,6 +38,8 @@
 
 (depends-on "diminish")
 (depends-on "company")
+(depends-on "company-statistics")
+(depends-on "company-quickhelp")
 (depends-on "thingatpt")
 (depends-on "rainbow-delimiters")
 (depends-on "flycheck")
@@ -74,6 +76,7 @@
 (depends-on "calfw")
 (depends-on "calfw-org")
 (depends-on "calfw-cal")
+(depends-on "visible-mark")
 
 
 ;;org

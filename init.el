@@ -67,6 +67,7 @@
 (require 'init-color-identifiers)
 (require 'init-restclient)
 (require 'init-fancy-battery)
+(require 'init-minor-modes)
 (require 'init-window-numbering)
 (require 'init-pbcopy)
 (require 'init-mu4e)

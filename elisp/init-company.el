@@ -20,6 +20,7 @@
           (append company-continue-commands
                   '(comint-previous-matching-input-from-input
                     comint-next-matching-input-from-input)))
+    (add-to-list 'company-backends 'company-yasnippet)
     (define-key company-active-map (kbd "\C-n") 'company-select-next)
     (define-key company-active-map (kbd "\C-p") 'company-select-previous)
     (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
@@ -36,5 +37,12 @@
     (eval-after-load 'company
       '(define-key company-active-map (kbd "M-h") #'company-quickhelp-manual-begin))
     ))
+
+(use-package company-statistics
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (add-hook 'after-init-hook 'company-statistics-mode)))
 
 (provide 'init-company)

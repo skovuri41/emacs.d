@@ -37,8 +37,6 @@
     (cfw:open-calendar-buffer
      :contents-sources
      (list
-      ;; (setq begin (cfw:date 1 1 2015))
-      ;; (setq end (cfw:date 1 1 2018))
       (when (boundp 'gcal-url)
         ;;googlecalendarICS
         (cfw:ical-create-source "gcal" gcal-url "IndianRed"))

@@ -121,7 +121,7 @@
     :init
     (setq diredp-hide-details-initially-flag nil)
     (setq diredp-hide-details-propagate-flag nil)
-    (evil-leader/set-key "jd" 'dired-jump)
+    (evil-leader/set-key "dj" 'dired-jump)
     :config
     (diredp-toggle-find-file-reuse-dir 1))
 
