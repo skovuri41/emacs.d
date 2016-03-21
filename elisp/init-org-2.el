@@ -124,10 +124,15 @@
 
   (require 'ox-org)
   (require 'ox-md)
+  (require 'org-habit)
 
   (add-to-list 'org-modules 'org-habit)
 
   (setq org-habit-graph-column 60)
+  (setq org-habit-show-habits-only-for-today t)
+  (setq org-habit-graph-column 40)
+  (setq org-habit-preceding-days 7)
+  (setq org-habit-following-days 1)
 
   (add-to-list 'org-structure-template-alist
                '("E" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC\n"))

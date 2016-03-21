@@ -6,7 +6,6 @@
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq default-directory (getenv "HOME"))
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (require 'init-platform)
 (require 'use-package)
 (require 'init-defaults)
