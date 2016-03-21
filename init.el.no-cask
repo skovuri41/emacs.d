@@ -203,6 +203,7 @@
 (require 'init-window-numbering)
 (require 'init-popwin)
 (require 'init-sql)
+(require 'init-diminish)
 (require 'init-workgroups2)
 (require 'init-keybindings)
 
@@ -217,3 +218,5 @@
                 (setq ns-use-srgb-colorspace nil)
                 (load-theme 'spacemacs-dark t)))
   (load-theme 'spacemacs-dark t))
+
+

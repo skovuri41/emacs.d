@@ -200,6 +200,10 @@
   (progn
     (setq hungry-delete-chars-to-skip " \t\r\f\v")
     (global-hungry-delete-mode nil)
+    (with-eval-after-load 'evil
+      (dolist (keymap (list evil-normal-state-map evil-insert-state-map))
+        (bind-key "M-<backspace>" #'hungry-delete-backward keymap)
+        (bind-key "M-DEL" #'hungry-delete-backward keymap)))
     (add-hook 'prog-mode-hook 'hungry-delete-mode)))
 
 ;; Note: for every project, run the following command:
