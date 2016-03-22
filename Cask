@@ -47,6 +47,7 @@
 (depends-on "imenu-anywhere")
 (depends-on "dired+")
 (depends-on "wdired")
+(depends-on "peep-dired")
 (depends-on "dired-narrow")
 (depends-on "ranger")
 (depends-on "neotree")

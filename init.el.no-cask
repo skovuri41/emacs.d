@@ -134,6 +134,10 @@
                     typed-clojure-mode
                     transpose-frame
                     auto-compile
+                    sqlup-mode
+                    sql-indent
+                    peep-dired
+                    ranger
                     ))
 
 (dolist (p my-packages)
@@ -219,4 +223,6 @@
                 (load-theme 'spacemacs-dark t)))
   (load-theme 'spacemacs-dark t))
 
-
+(custom-set-faces
+ '(show-paren-match ((t (:background "default" :foreground "lemon chiffon" :underline t :overline nil))))
+ '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))

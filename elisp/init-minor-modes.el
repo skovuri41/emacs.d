@@ -45,7 +45,7 @@
   ;;   '((((type tty) (class mono)))
   ;;     (t (:background "magenta"))) "")
   :config
-  (setq visible-mark-max 2)
+  (setq visible-mark-max 1)
   (setq visible-mark-faces `(visible-mark-face1 visible-mark-face2))
   (global-visible-mark-mode 1))
 

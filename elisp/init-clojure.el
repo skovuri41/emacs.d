@@ -5,7 +5,7 @@
   :config
   (progn
     (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-
+    (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
     (define-clojure-indent
       (defroutes 'defun)
       (GET 2)
