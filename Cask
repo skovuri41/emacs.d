@@ -16,6 +16,7 @@
 (depends-on "popwin")
 (depends-on "popup")
 (depends-on "popup-switcher")
+(depends-on "popup-imenu")
 (depends-on "projectile")
 (depends-on "grizzl")
 

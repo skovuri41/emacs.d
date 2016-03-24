@@ -90,3 +90,7 @@
                 (setq ns-use-srgb-colorspace nil)
                 (load-theme 'spacemacs-dark t)))
   (load-theme 'spacemacs-dark t))
+
+(custom-set-faces
+ '(show-paren-match ((t (:background "default" :foreground "lemon chiffon" :underline t :overline nil))))
+ '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
