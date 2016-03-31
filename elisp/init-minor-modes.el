@@ -52,4 +52,9 @@
 (use-package bug-hunter                            ; Search init file for bugs
   :ensure t)
 
+(use-package shrink-whitespace
+  :ensure t
+  :bind (("M-SPC" . shrink-whitespace)
+         ("M-S-SPC" . shrink-whitespace)))
+
 (provide 'init-minor-modes)

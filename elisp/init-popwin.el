@@ -66,4 +66,25 @@
     (set-face-foreground 'popup-menu-selection-face "blue")
     (setq psw-use-flx t)))
 
+(use-package popup-imenu
+  :commands (popup-imenu)
+  :init
+  (evil-leader/set-key "pi" 'popup-imenu)
+  )
+
+(use-package flyspell-popup
+  :ensure t
+  :init
+  (define-key evil-normal-state-map "z=" 'flyspell-popup-correct)
+  (define-key evil-visual-state-map "z=" 'flyspell-popup-correct)
+  )
+
+
 (provide 'init-popwin)
+
+
+
+
+
+
+

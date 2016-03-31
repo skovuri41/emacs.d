@@ -17,6 +17,7 @@
 (depends-on "popup")
 (depends-on "popup-switcher")
 (depends-on "popup-imenu")
+(depends-on "flyspell-popup")
 (depends-on "projectile")
 (depends-on "grizzl")
 
@@ -64,6 +65,7 @@
 (depends-on "transpose-frame")
 (depends-on "highlight-numbers")
 (depends-on "whitespace-cleanup-mode")
+(depends-on "shrink-whitespace")
 (depends-on "tidy")
 (depends-on "sunshine")
 (depends-on "forecast")
@@ -140,6 +142,7 @@
 (depends-on "hl-line+")
 (depends-on "easy-kill")
 (depends-on "scratch")
+(depends-on "scratch-message")
 (depends-on "exec-path-from-shell")
 (depends-on "aggressive-indent")
 (depends-on "ag")
@@ -197,3 +200,5 @@
 (depends-on "java-imports")
 
 (depends-on "quickrun")
+(depends-on "dockerfile-mode")
+(depends-on "docker")

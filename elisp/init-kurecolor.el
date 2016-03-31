@@ -26,7 +26,8 @@ Get          _gj_ ^^ brightness      _gk_ ^^ saturation      _gl_ ^^ hue
       ("hr" kurecolor-hexcolor-at-point-or-region-to-css-rgb :color blue)
       ("hR" kurecolor-hexcolor-at-point-or-region-to-css-rgba :color blue)
       ("q"  nil "cancel" :color blue))
-    (global-set-key (kbd  "C-c C-k") #'hydra-kurecolor/body)))
+    ;; (global-set-key (kbd  "C-c C-k") #'hydra-kurecolor/body)
+    ))
 
 (provide 'init-kurecolor)
 

@@ -7,6 +7,8 @@
         super-save-triggers (append super-save-triggers '("magit-status")))
   (add-to-list 'super-save-triggers "evil-insert-state-exit-hook")
   (super-save-mode 1)
+  ;; you can probably switch off the built-in auto-save-mode (unless you really care about its backups):
+  (setq auto-save-default nil)
   )
 
 
