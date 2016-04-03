@@ -57,4 +57,8 @@
   :bind (("M-SPC" . shrink-whitespace)
          ("M-S-SPC" . shrink-whitespace)))
 
+(use-package paren-face
+  :ensure t
+  :init (global-paren-face-mode))
+
 (provide 'init-minor-modes)

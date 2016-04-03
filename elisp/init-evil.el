@@ -152,6 +152,7 @@
           "ol" 'org-store-link
           "ox" 'org-encrypt-entry
           "oX" 'org-decrypt-entry
+          "oI" 'org-cliplink
           )
         ))
     (use-package evil-visualstar

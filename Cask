@@ -51,6 +51,7 @@
 (depends-on "wdired")
 (depends-on "peep-dired")
 (depends-on "dired-narrow")
+(depends-on "dired-rainbow")
 (depends-on "ranger")
 (depends-on "neotree")
 (depends-on "ztree")
@@ -90,6 +91,7 @@
 (depends-on "org-plus-contrib")
 (depends-on "ox-reveal")
 (depends-on "org-pomodoro")
+(depends-on "org-cliplink")
 
 ;;mail
 
@@ -106,6 +108,7 @@
 (depends-on "clj-refactor")
 (depends-on "rainbow-mode")
 (depends-on "highlight-parentheses")
+(depends-on "paren-face")
 (depends-on "clojure-cheatsheet")
 (depends-on "typed-clojure-mode")
 (depends-on "eval-sexp-fu")
