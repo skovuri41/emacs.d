@@ -171,6 +171,10 @@
 
 (setq initial-major-mode 'org-mode)
 (setq  initial-scratch-message nil)
+(use-package scratch-message
+  :ensure t
+  :init
+  (scratch-message-mode))
 
 (defmacro after (feature &rest body)
   "After FEATURE is loaded, evaluate BODY."

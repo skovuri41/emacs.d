@@ -86,6 +86,12 @@
              (dired-diff))
             (t (error "mark exactly 2 files, at least 1 locally")))))
 
+  (defun my/dired-find-file (&optional arg)
+    "Open each of the marked files, or the file under the point, or when prefix arg, the next N files "
+    (interactive "P")
+    (let* ((fn-list (dired-get-marked-files nil arg)))
+      (mapc 'find-file fn-list)))
+
   (evil-define-key 'normal dired-mode-map "k" 'dired-previous-line)
   (evil-define-key 'normal dired-mode-map "j" 'dired-next-line)
   (evil-define-key 'normal dired-mode-map "l" 'dired-find-file)
@@ -103,9 +109,11 @@
   (evil-define-key 'normal dired-mode-map "G" 'my/jump-to-bottom)
   (evil-define-key 'normal dired-mode-map "." 'my/dotfiles-toggle)
   (evil-define-key 'normal dired-mode-map "=" 'my/dired-diff)
+  (evil-define-key 'normal dired-mode-map "F" 'my/dired-find-file)
   (evil-define-key 'normal dired-mode-map "n" 'evil-search-next)
   (evil-define-key 'normal dired-mode-map "N" 'evil-search-previous)
   (evil-define-key 'normal dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)
+  (evil-define-key 'normal dired-mode-map "W" 'wdired-change-to-wdired-mode)
   (add-hook 'dired-mode-hook #'hl-line-mode)
   (add-hook 'dired-mode-hook #'my/dired-mode-hook)
 
@@ -129,6 +137,22 @@
     :ensure t
     :bind (:map dired-mode-map
                 ("/" . dired-narrow)))
+
+  (defconst media-files-extensions
+    '("mp3" "mp4" "avi" "mpg" "flv" "ogg" "mkv" "mpeg" "wmv" "wav" "mov" "flv" "ogm")
+    "Media files.")
+  (defconst time-style-space (string ?\u2008) "Punctuation space Unicode char.")
+
+  (use-package dired-rainbow
+    :ensure t
+    :init
+    (setq dired-rainbow-date-regexp
+	  (concat "\\(?:[0-3][0-9]/[0-1][0-9]/[0-9][0-9]"
+		  time-style-space "[0-2][0-9]:[0-5][0-9]\\)"))
+    ;; highlight executable files, but not directories
+    (dired-rainbow-define-chmod executable-unix "#2aa198" "-.*x.*")
+    (dired-rainbow-define html "#4e9a06" ("htm" "html" "xhtml"))
+    (dired-rainbow-define media "#ce5c00" media-files-extensions))
 
   ;;preview files in dired
   (use-package peep-dired

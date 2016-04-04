@@ -149,7 +149,11 @@
           "or" 'org-goto-refile-target
           "op" 'org-pomodoro
           "oL" 'org-insert-link
-          "ol" 'org-store-link)
+          "ol" 'org-store-link
+          "ox" 'org-encrypt-entry
+          "oX" 'org-decrypt-entry
+          "oI" 'org-cliplink
+          )
         ))
     (use-package evil-visualstar
       :ensure t

@@ -35,6 +35,6 @@
 (define-key global-map (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
-
+(global-set-key (kbd "C-x r N") 'number-rectangle)
 
 (provide 'init-keybindings)
