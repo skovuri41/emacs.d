@@ -144,6 +144,7 @@
   (defconst time-style-space (string ?\u2008) "Punctuation space Unicode char.")
 
   (use-package dired-rainbow
+    :disabled t
     :ensure t
     :init
     (setq dired-rainbow-date-regexp

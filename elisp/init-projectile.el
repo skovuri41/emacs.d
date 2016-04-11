@@ -1,15 +1,16 @@
 (use-package projectile
-  :init (projectile-global-mode)
-  (defun projectile-custom-mode-line ()
-    (if (projectile-project-p)
-        (let* ((project-name (projectile-project-name))
-               (project-name-mode-line (if (> (length project-name) 12)
-                                           (substring project-name 0 8)
-                                         project-name)))
-          (format " P[%s] " project-name-mode-line))
-      ""))
+  :init
+  (projectile-global-mode)
   :config
   (progn
+    (defun projectile-custom-mode-line ()
+      (if (projectile-project-p)
+          (let* ((project-name (projectile-project-name))
+                 (project-name-mode-line (if (> (length project-name) 12)
+                                             (substring project-name 0 8)
+                                           project-name)))
+            (format " P[%s] " project-name-mode-line))
+        ""))
     (setq-default projectile-mode-line '(:eval (projectile-custom-mode-line)))
     (setq projectile-known-projects-file
           (expand-file-name "cache/projectile-bookmarks.eld" user-emacs-directory))
@@ -42,7 +43,7 @@
             ".svn"
             "build")
           )
-    (setq projectile-switch-project-action 'neotree-projectile-action)
+    ;; (setq projectile-switch-project-action 'neotree-projectile-action)
     ))
 
 (provide 'init-projectile)
