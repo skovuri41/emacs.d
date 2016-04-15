@@ -61,4 +61,9 @@
   :ensure t
   :init (global-paren-face-mode))
 
+(use-package find-file-in-project
+  :ensure t
+  ;; :config (setq ffip-prefer-ido-mode t)
+  )
+
 (provide 'init-minor-modes)

@@ -171,6 +171,7 @@
 (depends-on "helm-ag")
 (depends-on "helm-backup")
 (depends-on "helm-mu")
+(depends-on "helm-org-rifle")
 ;;(depends-on "helm-config")
 
 ;;evil mode

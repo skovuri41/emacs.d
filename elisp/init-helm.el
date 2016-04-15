@@ -51,4 +51,10 @@
   :config
   (add-hook 'after-save-hook 'helm-backup-versioning))
 
+(use-package helm-org-rifle
+  :ensure t
+  :init
+  (require 'helm-org-rifle))
+
+
 (provide 'init-helm)

@@ -47,6 +47,11 @@
     (push '("*cider-error*" :noselect t :height 20) popwin:special-display-config)
     (push '("*cider-doc*" :noselect t :height 20) popwin:special-display-config)
     (push '(cider-macroexpansion-mode :noselect t) popwin:special-display-config)
+    (when neo-persist-show
+      (add-hook 'popwin:before-popup-hook
+                (lambda () (setq neo-persist-show nil)))
+      (add-hook 'popwin:after-popup-hook
+                (lambda () (setq neo-persist-show t))))
     (popwin-mode t))
   )
 

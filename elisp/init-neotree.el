@@ -44,6 +44,18 @@
       (interactive)
       (find-file-next-in-dir :prev))
 
+    (defun neotree-project-dir ()
+      "Open NeoTree using the git root."
+      (interactive)
+      (let ((project-dir (ffip-project-root))
+            (file-name (buffer-file-name)))
+        (if project-dir
+            (progn
+              (neotree-dir project-dir)
+              (neotree-find file-name))
+          (message "Could not find git project root."))))
+    
+    ;; (setq projectile-switch-project-action 'neotree-projectile-action)
     
     (after 'evil
       (evil-leader/set-key "nt" 'neotree-toggle)
