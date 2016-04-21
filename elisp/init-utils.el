@@ -10,4 +10,6 @@
 (use-package vlf-setup)
 
 
+(use-package typit)
+
 (provide 'init-utils)

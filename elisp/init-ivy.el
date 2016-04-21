@@ -84,5 +84,10 @@
          (:map evil-leader--default-map
                ("ff" . counsel-find-file))))
 
+(use-package counsel-projectile         ; Ivy integration for Projectile
+  :ensure t
+  :bind (:map projectile-command-map
+              ("p" . counsel-projectile))
+  )
 
 (provide 'init-ivy)

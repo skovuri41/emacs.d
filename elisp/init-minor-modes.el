@@ -66,4 +66,11 @@
   ;; :config (setq ffip-prefer-ido-mode t)
   )
 
+(use-package paradox
+  :ensure t
+  :init
+  (setq paradox-github-token t
+        paradox-column-width-package 30))
+
+
 (provide 'init-minor-modes)

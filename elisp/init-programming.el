@@ -56,7 +56,8 @@
   :bind (("M-." . find-function-at-point)
          ("M-&" . complete-symbol))
   :interpreter (("emacs" . emacs-lisp-mode))
-  :mode ("Cask" . emacs-lisp-mode))
+  ;; :mode ("Cask" . emacs-lisp-mode)
+  )
 
 (use-package yaml-mode
   :mode ("\\.yml$" . yaml-mode))

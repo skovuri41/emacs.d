@@ -131,6 +131,7 @@
 (depends-on "super-save")
 (depends-on "link-hint")
 (depends-on "restclient")
+(depends-on "restclient-helm")
 
 ;;(depends-on "ace-jump-buffer")
 (depends-on "ace-window")
@@ -152,6 +153,7 @@
 (depends-on "anzu")
 (depends-on "swiper")
 (depends-on "counsel")
+(depends-on "counsel-projectile")
 (depends-on "golden-ratio")
 (depends-on "workgroups2")
 (depends-on "ctags-update")
@@ -159,6 +161,9 @@
 (depends-on "color-identifiers-mode")
 (depends-on "vlf")
 (depends-on "symon")
+(depends-on "typit")
+(depends-on "cask-mode")
+(depends-on "paradox")
 
 ;;helm
 (depends-on "helm")
