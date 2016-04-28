@@ -9,7 +9,7 @@
 
 (use-package vlf-setup)
 
-
-(use-package typit)
+(use-package typit
+  :ensure t)
 
 (provide 'init-utils)

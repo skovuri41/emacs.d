@@ -5,7 +5,7 @@
   :config
   (progn
     (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-    (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+    ;; (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
     (define-clojure-indent
       (defroutes 'defun)
       (GET 2)
@@ -95,7 +95,7 @@
   :commands (cider cider-connect cider-jack-in)
   :init
   (progn
-    (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+    ;; (add-hook 'cider-mode-hook #'cider-turn-on-eldoc-mode)
     (add-hook 'cider-mode-hook #'eldoc-mode)
     (add-hook 'cider-repl-mode-hook #'eldoc-mode)
     (add-hook 'cider-repl-mode-hook 'company-mode)
@@ -115,8 +115,9 @@
     (setq nrepl-hide-special-buffers t)
     (setq nrepl-popup-stacktraces nil)
     (setq cider-prompt-save-file-on-load nil)
-    (setq cider-refresh-before-fn "reloaded.repl/suspend")
-    (setq cider-refresh-after-fn "reloaded.repl/resume")))
+    ;; (setq cider-refresh-before-fn "reloaded.repl/suspend")
+    ;; (setq cider-refresh-after-fn "reloaded.repl/resume")
+    ))
 
 (use-package typed-clojure-mode
   :init
@@ -141,7 +142,6 @@
     (evil-leader/set-key "rcp" 'cljr-cycle-privacy)
     (evil-leader/set-key "rcs" 'clojure-toggle-keyword-string)
     (evil-leader/set-key "rfe" 'cljr-create-fn-from-example)))
-
 
 (use-package flycheck-clojure
   :ensure t
