@@ -197,7 +197,8 @@
   :disabled t
   :config
   (progn
-    (exec-path-from-shell-copy-env "PATH")))
+    (exec-path-from-shell-copy-env "PATH")
+    (exec-path-from-shell-initialize)))
 
 (use-package hungry-delete
   :config

@@ -112,7 +112,6 @@
     (setq cider-auto-select-error-buffer t)
     (setq cider-show-error-buffer t)
     (setq cider-repl-use-clojure-font-lock t)
-    (setq nrepl-hide-special-buffers t)
     (setq nrepl-popup-stacktraces nil)
     (setq cider-prompt-save-file-on-load nil)
     ;; (setq cider-refresh-before-fn "reloaded.repl/suspend")
