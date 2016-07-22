@@ -19,7 +19,7 @@
       (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
       :config
       ;; (spaceline-spacemacs-theme)
-      ;; (spaceline-emacs-theme)
+      (spaceline-emacs-theme)
       (spaceline-toggle-flycheck-warning-off)
       (spaceline-toggle-flycheck-error-off)
       (spaceline-toggle-flycheck-info-off)

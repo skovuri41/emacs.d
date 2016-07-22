@@ -1,11 +1,20 @@
+;; (use-package git-timemachine
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (evil-make-overriding-map git-timemachine-mode-map 'normal)
+;;     ;; force update evil keymaps after git-timemachine-mode loaded
+;;     (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
+;;   )
+
 (use-package git-timemachine
   :ensure t
+  :commands git-timemachine-toggle
   :config
-  (progn
-    (evil-make-overriding-map git-timemachine-mode-map 'normal)
-    ;; force update evil keymaps after git-timemachine-mode loaded
-    (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps))
-  )
+  (defadvice git-timemachine-mode (after toggle-evil activate)
+    (when git-timemachine-mode
+      (bind-key "C-n" 'git-timemachine-show-next-revision evil-normal-state-local-map)
+      (bind-key "C-p" 'git-timemachine-show-previous-revision evil-normal-state-local-map))))
 
 (use-package git-gutter+
   :commands global-git-gutter+-mode

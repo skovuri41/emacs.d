@@ -56,5 +56,8 @@
   :init
   (require 'helm-org-rifle))
 
+(use-package helm-hunks
+  :ensure t
+  :commands helm-hunks)
 
 (provide 'init-helm)

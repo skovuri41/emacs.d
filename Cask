@@ -115,7 +115,6 @@
 (depends-on "cider-eval-sexp-fu")
 (depends-on "4clojure")
 
-
 (depends-on "guide-key")
 (depends-on "flx-ido")
 (depends-on "ido-vertical-mode")
@@ -178,6 +177,9 @@
 (depends-on "helm-mu")
 (depends-on "helm-org-rifle")
 ;;(depends-on "helm-config")
+(depends-on "helm-cider")
+(depends-on "helm-hunk")
+
 
 ;;evil mode
 (depends-on "evil")
@@ -211,3 +213,4 @@
 (depends-on "quickrun")
 (depends-on "dockerfile-mode")
 (depends-on "docker")
+(depends-on "xah-fly-keys")
