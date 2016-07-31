@@ -36,5 +36,23 @@
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
+;; swith meta and mac command key for mac port emacs build
+(setq mac-option-modifier 'meta)
+;; mac switch meta key
+(defun mac-switch-meta ()
+  "switch meta between Option and Command"
+  (interactive)
+  (if (eq mac-option-modifier nil)
+      (progn
+        (message "switching meta and command")
+        (setq mac-option-modifier 'meta)
+        (setq mac-command-modifier 'hyper)
+        )
+    (progn
+      (setq mac-option-modifier nil)
+      (setq mac-command-modifier 'meta)
+      )
+    )
+  )
 
 (provide 'init-keybindings)
