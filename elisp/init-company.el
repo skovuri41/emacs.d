@@ -28,7 +28,7 @@
       (add-to-list 'company-backends 'company-keywords)
       (add-to-list 'company-backends 'company-capf)
       (add-to-list 'company-backends 'company-ispell t)
-      (add-to-list 'company-backends 'company-web-html)
+      ;; (add-to-list 'company-backends 'company-web-html)
       )
     (define-key company-active-map (kbd "\C-n") 'company-select-next)
     (define-key company-active-map (kbd "\C-p") 'company-select-previous)

@@ -682,7 +682,7 @@
       "Add CUSTOM_ID properties to all headlines in the
    current file which do not already have one."
       (interactive)
-      (org-map-entries (lambda () (eos/org-custom-id-get (point) 'create))))
+      (org-map-entries (lambda () (my/org-custom-id-get (point) 'create))))
 
     ;; automatically add ids to captured headlines
     (add-hook 'org-capture-prepare-finalize-hook

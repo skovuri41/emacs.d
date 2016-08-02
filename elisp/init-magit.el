@@ -10,7 +10,8 @@
       "gs" 'magit-status
       "gS" 'magit-stage-file
       "gC" 'magit-commit
-      "gt" 'git-timemachine
+      ;; "gt" 'git-timemachine
+      "gt" 'git-timemachine-toggle
       "gl" 'magit-log-all
       "gL" 'magit-log-buffer-file
       "gg" 'hydra-git-gutter/body
