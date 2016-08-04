@@ -5,9 +5,7 @@
     (use-package spaceline-config
       :init
       (setq spaceline-workspace-numbers-unicode t)
-      (if *is-a-mac*
-          (setq  spaceline-window-numbers-unicode t)
-        (setq  spaceline-window-numbers-unicode nil))
+      (setq  spaceline-window-numbers-unicode t)
       (setq powerline-height 20)
       (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
       (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
