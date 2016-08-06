@@ -90,7 +90,6 @@
                     'face (xah-fly-keys-state-face)
                     'help-echo (format "Xah Fly keys: %s"
                                        "xah-fly-keys" )))
-
       (spaceline-install
        '(*macro-recording
          ((window-number) :separator " | ")
