@@ -15,7 +15,6 @@
       ("a" rotate-frame-anticlockwise)
       ("x" nil :color blue)
       )
-    (evil-leader/set-key "wt" 'hydra-transpose-frame/body)
     )
   )
                          

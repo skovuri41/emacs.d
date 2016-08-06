@@ -15,7 +15,9 @@
     (with-eval-after-load "ivy"
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
       (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-delete-char)
-      (define-key ivy-minibuffer-map [escape] (kbd "C-g")))
+      (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
+      (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g") )
+      )
     (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
@@ -23,18 +25,12 @@
     (setq ivy-initial-inputs-alist nil)
     (setq ivy-re-builders-alist
           '((t . ivy--regex-fuzzy))))
-  (progn
-    (evil-global-set-key 'normal [remap evil-search-forward] #'swiper)
-    (evil-global-set-key 'normal [remap evil-search-backward] #'swiper)
-    (evil-global-set-key 'motion [remap evil-search-forward] #'swiper)
-    (evil-global-set-key 'motion [remap evil-search-backward] #'swiper))
   )
 
 (use-package ivy
   :ensure swiper
   :diminish ivy-mode
-  :bind (("C-x b" . nil)
-         (:map evil-leader--default-map ("bb" . ivy-switch-buffer)))
+  :bind (("C-x b" . nil))
   :config
   (progn
     ;; partial complete without exiting
@@ -67,7 +63,6 @@
                              :sort nil
                              :initial-input nil)))
           (dired dir))))
-    (evil-leader/set-key "dr" #'bjm/ivy-dired-recent-dirs)
     )
   :init
   (progn
@@ -80,9 +75,7 @@
          ("C-c k" . counsel-ag)
          ("C-c y" . counsel-yank-pop)
          ("C-c g" . counsel-git)
-         ("C-x l" . counsel-locate)
-         (:map evil-leader--default-map
-               ("ff" . counsel-find-file))))
+         ("C-x l" . counsel-locate)))
 
 (use-package counsel-projectile         ; Ivy integration for Projectile
   :ensure t

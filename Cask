@@ -214,3 +214,4 @@
 (depends-on "dockerfile-mode")
 (depends-on "docker")
 (depends-on "xah-fly-keys")
+(depends-on "embrace")

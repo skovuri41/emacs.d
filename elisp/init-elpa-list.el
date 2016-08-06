@@ -118,5 +118,8 @@
                     sql-indent
                     peep-dired
                     ranger
+                    xah-fly-keys
+                    embrace
                     ))
+
 

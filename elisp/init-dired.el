@@ -91,29 +91,6 @@
     (interactive "P")
     (let* ((fn-list (dired-get-marked-files nil arg)))
       (mapc 'find-file fn-list)))
-
-  (evil-define-key 'normal dired-mode-map "k" 'dired-previous-line)
-  (evil-define-key 'normal dired-mode-map "j" 'dired-next-line)
-  (evil-define-key 'normal dired-mode-map "l" 'dired-find-file)
-  (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
-  (evil-define-key 'normal dired-mode-map (kbd "C-j") 'dired-next-subdir)
-  (evil-define-key 'normal dired-mode-map (kbd "C-k") 'dired-prev-subdir)
-  (evil-define-key 'normal dired-mode-map "o" 'dired-sort-toggle-or-edit)
-  (evil-define-key 'normal dired-mode-map "v" 'dired-toggle-marks)
-  (evil-define-key 'normal dired-mode-map "m" 'dired-mark)
-  (evil-define-key 'normal dired-mode-map "u" 'dired-unmark)
-  (evil-define-key 'normal dired-mode-map "U" 'dired-unmark-all-marks)
-  (evil-define-key 'normal dired-mode-map "c" 'dired-create-directory)
-  (evil-define-key 'normal dired-mode-map "r" 'revert-buffer)
-  (evil-define-key 'normal dired-mode-map "gg" 'my/back-to-top)
-  (evil-define-key 'normal dired-mode-map "G" 'my/jump-to-bottom)
-  (evil-define-key 'normal dired-mode-map "." 'my/dotfiles-toggle)
-  (evil-define-key 'normal dired-mode-map "=" 'my/dired-diff)
-  (evil-define-key 'normal dired-mode-map "F" 'my/dired-find-file)
-  (evil-define-key 'normal dired-mode-map "n" 'evil-search-next)
-  (evil-define-key 'normal dired-mode-map "N" 'evil-search-previous)
-  (evil-define-key 'normal dired-mode-map (kbd "C-x C-q") 'wdired-change-to-wdired-mode)
-  (evil-define-key 'normal dired-mode-map "W" 'wdired-change-to-wdired-mode)
   (add-hook 'dired-mode-hook #'hl-line-mode)
   (add-hook 'dired-mode-hook #'my/dired-mode-hook)
 
@@ -129,7 +106,6 @@
     :init
     (setq diredp-hide-details-initially-flag nil)
     (setq diredp-hide-details-propagate-flag nil)
-    (evil-leader/set-key "dj" 'dired-jump)
     :config
     (diredp-toggle-find-file-reuse-dir 1))
 

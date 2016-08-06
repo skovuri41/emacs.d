@@ -19,25 +19,9 @@
     )
   (progn
     ;;(define-key ag-mode-map (kbd "k") 'nil)
-    (evil-define-key 'normal ag-mode-map (kbd "k") 'nil)
-    (evil-leader/set-key
-      "agg" 'ag
-      "agf" 'ag-files
-      "agr" 'ag-regexp
-      "agp" 'ag-project
-      "agP" 'ag-project-files
-      "agR" 'ag-project-regexp
-      "agd" 'ag-project-dired
-      "agD" 'ag-project-dired-regexp
-      "agk" 'ag-kill-buffers
-      )
     (add-hook 'ag-mode-hook
               (lambda ()
-                (wgrep-ag-setup)
-                (define-key ag-mode-map "j" 'evil-next-line)
-                (define-key ag-mode-map "k" 'evil-previous-line)
-                (define-key ag-mode-map "n" 'evil-ex-search-next)
-                (define-key ag-mode-map "N" 'evil-ex-search-previous)))))
+                (wgrep-ag-setup)))))
 (use-package wgrep
   :ensure t
   :config

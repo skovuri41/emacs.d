@@ -1,7 +1,6 @@
 (use-package ido
   :config
   (progn
-    ;;(evil-leader/set-key "bs" 'ido-switch-buffer)
     ;; Use the current window when visiting files and buffers with ido
     (setq ido-default-file-method 'selected-window)
     (setq ido-default-buffer-method 'selected-window)

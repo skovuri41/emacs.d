@@ -47,7 +47,7 @@
     (push '("*cider-error*" :noselect t :height 20) popwin:special-display-config)
     (push '("*cider-doc*" :noselect t :height 20) popwin:special-display-config)
     (push '(cider-macroexpansion-mode :noselect t) popwin:special-display-config)
-    (when neo-persist-show
+    (when (fboundp 'neo-persist-show)
       (add-hook 'popwin:before-popup-hook
                 (lambda () (setq neo-persist-show nil)))
       (add-hook 'popwin:after-popup-hook
@@ -73,15 +73,10 @@
 
 (use-package popup-imenu
   :commands (popup-imenu)
-  :init
-  (evil-leader/set-key "pi" 'popup-imenu)
   )
 
 (use-package flyspell-popup
   :ensure t
-  :init
-  (define-key evil-normal-state-map "z=" 'flyspell-popup-correct)
-  (define-key evil-visual-state-map "z=" 'flyspell-popup-correct)
   )
 
 

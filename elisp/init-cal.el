@@ -8,7 +8,6 @@
   (require 'calfw-cal)
   (defun keymaps/calfw ()
     "Keymaps for calfw."
-    (evil-set-initial-state 'cfw:calendar-mode 'emacs)
 
     (define-key cfw:calendar-mode-map "h" 'cfw:navi-previous-day-command)
     (define-key cfw:calendar-mode-map "j" 'cfw:navi-next-week-command)

@@ -5,18 +5,8 @@
     (use-package spaceline-config
       :init
       (setq spaceline-workspace-numbers-unicode t)
-      (if *is-a-mac*
-          (setq  spaceline-window-numbers-unicode t)
-        (setq  spaceline-window-numbers-unicode nil))
+      (setq  spaceline-window-numbers-unicode t)
       (setq powerline-height 20)
-      (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
-      (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
-      (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
-      (set-face-attribute 'spaceline-evil-normal nil :background "#a6e22e")
-      (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
-      (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
-      ;; (set-face-attribute 'mode-line nil :font "Source Code Pro for Powerline-12")
-      (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
       :config
       ;; (spaceline-spacemacs-theme)
       (spaceline-emacs-theme)
@@ -60,7 +50,6 @@
 
       (defface mode-line-is-modified nil "Face for mode-line modified symbol")
       (defface mode-line-buffer-file nil "Face for mode-line buffer file path")
-      ;; (setq ns-use-srgb-colorspace nil)
 
       (spaceline-define-segment *buffer-modified
         (concat
@@ -74,10 +63,38 @@
         :skip-alternate t
         :tight t)
 
+      (defface xah-fly-keys-face1
+        '((t (:foreground "#FC5C94" :distant-foreground "#A20C41")))
+        "Face for xah keys in the modeline."
+        :group 'spaceline)
+
+      (defface xah-fly-keys-face2
+        '((t (:foreground "chartreuse3" :distant-foreground "darkgreen")))
+        "Face for xah keys the modeline."
+        :group 'spaceline)
+
+      (defun xah-fly-keys-state ()
+        (if xah-fly-insert-state-q
+            " I "
+          " C "
+          ))
+
+      (defun xah-fly-keys-state-face ()
+        (if xah-fly-insert-state-q
+            'xah-fly-keys-face2
+          'xah-fly-keys-face1
+          ))
+
+      (spaceline-define-segment *xah-fly-keys-state
+        (propertize (xah-fly-keys-state)
+                    'face (xah-fly-keys-state-face)
+                    'help-echo (format "Xah Fly keys: %s"
+                                       "xah-fly-keys" )))
+
       (spaceline-install
        '(*macro-recording
          ((window-number) :separator " | ")
-         ((evil-state) :face highlight-face :separator " | ")
+         (*xah-fly-keys-state  :separator " | " )
          (buffer-modified buffer-size buffer-id remote-host)
          major-mode
          ((flycheck-error flycheck-warning flycheck-info) :when active)
@@ -92,7 +109,9 @@
          (global :when active)
          buffer-position
          hud))
-      (setq mode-line-format (default-value 'mode-line-format))
+
+      ;; (setq mode-line-format (default-value 'mode-line-format))
+
       )))
 
 (defadvice vc-mode-line (after strip-backend () activate)
