@@ -33,20 +33,20 @@
   :config
   (define-key smartscan-map (kbd "M-n") nil)
   (define-key smartscan-map (kbd "M-p") nil)
-  (define-key smartscan-map (kbd "M-'") nil)
-  (define-key evil-normal-state-map "gn" 'smartscan-symbol-go-forward)
-  (define-key evil-normal-state-map "gp" 'smartscan-symbol-go-backward))
+  (define-key smartscan-map (kbd "M-'") nil))
 
 ;;; Visible mark
 (use-package visible-mark
   :ensure t
-  ;; :init
-  ;; (defface visible-mark-active
-  ;;   '((((type tty) (class mono)))
-  ;;     (t (:background "magenta"))) "")
+  :init
+  (defface face2
+    '((((type tty) (class mono)))
+      (t (:foreground "#FF1D00" :background "#E593C3")))
+    "Face for flycheck error feedback in the modeline."
+    :group 'visible-mark)
   :config
   (setq visible-mark-max 1)
-  (setq visible-mark-faces `(visible-mark-face1 visible-mark-face2))
+  (setq visible-mark-faces `(face2 visible-mark-face2))
   (global-visible-mark-mode 1))
 
 (use-package bug-hunter                            ; Search init file for bugs

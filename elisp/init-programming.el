@@ -67,22 +67,8 @@
   :mode  (("\\.csv\\'" . csv-mode))
   :mode ("\\.tsv\\'" . csv-mode)
   :mode ("\\.[Cc][Ss][Vv]\\'". csv-mode)
-  :config
-  (evil-leader/set-key-for-mode 'csv-mode
-    "mt"  'csv-transpose
-    "ma"  'csv-align-fields
-    "mu"  'csv-unalign-fields
-    "msf" 'csv-sort-fields
-    "msn" 'csv-sort-numeric-fields
-    "mso" 'csv-toggle-descending
-    "mn"  'csv-forward-field
-    "mp"  'csv-backward-field
-    "mr"  'csv-reverse-region
-    "md"  'csv-kill-fields
-    "mi"  'csv-toggle-invisibility
-    "mvf" 'csv-yank-fields
-    "mvt" 'csv-yank-as-new-table)
   )
+
 (use-package csv-nav
   :ensure t
   :config

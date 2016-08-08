@@ -4,8 +4,8 @@
              magit-log
              magit-commit
              magit-stage-file)
-  )
-
-
+  :progn
+  (add-hook 'magit-mode-hook 'xah-fly-insert-mode-activate)
+  (add-hook 'magit-status-mode-hook 'xah-fly-command-mode-activate))
 
 (provide 'init-magit)

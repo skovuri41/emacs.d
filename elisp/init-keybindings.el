@@ -24,6 +24,8 @@
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
+(global-set-key (kbd "C-f") 'golden-ratio-scroll-screen-up)
+(global-set-key (kbd "C-b") 'golden-ratio-scroll-screen-down)
 
 ;; swith meta and mac command key for mac port emacs build
 (setq mac-option-modifier 'meta)

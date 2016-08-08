@@ -1,5 +1,6 @@
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (use-package mu4e
+  :if *is-a-mac*
   :commands (mu4e)
   :config
   (progn

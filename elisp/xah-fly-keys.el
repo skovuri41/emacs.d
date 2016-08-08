@@ -1054,7 +1054,7 @@ Version 2015-04-19"
 (defun xah-insert-ascii-double-quote () (interactive) (xah-insert-bracket-pair "\"" "\"") )
 (defun xah-insert-ascii-single-quote () (interactive) (xah-insert-bracket-pair "'" "'") )
 (defun xah-insert-emacs-quote () (interactive) (xah-insert-bracket-pair "`" "'") )
-(defun xah-insert-corner-bracket「」 () (interactive) (xah-insert-bracket-pair "「" "」") )
+(defun xah-insert-corne-bracket「」 () (interactive) (xah-insert-bracket-pair "「" "」") )
 (defun xah-insert-white-corner-bracket『』 () (interactive) (xah-insert-bracket-pair "『" "』") )
 (defun xah-insert-angle-bracket〈〉 () (interactive) (xah-insert-bracket-pair "〈" "〉") )
 (defun xah-insert-double-angle-bracket《》 () (interactive) (xah-insert-bracket-pair "《" "》") )
@@ -2007,11 +2007,21 @@ If `universal-argument' is called first, do switch frame."
    ("j" . xah-run-current-file)))
 
 (xah-fly-map-keys
+ (define-prefix-command 'xah-comment-keymap)
+ '(
+   ("/" . evilnc-comment-or-uncomment-lines)
+   ("l" . evilnc-quick-comment-or-uncomment-to-the-line)
+   ("y" . evilnc-copy-and-comment-lines)
+   ("p" . evilnc-comment-or-uncomment-paragraphs)
+   ("r" . comment-or-uncomment-region)
+   ("v" . evilnc-toggle-invert-comment-line-by-line)))
+
+(xah-fly-map-keys
  (define-prefix-command 'xah-insertion-keymap)
  '(
    ("RET" . insert-char)
    ("SPC" . xah-insert-unicode)
-;; xah-insert-date
+   ;; xah-insert-date
    ("b" . xah-insert-black-lenticular-bracket【】)
    ("c" . xah-insert-ascii-single-quote)
    ("d" . xah-insert-double-curly-quote“”)
@@ -2042,7 +2052,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "'") 'xah-fill-or-unfill)
   (define-key xah-fly-leader-key-map (kbd ",") nil)
   (define-key xah-fly-leader-key-map (kbd "-") nil)
-  (define-key xah-fly-leader-key-map (kbd "/") nil)
+  (define-key xah-fly-leader-key-map (kbd "/") 'xah-comment-keymap)
   (define-key xah-fly-leader-key-map (kbd ";") nil)
   (define-key xah-fly-leader-key-map (kbd "=") nil)
   (define-key xah-fly-leader-key-map (kbd "[") nil)
@@ -2306,6 +2316,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd ";") nil)
     (define-key xah-fly-key-map (kbd ":") nil)
     (define-key xah-fly-key-map (kbd "/") 'swiper)
+    (define-key xah-fly-key-map (kbd "?") 'swiper)
     (define-key xah-fly-key-map (kbd "\\") nil)
     (define-key xah-fly-key-map (kbd "=") 'xah-forward-equal-sign)
     (define-key xah-fly-key-map (kbd "[") 'xah-backward-left-bracket)
@@ -2366,7 +2377,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "i") 'xah-fly-insert-mode-activate)
     (define-key xah-fly-key-map (kbd "k") 'previous-line)
     (define-key xah-fly-key-map (kbd "K") 'my-jump-to-elisp-docs)
-    (define-key xah-fly-key-map (kbd "m") 'eay-mark)
+    (define-key xah-fly-key-map (kbd "m") 'easy-mark)
     (define-key xah-fly-key-map (kbd "n") 'isearch-repeat-forward)
     (define-key xah-fly-key-map (kbd "N") 'isearch-repeat-backward)
     (define-key xah-fly-key-map (kbd "l") 'forward-char)
@@ -2404,6 +2415,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "|") nil)
     (define-key xah-fly-key-map (kbd ".") nil)
     (define-key xah-fly-key-map (kbd "/") nil)
+    (define-key xah-fly-key-map (kbd "?") 'nil)
     (define-key xah-fly-key-map (kbd ";") nil)
     (define-key xah-fly-key-map (kbd "=") nil)
     (define-key xah-fly-key-map (kbd "[") nil)
