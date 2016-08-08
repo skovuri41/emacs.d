@@ -35,7 +35,6 @@
 (require 'init-dired)
 (require 'init-anzu)
 (require 'init-ag)
-(require 'init-keyfreq)
 (require 'init-ivy)
 (require 'init-color-identifiers)
 (require 'init-super-save)
