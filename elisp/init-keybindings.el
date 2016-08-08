@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
+(global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key "\C-ca" 'org-agenda)
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -23,6 +24,7 @@
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
+
 ;; swith meta and mac command key for mac port emacs build
 (setq mac-option-modifier 'meta)
 ;; mac switch meta key

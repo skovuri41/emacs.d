@@ -1,4 +1,5 @@
 (use-package fancy-battery
+  :if *is-a-mac*
   :ensure t
   :config
   (setq-default fancy-battery-show-percentage t)

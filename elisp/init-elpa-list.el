@@ -120,6 +120,7 @@
                     ranger
                     xah-fly-keys
                     embrace
+                    key-chord
                     ))
 
 
