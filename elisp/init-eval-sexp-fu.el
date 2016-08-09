@@ -16,9 +16,5 @@
     :group 'eval-sexp-fu)
   (setq eval-sexp-fu-flash-face 'eval-sexp-fu-flash1))
 
-(use-package cider-eval-sexp-fu
-  :defer t
-  )
-
 (provide 'init-eval-sexp-fu)
 

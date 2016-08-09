@@ -9,6 +9,7 @@
           (company-complete-common)
         (indent-according-to-mode)))
     (global-set-key "\t" 'indent-or-complete)
+
     (setq company-tooltip-align-annotations t
           company-tooltip-flip-when-above t
           company-require-match nil

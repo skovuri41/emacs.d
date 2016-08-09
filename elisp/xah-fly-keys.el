@@ -1825,9 +1825,28 @@ If `universal-argument' is called first, do switch frame."
    ("w" . isearch-forward-word)))
 
 (xah-fly-map-keys
+ (define-prefix-command 'my-org-mode-keymap)
+ '(
+   ("a" 'org-agenda)
+   ("g" 'helm-org-agenda-files-headings)
+   ("o" 'org-clock-out)
+   ("i" 'org-clock-in)
+   ("c" 'org-capture)
+   ("C" 'helm-org-capture-templates)
+   ("r" 'org-goto-refile-target)
+   ("p" 'org-pomodoro)
+   ("L" 'org-insert-link)
+   ("l" 'org-store-link)
+   ("x" 'org-encrypt-entry)
+   ("X" 'org-decrypt-entry)
+   ("I" 'org-cliplink)))
+
+
+(xah-fly-map-keys
  (define-prefix-command 'xah-leader-tab-keymap)
  '(
    ("TAB" . indent-for-tab-command)
+   ;; ("TAB" . 'indent-or-complete)
 
    ("i" . complete-symbol)
    ("g" . indent-rigidly)
@@ -2046,7 +2065,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "DEL") 'xah-delete-current-file)
   (define-key xah-fly-leader-key-map (kbd "RET") (if (fboundp 'smex) 'smex 'execute-extended-command ))
   (define-key xah-fly-leader-key-map (kbd "TAB") xah-leader-tab-keymap)
-
+  
   (define-key xah-fly-leader-key-map (kbd ".") xah-highlight-keymap)
 
   (define-key xah-fly-leader-key-map (kbd "'") 'xah-fill-or-unfill)
@@ -2208,30 +2227,6 @@ If `universal-argument' is called first, do switch frame."
 ;; r o       other-frame
 ;; r r       find-file-read-only-other-frame
 
-;; (xah-fly-map-keys
-;;  (define-prefix-command 'xah-leader-vc-keymap)
-;;  '(
-;;    ("+" . vc-update)
-;;    ("=" . vc-diff)
-;;    ("D" . vc-root-diff)
-;;    ("L" . vc-print-root-log)
-;;    ("a" . vc-update-change-log)
-;;    ("b" . vc-switch-backend)
-;;    ("c" . vc-rollback)
-;;    ("d" . vc-dir)
-;;    ("g" . vc-annotate)
-;;    ("h" . vc-insert-headers)
-;;    ("l" . vc-print-log)
-;;    ("m" . vc-merge)
-;;    ("r" . vc-retrieve-tag)
-;;    ("s" . vc-create-tag)
-;;    ("u" . vc-revert)
-;;    ("v" . vc-next-action)
-;;    ("~" . vc-revision-other-window)))
-
-;; ;; 2013-11-04 make emacs auto show suggestions when a prefix key is pressed
-;; (require 'guide-key)
-;; (guide-key-mode 1)
 
 
 ;; setting keys

@@ -152,4 +152,11 @@
   :ensure t
   :defer t)
 
+(use-package cider-eval-sexp-fu
+  :ensure t
+  :config
+  (defun config-init-cider-eval-sexp-fu ()
+    (require 'cider-eval-sexp-fu))
+  (add-hook 'cider-mode-hook 'config-init-cider-eval-sexp-fu))
+
 (provide 'init-clojure)
