@@ -2318,7 +2318,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "/") 'swiper)
     (define-key xah-fly-key-map (kbd "?") 'swiper)
     (define-key xah-fly-key-map (kbd "\\") nil)
-    (define-key xah-fly-key-map (kbd "=") 'xah-forward-equal-sign)
+    (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body)
     (define-key xah-fly-key-map (kbd "[") 'xah-backward-left-bracket)
     (define-key xah-fly-key-map (kbd "]") 'xah-forward-right-bracket)
     (define-key xah-fly-key-map (kbd "`") 'other-frame)
@@ -2377,7 +2377,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "i") 'xah-fly-insert-mode-activate)
     (define-key xah-fly-key-map (kbd "k") 'previous-line)
     (define-key xah-fly-key-map (kbd "K") 'my-jump-to-elisp-docs)
-    (define-key xah-fly-key-map (kbd "m") 'easy-mark)
+    (define-key xah-fly-key-map (kbd "m") 'helm-M-x)
     (define-key xah-fly-key-map (kbd "n") 'isearch-repeat-forward)
     (define-key xah-fly-key-map (kbd "N") 'isearch-repeat-backward)
     (define-key xah-fly-key-map (kbd "l") 'forward-char)
@@ -2396,14 +2396,11 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "wo") 'delete-other-windows)
     (define-key xah-fly-key-map (kbd "wt") 'hydra-transpose-frame/body)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
+    (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
     (define-key xah-fly-key-map (kbd "y") 'easy-kill)
     (define-key xah-fly-key-map (kbd "z") 'comment-dwim)
     ;;
     ))
-
-
-
-
 
 (defun xah-fly-insert-mode-init ()
   "Set insertion mode keys"
@@ -2465,6 +2462,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "v") nil)
     (define-key xah-fly-key-map (kbd "w") nil)
     (define-key xah-fly-key-map (kbd "x") nil)
+    (define-key xah-fly-key-map (kbd "X") nil)
     (define-key xah-fly-key-map (kbd "y") nil)
     (define-key xah-fly-key-map (kbd "z") nil)
 
