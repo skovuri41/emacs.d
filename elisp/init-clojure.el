@@ -4,7 +4,7 @@
          ("\\.clj$" . clojure-mode))
   :config
   (progn
-    (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+    ;; (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
     ;; (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
     (define-clojure-indent
       (defroutes 'defun)
@@ -79,17 +79,38 @@
       (cider-switch-to-last-clojure-buffer)
       (message ""))
 
-    (evil-leader/set-key "eb" 'cider-eval-buffer)
-    (evil-leader/set-key "ee" 'cider-eval-last-sexp)
-    (evil-leader/set-key "er" 'cider-eval-region)
-    (evil-leader/set-key "ef" 'cider-eval-defun-at-point)
-    (evil-leader/set-key "es" 'cider-send-and-evaluate-sexp)
+    (defun clj-mode-keys-setup()
+      "for 'clojure mode'"
 
-    (evil-leader/set-key "cd" 'cider-doc)
-    (evil-leader/set-key "cc" 'cider-connect)
-    (evil-leader/set-key "ct" 'cider-test-run-tests)
-    (evil-leader/set-key "cr" 'toggle-nrepl-buffer)
-    (evil-leader/set-key "cf" 'cider-save-and-refresh)))
+      ;; (local-set-key (kbd "SPC m e b") 'cider-eval-buffer)
+      ;; (local-set-key (kbd "SPC m e e") 'cider-eval-last-sexp)
+      ;; (local-set-key (kbd "SPC m e r") 'cider-eval-region)
+      ;; (local-set-key (kbd "SPC m e f") 'cider-eval-defun-at-point)
+      ;; (local-set-key (kbd "SPC m e s") 'cider-send-and-evaluate-sexp)
+      ;; (local-set-key (kbd "SPC m c d") 'cider-doc)
+      ;; (local-set-key (kbd "SPC m c c") 'cider-connect)
+      ;; (local-set-key (kbd "SPC m c t") 'cider-test-run-tests)
+      ;; (local-set-key (kbd "SPC m c f") 'cider-save-and-refresh)
+      ;; (local-set-key (kbd "SPC m c r") 'toggle-nrepl-buffer)
+
+      (xah-fly-map-keys
+       (define-prefix-command 'xah-mode-keymap)
+       '(
+         ("e b"  . cider-eval-buffer)
+         ("e e"  . cider-eval-last-sexp)
+         ("e r"  . cider-eval-region)
+         ("e f"  . cider-eval-defun-at-point)
+         ("e s"  . cider-send-and-evaluate-sexp)
+         ("c d"  . cider-doc)
+         ("c c"  . cider-connect)
+         ("c t"  . cider-test-run-tests)
+         ("c f"  . cider-save-and-refresh)
+         ("c r"  . toggle-nrepl-buffer)
+         ))
+      )
+    (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)
+
+    ))
 
 (use-package cider
   :commands (cider cider-connect cider-jack-in)
@@ -130,17 +151,22 @@
   (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
   :config
   (progn
-    (evil-leader/set-key "rai" 'cljr-add-import-to-ns)
-    (evil-leader/set-key "rar" 'cljr-add-require-to-ns)
-    (evil-leader/set-key "rau" 'cljr-add-use-to-ns)
-    (evil-leader/set-key "rrr" 'cljr-remove-unused-requires)
-    (evil-leader/set-key "rsn" 'cljr-sort-ns)
-    (evil-leader/set-key "rtf" 'cljr-thread-first-all)
-    (evil-leader/set-key "rtl" 'cljr-thread-last-all)
-    (evil-leader/set-key "rcc" 'cljr-cycle-coll)
-    (evil-leader/set-key "rcp" 'cljr-cycle-privacy)
-    (evil-leader/set-key "rcs" 'clojure-toggle-keyword-string)
-    (evil-leader/set-key "rfe" 'cljr-create-fn-from-example)))
+    (defun clj-mode-refactor-keys-setup()
+      "for 'clojure mode'"
+      (local-set-key "rai" 'cljr-add-import-to-ns)
+      (local-set-key "rar" 'cljr-add-require-to-ns)
+      (local-set-key "rau" 'cljr-add-use-to-ns)
+      (local-set-key "rrr" 'cljr-remove-unused-requires)
+      (local-set-key "rsn" 'cljr-sort-ns)
+      (local-set-key "rtf" 'cljr-thread-first-all)
+      (local-set-key "rtl" 'cljr-thread-last-all)
+      (local-set-key "rcc" 'cljr-cycle-coll)
+      (local-set-key "rcp" 'cljr-cycle-privacy)
+      (local-set-key "rcs" 'clojure-toggle-keyword-string)
+      (local-set-key "rfe" 'cljr-create-fn-from-example))
+
+    ;; (add-hook 'clojure-mode-hook #'clj-mode-refactor-keys-setup)
+    ))
 
 (use-package flycheck-clojure
   :ensure t

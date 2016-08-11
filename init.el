@@ -1,5 +1,3 @@
-;; Initialize ;;;;
-
 ;; Keep track of loading time
 (defconst emacs-start-time (current-time))
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))

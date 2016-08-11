@@ -72,19 +72,19 @@
 
 ;; the following stardard keys with Control are supported, when the variable xah-fly-use-control-key is t
 
- ;; (kbd "<C-tab>") 'xah-next-user-buffer
- ;; (kbd "<C-S-iso-lefttab>") 'xah-previous-user-buffer
- ;; (kbd "C-v") 'yank
- ;; (kbd "C-w") 'xah-close-current-buffer
- ;; (kbd "C-z") 'undo
- ;; (kbd "C-n") 'xah-new-empty-buffer
- ;; (kbd "C-o") 'find-file
- ;; (kbd "C-s") 'save-buffer
- ;; (kbd "C-S-s") 'write-file
- ;; (kbd "C-S-t") 'xah-open-last-closed
- ;; (kbd "C-+") 'text-scale-increase
- ;; (kbd "C--") 'text-scale-decrease
- ;; (kbd "C-0") (lambda () (interactive) (text-scale-set 0))))
+;; (kbd "<C-tab>") 'xah-next-user-buffer
+;; (kbd "<C-S-iso-lefttab>") 'xah-previous-user-buffer
+;; (kbd "C-v") 'yank
+;; (kbd "C-w") 'xah-close-current-buffer
+;; (kbd "C-z") 'undo
+;; (kbd "C-n") 'xah-new-empty-buffer
+;; (kbd "C-o") 'find-file
+;; (kbd "C-s") 'save-buffer
+;; (kbd "C-S-s") 'write-file
+;; (kbd "C-S-t") 'xah-open-last-closed
+;; (kbd "C-+") 'text-scale-increase
+;; (kbd "C--") 'text-scale-decrease
+;; (kbd "C-0") (lambda () (interactive) (text-scale-set 0))))
 
 ;; That't it.
 
@@ -2086,27 +2086,28 @@ If `universal-argument' is called first, do switch frame."
 
   (define-key xah-fly-leader-key-map (kbd "a") 'mark-whole-buffer)
   (define-key xah-fly-leader-key-map (kbd "b") 'end-of-buffer)
-  (define-key xah-fly-leader-key-map (kbd "c") xah-leader-c-keymap)
+  (define-key xah-fly-leader-key-map (kbd "c") 'xah-leader-c-keymap)
   (define-key xah-fly-leader-key-map (kbd "d") 'beginning-of-buffer)
   ;; (define-key xah-fly-leader-key-map (kbd "e") nil)
   (define-key xah-fly-leader-key-map (kbd "f") 'xah-search-current-word)
   (define-key xah-fly-leader-key-map (kbd "g") 'isearch-forward)
   (define-key xah-fly-leader-key-map (kbd "h") 'xah-help-keymap)
-  (define-key xah-fly-leader-key-map (kbd "i") xah-leader-i-keymap)
+  (define-key xah-fly-leader-key-map (kbd "i") 'xah-leader-i-keymap)
   (define-key xah-fly-leader-key-map (kbd "j") 'xah-cut-all-or-region)
   (define-key xah-fly-leader-key-map (kbd "k") 'yank)
   (define-key xah-fly-leader-key-map (kbd "l") 'recenter-top-bottom)
-  (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
-  (define-key xah-fly-leader-key-map (kbd "n") xah-harmless-keymap)
+  ;; (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
+  (define-key xah-fly-leader-key-map (kbd "m") 'xah-mode-keymap)
+  (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
   ;; (define-key xah-fly-leader-key-map (kbd "o") nil)
   (define-key xah-fly-leader-key-map (kbd "p") 'query-replace)
   (define-key xah-fly-leader-key-map (kbd "q") 'xah-copy-all-or-region)
-  (define-key xah-fly-leader-key-map (kbd "r") xah-edit-cmds-keymap)
+  (define-key xah-fly-leader-key-map (kbd "r") 'xah-edit-cmds-keymap)
   (define-key xah-fly-leader-key-map (kbd "s") 'save-buffer)
-  (define-key xah-fly-leader-key-map (kbd "t") xah-leader-t-keymap)
+  (define-key xah-fly-leader-key-map (kbd "t") 'xah-leader-t-keymap)
   (define-key xah-fly-leader-key-map (kbd "u") 'switch-to-buffer)
   ;; (define-key xah-fly-leader-key-map (kbd "v") nil)
-  (define-key xah-fly-leader-key-map (kbd "w") xah-danger-keymap)
+  (define-key xah-fly-leader-key-map (kbd "w") 'xah-danger-keymap)
   ;; (define-key xah-fly-leader-key-map (kbd "x") nil)
   (define-key xah-fly-leader-key-map (kbd "y") 'xah-copy-file-path)
   (define-key xah-fly-leader-key-map (kbd "z") 'comment-dwim))
@@ -2149,7 +2150,7 @@ If `universal-argument' is called first, do switch frame."
 
 ;; C-x e	kmacro-end-and-call-macro
 ;; C-x q	kbd-macro-query
-;; C-x C-k	kmacro-keymap
+;; C-x C-k	kmacro-keymap(require 'init-xah-fly-keys)
 
 ;; C-x C-d	list-directory
 ;; C-x C-n	set-goal-column
@@ -2348,7 +2349,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "bk") 'xah-close-current-buffer)
     (define-key xah-fly-key-map (kbd "bn") 'xah-new-empty-buffer)
     (define-key xah-fly-key-map (kbd "bs") 'save-buffer)
-    (define-key xah-fly-key-map (kbd "c") 'helm-M-x)
+    (define-key xah-fly-key-map (kbd "c") nil)
     (define-key xah-fly-key-map (kbd "e") 'xah-end-of-line-or-block)
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
     (define-key xah-fly-key-map (kbd "dr") 'xah-cut-all-or-region)
@@ -2383,7 +2384,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "q") 'popwin:close-popup-window)
     (define-key xah-fly-key-map (kbd "r") 'undo-tree-redo)
     (define-key xah-fly-key-map (kbd "s") 'embrace-commander)
-    (define-key xah-fly-key-map (kbd "t") 'forward-word)
+    (define-key xah-fly-key-map (kbd "t") 'evilmi-jump-items)
     (define-key xah-fly-key-map (kbd "u") 'undo-tree-undo)
     (define-key xah-fly-key-map (kbd "v") 'set-mark-command)
     (define-key xah-fly-key-map (kbd "ww") 'ace-window)
@@ -2418,7 +2419,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "SPC") nil)
     (define-key xah-fly-key-map (kbd "*") nil)
 
-
+    
     (define-key xah-fly-key-map (kbd "1") nil)
     (define-key xah-fly-key-map (kbd "2") nil)
     (define-key xah-fly-key-map (kbd "3") nil)
@@ -2445,10 +2446,11 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "l") nil)
     (define-key xah-fly-key-map (kbd "m") nil)
     (define-key xah-fly-key-map (kbd "n") nil)
+    (define-key xah-fly-key-map (kbd "N") nil)
     (define-key xah-fly-key-map (kbd "o") nil)
     (define-key xah-fly-key-map (kbd "O") nil)
     (define-key xah-fly-key-map (kbd "p") nil)
-    (define-key xah-fly-key-map (kbd "P") 'nil)
+    (define-key xah-fly-key-map (kbd "P") nil)
     (define-key xah-fly-key-map (kbd "q") nil)
     (define-key xah-fly-key-map (kbd "r") nil)
     (define-key xah-fly-key-map (kbd "s") nil)
