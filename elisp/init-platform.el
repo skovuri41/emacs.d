@@ -54,7 +54,7 @@
 
   ;; (setq
   ;;  ;; font
-  ;;  default-frame-alist '((font . "Monaco-13")
+  ;;  default-frame-alist '((font . "Hasklig-16")
   ;;                        (width . 120)    ;character
   ;;                        (height . 52)))  ; lines
 

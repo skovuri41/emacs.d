@@ -2,6 +2,12 @@
   :mode (("\\.edn$" . clojure-mode)
          ("\\.cljc$" . clojure-mode)
          ("\\.clj$" . clojure-mode))
+  :init
+  (progn
+    (use-package clj-refactor
+      :init
+      (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
+      ))
   :config
   (progn
     ;; (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
@@ -79,7 +85,7 @@
       (cider-switch-to-last-clojure-buffer)
       (message ""))
 
-    (defun clj-mode-keys-setup()
+    (defun clj-mode-keys-setup ()
       "for 'clojure mode'"
 
       ;; (local-set-key (kbd "SPC m e b") 'cider-eval-buffer)
@@ -106,6 +112,17 @@
          ("c t"  . cider-test-run-tests)
          ("c f"  . cider-save-and-refresh)
          ("c r"  . toggle-nrepl-buffer)
+         ("rai" . cljr-add-import-to-ns)
+         ("rar" . cljr-add-require-to-ns)
+         ("rau" . cljr-add-use-to-ns)
+         ("rrr" . cljr-remove-unused-requires)
+         ("rsn" . cljr-sort-ns)
+         ("rtf" . cljr-thread-first-all)
+         ("rtl" . cljr-thread-last-all)
+         ("rcc" . cljr-cycle-coll)
+         ("rcp" . cljr-cycle-privacy)
+         ("rcs" . clojure-toggle-keyword-string)
+         ("rfe" . cljr-create-fn-from-example)
          ))
       )
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)
@@ -146,27 +163,7 @@
   (progn
     (evil-leader/set-key "tc" 'typed-clojure-check-ns)))
 
-(use-package clj-refactor
-  :init
-  (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
-  :config
-  (progn
-    (defun clj-mode-refactor-keys-setup()
-      "for 'clojure mode'"
-      (local-set-key "rai" 'cljr-add-import-to-ns)
-      (local-set-key "rar" 'cljr-add-require-to-ns)
-      (local-set-key "rau" 'cljr-add-use-to-ns)
-      (local-set-key "rrr" 'cljr-remove-unused-requires)
-      (local-set-key "rsn" 'cljr-sort-ns)
-      (local-set-key "rtf" 'cljr-thread-first-all)
-      (local-set-key "rtl" 'cljr-thread-last-all)
-      (local-set-key "rcc" 'cljr-cycle-coll)
-      (local-set-key "rcp" 'cljr-cycle-privacy)
-      (local-set-key "rcs" 'clojure-toggle-keyword-string)
-      (local-set-key "rfe" 'cljr-create-fn-from-example))
 
-    ;; (add-hook 'clojure-mode-hook #'clj-mode-refactor-keys-setup)
-    ))
 
 (use-package flycheck-clojure
   :ensure t

@@ -4,7 +4,7 @@
   ;; (set-frame-font "Fira Code")
   (setq
    ;; font
-   default-frame-alist '((font . "Fira Code-14")
+   default-frame-alist '((font . "Fira Code-15")
                          (width . 120)    ;character
                          (height . 55)))  ; lines
   )
