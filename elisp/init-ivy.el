@@ -4,18 +4,18 @@
 (use-package swiper
   :ensure t
   :diminish ivy-mode
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)
-         ("C-c C-r" . ivy-resume))
+  :bind (("C-c C-r" . ivy-resume))
   :init
   (progn
     (setq projectile-completion-system 'ivy)
     (setq swiper-completion-method 'ivy)
+    (setq magit-completing-read-function 'ivy-completing-read)
     (global-set-key (kbd "C-s") 'swiper)
     (with-eval-after-load "ivy"
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
-      (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-delete-char)
+      (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
       (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
+      (define-key ivy-minibuffer-map (kbd "C-o") 'hydra-ivy/body)
       (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g") )
       )
     (setq ivy-use-virtual-buffers t
@@ -23,8 +23,14 @@
     (setq ivy-count-format "(%d/%d) ")
     ;; (ivy-mode 1)
     (setq ivy-initial-inputs-alist nil)
+    ;; (setq ivy-re-builders-alist
+    ;;       '((t . ivy--regex-fuzzy)))
+    ;; (setq ivy-re-builders-alist
+    ;;       '((t . ivy--regex-plus)))
     (setq ivy-re-builders-alist
-          '((t . ivy--regex-fuzzy))))
+          '((read-file-name-internal . ivy--regex-fuzzy)
+            (t . ivy--regex-plus)))
+    )
   )
 
 (use-package ivy
@@ -44,6 +50,8 @@
     (advice-add 'swiper :after #'bjm-swiper-recenter)
     ;; fancier colors
     (setq ivy-display-style 'fancy)
+    ;;ivy-wrap
+    (setq ivy-wrap t)
 
     ;; open recent directory, requires ivy (part of swiper)
     ;; borrows from http://stackoverflow.com/questions/23328037/in-emacs-how-to-maintain-a-list-of-recent-directories
