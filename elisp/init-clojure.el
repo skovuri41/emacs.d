@@ -87,74 +87,70 @@
 
     (defun clj-mode-keys-setup ()
       "for 'clojure mode'"
-
-      ;; (local-set-key (kbd "SPC m e b") 'cider-eval-buffer)
-      ;; (local-set-key (kbd "SPC m e e") 'cider-eval-last-sexp)
-      ;; (local-set-key (kbd "SPC m e r") 'cider-eval-region)
-      ;; (local-set-key (kbd "SPC m e f") 'cider-eval-defun-at-point)
-      ;; (local-set-key (kbd "SPC m e s") 'cider-send-and-evaluate-sexp)
-      ;; (local-set-key (kbd "SPC m c d") 'cider-doc)
-      ;; (local-set-key (kbd "SPC m c c") 'cider-connect)
-      ;; (local-set-key (kbd "SPC m c t") 'cider-test-run-tests)
-      ;; (local-set-key (kbd "SPC m c f") 'cider-save-and-refresh)
-      ;; (local-set-key (kbd "SPC m c r") 'toggle-nrepl-buffer)
-
       (xah-fly-map-keys
-       (define-prefix-command 'xah-mode-keymap)
+       (define-prefix-command 'local-clojure-mode-keymap)
        '(
-         ("e b"  . cider-eval-buffer)
-         ("e e"  . cider-eval-last-sexp)
-         ("e r"  . cider-eval-region)
-         ("e f"  . cider-eval-defun-at-point)
-         ("e s"  . cider-send-and-evaluate-sexp)
-         ("c d"  . cider-doc)
-         ("c c"  . cider-connect)
-         ("c t"  . cider-test-run-tests)
+         ;; ("e b"  . cider-eval-buffer)
+         ;; ("e e"  . cider-eval-last-sexp)
+         ;; ("e r"  . cider-eval-region)
+         ;; ("e f"  . cider-eval-defun-at-point)
+         ;; ("e s"  . cider-send-and-evaluate-sexp)
+         ;; ("c t"  . cider-test-run-tests)
+         ;; ("c d"  . cider-doc)
+         ("e" . cider-eval-commands-map )
+         ("t" . cider-test-commands-map )
+         ("d" . cider-doc-map )
+         ("c c" . cider-connect)
+         ("c j" . cider-jack-in)
+         ("c l" . cider-jack-in-clojurescript)
          ("c f"  . cider-save-and-refresh)
          ("c r"  . toggle-nrepl-buffer)
-         ("rai" . cljr-add-import-to-ns)
-         ("rar" . cljr-add-require-to-ns)
-         ("rau" . cljr-add-use-to-ns)
-         ("rrr" . cljr-remove-unused-requires)
-         ("rsn" . cljr-sort-ns)
-         ("rtf" . cljr-thread-first-all)
-         ("rtl" . cljr-thread-last-all)
-         ("rcc" . cljr-cycle-coll)
-         ("rcp" . cljr-cycle-privacy)
-         ("rcs" . clojure-toggle-keyword-string)
-         ("rfe" . cljr-create-fn-from-example)
+         ("r" . hydra-cljr-help-menu/body)
+         ;; ("rai" . cljr-add-import-to-ns)
+         ;; ("rar" . cljr-add-require-to-ns)
+         ;; ("rau" . cljr-add-use-to-ns)
+         ;; ("rrr" . cljr-remove-unused-requires)
+         ;; ("rsn" . cljr-sort-ns)
+         ;; ("rtf" . cljr-thread-first-all)
+         ;; ("rtl" . cljr-thread-last-all)
+         ;; ("rcc" . cljr-cycle-coll)
+         ;; ("rcp" . cljr-cycle-privacy)
+         ;; ("rcs" . clojure-toggle-keyword-string)
+         ;; ("rfe" . cljr-create-fn-from-example)
          ))
+      (define-key clojure-mode-map (kbd "C-m") 'local-clojure-mode-keymap)
       )
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)
 
+
     ))
 
-(use-package cider
-  :commands (cider cider-connect cider-jack-in)
-  :init
-  (progn
-    ;; (add-hook 'cider-mode-hook #'cider-turn-on-eldoc-mode)
-    (add-hook 'cider-mode-hook #'eldoc-mode)
-    (add-hook 'cider-repl-mode-hook #'eldoc-mode)
-    (add-hook 'cider-repl-mode-hook 'company-mode)
-    (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
-    (add-hook 'cider-mode-hook 'company-mode)
-    (add-hook 'cider-repl-mode-hook 'subword-mode))
-  :config
-  (progn
-    (setq nrepl-hide-special-buffers t)
-    (setq cider-popup-stacktraces-in-repl t)
-    (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
-    (setq cider-repl-pop-to-buffer-on-connect nil)
-    (setq cider-repl-use-clojure-font-lock nil)
-    (setq cider-auto-select-error-buffer t)
-    (setq cider-show-error-buffer t)
-    (setq cider-repl-use-clojure-font-lock t)
-    (setq nrepl-popup-stacktraces nil)
-    (setq cider-prompt-save-file-on-load nil)
-    ;; (setq cider-refresh-before-fn "reloaded.repl/suspend")
-    ;; (setq cider-refresh-after-fn "reloaded.repl/resume")
-    ))
+  (use-package cider
+    :commands (cider cider-connect cider-jack-in)
+    :init
+    (progn
+      ;; (add-hook 'cider-mode-hook #'cider-turn-on-eldoc-mode)
+      (add-hook 'cider-mode-hook #'eldoc-mode)
+      (add-hook 'cider-repl-mode-hook #'eldoc-mode)
+      (add-hook 'cider-repl-mode-hook 'company-mode)
+      (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+      (add-hook 'cider-mode-hook 'company-mode)
+      (add-hook 'cider-repl-mode-hook 'subword-mode))
+    :config
+    (progn
+      (setq nrepl-hide-special-buffers t)
+      (setq cider-popup-stacktraces-in-repl t)
+      (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
+      (setq cider-repl-pop-to-buffer-on-connect nil)
+      (setq cider-repl-use-clojure-font-lock nil)
+      (setq cider-auto-select-error-buffer t)
+      (setq cider-show-error-buffer t)
+      (setq cider-repl-use-clojure-font-lock t)
+      (setq nrepl-popup-stacktraces nil)
+      (setq cider-prompt-save-file-on-load nil)
+      ;; (setq cider-refresh-before-fn "reloaded.repl/suspend")
+      ;; (setq cider-refresh-after-fn "reloaded.repl/resume")
+      ))
 
 (use-package typed-clojure-mode
   :init
@@ -162,8 +158,6 @@
   :config
   (progn
     (evil-leader/set-key "tc" 'typed-clojure-check-ns)))
-
-
 
 (use-package flycheck-clojure
   :ensure t

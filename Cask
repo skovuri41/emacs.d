@@ -61,6 +61,7 @@
 (depends-on "spaceline")
 (depends-on "spacemacs-theme")
 (depends-on "hydra")
+(depends-on "ivy-hydra")
 (depends-on "hungry-delete")
 (depends-on "window-numbering")
 (depends-on "transpose-frame")
@@ -83,7 +84,6 @@
 (depends-on "calfw-cal")
 (depends-on "visible-mark")
 
-
 ;;org
 (depends-on "org")
 (depends-on "org-bullets")
@@ -94,7 +94,6 @@
 (depends-on "org-cliplink")
 
 ;;mail
-
 (depends-on "mu4e-maildirs-extension")
 (depends-on "mu4e-alert")
 (depends-on "w3m")
@@ -115,7 +114,6 @@
 (depends-on "cider-eval-sexp-fu")
 (depends-on "4clojure")
 
-(depends-on "guide-key")
 (depends-on "flx-ido")
 (depends-on "ido-vertical-mode")
 (depends-on "fancy-narrow")
@@ -180,25 +178,10 @@
 (depends-on "helm-cider")
 (depends-on "helm-hunk")
 
-
 ;;evil mode
-(depends-on "evil")
-(depends-on "evil-leader")
-(depends-on "evil-cleverparens")
-(depends-on "evil-surround")
-(depends-on "evil-org")
-(depends-on "evil-escape")
-(depends-on "evil-lisp-state")
-(depends-on "evil-terminal-cursor-changer")
-(depends-on "evil-terminal-cursor-changer")
 (depends-on "evil-nerd-commenter")
-(depends-on "evil-visualstar")
 (depends-on "evil-matchit")
-(depends-on "evil-iedit-state")
-(depends-on "evil-numbers")
-(depends-on "evil-snipe")
-(depends-on "evil-anzu")
-(depends-on "evil-mu4e")
+
 ;;themes
 (depends-on "zenburn-theme")
 (depends-on "monokai-theme")
@@ -215,3 +198,4 @@
 (depends-on "docker")
 (depends-on "xah-fly-keys")
 (depends-on "embrace")
+(depends-on "lispy")

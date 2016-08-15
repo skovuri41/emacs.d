@@ -105,6 +105,7 @@
 (require 'dired) ; in emacs
 (require 'dired-x) ; in emacs
 (require 'ido) ; in emacs
+(require 'lispy)
 
 
 (defvar xah-fly-command-mode-activate-hook nil "Hook for `xah-fly-command-mode-activate'")
@@ -187,7 +188,7 @@ version 2016-06-15"
 (defvar xah-left-brackets '("(" "{" "[" "<" "〔" "【" "〖" "〈" "《" "「" "『" "“" "‘" "‹" "«" )
   "List of left bracket chars.")
 (progn
-;; make xah-left-brackets based on xah-brackets
+  ;; make xah-left-brackets based on xah-brackets
   (setq xah-left-brackets '())
   (dotimes (-x (- (length xah-brackets) 1))
     (when (= (% -x 2) 0)
@@ -876,10 +877,10 @@ TODO 2014-09-30 command incomplete
 
         (goto-char (point-min))
         (while (search-forward "\. \{1,2\}\\([a-z]\\)" nil t)
-nil
-;; (replace-match "myReplaceStr2")
+          nil
+          ;; (replace-match "myReplaceStr2")
 
-)))))
+          )))))
 
 (defun xah-escape-quotes (*begin *end)
   "Replace 「\"」 by 「\\\"」 in current line or text selection.
@@ -891,11 +892,11 @@ Version 2016-07-17"
        (list (region-beginning) (region-end))
      (list (line-beginning-position) (line-end-position))))
   (save-excursion
-      (save-restriction
-        (narrow-to-region *begin *end)
-        (goto-char (point-min))
-        (while (search-forward "\"" nil t)
-          (replace-match "\\\"" 'FIXEDCASE 'LITERAL)))))
+    (save-restriction
+      (narrow-to-region *begin *end)
+      (goto-char (point-min))
+      (while (search-forward "\"" nil t)
+        (replace-match "\\\"" 'FIXEDCASE 'LITERAL)))))
 
 (defun xah-unescape-quotes (*begin *end)
   "Replace  「\\\"」 by 「\"」 in current line or text selection.
@@ -1204,7 +1205,7 @@ Version 2016-07-22"
     (xah-select-current-line)))
 
 (defun xah-semnav-up (arg)
-"Called by `xah-extend-selection'.
+  "Called by `xah-extend-selection'.
 
 URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
 Version 2015-11-13.
@@ -1444,31 +1445,31 @@ URL `http://ergoemacs.org/emacs/elisp_run_current_file.html'
 version 2016-01-28"
   (interactive)
   (let (
-         (-suffix-map
-          ;; (‹extension› . ‹shell program name›)
-          `(
-            ("php" . "php")
-            ("pl" . "perl")
-            ("py" . "python")
-            ("py3" . ,(if (string-equal system-type "windows-nt") "c:/Python32/python.exe" "python3"))
-            ("rb" . "ruby")
-            ("go" . "go run")
-            ("js" . "node") ; node.js
-            ("sh" . "bash")
-            ("clj" . "java -cp /home/xah/apps/clojure-1.6.0/clojure-1.6.0.jar clojure.main")
-            ("rkt" . "racket")
-            ("ml" . "ocaml")
-            ("vbs" . "cscript")
-            ("tex" . "pdflatex")
-            ("latex" . "pdflatex")
-            ("java" . "javac")
-            ;; ("pov" . "/usr/local/bin/povray +R2 +A0.1 +J1.2 +Am2 +Q9 +H480 +W640")
-            ))
+        (-suffix-map
+         ;; (‹extension› . ‹shell program name›)
+         `(
+           ("php" . "php")
+           ("pl" . "perl")
+           ("py" . "python")
+           ("py3" . ,(if (string-equal system-type "windows-nt") "c:/Python32/python.exe" "python3"))
+           ("rb" . "ruby")
+           ("go" . "go run")
+           ("js" . "node") ; node.js
+           ("sh" . "bash")
+           ("clj" . "java -cp /home/xah/apps/clojure-1.6.0/clojure-1.6.0.jar clojure.main")
+           ("rkt" . "racket")
+           ("ml" . "ocaml")
+           ("vbs" . "cscript")
+           ("tex" . "pdflatex")
+           ("latex" . "pdflatex")
+           ("java" . "javac")
+           ;; ("pov" . "/usr/local/bin/povray +R2 +A0.1 +J1.2 +Am2 +Q9 +H480 +W640")
+           ))
 
-         -fname
-         -fSuffix
-         -prog-name
-         -cmd-str)
+        -fname
+        -fSuffix
+        -prog-name
+        -cmd-str)
 
     (when (null (buffer-file-name)) (save-buffer))
     (when (buffer-modified-p) (save-buffer))
@@ -1697,7 +1698,7 @@ Version 2015-01-26"
        ((string-equal system-type "gnu/linux")
         (mapc
          (lambda (-fpath) (let ((process-connection-type nil))
-                            (start-process "" nil "xdg-open" -fpath))) -file-list))))))
+                       (start-process "" nil "xdg-open" -fpath))) -file-list))))))
 
 (defun xah-open-in-terminal ()
   "Open the current dir in a new terminal window.
@@ -1970,7 +1971,7 @@ If `universal-argument' is called first, do switch frame."
    ("z" . abort-recursive-edit)))
 
 (xah-fly-map-keys
-   ;; kinda replacement related
+ ;; kinda replacement related
  (define-prefix-command 'xah-edit-cmds-keymap)
  '(
    ("SPC" . rectangle-mark-mode)
@@ -2022,7 +2023,7 @@ If `universal-argument' is called first, do switch frame."
    ("p" . eval-expression)
    ("u" . eval-region)
    ("q" . save-buffers-kill-terminal)
-   ("w" . delete-frame)
+   ("d" . delete-frame)
    ("j" . xah-run-current-file)))
 
 (xah-fly-map-keys
@@ -2096,9 +2097,12 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "j") 'xah-cut-all-or-region)
   (define-key xah-fly-leader-key-map (kbd "k") 'yank)
   (define-key xah-fly-leader-key-map (kbd "l") 'recenter-top-bottom)
-  ;; (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
-  (define-key xah-fly-leader-key-map (kbd "m") 'xah-mode-keymap)
-  (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
+  (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
+  ;; (define-key xah-fly-leader-key-map (kbd "m") 'xah-mode-keymap)
+  ;; (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
+  (define-key xah-fly-leader-key-map (kbd "nt") 'neotree-toggle)
+  (define-key xah-fly-leader-key-map (kbd "ne") 'neotree-find)
+  (define-key xah-fly-leader-key-map (kbd "ns") 'neotree-show)
   ;; (define-key xah-fly-leader-key-map (kbd "o") nil)
   (define-key xah-fly-leader-key-map (kbd "p") 'query-replace)
   (define-key xah-fly-leader-key-map (kbd "q") 'xah-copy-all-or-region)
@@ -2242,7 +2246,7 @@ If `universal-argument' is called first, do switch frame."
 
       (define-key xah-fly-key-map (kbd "C-v") 'yank)
       (define-key xah-fly-key-map (kbd "C-z") 'undo)
-      (define-key xah-fly-key-map (kbd "C-o") 'find-file)
+      ;; (define-key xah-fly-key-map (kbd "C-o") 'find-file)
       (define-key xah-fly-key-map (kbd "C-s") 'save-buffer)
       (define-key xah-fly-key-map (kbd "C-S-s") 'write-file)
       (define-key xah-fly-key-map (kbd "C-S-t") 'xah-open-last-closed)
@@ -2256,14 +2260,21 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "M-2") 'pop-global-mark)
 
   (define-key xah-fly-key-map (kbd "M-RET") 'xah-cycle-hyphen-underscore-space)
-  (define-key xah-fly-key-map (kbd "M-c") 'xah-toggle-letter-case )
-  (define-key xah-fly-key-map (kbd "M-g") 'hippie-expand )
-  (define-key xah-fly-key-map (kbd "M-h") 'xah-insert-brace )
+  (define-key xah-fly-key-map (kbd "M-c") 'xah-toggle-letter-case)
+  (define-key xah-fly-key-map (kbd "M-g") 'hippie-expand)
+  (define-key xah-fly-key-map (kbd "M-h") 'xah-insert-brace)
   (define-key xah-fly-key-map (kbd "M-m") xah-insertion-keymap)
   (define-key xah-fly-key-map (kbd "M-t") 'xah-insert-paren)
   ;; (define-key xah-fly-key-map (kbd "M-d") 'xah-insert-date)
-  (define-key xah-fly-key-map (kbd "M-k") 'yank-pop)
+  ;; (define-key xah-fly-key-map (kbd "M-k") 'yank-pop)
+  (define-key xah-fly-key-map (kbd "M-k") 'lispy-kill-sentence)
   (define-key xah-fly-key-map (kbd "M-l") 'left-char)
+  (define-key xah-fly-key-map (kbd "M-d") 'lispy-kill-word)
+
+  (define-key xah-fly-key-map (kbd "C-k") 'lispy-kill)
+  (define-key xah-fly-key-map (kbd "C-y") 'lispy-yank)
+  (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete)
+  (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
 
   (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
   ;;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
@@ -2321,6 +2332,15 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "~") nil)
     (define-key xah-fly-key-map (kbd "SPC") xah-fly-leader-key-map)
     (define-key xah-fly-key-map (kbd "*") 'xah-search-current-word)
+    (define-key xah-fly-key-map (kbd "(") 'lispy-parens)
+    (define-key xah-fly-key-map (kbd "{") 'lispy-braces)
+    (define-key xah-fly-key-map (kbd "}") 'lispy-brackets)
+    (define-key xah-fly-key-map (kbd "\"") 'lispy-quotes)
+    (define-key xah-fly-key-map (kbd ";") 'lispy-comment)
+    (define-key xah-fly-key-map (kbd ")") 'lispy-right-nostring)
+    (define-key xah-fly-key-map (kbd ">") 'lispy-slurp)
+    (define-key xah-fly-key-map (kbd "<") 'lispy-barf)
+
     
     (if xah-fly-swapped-1827-p
         (progn
@@ -2329,9 +2349,9 @@ If `universal-argument' is called first, do switch frame."
           (define-key xah-fly-key-map (kbd "2") 'xah-select-line)
           (define-key xah-fly-key-map (kbd "1") 'xah-extend-selection))
       (progn
-        (define-key xah-fly-key-map (kbd "1") nil)
+        (define-key xah-fly-key-map (kbd "1") 'xah-select-current-line)
         (define-key xah-fly-key-map (kbd "2") nil)
-        (define-key xah-fly-key-map (kbd "7") 'xah-select-current-line)
+        (define-key xah-fly-key-map (kbd "7") 'xah-delete-current-line)
         (define-key xah-fly-key-map (kbd "8") 'xah-extend-selection)))
 
     (define-key xah-fly-key-map (kbd "3") 'delete-other-windows)
@@ -2349,7 +2369,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "bk") 'xah-close-current-buffer)
     (define-key xah-fly-key-map (kbd "bn") 'xah-new-empty-buffer)
     (define-key xah-fly-key-map (kbd "bs") 'save-buffer)
-    (define-key xah-fly-key-map (kbd "c") nil)
+    (define-key xah-fly-key-map (kbd "c") 'local-clojure-mode-keymap)
     (define-key xah-fly-key-map (kbd "e") 'xah-end-of-line-or-block)
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
     (define-key xah-fly-key-map (kbd "dr") 'xah-cut-all-or-region)
@@ -2418,7 +2438,14 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "~") nil)
     (define-key xah-fly-key-map (kbd "SPC") nil)
     (define-key xah-fly-key-map (kbd "*") nil)
-
+    (define-key xah-fly-key-map (kbd "(") 'lispy-parens)
+    (define-key xah-fly-key-map (kbd "{") 'lispy-braces)
+    (define-key xah-fly-key-map (kbd "}") 'lispy-brackets)
+    (define-key xah-fly-key-map (kbd "\"") 'lispy-quotes)
+    (define-key xah-fly-key-map (kbd ";") 'lispy-comment)
+    (define-key xah-fly-key-map (kbd ")") 'lispy-right-nostring)
+    (define-key xah-fly-key-map (kbd ">") 'lispy-slurp)
+    (define-key xah-fly-key-map (kbd "<") 'lispy-barf)
     
     (define-key xah-fly-key-map (kbd "1") nil)
     (define-key xah-fly-key-map (kbd "2") nil)
@@ -2517,14 +2544,34 @@ If `universal-argument' is called first, do switch frame."
   (xah-fly-insert-mode-activate)
   (left-char))
 
+(defun buffer-mode (&optional buffer-or-name)
+  "Returns the major mode associated with a buffer.
+If buffer-or-name is nil return current buffer's mode."
+  (buffer-local-value 'major-mode
+                      (if buffer-or-name (get-buffer buffer-or-name) (current-buffer))))
+
+(defun lispy-mode-activate ()
+  "Enable lispy mode for selected major modes only"
+  (let ((maj-mode 
+         (format "%s" (buffer-mode))))
+    (when (or (equal "emacs-lisp-mode" maj-mode)
+              (equal "clojure-mode" maj-mode))
+      (lispy-mode 1))))
+
 
 
 ;; when in going into minibuffer, switch to insertion mode.
+;; (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'minibuffer-exit-hook 'xah-fly-command-mode-activate)
+(add-hook 'helm-minibuffer-setup-hook 'xah-fly-insert-mode-activate)
+(add-hook 'helm-minibuffer-exit-hook 'xah-fly-command-mode-activate)
 
 ;; when in shell mode, switch to insertion mode.
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
+(add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
+(add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
+
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)
@@ -2544,6 +2591,7 @@ If `universal-argument' is called first, do switch frame."
   "Turn off xah-fly-keys minor mode."
   (interactive)
   (xah-fly-keys 0))
+
 
 (provide 'xah-fly-keys)
 

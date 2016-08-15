@@ -57,33 +57,33 @@
     
     ;; (setq projectile-switch-project-action 'neotree-projectile-action)
     
-    (after 'evil
-      (evil-leader/set-key "nt" 'neotree-toggle)
-      (evil-leader/set-key "ne" 'neotree-find)
-      (evil-leader/set-key "ns" 'neotree-show)
-      (evil-set-initial-state 'neotree-mode 'normal)
-      (add-to-list 'evil-motion-state-modes 'neotree-mode)
-      (evil-define-key 'normal neotree-mode-map
-        (kbd "RET") 'neotree-enter
-        (kbd "c")   'neotree-create-node
-        (kbd "r")   'neotree-rename-node
-        (kbd "d")   'neotree-delete-node
-        (kbd "j")   'neotree-next-line
-        (kbd "k")   'neotree-previous-line
-        (kbd "SPC") 'neotree-change-root
-        (kbd "q")   'neotree-hide
-        (kbd ".")   'neotree-hidden-file-toggle
-        (kbd "a")   'neotree-stretch-toggle
-        (kbd "|")   'neotree-enter-vertical-split
-        (kbd "-")   'neotree-enter-horizontal-split
-        (kbd "[")   'neotree-select-previous-sibling-node
-        (kbd "]")   'neotree-select-next-sibling-node
-        (kbd "h")   'neotree-select-up-node
-        (kbd "o")   'find-file-next-in-dir
-        (kbd "O")   'find-file-prev-in-dir
-        (kbd "l")   'neotree-enter
-        )
+    (defun nt-mode-keys-setup ()
+      "for 'neo tree mode'"
+      (local-set-key  (kbd "RET") 'neotree-enter)
+      (local-set-key  (kbd "c") 'neotree-create-node)
+      (local-set-key  (kbd "r") 'neotree-rename-node)
+      (local-set-key  (kbd "d") 'neotree-delete-node)
+      (local-set-key  (kbd "j") 'neotree-next-line)
+      (local-set-key  (kbd "k") 'neotree-previous-line)
+      (local-set-key  (kbd "q") 'neotree-hide)
+      (local-set-key  (kbd ".") 'neotree-hidden-file-toggle)
+      (local-set-key  (kbd "a") 'neotree-stretch-toggle)
+      (local-set-key  (kbd "|") 'neotree-enter-vertical-split)
+      (local-set-key  (kbd "-") 'neotree-enter-horizontal-split)
+      (local-set-key  (kbd "[") 'neotree-select-previous-sibling-node)
+      (local-set-key  (kbd "]") 'neotree-select-next-sibling-node)
+      (local-set-key  (kbd "h") 'neotree-select-up-node)
+      (local-set-key  (kbd "o") 'find-file-next-in-dir)
+      (local-set-key  (kbd "O") 'find-file-prev-in-dir)
+      (local-set-key  (kbd "l") 'neotree-enter)
       )
+    (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
+    ;; (lambda () (progn
+    ;;         (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
+    ;;         (add-hook 'neotree-mode-hook 'xah-fly-insert-mode-activate)
+    ;;         ))
+    ;; (add-hook 'neotree-mode-hook 'xah-fly-insert-mode-activate)
+    ;; (add-hook 'neotree-mode-hook 'xah-fly-command-mode-activate)
     ))
 
 (provide 'init-neotree)

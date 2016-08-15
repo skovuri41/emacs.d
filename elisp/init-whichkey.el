@@ -18,6 +18,9 @@
     ;;   "SPC p" "Project"
     ;;   "SPC f" "Files"
     ;;   "SPC b" "Buffer")
+    ;; (which-key-add-key-based-replacements
+    ;; "SPC +" "Add entry to journal"
+    ;; "SPC =" "View today's journal")
     (which-key-mode 1)))
 
 (provide 'init-whichkey)

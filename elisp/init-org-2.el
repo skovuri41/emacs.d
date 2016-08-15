@@ -1,9 +1,9 @@
 (defun my/org-mode-hook ()
-  (interactive)
-  (turn-on-auto-fill)
-  (turn-on-flyspell)
-  (when (fboundp 'yas-minor-mode)
-    (yas-minor-mode 1)))
+                   (interactive)
+                   (turn-on-auto-fill)
+                   (turn-on-flyspell)
+                   (when (fboundp 'yas-minor-mode)
+                     (yas-minor-mode 1)))
 
 (defun set-org-mode-app-defaults ()
   (setq org-file-apps
@@ -19,11 +19,11 @@
   (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode)) ;; Journal entries
   (add-hook 'org-mode-hook #'hl-line-mode)
   (add-hook 'org-mode-hook #'my/org-mode-hook)
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
-              (auto-fill-mode)
-              (org-indent-mode)))
+  ;; (add-hook 'org-mode-hook
+  ;;           (lambda ()
+  ;;             (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
+  ;;             (auto-fill-mode)
+  ;;             (org-indent-mode)))
   (add-hook 'org-mode-hook 'yas-minor-mode-on)
   (add-hook 'org-mode-hook 'company-mode)
   (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
@@ -248,11 +248,7 @@
     (progn
       (setq org-startup-indented t)
       (setq org-latex-pdf-process
-            '("latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
-      (evil-leader/set-key-for-mode 'org-mode
-        "m E" 'org-export-dispatch
-        "m p l" 'org-preview-latex-fragment
-        "m p i" 'org-toggle-inline-images))
+            '("latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f")))
     (progn
       (org-load-modules-maybe)))
 
@@ -402,7 +398,7 @@
 
   (add-hook 'org-capture-mode-hook
             (lambda ()
-              (evil-insert-state)))
+              (xah-fly-insert-mode-activate)))
   )
 
 (use-package org-journal
@@ -410,34 +406,35 @@
   :mode (".*/[0-9]*-[0-9]*-[0-9]*$" . org-journal-mode)
   :init
   (progn
-    (evil-leader/set-key
-      "+" '(lambda ()
-             (interactive)
-             (org-journal-new-entry nil)
-             (evil-insert-state)
-             )
-      "=" '(lambda () (interactive) (org-journal-new-entry t)))
-    (which-key-add-key-based-replacements
-      "SPC +" "Add entry to journal"
-      "SPC =" "View today's journal")
+
+    ;; (evil-leader/set-key
+    ;;   "+" '(lambda ()
+    ;;          (interactive)
+    ;;          (org-journal-new-entry nil)
+    ;;          (evil-insert-state)
+    ;;          )
+    ;;   "=" '(lambda () (interactive) (org-journal-new-entry t)))
     (setq org-journal-dir "~/journal/")
     (setq org-journal-date-format "Journal Entry- %Y-%b-%d (%A)")
     (setq org-journal-time-format "")
     (setq org-journal-file-format "%Y-%m-%d.org"
           org-journal-file-pattern (org-journal-format-string->regex org-journal-file-format)
           org-journal-hide-entries-p nil)
-    (evil-leader/set-key-for-mode 'calendar-mode
-      "m j j" 'org-journal-read-entry
-      "m j i" 'org-journal-new-date-entry
-      "m j [" 'org-journal-previous-entry
-      "m j ]" 'org-journal-next-entry
-      "m j f f" 'org-journal-search-forever
-      "m j f m" 'org-journal-search-calendar-month
-      "m j f w" 'org-journal-search-calender-week
-      "m j f y" 'org-journal-search-calendar-year)
-    (evil-leader/set-key-for-mode 'org-journal-mode
-      "m j [" 'org-journal-open-previous-entry
-      "m j ]" 'org-journal-open-next-entry))
+
+    ;; (evil-leader/set-key-for-mode 'calendar-mode
+    ;;   "m j j" 'org-journal-read-entry
+    ;;   "m j i" 'org-journal-new-date-entry
+    ;;   "m j [" 'org-journal-previous-entry
+    ;;   "m j ]" 'org-journal-next-entry
+    ;;   "m j f f" 'org-journal-search-forever
+    ;;   "m j f m" 'org-journal-search-calendar-month
+    ;;   "m j f w" 'org-journal-search-calender-week
+    ;;   "m j f y" 'org-journal-search-calendar-year)
+    ;; (evil-leader/set-key-for-mode 'org-journal-mode
+    ;;   "m j [" 'org-journal-open-previous-entry
+    ;;   "m j ]" 'org-journal-open-next-entry)
+
+    )
 
   (defun journal-file-insert ()
     "Insert's the journal heading based on the file's name."
@@ -486,9 +483,7 @@
   :config
   (progn
     (setq org-research-root "~/research")
-    (evil-leader/set-key-for-mode 'org-research-mode
-      "m r o" 'org-research-open-paper
-      "m r a" 'org-research-add-reference)))
+    ))
 
 
 (use-package org-pomodoro
