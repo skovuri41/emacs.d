@@ -15,7 +15,6 @@
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
       (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
       (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
-      (define-key ivy-minibuffer-map (kbd "C-o") 'hydra-ivy/body)
       (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g") )
       )
     (setq ivy-use-virtual-buffers t

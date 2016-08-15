@@ -159,11 +159,13 @@ version 2016-06-15"
   (let ((n (if (null n) 1 n)))
     (if (equal n 1)
         (if (or (equal (point) (line-beginning-position))
-                (equal last-command this-command )
+                (equal last-command this-command)
                 ;; (equal last-command 'xah-end-of-line-or-block )
                 )
             (xah-backward-block n)
-          (beginning-of-line))
+          (beginning-of-line)
+          ;;(mwim-begining-of-code-or-line)
+          )
       (xah-backward-block n))))
 
 (defun xah-end-of-line-or-block (&optional n)
@@ -179,7 +181,9 @@ version 2016-06-15"
                 ;; (equal last-command 'xah-beginning-of-line-or-block )
                 )
             (xah-forward-block)
-          (end-of-line))
+          (end-of-line)
+          ;;(mwim-end-of-code-or-line)
+          )
       (progn (xah-forward-block n)))))
 
 (defvar xah-brackets nil "string of left/right brackets pairs.")
@@ -2029,7 +2033,7 @@ If `universal-argument' is called first, do switch frame."
 (xah-fly-map-keys
  (define-prefix-command 'xah-comment-keymap)
  '(
-   ("/" . evilnc-comment-or-uncomment-lines)
+   (";" . evilnc-comment-or-uncomment-lines)
    ("l" . evilnc-quick-comment-or-uncomment-to-the-line)
    ("y" . evilnc-copy-and-comment-lines)
    ("p" . evilnc-comment-or-uncomment-paragraphs)
@@ -2072,8 +2076,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "'") 'xah-fill-or-unfill)
   (define-key xah-fly-leader-key-map (kbd ",") nil)
   (define-key xah-fly-leader-key-map (kbd "-") nil)
-  (define-key xah-fly-leader-key-map (kbd "/") 'xah-comment-keymap)
-  (define-key xah-fly-leader-key-map (kbd ";") nil)
+  (define-key xah-fly-leader-key-map (kbd ";") 'xah-comment-keymap)
   (define-key xah-fly-leader-key-map (kbd "=") nil)
   (define-key xah-fly-leader-key-map (kbd "[") nil)
   (define-key xah-fly-leader-key-map (kbd "\\") nil)
@@ -2244,7 +2247,7 @@ If `universal-argument' is called first, do switch frame."
       (define-key xah-fly-key-map (kbd "<C-tab>") 'xah-next-user-buffer)
       (define-key xah-fly-key-map (kbd "<C-S-iso-lefttab>") 'xah-previous-user-buffer)
 
-      (define-key xah-fly-key-map (kbd "C-v") 'yank)
+      ;; (define-key xah-fly-key-map (kbd "C-v") 'yank)
       (define-key xah-fly-key-map (kbd "C-z") 'undo)
       ;; (define-key xah-fly-key-map (kbd "C-o") 'find-file)
       (define-key xah-fly-key-map (kbd "C-s") 'save-buffer)
@@ -2263,18 +2266,20 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "M-c") 'xah-toggle-letter-case)
   (define-key xah-fly-key-map (kbd "M-g") 'hippie-expand)
   (define-key xah-fly-key-map (kbd "M-h") 'xah-insert-brace)
-  (define-key xah-fly-key-map (kbd "M-m") xah-insertion-keymap)
+  (define-key xah-fly-key-map (kbd "M-m") 'lispy-mark-symbol)
   (define-key xah-fly-key-map (kbd "M-t") 'xah-insert-paren)
   ;; (define-key xah-fly-key-map (kbd "M-d") 'xah-insert-date)
   ;; (define-key xah-fly-key-map (kbd "M-k") 'yank-pop)
   (define-key xah-fly-key-map (kbd "M-k") 'lispy-kill-sentence)
   (define-key xah-fly-key-map (kbd "M-l") 'left-char)
   (define-key xah-fly-key-map (kbd "M-d") 'lispy-kill-word)
+  (define-key xah-fly-key-map (kbd "C-,") 'lispy-kill-at-point)
 
-  (define-key xah-fly-key-map (kbd "C-k") 'lispy-kill)
+  ;; (define-key xah-fly-key-map (kbd "C-k") 'lispy-kill)
+  
   (define-key xah-fly-key-map (kbd "C-y") 'lispy-yank)
   (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete)
-  (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
+  ;; (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
 
   (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
   ;;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
@@ -2320,7 +2325,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "'") 'xah-reformat-lines)
     (define-key xah-fly-key-map (kbd ",") 'xah-shrink-whitespaces)
     (define-key xah-fly-key-map (kbd ".") 'backward-kill-word)
-    (define-key xah-fly-key-map (kbd ";") nil)
+    (define-key xah-fly-key-map (kbd ";") 'lispy-comment)
     (define-key xah-fly-key-map (kbd ":") nil)
     (define-key xah-fly-key-map (kbd "/") 'swiper)
     (define-key xah-fly-key-map (kbd "?") 'swiper)
@@ -2374,7 +2379,11 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
     (define-key xah-fly-key-map (kbd "dr") 'xah-cut-all-or-region)
     (define-key xah-fly-key-map (kbd "dw") 'ivy-kill-word)
+    (define-key xah-fly-key-map (kbd "de") 'lispy-kill-sentence)
+    (define-key xah-fly-key-map (kbd "d$") 'lispy-kill-sentence)
+    (define-key xah-fly-key-map (kbd "d0") 'lispy-backward-kill-word)
     (define-key xah-fly-key-map (kbd "fr") 'ivy-recentf)
+    (define-key xah-fly-key-map (kbd "fd") 'bjm/ivy-dired-recent-dirs)
     (define-key xah-fly-key-map (kbd "ff") 'counsel-find-file)
     (define-key xah-fly-key-map (kbd "fp") 'helm-projectile)
     (define-key xah-fly-key-map (kbd "gn") 'smartscan-symbol-go-forward)
@@ -2406,6 +2415,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "s") 'embrace-commander)
     (define-key xah-fly-key-map (kbd "t") 'evilmi-jump-items)
     (define-key xah-fly-key-map (kbd "u") 'undo-tree-undo)
+    ;; (define-key xah-fly-key-map (kbd "v") 'evilmi-select-items)
     (define-key xah-fly-key-map (kbd "v") 'set-mark-command)
     (define-key xah-fly-key-map (kbd "ww") 'ace-window)
     (define-key xah-fly-key-map (kbd "wd") 'delete-window)
@@ -2414,7 +2424,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
     (define-key xah-fly-key-map (kbd "y") 'easy-kill)
-    (define-key xah-fly-key-map (kbd "z") 'comment-dwim)
+    (define-key xah-fly-key-map (kbd "z") nil)
     ;;
     ))
 
@@ -2429,6 +2439,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd ".") nil)
     (define-key xah-fly-key-map (kbd "/") nil)
     (define-key xah-fly-key-map (kbd "?") 'nil)
+    (define-key xah-fly-key-map (kbd "$") nil)
     (define-key xah-fly-key-map (kbd ";") nil)
     (define-key xah-fly-key-map (kbd "=") nil)
     (define-key xah-fly-key-map (kbd "[") nil)
@@ -2552,12 +2563,22 @@ If buffer-or-name is nil return current buffer's mode."
 
 (defun lispy-mode-activate ()
   "Enable lispy mode for selected major modes only"
-  (let ((maj-mode 
+  (let ((buffer-major-mode 
          (format "%s" (buffer-mode))))
-    (when (or (equal "emacs-lisp-mode" maj-mode)
-              (equal "clojure-mode" maj-mode))
+    (when (or (equal "emacs-lisp-mode" buffer-major-mode)
+              (equal "clojure-mode" buffer-major-mode)
+              (equal "cider-repl-mode-hook" buffer-major-mode))
       (lispy-mode 1))))
 
+(eval-after-load "lispy"
+  `(progn
+     ;; replace a global binding with major-mode's default
+     ;; (define-key lispy-mode-map (kbd "C-j") nil)
+     
+     ;; replace a local binding
+     (lispy-define-key lispy-mode-map "t" 'lispy-different)
+     (lispy-define-key lispy-mode-map "v" 'lispy-mark-list)
+     (lispy-define-key lispy-mode-map "m" 'lispy-view)))
 
 
 ;; when in going into minibuffer, switch to insertion mode.

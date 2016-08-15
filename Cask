@@ -199,3 +199,4 @@
 (depends-on "xah-fly-keys")
 (depends-on "embrace")
 (depends-on "lispy")
+(depends-on "mwim")

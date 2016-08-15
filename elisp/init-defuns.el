@@ -237,8 +237,15 @@ function does not kill the buffer."
     (back-to-indentation)
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
-(global-set-key [remap move-beginning-of-line]
-                'smarter-move-beginning-of-line)
+
+;; (global-set-key [remap move-beginning-of-line]
+;;                 'smarter-move-beginning-of-line)
+
+(use-package mwim
+  :bind (("C-a" . mwim-beginning-of-code-or-line)
+         ("C-e" . mwim-end-of-code-or-line))
+  )
+
 (defun dos2unix ()
   "Not exactly but it's easier to remember"
   (interactive)

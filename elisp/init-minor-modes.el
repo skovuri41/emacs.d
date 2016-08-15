@@ -7,9 +7,6 @@
 (use-package json-mode
   :defer t)
 
-(use-package js2-mode
-  :defer t)
-
 (use-package scratch
   :ensure t)
 
