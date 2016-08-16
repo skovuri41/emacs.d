@@ -2578,6 +2578,10 @@ If buffer-or-name is nil return current buffer's mode."
      ;; replace a local binding
      (lispy-define-key lispy-mode-map "t" 'lispy-different)
      (lispy-define-key lispy-mode-map "v" 'lispy-mark-list)
+     (lispy-define-key lispy-mode-map "p" 'lispy-paste)
+     (lispy-define-key lispy-mode-map "y" 'lispy-new-copy)
+     (lispy-define-key lispy-mode-map "n" 'lispy-occur)
+     (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)
      (lispy-define-key lispy-mode-map "m" 'lispy-view)))
 
 
