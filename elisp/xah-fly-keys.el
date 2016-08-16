@@ -163,8 +163,8 @@ version 2016-06-15"
                 ;; (equal last-command 'xah-end-of-line-or-block )
                 )
             (xah-backward-block n)
-          (beginning-of-line)
-          ;;(mwim-begining-of-code-or-line)
+          ;; (beginning-of-line)
+          (mwim-beginning-of-code-or-line)
           )
       (xah-backward-block n))))
 
@@ -181,8 +181,8 @@ version 2016-06-15"
                 ;; (equal last-command 'xah-beginning-of-line-or-block )
                 )
             (xah-forward-block)
-          (end-of-line)
-          ;;(mwim-end-of-code-or-line)
+          ;;(end-of-line)
+          (mwim-end-of-code-or-line)
           )
       (progn (xah-forward-block n)))))
 

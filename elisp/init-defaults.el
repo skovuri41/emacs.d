@@ -218,10 +218,10 @@
 
 (use-package ctags-update
   :ensure t
+  :diminish ctags-auto-update-mode
   :config
   (add-hook 'prog-mode-hook  'turn-on-ctags-auto-update-mode)
-  (ctags-auto-update-mode)
-  :diminish ctags-auto-update-mode)
+  )
 
 (use-package visual-fill-column
   :ensure t)
