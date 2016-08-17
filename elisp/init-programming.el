@@ -151,7 +151,6 @@ _c_lose node   _p_revious fold   toggle _a_ll        e_x_it
         ("a" origami-toggle-all-nodes)
         ("F" fill-column)
         ("x" nil :color blue))
-      (evil-leader/set-key "no" 'hydra-folding/body)
       ))
 
   (setq vc-handled-backends '(git svn)))

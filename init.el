@@ -1,4 +1,4 @@
-;; Keep track of loading time
+(package-initialize)
 (defconst emacs-start-time (current-time))
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -23,7 +23,6 @@
 (require 'init-programming)
 (require 'init-expand-region)
 (require 'init-undotree)
-;; (require 'init-smartparens)
 (require 'init-hl-line)
 (require 'init-drag-stuff)
 (require 'init-hydra)
@@ -69,7 +68,6 @@
 (require 'init-mu4e)
 (require 'init-cal)
 (require 'init-spaceline)
-;; (require 'init-workgroups2)
 (require 'init-keybindings)
 (require 'init-xah-fly-keys)
 
@@ -90,5 +88,9 @@
   (load-theme 'spacemacs-dark t))
 
 (custom-set-faces
- '(show-paren-match ((t (:background "default" :foreground "lemon chiffon" :underline t :overline nil))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(show-paren-match ((t (:background "default" :foreground "yellow" :underline t :overline nil))))
  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))

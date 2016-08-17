@@ -157,7 +157,7 @@
   (add-hook 'clojure-mode-hook 'typed-clojure-mode)
   :config
   (progn
-    (evil-leader/set-key "tc" 'typed-clojure-check-ns)))
+    ))
 
 (use-package flycheck-clojure
   :ensure t

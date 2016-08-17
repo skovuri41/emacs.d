@@ -35,8 +35,6 @@
 (depends-on "web-mode")
 (depends-on "csv-mode")
 (depends-on "csv-nav")
-(depends-on "powerline")
-(depends-on "powerline-evil")
 
 (depends-on "diminish")
 (depends-on "company")
@@ -80,8 +78,6 @@
 (depends-on "wgrep-ag")
 (depends-on "bug-hunter")
 (depends-on "calfw")
-(depends-on "calfw-org")
-(depends-on "calfw-cal")
 (depends-on "visible-mark")
 
 ;;org
@@ -99,7 +95,6 @@
 (depends-on "w3m")
 
 ;;clojure
-(depends-on "smartparens")
 (depends-on "clojure-mode")
 (depends-on "clojure-snippets")
 (depends-on "paren-face")
@@ -121,10 +116,8 @@
 (depends-on "smex")
 (depends-on "which-key")
 (depends-on "iedit")
-(depends-on "smartrep")
 (depends-on "smooth-scrolling")
 (depends-on "beacon")
-(depends-on "highlight-tail")
 (depends-on "super-save")
 (depends-on "link-hint")
 (depends-on "restclient")
@@ -176,11 +169,12 @@
 (depends-on "helm-org-rifle")
 ;;(depends-on "helm-config")
 (depends-on "helm-cider")
-(depends-on "helm-hunk")
 
 ;;evil mode
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-matchit")
+(depends-on "evil-leader")
+
 
 ;;themes
 (depends-on "zenburn-theme")
@@ -197,6 +191,8 @@
 (depends-on "dockerfile-mode")
 (depends-on "docker")
 (depends-on "xah-fly-keys")
+(depends-on "key-chord")
+
 (depends-on "embrace")
 (depends-on "lispy")
 (depends-on "mwim")

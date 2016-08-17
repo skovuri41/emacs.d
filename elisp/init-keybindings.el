@@ -26,6 +26,8 @@
 (global-set-key (kbd "C-x r N") 'number-rectangle)
 ;; (global-set-key (kbd "C-f") 'golden-ratio-scroll-screen-up)
 ;; (global-set-key (kbd "C-b") 'golden-ratio-scroll-screen-down)
+(global-set-key (kbd "C-c v") 'ivy-push-view)
+(global-set-key (kbd "C-c V") 'ivy-pop-view)
 
 ;; swith meta and mac command key for mac port emacs build
 (setq mac-option-modifier 'meta)

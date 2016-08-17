@@ -38,18 +38,10 @@
 
 ;; M-x xah-fly-keys to toggle the mode on/off.
 
-;; Important command/insert mode switch keys:
-
-;; xah-fly-command-mode-activate (press 【<home>】 or 【F8】 or 【Alt+Space】 or 【backspace】 or 【menu】)
-
-;; xah-fly-insert-mode-activate  (when in command mode, press letter 【u】 key)
-
 ;; When in command mode:
-;; 【u】 activates insertion mode
 ;; 【Space】 is a leader key. For example, 【SPACE p】 calls query-replace. Press 【SPACE C-h】 to see the full list.
 ;; 【Space Space】 also activates insertion mode.
 ;; 【Space Enter】 calls execute-extended-command or smex (if smex is installed).
-;; 【a】 calls execute-extended-command or smex (if smex is installed).
 
 ;; The leader key sequence basically replace ALL emacs commands that starts with C-x key.
 
@@ -72,28 +64,6 @@
 
 ;; the following stardard keys with Control are supported, when the variable xah-fly-use-control-key is t
 
-;; (kbd "<C-tab>") 'xah-next-user-buffer
-;; (kbd "<C-S-iso-lefttab>") 'xah-previous-user-buffer
-;; (kbd "C-v") 'yank
-;; (kbd "C-w") 'xah-close-current-buffer
-;; (kbd "C-z") 'undo
-;; (kbd "C-n") 'xah-new-empty-buffer
-;; (kbd "C-o") 'find-file
-;; (kbd "C-s") 'save-buffer
-;; (kbd "C-S-s") 'write-file
-;; (kbd "C-S-t") 'xah-open-last-closed
-;; (kbd "C-+") 'text-scale-increase
-;; (kbd "C--") 'text-scale-decrease
-;; (kbd "C-0") (lambda () (interactive) (text-scale-set 0))))
-
-;; That't it.
-
-;; On the Mac, I highly recommend using a app called Sail to set your capslock to send Home. So that it acts as xah-fly-command-mode-activate. You can set capslock or one of the cmd key to Home. See http://xahlee.info/kbd/Mac_OS_X_keymapping_keybinding_tools.html
-
-;; I recommend you clone xah-fly-keys.el, and modify it, and use your modified version. Don't worry about upgrade. (I still make key tweaks every week, for the past 3 years.)
-
-;; If you have a bug, post on github. If you have question, post on xah-fly-keys home page.
-
 ;; For detail about design and other info, see home page at
 ;; http://ergoemacs.org/misc/ergoemacs_vi_mode.html
 
@@ -106,6 +76,7 @@
 (require 'dired-x) ; in emacs
 (require 'ido) ; in emacs
 (require 'lispy)
+
 
 
 (defvar xah-fly-command-mode-activate-hook nil "Hook for `xah-fly-command-mode-activate'")
@@ -2580,6 +2551,7 @@ If buffer-or-name is nil return current buffer's mode."
      (lispy-define-key lispy-mode-map "v" 'lispy-mark-list)
      (lispy-define-key lispy-mode-map "p" 'lispy-paste)
      (lispy-define-key lispy-mode-map "y" 'lispy-new-copy)
+     (lispy-define-key lispy-mode-map "X" 'lispy-splice)
      (lispy-define-key lispy-mode-map "n" 'lispy-occur)
      (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)
      (lispy-define-key lispy-mode-map "m" 'lispy-view)))

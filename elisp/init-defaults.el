@@ -221,6 +221,8 @@
   :diminish ctags-auto-update-mode
   :config
   (add-hook 'prog-mode-hook  'turn-on-ctags-auto-update-mode)
+  (setq ctags-update-delay-seconds (* 30 60)) ; every 1/2 hour
+  (ctags-auto-update-mode 1)
   )
 
 (use-package visual-fill-column
@@ -317,8 +319,7 @@
     ;; (set-frame-font "Inconsolata")
     (set-face-attribute 'default nil :height 105)))
 
-;; (when (eq window-system 'x)
-;;   (add-hook 'after-init-hook #'my/setup-x11-fonts))
+;; (when (eq window-system 'x);;   (add-hook 'after-init-hook #'my/setup-x11-fonts))
 
 (use-package better-defaults)
 

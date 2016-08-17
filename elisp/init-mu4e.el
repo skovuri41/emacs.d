@@ -71,18 +71,6 @@
           (add-text-properties (match-beginning 1) (match-end 1) '(face font-lock-variable-name-face)))))
     (add-hook 'mu4e-main-mode-hook 'mu4e-main-mode-font-lock-rules)
 
-
-    (use-package evil-mu4e
-      :ensure t
-      :init
-      (require 'evil-mu4e)
-      ;; :config
-      ;; (evil-set-initial-state 'mu4e-mode 'normal)
-      ;; (evil-set-initial-state 'mu4e-main-mode 'normal)
-      ;; (evil-set-initial-state 'mu4e-headers-mode 'normal)
-      ;; (evil-set-initial-state 'mu4e-view-mode 'normal)
-      ;; (evil-set-initial-state 'mu4e-compose-mode 'normal)
-      )
     ))
 
 (provide 'init-mu4e)
