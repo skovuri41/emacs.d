@@ -3,18 +3,9 @@
 		    direx
 		    drag-stuff
 		    expand-region
-		    evil
-                    evil-cleverparens
-                    evil-escape
                     evil-leader
-                    evil-org
-                    evil-surround
                     evil-nerd-commenter
-                    evil-lisp-state
-                    evil-snipe
-                    evil-numbers
                     evil-matchit
-                    evil-iedit-state
                     evil-visualstar
                     flx-ido
 		    flyspell

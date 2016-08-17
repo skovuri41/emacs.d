@@ -12,6 +12,20 @@
            ("\\.x?html?\\'" . system)
            ("\\.pdf\\'" . system)))))
 
+(defun clever-insert-item ()
+  "Clever insertion of org item."
+  (if (not (org-in-item-p))
+      (insert "\n")
+    (org-insert-item))
+  )
+
+(defun org-eol-call (fun)
+  "Go to end of line and call provided function.
+FUN function callback"
+  (end-of-line)
+  (funcall fun)
+  )
+
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :config
@@ -19,11 +33,10 @@
   (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode)) ;; Journal entries
   (add-hook 'org-mode-hook #'hl-line-mode)
   (add-hook 'org-mode-hook #'my/org-mode-hook)
-  ;; (add-hook 'org-mode-hook
-  ;;           (lambda ()
-  ;;             (evil-define-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
-  ;;             (auto-fill-mode)
-  ;;             (org-indent-mode)))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (auto-fill-mode)
+              (org-indent-mode)))
   (add-hook 'org-mode-hook 'yas-minor-mode-on)
   (add-hook 'org-mode-hook 'company-mode)
   (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
@@ -476,15 +489,12 @@
     (find-file (get-journal-file-yesterday)))
   )
 
-
-
 (use-package org-research
   :disabled t
   :config
   (progn
     (setq org-research-root "~/research")
     ))
-
 
 (use-package org-pomodoro
   :commands (org-pomodoro)
@@ -687,6 +697,5 @@
 (use-package org-cliplink :ensure t)
 
 (use-package org-protocol)
-
 
 (provide 'init-org-2)

@@ -22,18 +22,6 @@
 ;; It is a modal mode like vi, but key choices are based on statistics of command call frequency.
 
 ;; --------------------------------------------------
-;; MANUAL INSTALL
-
-;; put the file xah-fly-keys.el in ~/.emacs.d/lisp/
-;; create the dir if doesn't exist.
-
-;; put the following in your emacs init file:
-
-;; (add-to-list 'load-path "~/.emacs.d/lisp/")
-;; (require 'xah-fly-keys)
-;; (xah-fly-keys 1)
-
-;; --------------------------------------------------
 ;; HOW TO USE
 
 ;; M-x xah-fly-keys to toggle the mode on/off.
@@ -2301,7 +2289,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "/") 'swiper)
     (define-key xah-fly-key-map (kbd "?") 'swiper)
     (define-key xah-fly-key-map (kbd "\\") nil)
-    (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body)
+    (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body) 
     (define-key xah-fly-key-map (kbd "[") 'xah-backward-left-bracket)
     (define-key xah-fly-key-map (kbd "]") 'xah-forward-right-bracket)
     (define-key xah-fly-key-map (kbd "`") 'other-frame)
@@ -2316,8 +2304,6 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd ")") 'lispy-right-nostring)
     (define-key xah-fly-key-map (kbd ">") 'lispy-slurp)
     (define-key xah-fly-key-map (kbd "<") 'lispy-barf)
-
-    
     (if xah-fly-swapped-1827-p
         (progn
           (define-key xah-fly-key-map (kbd "8") nil)
@@ -2339,7 +2325,6 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "$") 'xah-end-of-line-or-block)
     (define-key xah-fly-key-map (kbd "-") 'nil)
     (define-key xah-fly-key-map (kbd "|") 'split-window-horizontally)
-    
     (define-key xah-fly-key-map (kbd "a") 'xah-beginning-of-line-or-block)
     (define-key xah-fly-key-map (kbd "bb") 'ivy-switch-buffer)
     (define-key xah-fly-key-map (kbd "bk") 'xah-close-current-buffer)
@@ -2548,6 +2533,7 @@ If buffer-or-name is nil return current buffer's mode."
      
      ;; replace a local binding
      (lispy-define-key lispy-mode-map "t" 'lispy-different)
+     (lispy-define-key lispy-mode-map "d" 'lispy-delete)
      (lispy-define-key lispy-mode-map "v" 'lispy-mark-list)
      (lispy-define-key lispy-mode-map "p" 'lispy-paste)
      (lispy-define-key lispy-mode-map "y" 'lispy-new-copy)

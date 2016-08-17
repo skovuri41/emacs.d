@@ -17,34 +17,8 @@
 
       (spaceline-define-segment *macro-recording
         "Show when recording macro"
-        (format "%s ▶" (char-to-string evil-this-macro))
+        (format "%s ▶" (string ?m ))
         :when (and active defining-kbd-macro)
-        :face highlight-face
-        :skip-alternate t)
-
-      (defun narf--col-at-pos (pos)
-        (save-excursion (goto-char pos) (current-column)))
-      (spaceline-define-segment *selection-info
-        "Information about the size of the current selection, when applicable.
-         Supports both Emacs and Evil cursor conventions."
-        (let ((reg-beg (region-beginning))
-              (reg-end (region-end)))
-          (let* ((lines (count-lines reg-beg (min (1+ reg-end) (point-max))))
-                 (chars (- (1+ reg-end) reg-beg))
-                 (cols (1+ (abs (- (narf--col-at-pos reg-end)
-                                   (narf--col-at-pos reg-beg)))))
-                 (evil (eq 'visual evil-state))
-                 (rect (or (bound-and-true-p rectangle-mark-mode)
-                           (and evil (eq 'block evil-visual-selection))))
-                 (multi-line (or (> lines 1) (eq 'line evil-visual-selection))))
-            (cond
-             (rect (format "%dx%dB" lines (if evil cols (1- cols))))
-             (multi-line
-              (if (and (eq evil-state 'visual) (eq evil-this-type 'line))
-                  (format "%dL" lines)
-                (format "%dC %dL" chars lines)))
-             (t (format "%dC" (if evil chars (1- chars)))))))
-        :when (eq 'visual evil-state)
         :face highlight-face
         :skip-alternate t)
 

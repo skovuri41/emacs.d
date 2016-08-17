@@ -28,6 +28,8 @@
   (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
   ;; Install all packages required
   (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
+  (load-file (expand-file-name "elisp/init-mwim.el" user-emacs-directory))
+
   (package-initialize)
   ;; Fetch packages the first time
   (unless (file-exists-p package-user-dir)

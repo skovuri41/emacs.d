@@ -28,8 +28,8 @@
     ;;       '((t . ivy--regex-plus)))
     (setq ivy-re-builders-alist
           '((read-file-name-internal . ivy--regex-fuzzy)
-            (t . ivy--regex-plus)))
-    )
+            (ivy-switch-buffer . ivy--regex-fuzzy)
+            (t . ivy--regex-plus))))
   )
 
 (use-package ivy
