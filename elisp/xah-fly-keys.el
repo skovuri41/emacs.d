@@ -1789,24 +1789,6 @@ If `universal-argument' is called first, do switch frame."
    ("w" . isearch-forward-word)))
 
 (xah-fly-map-keys
- (define-prefix-command 'my-org-mode-keymap)
- '(
-   ("a" 'org-agenda)
-   ("g" 'helm-org-agenda-files-headings)
-   ("o" 'org-clock-out)
-   ("i" 'org-clock-in)
-   ("c" 'org-capture)
-   ("C" 'helm-org-capture-templates)
-   ("r" 'org-goto-refile-target)
-   ("p" 'org-pomodoro)
-   ("L" 'org-insert-link)
-   ("l" 'org-store-link)
-   ("x" 'org-encrypt-entry)
-   ("X" 'org-decrypt-entry)
-   ("I" 'org-cliplink)))
-
-
-(xah-fly-map-keys
  (define-prefix-command 'xah-leader-tab-keymap)
  '(
    ("TAB" . indent-for-tab-command)
@@ -2065,7 +2047,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "nt") 'neotree-toggle)
   (define-key xah-fly-leader-key-map (kbd "ne") 'neotree-find)
   (define-key xah-fly-leader-key-map (kbd "ns") 'neotree-show)
-  (define-key xah-fly-leader-key-map (kbd "o") my-org-prefix-map)
+  (define-key xah-fly-leader-key-map (kbd "o") 'my-org-prefix-map)
   (define-key xah-fly-leader-key-map (kbd "p") 'query-replace)
   (define-key xah-fly-leader-key-map (kbd "q") 'xah-copy-all-or-region)
   (define-key xah-fly-leader-key-map (kbd "r") 'xah-edit-cmds-keymap)

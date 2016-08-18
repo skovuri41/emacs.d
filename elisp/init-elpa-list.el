@@ -112,7 +112,8 @@
                     xah-fly-keys
                     embrace
                     key-chord
-;;                    mwim
+                    mwim
+                    worf
                     ))
 
 

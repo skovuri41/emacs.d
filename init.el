@@ -94,11 +94,3 @@
  ;; If there is more than one, they won't work right.
  '(show-paren-match ((t (:background "default" :foreground "yellow" :underline t :overline nil))))
  '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (evil-anzu ztree zop-to-char zenburn-theme yaml-mode xah-fly-keys wrap-region workgroups2 window-numbering whitespace-cleanup-mode which-key wgrep-ag web-mode w3m vlf visual-fill-column visible-mark use-package typit typed-clojure-mode transpose-frame tidy symon super-save sunshine sqlup-mode sql-indent spacemacs-theme spaceline smooth-scrolling smex smartscan shrink-whitespace scratch-message scratch restclient-helm ranger rainbow-mode rainbow-delimiters quickrun popwin popup-switcher popup-imenu peep-dired pbcopy paren-face paradox ox-reveal origami org-pomodoro org-plus-contrib org-journal org-cliplink org-bullets neotree mwim mu4e-maildirs-extension mu4e-alert move-text monokai-theme markdown-mode magit lispy link-hint kurecolor know-your-http-well keyfreq key-chord json-mode js2-mode java-imports ivy-hydra imenu-anywhere ido-vertical-mode hungry-delete hl-line+ highlight-parentheses highlight-numbers helm-swoop helm-projectile helm-org-rifle helm-mu helm-hunks helm-gtags helm-google helm-descbinds helm-company helm-cider helm-backup helm-ag grizzl golden-ratio-scroll-screen golden-ratio git-timemachine git-gutter-fringe+ forecast flyspell-popup flycheck-clojure find-file-in-project fancy-narrow fancy-battery exec-path-from-shell evil-nerd-commenter evil-mu4e evil-matchit evil-leader embrace emacs-eclim elisp-slime-nav easy-kill drag-stuff dockerfile-mode docker discover-my-major dired-rainbow dired-narrow dired+ ctags-update csv-nav csv-mode counsel-projectile company-statistics company-quickhelp color-identifiers-mode clojure-snippets clojure-cheatsheet clj-refactor cider-eval-sexp-fu cask-mode cask calfw-gcal calfw bug-hunter buffer-move better-defaults beacon anzu aggressive-indent ag ace-jump-mode 4clojure))))

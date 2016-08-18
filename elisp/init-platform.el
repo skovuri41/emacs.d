@@ -15,9 +15,9 @@
   (setq exec-path (append exec-path '("/usr/local/bin")))
   (setq default-directory (getenv "HOME"))
   (require 'package)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
   (add-to-list 'package-archives
-               '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+               '("melpa-stable" . "http://stable.melpa.org/packages/"))
   (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
   (add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t)
   (add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
@@ -28,7 +28,6 @@
   (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
   ;; Install all packages required
   (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
-  (load-file (expand-file-name "elisp/init-mwim.el" user-emacs-directory))
 
   (package-initialize)
   ;; Fetch packages the first time
