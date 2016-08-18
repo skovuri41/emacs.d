@@ -1,9 +1,9 @@
 (defun my/org-mode-hook ()
-                   (interactive)
-                   (turn-on-auto-fill)
-                   (turn-on-flyspell)
-                   (when (fboundp 'yas-minor-mode)
-                     (yas-minor-mode 1)))
+  (interactive)
+  (turn-on-auto-fill)
+  (turn-on-flyspell)
+  (when (fboundp 'yas-minor-mode)
+    (yas-minor-mode 1)))
 
 (defun set-org-mode-app-defaults ()
   (setq org-file-apps
@@ -16,15 +16,177 @@
   "Clever insertion of org item."
   (if (not (org-in-item-p))
       (insert "\n")
-    (org-insert-item))
-  )
+    (org-insert-item)))
 
 (defun org-eol-call (fun)
   "Go to end of line and call provided function.
 FUN function callback"
   (end-of-line)
-  (funcall fun)
-  )
+  (funcall fun))
+
+(defun org-goto-refile-target ()
+  (interactive)
+  (find-file org-default-notes-file))
+
+(defun setup-org-mode-key-bindings ()
+  ;;calendar tool on C-c .
+  (define-key org-read-date-minibuffer-local-map (kbd "M-h")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-l")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-k")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-j")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-H")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-month 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-L")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-month 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-K")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-year 1))))
+  (define-key org-read-date-minibuffer-local-map (kbd "M-J")
+    (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-year 1))))
+
+  (bind-keys :map org-mode-map
+             ((kbd "M-h") . org-metaleft)
+             ((kbd "M-H") . org-metaleft)
+             ((kbd "M-j") . org-shiftleft)
+             ((kbd "M-J") . org-metadown)
+             ((kbd "M-k") . org-shiftright)
+             ((kbd "M-K") . org-metaup)
+             ((kbd "M-l") . org-metaright)
+             ((kbd "M-L") . org-metaright)
+             ((kbd "M-o") . (lambda () (interactive)
+                              (org-eol-call
+                               '(lambda()
+                                  (org-insert-heading)
+                                  (org-metaright)))))
+             ((kbd "M-t") . (lambda () (interactive)
+                              (org-eol-call
+                               '(lambda()
+                                  (org-insert-todo-heading nil)
+                                  (org-metaright))))))
+
+  (bind-keys :map orgstruct-mode-map
+             ((kbd "M-j") . org-shiftleft)
+             ((kbd "M-J") . org-metadown)
+             ((kbd "M-k") . org-shiftright)
+             ((kbd "M-K") . org-metaup)
+             ((kbd "M-H") . org-metaleft)
+             ((kbd "M-L") . org-metaright)
+             ((kbd "M-o") . (lambda () (interactive)
+                              (org-eol-call
+                               '(lambda()
+                                  (org-insert-heading)
+                                  (org-metaright)))))
+             ((kbd "M-t") . ( ( ( ( ( ( (lambda () (interactive)
+                                          (org-eol-call
+                                           '(lambda()
+                                              (org-insert-todo-heading nil)
+                                              (org-metaright))))))))))))
+  (bind-keys :map org-agenda-mode-map
+             ("j" . org-agenda-next-line)
+             ("k" . org-agenda-previous-line)
+             ((kbd "M-j") . org-agenda-next-item)
+             ((kbd "M-k") . org-agenda-previous-item)
+             ((kbd "M-h") . org-agenda-earlier)
+             ((kbd "M-l") . org-agenda-later)
+             ;; ((kbd "gd") . org-agenda-toggle-time-grid)
+             ;; ((kbd "gr") . org-agenda-redo)
+             )
+
+  (bind-keys :prefix-map my-org-prefix-map
+             :prefix "C-c o"
+             ("." . org-edit-special)
+             ("c" . org-capture)
+             ("d" . org-deadline)
+             ("D" . org-insert-drawer)
+             ("e" . org-export-dispatch)
+             ("f" . org-set-effort)
+             ("P" . org-set-property)
+             ("p" . org-pomodoro)
+             (":" . org-set-tags)
+
+             ("a" . org-agenda)
+             ("b" . org-tree-to-indirect-buffer)
+             ("A" . org-archive-subtree)
+             ("l" . org-open-at-point)
+             ("T" . org-show-todo-tree)
+
+             ("." . org-time-stamp)
+             ("!" . org-time-stamp-inactive)
+
+             ;; headings
+             ("hi" . org-insert-heading-after-current)
+             ("hI" . org-insert-heading)
+
+             ;; More cycling options (timestamps, headlines, items, properties)
+             ("L" . org-shiftright)
+             ("H" . org-shiftleft)
+             ("J" . org-shiftdown)
+             ("K" . org-shiftup)
+
+             ;; Change between TODO sets
+             ("C-S-l" . org-shiftcontrolright)
+             ("C-S-h" . org-shiftcontrolleft)
+             ("C-S-j" . org-shiftcontroldown)
+             ("C-S-k" . org-shiftcontrolup)
+
+             ;; Subtree editing
+             ("Sl" . org-demote-subtree)
+             ("Sh" . org-promote-subtree)
+             ("Sj" . org-move-subtree-down)
+             ("Sk" . org-move-subtree-up)
+
+             ;; tables
+             ("ta" . org-table-align)
+             ("tb" . org-table-blank-field)
+             ("tc" . org-table-convert)
+             ("tdc" . org-table-delete-column)
+             ("tdr" . org-table-kill-row)
+             ("te" . org-table-eval-formula)
+             ("tE" . org-table-export)
+             ("th" . org-table-previous-field)
+             ("tH" . org-table-move-column-left)
+             ("tic" . org-table-insert-column)
+             ("tih" . org-table-insert-hline)
+             ("tiH" . org-table-hline-and-move)
+             ("tir" . org-table-insert-row)
+             ("tI" . org-table-import)
+             ("tj" . org-table-next-row)
+             ("tJ" . org-table-move-row-down)
+             ("tK" . org-table-move-row-up)
+             ("tl" . org-table-next-field)
+             ("tL" . org-table-move-column-right)
+             ("tn" . org-table-create)
+             ("tN" . org-table-create-with-table)
+             ("tr" . org-table-recalculate)
+             ("ts" . org-table-sort-lines)
+             ("ttf" . org-table-toggle-formula-debugger)
+             ("tto" . org-table-toggle-coordinate-overlays)
+             ("tw" . org-table-wrap-region)
+
+             ("*" . org-ctrl-c-star)
+             ("RET" . org-ctrl-c-ret)
+             ("-" . org-ctrl-c-minus)
+             ("^" . org-sort)
+             ("/" . org-sparse-tree)
+             ("I" . org-clock-in)
+             ("N" . org-narrow-to-subtree)
+             ("W" . widen)
+             ("O" . org-clock-out)
+             ("q" . org-clock-cancel)
+             ("R" . org-refile)
+             ("s" . org-schedule)
+
+             ;; insertion of common elements
+             ("il" . org-insert-link)
+             ("iu" . org-cliplink)
+             ("if" . org-footnote-new)
+             ;; ("ol" . org-store-link)
+             ("x" . org-encrypt-entry)
+             ("X" . org-decrypt-entry)))
+
 
 (use-package org
   :mode ("\\.org\\'" . org-mode)
@@ -500,9 +662,12 @@ FUN function callback"
   :commands (org-pomodoro)
   :ensure t
   :config
-  (setq org-pomodoro-length 2)
-  (setq org-pomodoro-long-break-length 1)
-  (setq org-pomodoro-short-break-length 1)
+  (progn
+    (setq org-pomodoro-length 2)
+    (setq org-pomodoro-long-break-length 1)
+    (setq org-pomodoro-short-break-length 1)
+    (when *is-a-mac*
+      (setq org-pomodoro-audio-player "/usr/bin/afplay")))
   )
 
 (use-package notifications
@@ -697,5 +862,13 @@ FUN function callback"
 (use-package org-cliplink :ensure t)
 
 (use-package org-protocol)
+
+(use-package toc-org
+  :defer t
+  :init
+  (progn
+    (setq toc-org-max-depth 10)
+    ;; (add-hook 'org-mode-hook 'toc-org-enable)
+    ))
 
 (provide 'init-org-2)

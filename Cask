@@ -196,3 +196,4 @@
 (depends-on "embrace")
 (depends-on "lispy")
 (depends-on "mwim")
+(depends-on "bind-key")

@@ -11,52 +11,52 @@
         (evil-leader/set-leader "SPC")
         (setq evil-leader/non-normal-prefix "S-")
         (evil-leader/set-key
-          "wd" 'delete-window
-          "wo" 'delete-other-windows
-          "ws" 'split-window-below
-          "wh" 'split-window-horizontally
-          "wv" 'split-window-vertically
-          "wu" 'winner-undo
-          "wU" 'winner-redo
-          "bS" 'save-some-buffers
-          "bb" 'ivy-switch-buffer
-          "bs" 'save-buffer
-          "bk" 'ido-kill-buffer
-          "bp" 'psw-switch-projectile-files
-          "br" 'psw-switch-recentf
-          "ff" 'counsel-find-file
-          "ww" 'ace-window
-          "hf" 'counsel-find-file
-          "ff" 'counsel-find-file
-          "fw" 'toggle-full-window
-          "bn" 'xah-new-empty-buffer
-          "by" 'bury-buffer
-          "hl" 'helm-locate
-          "hy" 'helm-show-kill-ring
-          "ht" 'helm-top
-          "ho" 'helm-occur
-          "hx" 'helm-M-x
-          "he" 'helm-find-files
-          "hb" 'helm-buffers-list
-          "hh" 'helm-projectile-find-file
-          "hr" 'helm-recentf
-          "fr" 'ivy-recentf
-          "hp" 'helm-projectile
-          "fp" 'helm-projectile
-          "h'" 'helm-all-mark-rings
-          "hs" 'helm-swoop
-          "ha" 'helm-do-ag
-          "hA" 'helm-ag-project-root
-          "hi" 'helm-imenu
-          "hI" 'helm-imenu-anywhere
-          "el" 'flycheck-list-errors
-          )
+         "wd" 'delete-window
+         "wo" 'delete-other-windows
+         "ws" 'split-window-below
+         "wh" 'split-window-horizontally
+         "wv" 'split-window-vertically
+         "wu" 'winner-undo
+         "wU" 'winner-redo
+         "bS" 'save-some-buffers
+         "bb" 'ivy-switch-buffer
+         "bs" 'save-buffer
+         "bk" 'ido-kill-buffer
+         "bp" 'psw-switch-projectile-files
+         "br" 'psw-switch-recentf
+         "ff" 'counsel-find-file
+         "ww" 'ace-window
+         "hf" 'counsel-find-file
+         "ff" 'counsel-find-file
+         "fw" 'toggle-full-window
+         "bn" 'xah-new-empty-buffer
+         "by" 'bury-buffer
+         "hl" 'helm-locate
+         "hy" 'helm-show-kill-ring
+         "ht" 'helm-top
+         "ho" 'helm-occur
+         "hx" 'helm-M-x
+         "he" 'helm-find-files
+         "hb" 'helm-buffers-list
+         "hh" 'helm-projectile-find-file
+         "hr" 'helm-recentf
+         "fr" 'ivy-recentf
+         "hp" 'helm-projectile
+         "fp" 'helm-projectile
+         "h'" 'helm-all-mark-rings
+         "hs" 'helm-swoop
+         "ha" 'helm-do-ag
+         "hA" 'helm-ag-project-root
+         "hi" 'helm-imenu
+         "hI" 'helm-imenu-anywhere
+         "el" 'flycheck-list-errors
+         )
         ;; Elisp Editing Bindings
         (evil-leader/set-key-for-mode 'emacs-lisp-mode
-          "m e b" 'eval-buffer
-          "m e r" 'eval-region
-          "m e c" 'eval-sexp-fu-eval-sexp-inner-list
-          "m e e" 'eval-sexp-fu-eval-sexp-inner-sexp)
+                                      "m e b" 'eval-buffer
+                                      "m e r" 'eval-region
+                                      "m e c" 'eval-sexp-fu-eval-sexp-inner-list
+                                      "m e e" 'eval-sexp-fu-eval-sexp-inner-sexp)
         (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
         (define-key evil-normal-state-map (kbd "m") 'push-mark-no-activate)
         (define-key evil-normal-state-map (kbd "gm") 'helm-all-mark-rings)
@@ -66,11 +66,11 @@
         (defun my/evil-org ()
           (progn
             (evil-leader/set-key-for-mode 'org-mode
-              "mt"  'org-show-todo-tree
-              "ma"  'org-agenda
-              "mc"  'org-archive-subtree
-              "mo"  org-mode-map
-              )
+                                          "mt"  'org-show-todo-tree
+                                          "ma"  'org-agenda
+                                          "mc"  'org-archive-subtree
+                                          "mo"  org-mode-map
+                                          )
             (defun clever-insert-item ()
               "Clever insertion of org item."
               (if (not (org-in-item-p))
@@ -140,20 +140,20 @@
             ))
         (add-hook 'org-mode-hook #'my/evil-org)
         (evil-leader/set-key
-          "oa" 'org-agenda
-          "og" 'helm-org-agenda-files-headings
-          "oo" 'org-clock-out
-          "oi" 'org-clock-in
-          "oc" 'org-capture
-          "oC" 'helm-org-capture-templates
-          "or" 'org-goto-refile-target
-          "op" 'org-pomodoro
-          "oL" 'org-insert-link
-          "ol" 'org-store-link
-          "ox" 'org-encrypt-entry
-          "oX" 'org-decrypt-entry
-          "oI" 'org-cliplink
-          )
+         "oa" 'org-agenda
+         "og" 'helm-org-agenda-files-headings
+         "oo" 'org-clock-out
+         "oi" 'org-clock-in
+         "oc" 'org-capture
+         "oC" 'helm-org-capture-templates
+         "or" 'org-goto-refile-target
+         "op" 'org-pomodoro
+         "oL" 'org-insert-link
+         "ol" 'org-store-link
+         "ox" 'org-encrypt-entry
+         "oX" 'org-decrypt-entry
+         "ou" 'org-cliplink
+         )
         ))
     (use-package evil-visualstar
       :ensure t
@@ -208,12 +208,12 @@
       ("M-;" . evilnc-comment-or-uncomment-lines)
       :init
       (evil-leader/set-key
-        "//" 'evilnc-comment-or-uncomment-lines
-        "/l" 'evilnc-quick-comment-or-uncomment-to-the-line
-        "/y" 'evilnc-copy-and-comment-lines
-        "/p" 'evilnc-comment-or-uncomment-paragraphs
-        "/r" 'comment-or-uncomment-region
-        "/v" 'evilnc-toggle-invert-comment-line-by-line))
+       "//" 'evilnc-comment-or-uncomment-lines
+       "/l" 'evilnc-quick-comment-or-uncomment-to-the-line
+       "/y" 'evilnc-copy-and-comment-lines
+       "/p" 'evilnc-comment-or-uncomment-paragraphs
+       "/r" 'comment-or-uncomment-region
+       "/v" 'evilnc-toggle-invert-comment-line-by-line))
     (use-package evil-numbers
       :ensure t
       :commands (evil-numbers/inc-at-pt evil-numbers/dec-at-pt)
@@ -224,8 +224,8 @@
           ("i" evil-numbers/inc-at-pt "increase")
           ("d" evil-numbers/dec-at-pt "decrease"))
         (evil-leader/set-key
-          "ni" 'init/hydra-numbers/evil-numbers/inc-at-pt
-          "nd" ' init/hydra-numbers/evil-numbers/dec-at-pt)))
+         "ni" 'init/hydra-numbers/evil-numbers/inc-at-pt
+         "nd" ' init/hydra-numbers/evil-numbers/dec-at-pt)))
     (use-package evil-snipe
       :ensure t
       :diminish evil-snipe-mode

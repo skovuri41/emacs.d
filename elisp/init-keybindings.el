@@ -21,6 +21,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c c") 'org-capture)
+(define-key global-map "\C-cl" 'org-store-link)
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
