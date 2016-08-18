@@ -38,6 +38,11 @@ FUN function callback"
   (interactive)
   (org-agenda-schedule 0 "+1d"))
 
+(defun hot-expand (str)
+  "Expand org template."
+  (insert str)
+  (org-try-structure-completion))
+
 (defhydra hydra-org-template (:color blue :hint nil)
   "
 _c_enter  _q_uote    _L_aTeX:
@@ -261,6 +266,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   (bind-keys :prefix-map my-org-prefix-map
              :prefix "C-c o"
              ("." . org-edit-special)
+             ("C" . helm-org-capture-templates)
              ("c" . org-capture)
              ("d" . org-deadline)
              ("D" . org-insert-drawer)
@@ -284,10 +290,10 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
              ("hI" . org-insert-heading)
 
              ;; More cycling options (timestamps, headlines, items, properties)
-             ("L" . org-shiftright)
-             ("H" . org-shiftleft)
-             ("J" . org-shiftdown)
-             ("K" . org-shiftup)
+             ;; ("L" . org-shiftright)
+             ;; ("H" . org-shiftleft)
+             ;; ("J" . org-shiftdown)
+             ("H" . worf-back-to-heading)
 
              ;; Change between TODO sets
              ("C-S-l" . org-shiftcontrolright)

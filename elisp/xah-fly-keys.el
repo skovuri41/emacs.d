@@ -2391,8 +2391,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "\"") 'lispy-quotes)
     (define-key xah-fly-key-map (kbd ";") 'lispy-comment)
     (define-key xah-fly-key-map (kbd ")") 'lispy-right-nostring)
-    (define-key xah-fly-key-map (kbd ">") 'lispy-slurp)
-    (define-key xah-fly-key-map (kbd "<") 'lispy-barf)
+    (define-key xah-fly-key-map (kbd ">") nil)
+    (define-key xah-fly-key-map (kbd "<") nil)
     
     (define-key xah-fly-key-map (kbd "1") nil)
     (define-key xah-fly-key-map (kbd "2") nil)
