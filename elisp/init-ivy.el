@@ -15,7 +15,8 @@
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
       (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
       (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
-      (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g") )
+      (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
+      ;; (key-chord-define ivy-minibuffer-map "kj" 'keyboard-quit)
       )
     (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
@@ -29,8 +30,8 @@
     (setq ivy-re-builders-alist
           '((read-file-name-internal . ivy--regex-fuzzy)
             (ivy-switch-buffer . ivy--regex-fuzzy)
-            (t . ivy--regex-plus))))
-  )
+            (counsel-M-x . ivy--regex-fuzzy)
+            (t . ivy--regex-plus)))))
 
 (use-package ivy
   :ensure swiper
@@ -44,8 +45,7 @@
     ;;advise swiper to recenter on exit
     (defun bjm-swiper-recenter (&rest args)
       "recenter display after swiper"
-      (recenter)
-      )
+      (recenter))
     (advice-add 'swiper :after #'bjm-swiper-recenter)
     ;; fancier colors
     (setq ivy-display-style 'fancy)
@@ -69,8 +69,7 @@
                              ;;ivy--regex
                              :sort nil
                              :initial-input nil)))
-          (dired dir))))
-    )
+          (dired dir)))))
   :init
   (progn
     (ivy-mode 1)))
@@ -84,10 +83,9 @@
          ("C-c g" . counsel-git)
          ("C-x l" . counsel-locate)))
 
-(use-package counsel-projectile         ; Ivy integration for Projectile
+(use-package counsel-projectile       ; Ivy integration for Projectile
   :ensure t
   :bind (:map projectile-command-map
-              ("p" . counsel-projectile))
-  )
+              ("p" . counsel-projectile)))
 
 (provide 'init-ivy)

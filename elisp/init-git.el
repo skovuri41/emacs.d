@@ -9,8 +9,7 @@
   :init
   (progn
     (setq git-gutter+-hide-gutter t)
-    (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh))
-  )
+    (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh)))
 
 (use-package git-gutter-fringe+
   :init
@@ -28,8 +27,8 @@
     ;; (set-face-foreground 'git-gutter+-deleted "red")
 
     (set-face-foreground 'git-gutter-fr+-modified "magenta")
-    (set-face-foreground 'git-gutter-fr+-added    "green")
-    (set-face-foreground 'git-gutter-fr+-deleted  "red")
+    (set-face-foreground 'git-gutter-fr+-added "green")
+    (set-face-foreground 'git-gutter-fr+-deleted "red")
     ;; (setq-default left-fringe-width  40)
 
     (add-hook 'git-gutter+-mode-hook 'my/set-fringe-bg)
@@ -40,22 +39,19 @@
       "..X...."
       "XXXXX.."
       "..X...."
-      "..X...."
-      )
+      "..X....")
     (fringe-helper-define 'git-gutter-fr+-deleted nil
       "......."
       "......."
       "XXXXX.."
       "......."
-      "......."
-      )
+      ".......")
     (fringe-helper-define 'git-gutter-fr+-modified nil
       "..X...."
       ".XXX..."
       "XX.XX.."
       ".XXX..."
-      "..X...."
-      )
+      "..X....")
     ;; hydra git-gutter
     (defhydra hydra-git-gutter (:body-pre (global-git-gutter+-mode 1)
                                           :hint nil)
@@ -70,7 +66,7 @@
       ("j" git-gutter+-next-hunk)
       ("k" git-gutter+-previous-hunk)
       ("s" git-gutter+-stage-hunks)
-      ("r" git-gutter+-unstage-whole-buffer)
+      ("r" git-gutter+-revert-hunk)
       ("m" global-git-gutter+-mode)
       ("c" (lambda () (interactive)
              (git-gutter+-commit)
@@ -82,8 +78,7 @@
              (git-gutter+-stage-and-commit-whole-buffer)
              (switch-to-buffer-other-window "*Commit Message*")))
       ("h" git-gutter+-show-hunk-inline-at-point)
-      ("q" nil :color blue))
-    ))
+      ("q" nil :color blue))))
 
 
 (provide 'init-git)

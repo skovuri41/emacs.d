@@ -289,35 +289,6 @@ Version 2015-03-24"
   (interactive)
   (search-backward-regexp "\\.+\\|,+\\|;+" nil t))
 
-;; (defun goto-point-min ()
-;;   "Goto the beginning of buffer.
-;; This is different from `beginning-of-buffer'
-;; because that marks the previous position."
-;;   (interactive)
-;;   (goto-char (point-min))
-;; )
-
-;; (defun goto-point-max ()
-;;   "Goto the end of buffer.
-;; This is different from `end-of-buffer'
-;; because that marks the previous position."
-;;   (interactive)
-;;   (goto-char (point-max))
-;; )
-
-;; (defun xah-forward-space ()
-;;   "Move cursor to the next occurrence of white space."
-;;   (interactive)
-;;   (re-search-forward "[ \t\n]+" nil t))
-
-;; (defun xah-backward-space ()
-;;   "Move cursor to the next occurrence of white space."
-;;   (interactive)
-;;   ;; (skip-chars-backward "^ \t\n")
-;;   ;; (re-search-backward "[ \t\n]+" nil t)
-;;   (posix-search-backward "[ \t\n]+" nil t)
-;;   )
-
 
 ;; text selection
 
@@ -327,27 +298,6 @@ Version 2015-03-24"
   (delete-region (line-beginning-position) (line-end-position))
   (when (looking-at "\n")
     (delete-char 1)))
-
-;; (defun xah-copy-line-or-region ()
-;;   "Copy current line, or text selection.
-;; When `universal-argument' is called first, copy whole buffer (respects `narrow-to-region').
-
-;; URL `http://ergoemacs.org/emacs/emacs_copy_cut_current_line.html'
-;; Version 2015-05-06"
-;;   (interactive)
-;;   (let (-p1 -p2)
-;;     (if current-prefix-arg
-;;         (progn (setq -p1 (point-min))
-;;                (setq -p2 (point-max)))
-;;       (progn (if (use-region-p)
-;;                  (progn (setq -p1 (region-beginning))
-;;                         (setq -p2 (region-end)))
-;;                (progn (setq -p1 (line-beginning-position))
-;;                       (setq -p2 (line-end-position))))))
-;;     (kill-ring-save -p1 -p2)
-;;     (if current-prefix-arg
-;;         (message "buffer text copied")
-;;       (message "text copied"))))
 
 (defun xah-copy-line-or-region ()
   "Copy current line, or text selection.
@@ -1599,7 +1549,7 @@ Version 2016-07-20"
 URL `http://ergoemacs.org/emacs/modernization_isearch.html'
 Version 2015-04-09"
   (interactive)
-  (let ( -p1 -p2 )
+  (let (-p1 -p2)
     (if (use-region-p)
         (progn
           (setq -p1 (region-beginning))
@@ -2009,9 +1959,9 @@ If `universal-argument' is called first, do switch frame."
   (define-prefix-command 'xah-fly-leader-key-map)
   (define-key xah-fly-leader-key-map (kbd "SPC") 'xah-fly-insert-mode-activate)
   (define-key xah-fly-leader-key-map (kbd "DEL") 'xah-delete-current-file)
-  (define-key xah-fly-leader-key-map (kbd "RET") (if (fboundp 'smex) 'smex 'execute-extended-command ))
+  (define-key xah-fly-leader-key-map (kbd "RET") 'counsel-M-x)
   (define-key xah-fly-leader-key-map (kbd "TAB") xah-leader-tab-keymap)
-  
+
   (define-key xah-fly-leader-key-map (kbd ".") xah-highlight-keymap)
 
   (define-key xah-fly-leader-key-map (kbd "'") 'xah-fill-or-unfill)
@@ -2206,24 +2156,17 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "M-RET") 'xah-cycle-hyphen-underscore-space)
   (define-key xah-fly-key-map (kbd "M-c") 'xah-toggle-letter-case)
   (define-key xah-fly-key-map (kbd "M-g") 'hippie-expand)
-  ;; (define-key xah-fly-key-map (kbd "M-h") 'xah-insert-brace)
   (define-key xah-fly-key-map (kbd "M-m") 'lispy-mark-symbol)
-  ;; (define-key xah-fly-key-map (kbd "M-t") 'xah-insert-paren)
-  ;; (define-key xah-fly-key-map (kbd "M-d") 'xah-insert-date)
-  ;; (define-key xah-fly-key-map (kbd "M-k") 'yank-pop)
-  ;; (define-key xah-fly-key-map (kbd "M-k") 'lispy-kill-sentence)
-  ;; (define-key xah-fly-key-map (kbd "M-l") 'left-char)
   (define-key xah-fly-key-map (kbd "M-d") 'lispy-kill-word)
   (define-key xah-fly-key-map (kbd "C-,") 'lispy-kill-at-point)
-
   ;; (define-key xah-fly-key-map (kbd "C-k") 'lispy-kill)
-  
+
   (define-key xah-fly-key-map (kbd "C-y") 'lispy-yank)
   (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete)
   ;; (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
 
   (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
-  ;;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
+;;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<menu>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<f8>") 'xah-fly-command-mode-activate)
@@ -2235,12 +2178,10 @@ If `universal-argument' is called first, do switch frame."
 
   (progn
     ;; set arrow keys in isearch. left/right is backward/forward, up/down is history. press Return to exit
-    (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat )
-    (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance )
-
+    (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
+    (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
     (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
     (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
-
     (define-key minibuffer-local-isearch-map (kbd "<left>") 'isearch-reverse-exit-minibuffer)
     (define-key minibuffer-local-isearch-map (kbd "<right>") 'isearch-forward-exit-minibuffer)
     ;;
@@ -2269,7 +2210,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "/") 'swiper)
     (define-key xah-fly-key-map (kbd "?") 'swiper)
     (define-key xah-fly-key-map (kbd "\\") nil)
-    (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body) 
+    (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body)
     (define-key xah-fly-key-map (kbd "[") 'xah-backward-left-bracket)
     (define-key xah-fly-key-map (kbd "]") 'xah-forward-right-bracket)
     (define-key xah-fly-key-map (kbd "`") 'other-frame)
@@ -2338,9 +2279,14 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "i") 'xah-fly-insert-mode-activate)
     (define-key xah-fly-key-map (kbd "k") 'previous-line)
     (define-key xah-fly-key-map (kbd "K") 'my-jump-to-elisp-docs)
-    (define-key xah-fly-key-map (kbd "m") 'helm-M-x)
-    (define-key xah-fly-key-map (kbd "n") 'isearch-repeat-forward)
-    (define-key xah-fly-key-map (kbd "N") 'isearch-repeat-backward)
+    (define-key xah-fly-key-map (kbd "m") 'set-mark-command)
+    (define-key xah-fly-key-map (kbd "nd") 'fancy-narrow-to-defun)
+    (define-key xah-fly-key-map (kbd "nr") 'fancy-narrow-to-region)
+    (define-key xah-fly-key-map (kbd "np") 'fancy-narrow-to-page)
+    (define-key xah-fly-key-map (kbd "nb") 'org-fancy-narrow-to-block)
+    (define-key xah-fly-key-map (kbd "nw") 'fancy-widen)
+    (define-key xah-fly-key-map (kbd "ne") 'org-fancy-narrow-to-element)
+    (define-key xah-fly-key-map (kbd "ns") 'org-fancy-narrow-to-subtree)
     (define-key xah-fly-key-map (kbd "l") 'forward-char)
     (define-key xah-fly-key-map (kbd "o") 'open-line-below)
     (define-key xah-fly-key-map (kbd "O") 'open-line-above)
@@ -2352,11 +2298,14 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "t") 'evilmi-jump-items)
     (define-key xah-fly-key-map (kbd "u") 'undo-tree-undo)
     ;; (define-key xah-fly-key-map (kbd "v") 'evilmi-select-items)
-    (define-key xah-fly-key-map (kbd "v") 'set-mark-command)
+    ;; (define-key xah-fly-key-map (kbd "v") 'set-mark-command)
     (define-key xah-fly-key-map (kbd "ww") 'ace-window)
     (define-key xah-fly-key-map (kbd "wd") 'delete-window)
     (define-key xah-fly-key-map (kbd "wo") 'delete-other-windows)
     (define-key xah-fly-key-map (kbd "wt") 'hydra-transpose-frame/body)
+    (define-key xah-fly-key-map (kbd "wh") 'split-window-horizontally)
+    (define-key xah-fly-key-map (kbd "wv") 'split-window-vertically)
+    (define-key xah-fly-key-map (kbd "W") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
     (define-key xah-fly-key-map (kbd "y") 'easy-kill)
@@ -2374,7 +2323,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "|") nil)
     (define-key xah-fly-key-map (kbd ".") nil)
     (define-key xah-fly-key-map (kbd "/") nil)
-    (define-key xah-fly-key-map (kbd "?") 'nil)
+    (define-key xah-fly-key-map (kbd "?") '())
     (define-key xah-fly-key-map (kbd "$") nil)
     (define-key xah-fly-key-map (kbd ";") nil)
     (define-key xah-fly-key-map (kbd "=") nil)
@@ -2393,7 +2342,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd ")") 'lispy-right-nostring)
     (define-key xah-fly-key-map (kbd ">") nil)
     (define-key xah-fly-key-map (kbd "<") nil)
-    
+
     (define-key xah-fly-key-map (kbd "1") nil)
     (define-key xah-fly-key-map (kbd "2") nil)
     (define-key xah-fly-key-map (kbd "3") nil)
@@ -2432,6 +2381,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "u") nil)
     (define-key xah-fly-key-map (kbd "v") nil)
     (define-key xah-fly-key-map (kbd "w") nil)
+    (define-key xah-fly-key-map (kbd "W") nil)
     (define-key xah-fly-key-map (kbd "x") nil)
     (define-key xah-fly-key-map (kbd "X") nil)
     (define-key xah-fly-key-map (kbd "y") nil)
@@ -2456,7 +2406,7 @@ If `universal-argument' is called first, do switch frame."
   (when (buffer-file-name)
     (save-buffer)))
 
-(defun xah-fly-command-mode-activate ()
+(defun xah-fly-command-mode-ativate ()
   "Activate command mode."
   (interactive)
   (modify-all-frames-parameters (list (cons 'cursor-type 'box)))
@@ -2499,7 +2449,7 @@ If buffer-or-name is nil return current buffer's mode."
 
 (defun lispy-mode-activate ()
   "Enable lispy mode for selected major modes only"
-  (let ((buffer-major-mode 
+  (let ((buffer-major-mode
          (format "%s" (buffer-mode))))
     (when (or (equal "emacs-lisp-mode" buffer-major-mode)
               (equal "clojure-mode" buffer-major-mode)
@@ -2510,21 +2460,18 @@ If buffer-or-name is nil return current buffer's mode."
   `(progn
      ;; replace a global binding with major-mode's default
      ;; (define-key lispy-mode-map (kbd "C-j") nil)
-     
+
      ;; replace a local binding
      (lispy-define-key lispy-mode-map "t" 'lispy-different)
      (lispy-define-key lispy-mode-map "d" 'lispy-delete)
-     (lispy-define-key lispy-mode-map "v" 'lispy-mark-list)
      (lispy-define-key lispy-mode-map "p" 'lispy-paste)
      (lispy-define-key lispy-mode-map "y" 'lispy-new-copy)
      (lispy-define-key lispy-mode-map "X" 'lispy-splice)
      (lispy-define-key lispy-mode-map "n" 'lispy-occur)
-     (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)
-     (lispy-define-key lispy-mode-map "m" 'lispy-view)))
+     (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)))
 
 
 ;; when in going into minibuffer, switch to insertion mode.
-;; (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'minibuffer-exit-hook 'xah-fly-command-mode-activate)
 (add-hook 'helm-minibuffer-setup-hook 'xah-fly-insert-mode-activate)
@@ -2534,7 +2481,6 @@ If buffer-or-name is nil return current buffer's mode."
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
-
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)
