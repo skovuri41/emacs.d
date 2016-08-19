@@ -204,13 +204,13 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
     (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-year 1))))
 
   (bind-keys :map org-mode-map
-             ((kbd "M-h") . org-metaleft)
+             ((kbd "M-h") . org-shiftleft)
              ((kbd "M-H") . org-metaleft)
-             ((kbd "M-j") . org-shiftleft)
+             ((kbd "M-j") . org-shiftdown)
              ((kbd "M-J") . org-metadown)
-             ((kbd "M-k") . org-shiftright)
+             ((kbd "M-k") . org-shiftup)
              ((kbd "M-K") . org-metaup)
-             ((kbd "M-l") . org-metaright)
+             ((kbd "M-l") . org-shiftright)
              ((kbd "M-L") . org-metaright)
              ((kbd "M-o") . (lambda () (interactive)
                               (org-eol-call
@@ -222,6 +222,9 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
                                '(lambda()
                                   (org-insert-todo-heading nil)
                                   (org-metaright))))))
+  (bind-keys :map worf-mode-map
+             ("M-j" . nil))
+
   (define-key org-mode-map "<"
     (defun org-self-insert-or-less ()
       (interactive)
@@ -231,7 +234,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
 
   (bind-keys :map orgstruct-mode-map
              ((kbd "M-H") . org-metaleft)
-             ((kbd "M-j") . org-shiftleft)
+             ((kbd "M-j") . org-shiftdown)
              ((kbd "M-J") . org-metadown)
              ((kbd "M-k") . org-shiftright)
              ((kbd "M-K") . org-metaup)
@@ -241,11 +244,11 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
                                '(lambda()
                                   (org-insert-heading)
                                   (org-metaright)))))
-             ((kbd "M-t") . ( ( ( ( ( ( (lambda () (interactive)
-                                          (org-eol-call
-                                           '(lambda()
-                                              (org-insert-todo-heading nil)
-                                              (org-metaright))))))))))))
+             ((kbd "M-t") .     ((lambda () (interactive)
+                                   (org-eol-call
+                                    '(lambda()
+                                       (org-insert-todo-heading nil)
+                                       (org-metaright)))))))
   (bind-keys :map org-agenda-mode-map
              ("j" . org-agenda-next-line)
              ("k" . org-agenda-previous-line)
@@ -365,7 +368,6 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   (add-to-list 'auto-mode-alist '(".*/[0-9]*$" . org-mode)) ;; Journal entries
   (add-hook 'org-mode-hook #'hl-line-mode)
   (add-hook 'org-mode-hook #'my/org-mode-hook)
-  (add-hook 'org-mode-hook #'my/org-mode-key-bindings)
   (add-hook 'org-mode-hook
             (lambda ()
               (auto-fill-mode)
@@ -374,6 +376,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   (add-hook 'org-mode-hook 'yas-minor-mode-on)
   (add-hook 'org-mode-hook 'company-mode)
   (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
+  (add-hook 'org-mode-hook #'my/org-mode-key-bindings)
 
   (setq org-directory (file-truename "~/org"))
   (setq org-default-notes-file (concat org-directory "/notes.org"))

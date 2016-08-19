@@ -92,7 +92,7 @@
 ;;mail
 (depends-on "mu4e-maildirs-extension")
 (depends-on "mu4e-alert")
-(depends-on "w3m")
+;;(depends-on "w3m")
 
 ;;clojure
 (depends-on "clojure-mode")
@@ -197,3 +197,7 @@
 (depends-on "lispy")
 (depends-on "mwim")
 (depends-on "bind-key")
+(depends-on "worf")
+
+
+

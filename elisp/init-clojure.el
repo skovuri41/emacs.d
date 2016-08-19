@@ -118,11 +118,8 @@
          ;; ("rcs" . clojure-toggle-keyword-string)
          ;; ("rfe" . cljr-create-fn-from-example)
          ))
-      (define-key clojure-mode-map (kbd "C-m") 'local-clojure-mode-keymap)
-      )
+      (define-key clojure-mode-map (kbd "C-m") 'local-clojure-mode-keymap))
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)
-
-
     ))
 
   (use-package cider
@@ -154,10 +151,7 @@
 
 (use-package typed-clojure-mode
   :init
-  (add-hook 'clojure-mode-hook 'typed-clojure-mode)
-  :config
-  (progn
-    ))
+  (add-hook 'clojure-mode-hook 'typed-clojure-mode))
 
 (use-package flycheck-clojure
   :ensure t
