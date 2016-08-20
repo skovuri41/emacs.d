@@ -2406,7 +2406,7 @@ If `universal-argument' is called first, do switch frame."
   (when (buffer-file-name)
     (save-buffer)))
 
-(defun xah-fly-command-mode-ativate ()
+(defun xah-fly-command-mode-activate ()
   "Activate command mode."
   (interactive)
   (modify-all-frames-parameters (list (cons 'cursor-type 'box)))
