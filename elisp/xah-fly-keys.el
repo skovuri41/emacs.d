@@ -2166,7 +2166,7 @@ If `universal-argument' is called first, do switch frame."
   ;; (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
 
   (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
-;;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
+  ;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<menu>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<f8>") 'xah-fly-command-mode-activate)
@@ -2271,6 +2271,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "gt") 'git-timemachine-toggle)
     (define-key xah-fly-key-map (kbd "gh") 'hydra-git-gutter/body)
     (define-key xah-fly-key-map (kbd "gf") 'find-file-at-point)
+    (define-key xah-fly-key-map (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point)
     (define-key xah-fly-key-map (kbd "G") 'end-of-buffer)
     (define-key xah-fly-key-map (kbd "gg") 'beginning-of-buffer)
     (define-key xah-fly-key-map (kbd "go") 'evilmi-jump-items)
