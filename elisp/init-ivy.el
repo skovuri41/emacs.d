@@ -31,12 +31,18 @@
           '((read-file-name-internal . ivy--regex-fuzzy)
             (ivy-switch-buffer . ivy--regex-fuzzy)
             (counsel-M-x . ivy--regex-fuzzy)
-            (t . ivy--regex-plus)))))
+            (t . ivy--regex-plus)))
+    )
+  :config
+  (progn
+    (define-key swiper-map (kbd "C-.")
+      (lambda () (interactive) (insert (format "\\<%s\\>" (with-ivy-window
+                                                       (thing-at-point 'symbol))))))
+    ))
 
 (use-package ivy
   :ensure swiper
   :diminish ivy-mode
-  :bind (("C-x b" . nil))
   :config
   (progn
     ;; partial complete without exiting
@@ -51,6 +57,56 @@
     (setq ivy-display-style 'fancy)
     ;;ivy-wrap
     (setq ivy-wrap t)
+
+    (ivy-set-actions
+     t
+     '(("i" (lambda (x) (with-ivy-window
+                     (insert x))) "insert candidate")
+       (" " (lambda (x) (ivy-resume)) "resume")
+       ("?" (lambda (x)
+              (interactive)
+              (describe-keymap ivy-minibuffer-map)) "Describe keys")))
+
+    ;; ** Find file actions
+    (ivy-add-actions
+     'counsel-find-file
+     '(("a" (lambda (x)
+              (unless (memq major-mode '(mu4e-compose-mode message-mode))
+                (compose-mail))
+              (mml-attach-file x)) "Attach to email")
+       ("c" (lambda (x) (kill-new (f-relative x))) "Copy relative path")
+       ("4" (lambda (x) (find-file-other-window x)) "Open in new window")
+       ("5" (lambda (x) (find-file-other-frame x)) "Open in new frame")
+       ("C" (lambda (x) (kill-new x)) "Copy absolute path")
+       ("d" (lambda (x) (dired x)) "Open in dired")
+       ("D" (lambda (x) (delete-file x)) "Delete file")
+       ("e" (lambda (x) (shell-command (format "open %s" x)))
+        "Open in external program")
+       ("f" (lambda (x)
+              "Open X in another frame."
+              (find-file-other-frame x))
+        "Open in new frame")
+       ("p" (lambda (path)
+              (with-ivy-window
+                (insert (f-relative path))))
+        "Insert relative path")
+       ("P" (lambda (path)
+              (with-ivy-window
+                (insert path)))
+        "Insert absolute path")
+       ("l" (lambda (path)
+              "Insert org-link with relative path"
+              (with-ivy-window
+                (insert (format "[[file:%s]]" (f-relative path)))))
+        "Insert org-link (rel. path)")
+       ("L" (lambda (path)
+              "Insert org-link with absolute path"
+              (with-ivy-window
+                (insert (format "[[file:%s]]" path))))
+        "Insert org-link (abs. path)")
+       ("r" (lambda (path)
+              (rename-file path (read-string "New name: ")))
+        "Rename")))
 
     ;; open recent directory, requires ivy (part of swiper)
     ;; borrows from http://stackoverflow.com/questions/23328037/in-emacs-how-to-maintain-a-list-of-recent-directories
