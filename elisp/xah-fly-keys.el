@@ -2476,9 +2476,17 @@ If buffer-or-name is nil return current buffer's mode."
      (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)))
 
 
+(defun xah-fly-mode-hook-fn (&rest args)
+  (interactive)
+  (if buffer-read-only
+      (xah-fly-insert-mode-activate)
+    (xah-fly-command-mode-activate)))
+
+
 ;; when in going into minibuffer, switch to insertion mode.
 (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'minibuffer-exit-hook 'xah-fly-command-mode-activate)
+
 (add-hook 'helm-minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'helm-minibuffer-exit-hook 'xah-fly-command-mode-activate)
 
@@ -2486,6 +2494,8 @@ If buffer-or-name is nil return current buffer's mode."
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
+;; (add-hook 'minibuffer-exit-hook 'xah-fly-mode-hook-fn)
+(add-hook 'window-configuration-change-hook 'xah-fly-mode-hook-fn)
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)

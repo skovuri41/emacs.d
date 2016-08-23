@@ -7,7 +7,7 @@
   :config
   (progn
     (add-hook 'magit-mode-hook 'xah-fly-insert-mode-activate)
-    (add-hook 'magit-status-mode-hook 'xah-fly-command-mode-activate)
+    (add-hook 'magit-status-mode-hook 'xah-fly-insert-mode-activate)
 
     ;; (eval-after-load 'magit-blame
     ;;   '(progn

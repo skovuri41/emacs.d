@@ -7,6 +7,7 @@
   (setq golden-ratio-extra-commands
         (append golden-ratio-extra-commands
                 '(ivy-switch-buffer
+                  cider-popup-buffer-quit-function
                   ace-window)))
   (golden-ratio-mode 1))
 
