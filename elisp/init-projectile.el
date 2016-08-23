@@ -16,7 +16,8 @@
           (expand-file-name "cache/projectile-bookmarks.eld" user-emacs-directory))
     (setq projectile-cache-file
           (expand-file-name "cache/projectile.cache" user-emacs-directory))
-
+    (setq projectile-completion-system 'ivy)
+    (setq projectile-indexing-method 'alien)
 
     (def-projectile-commander-method ?s
       "Open a *shell* buffer for the project."

@@ -2495,7 +2495,7 @@ If buffer-or-name is nil return current buffer's mode."
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
 ;; (add-hook 'minibuffer-exit-hook 'xah-fly-mode-hook-fn)
-(add-hook 'window-configuration-change-hook 'xah-fly-mode-hook-fn)
+;; (add-hook 'window-configuration-change-hook 'xah-fly-mode-hook-fn)
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)

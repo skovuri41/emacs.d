@@ -144,4 +144,10 @@
   :bind (:map projectile-command-map
               ("p" . counsel-projectile)))
 
+
+(use-package tiny
+  :commands tiny-expand)
+
+
+
 (provide 'init-ivy)

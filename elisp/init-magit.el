@@ -9,6 +9,17 @@
     (add-hook 'magit-mode-hook 'xah-fly-insert-mode-activate)
     (add-hook 'magit-status-mode-hook 'xah-fly-insert-mode-activate)
 
+    (dolist (map (list magit-status-mode-map
+                       magit-log-mode-map
+                       magit-diff-mode-map
+                       magit-staged-section-map))
+      (define-key map "j" 'magit-section-forward)
+      (define-key map "k" 'magit-section-backward)
+      (define-key map "n" nil)
+      (define-key map "p" nil)
+      (define-key map "v" 'recenter-top-bottom)
+      (define-key map "i" 'magit-section-toggle))
+
     ;; (eval-after-load 'magit-blame
     ;;   '(progn
     ;;      (define-key magit-blame-mode-map "n" nil)

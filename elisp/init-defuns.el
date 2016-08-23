@@ -333,6 +333,10 @@ Try the repeated popping up to 10 times."
 (advice-add 'pop-to-mark-command :around
             #'modi/multi-pop-to-mark)
 
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  (lispy-flet (process-list ()) ad-do-it))
+
 (defun xah-html-decode-percent-encoded-url ()
   "Decode percent encoded URI of URI under cursor or selection.
 

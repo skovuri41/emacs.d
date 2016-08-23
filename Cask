@@ -198,6 +198,8 @@
 (depends-on "mwim")
 (depends-on "bind-key")
 (depends-on "worf")
+(depends-on "tiny")
+
 
 
 
