@@ -1,22 +1,19 @@
 (use-package transpose-frame
   :ensure t
   :init
-  (progn 
-    (defhydra hydra-transpose-frame(:color red :hint nil)
+  (progn
+    (defhydra hydra-transpose-frame(:color blue :hint nil)
       "
       _t_ranspose  _f_lip    f_l_op 
-      _r_otate  _c_lockwise  _a_nticlockwise e_x_it
+      _r_otate  _c_lockwise  _a_nticlockwise _q_uit
      "
-      ("t" transpose-frame)
-      ("f" flip-frame)
-      ("l" flop-frame)
-      ("r" rotate-frame)
-      ("c" rotate-frame-clockwise)
-      ("a" rotate-frame-anticlockwise)
-      ("x" nil :color blue)
-      )
-    )
-  )
+      ("t" transpose-frame :exit nil)
+      ("f" flip-frame :exit nil)
+      ("l" flop-frame :exit nil)
+      ("r" rotate-frame :exit nil)
+      ("c" rotate-frame-clockwise :exit nil)
+      ("a" rotate-frame-anticlockwise :exit nil)
+      ("q" nil :color red))))
                          
 (provide 'init-transpose)
 
