@@ -66,14 +66,12 @@
 (require 'lispy)
 
 
-
 (defvar xah-fly-command-mode-activate-hook nil "Hook for `xah-fly-command-mode-activate'")
 (defvar xah-fly-insert-mode-activate-hook nil "Hook for `xah-fly-insert-mode-activate'")
 
 (defvar xah-fly-use-control-key nil "if true, define standard keys for open, close, paste, etc.")
 (setq xah-fly-use-control-key t)
 
-
 ;; cursor movement
 
 (defun xah-pop-local-mark-ring ()
@@ -136,14 +134,14 @@ version 2016-06-15"
   (let ((n (if (null n) 1 n)))
     (if (equal n 1)
         (if (or (equal (point) (line-end-position))
-                (equal last-command this-command )
+                (equal last-command this-command)
                 ;; (equal last-command 'xah-beginning-of-line-or-block )
                 )
             (xah-forward-block)
           ;;(end-of-line)
-          (mwim-end-of-code-or-line)
-          )
+          (mwim-end-of-code-or-line))
       (progn (xah-forward-block n)))))
+
 
 (defvar xah-brackets nil "string of left/right brackets pairs.")
 (setq xah-brackets "()[]{}<>（）［］｛｝⦅⦆〚〛⦃⦄“”‘’‹›«»「」〈〉《》【】〔〕⦗⦘『』〖〗〘〙｢｣⟦⟧⟨⟩⟪⟫⟮⟯⟬⟭⌈⌉⌊⌋⦇⦈⦉⦊❛❜❝❞❨❩❪❫❴❵❬❭❮❯❰❱❲❳〈〉⦑⦒⧼⧽﹙﹚﹛﹜﹝﹞⁽⁾₍₎⦋⦌⦍⦎⦏⦐⁅⁆⸢⸣⸤⸥⟅⟆⦓⦔⦕⦖⸦⸧⸨⸩｟｠⧘⧙⧚⧛⸜⸝⸌⸍⸂⸃⸄⸅⸉⸊᚛᚜༺༻༼༽⏜⏝⎴⎵⏞⏟⏠⏡﹁﹂﹃﹄︹︺︻︼︗︘︿﹀︽︾﹇﹈︷︸")
@@ -1702,8 +1700,7 @@ If `universal-argument' is called first, do switch frame."
      (define-key kmap-name (kbd (car pair)) (cdr pair)))
    key-cmd-alist))
 
-
-;; keymaps
+;;;;; keymaps
 
 (defvar xah-fly-swapped-1827-p nil "Boolean. If true, it means keys 1 and 8 are swapped, and 2 and 7 are swapped. See: http://xahlee.info/kbd/best_number_key_layout.html")
 
@@ -2010,8 +2007,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "y") 'xah-copy-file-path)
   (define-key xah-fly-leader-key-map (kbd "z") 'comment-dwim))
 
-
-;;;; misc
+;;;;; misc
 
 ;; these commands have keys in emacs, but right now i decided not to give them a key
 
@@ -2128,7 +2124,7 @@ If `universal-argument' is called first, do switch frame."
 
 
 
-;; setting keys
+;;;;; setting keys
 
 (progn
   (when xah-fly-use-control-key
@@ -2193,10 +2189,10 @@ If `universal-argument' is called first, do switch frame."
   ;;
   )
 
-
-
 (defvar xah-fly-insert-state-q t "Boolean value. true means insertion mode is on.")
 (setq xah-fly-insert-state-q t)
+
+;;;;; command mode keys
 
 (defun xah-fly-command-mode-init ()
   "set command mode keys"
@@ -2208,7 +2204,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd ";") 'lispy-comment)
     (define-key xah-fly-key-map (kbd ":") nil)
     (define-key xah-fly-key-map (kbd "/") 'swiper)
-    (define-key xah-fly-key-map (kbd "?") 'swiper)
+    (define-key xah-fly-key-map (kbd "?") 'swiper-the-thing)
     (define-key xah-fly-key-map (kbd "\\") nil)
     (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body)
     (define-key xah-fly-key-map (kbd "[") 'xah-backward-left-bracket)
@@ -2244,7 +2240,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "9") 'xah-select-text-in-quote)
     (define-key xah-fly-key-map (kbd "0") 'xah-beginning-of-line-or-block)
     (define-key xah-fly-key-map (kbd "$") 'xah-end-of-line-or-block)
-    (define-key xah-fly-key-map (kbd "-") 'nil)
+    (define-key xah-fly-key-map (kbd "-") nil)
     (define-key xah-fly-key-map (kbd "|") 'split-window-horizontally)
     (define-key xah-fly-key-map (kbd "a") 'xah-beginning-of-line-or-block)
     (define-key xah-fly-key-map (kbd "bb") 'ivy-switch-buffer)
@@ -2276,12 +2272,16 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "G") 'end-of-buffer)
     (define-key xah-fly-key-map (kbd "gg") 'beginning-of-buffer)
     (define-key xah-fly-key-map (kbd "go") 'evilmi-jump-items)
+    (define-key xah-fly-key-map (kbd "gd") 'my-jump-to-elisp-docs)
     (define-key xah-fly-key-map (kbd "j") 'next-line)
-    (define-key xah-fly-key-map (kbd "J") 'join-lines)
     (define-key xah-fly-key-map (kbd "h") 'backward-char)
     (define-key xah-fly-key-map (kbd "i") 'xah-fly-insert-mode-activate)
     (define-key xah-fly-key-map (kbd "k") 'previous-line)
-    (define-key xah-fly-key-map (kbd "K") 'my-jump-to-elisp-docs)
+    (define-key xah-fly-key-map (kbd "J") 'outline-next-visible-heading)
+    (define-key xah-fly-key-map (kbd "K") 'outline-previous-visible-heading)
+    (define-key xah-fly-key-map (kbd "H") 'outline-hide-more)
+    (define-key xah-fly-key-map (kbd "I") 'outline-cycle)
+    (define-key xah-fly-key-map (kbd "L") 'outline-show-more)
     (define-key xah-fly-key-map (kbd "m") 'set-mark-command)
     (define-key xah-fly-key-map (kbd "nd") 'fancy-narrow-to-defun)
     (define-key xah-fly-key-map (kbd "nr") 'fancy-narrow-to-region)
@@ -2301,14 +2301,13 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "t") 'evilmi-jump-items)
     (define-key xah-fly-key-map (kbd "u") 'undo-tree-undo)
     ;; (define-key xah-fly-key-map (kbd "v") 'evilmi-select-items)
-    ;; (define-key xah-fly-key-map (kbd "v") 'set-mark-command)
     (define-key xah-fly-key-map (kbd "ww") 'ace-window)
     (define-key xah-fly-key-map (kbd "wd") 'delete-window)
     (define-key xah-fly-key-map (kbd "wo") 'delete-other-windows)
     (define-key xah-fly-key-map (kbd "wt") 'hydra-transpose-frame/body)
     (define-key xah-fly-key-map (kbd "wh") 'split-window-horizontally)
     (define-key xah-fly-key-map (kbd "wv") 'split-window-vertically)
-    (define-key xah-fly-key-map (kbd "wF") 'make-frame-command)
+    (define-key xah-fly-key-map (kbd "wf") 'make-frame-command)
     (define-key xah-fly-key-map (kbd "W") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
@@ -2317,6 +2316,7 @@ If `universal-argument' is called first, do switch frame."
     ;;
     ))
 
+;;;;; insert mode keys
 (defun xah-fly-insert-mode-init ()
   "Set insertion mode keys"
   (interactive)
@@ -2369,9 +2369,13 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "h") nil)
     (define-key xah-fly-key-map (kbd "i") nil)
     (define-key xah-fly-key-map (kbd "j") nil)
-    (define-key xah-fly-key-map (kbd "J") nil)
     (define-key xah-fly-key-map (kbd "k") nil)
     (define-key xah-fly-key-map (kbd "l") nil)
+    (define-key xah-fly-key-map (kbd "H") nil)
+    (define-key xah-fly-key-map (kbd "I") nil)
+    (define-key xah-fly-key-map (kbd "J") nil)
+    (define-key xah-fly-key-map (kbd "K") nil)
+    (define-key xah-fly-key-map (kbd "L") nil)
     (define-key xah-fly-key-map (kbd "m") nil)
     (define-key xah-fly-key-map (kbd "n") nil)
     (define-key xah-fly-key-map (kbd "N") nil)
@@ -2474,7 +2478,6 @@ If buffer-or-name is nil return current buffer's mode."
      (lispy-define-key lispy-mode-map "X" 'lispy-splice)
      (lispy-define-key lispy-mode-map "n" 'lispy-occur)
      (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)))
-
 
 (defun xah-fly-mode-hook-fn (&rest args)
   (interactive)
@@ -2500,7 +2503,6 @@ If buffer-or-name is nil return current buffer's mode."
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)
 
-
 
 ;; experimental. auto switch back to command mode after some sec of idle time
 ;; (setq xah-fly-timer-id (run-with-idle-timer 20 t 'xah-fly-command-mode-activate))

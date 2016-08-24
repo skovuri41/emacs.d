@@ -38,6 +38,11 @@
     (define-key swiper-map (kbd "C-.")
       (lambda () (interactive) (insert (format "\\<%s\\>" (with-ivy-window
                                                        (thing-at-point 'symbol))))))
+    (defun swiper-the-thing ()
+      (interactive)
+      (swiper (if (region-active-p)
+                  (buffer-substring-no-properties (region-beginning) (region-end))
+                (thing-at-point 'symbol))))
     ))
 
 (use-package ivy
@@ -137,7 +142,23 @@
          ("C-c k" . counsel-ag)
          ("C-c y" . counsel-yank-pop)
          ("C-c g" . counsel-git)
-         ("C-x l" . counsel-locate)))
+         ("C-x l" . counsel-locate))
+  :config
+  (progn
+    (defun counsel-ag-projectile ()
+      "Counsel version of projectile-ag."
+      (interactive)
+      (counsel-ag "" (projectile-project-root)))
+
+    (defun counsel-ag-project-symbol ()
+      (interactive)
+      (counsel-ag (if (region-active-p)
+                      (buffer-substring-no-properties (region-beginning) (region-end))
+                    (thing-at-point 'symbol))
+                  (projectile-project-root)))
+
+    )
+  )
 
 (use-package counsel-projectile       ; Ivy integration for Projectile
   :ensure t
