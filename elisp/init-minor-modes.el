@@ -51,8 +51,7 @@
 
 (use-package shrink-whitespace
   :ensure t
-  :bind (("M-SPC" . shrink-whitespace)
-         ("M-S-SPC" . shrink-whitespace)))
+  )
 
 (use-package paren-face
   :ensure t
