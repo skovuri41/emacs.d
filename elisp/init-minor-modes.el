@@ -63,6 +63,14 @@
   ;; :config (setq ffip-prefer-ido-mode t)
   )
 
+(use-package outshine
+  :diminish outline-minor-mode
+  :commands outshine-hook-function
+  :init
+  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+  (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+  )
+
 (use-package paradox
   :ensure t
   :init

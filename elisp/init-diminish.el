@@ -14,7 +14,7 @@
     (eval-after-load "org-indent" '(diminish 'org-indent-mode))
     (eval-after-load "evil-org" '(diminish 'evil-org-mode))
     (eval-after-load "yasnippet" '(diminish 'yas/minor-mode "Y"))
-    (eval-after-load "yasnippet" '(diminish 'yas/global-mode "Y"))
+    (eval-after-load "outline" '(diminish 'outline-minor-mode))
     (eval-after-load "yasnippet" '(diminish 'yas-minor-mode "Y"))
     (eval-after-load "smartparens" '(diminish 'smartparens-mode))
     (eval-after-load "super-save" '(diminish 'super-save-mode))
