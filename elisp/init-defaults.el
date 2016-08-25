@@ -95,7 +95,6 @@
   (setq-default save-place t)
   (setq save-place-file (expand-file-name ".saveplaces" user-emacs-directory)))
 
-
 ;; Undo/redo window configuration with C-c <left>/<right>
 (winner-mode 1)
 
@@ -220,10 +219,9 @@
   :ensure t
   :diminish ctags-auto-update-mode
   :config
-  (add-hook 'prog-mode-hook  'turn-on-ctags-auto-update-mode)
+  (add-hook 'prog-mode-hook 'turn-on-ctags-auto-update-mode)
   (setq ctags-update-delay-seconds (* 30 60)) ; every 1/2 hour
-  (ctags-auto-update-mode 1)
-  )
+  (ctags-auto-update-mode 1))
 
 (use-package visual-fill-column
   :ensure t)
@@ -278,13 +276,20 @@
         (if old (he-reset-string))
       (he-substitute-string (car he-expand-list))
       (setq he-expand-list (cdr he-expand-list))
-      t)
-    ))
+      t)))
 
-(setq hippie-expand-try-functions-list
-      '(;; try-expand-dabbrev
-        ;; try-expand-dabbrev-all-buffers
-        try-expand-by-dict))
+;; (setq hippie-expand-try-functions-list
+;;       '(;; try-expand-dabbrev
+;;         ;; try-expand-dabbrev-all-buffers
+;;         try-expand-by-dict))
+
+;; Hippie expand: at times perhaps too hip
+(dolist (f '(try-expand-line try-expand-list try-complete-file-name-partially try-complete-file-name))
+  (setq hippie-expand-try-functions-list (delete f hippie-expand-try-functions-list)))
+;; Add this back in at the end of the list.
+(add-to-list 'hippie-expand-try-functions-list 'try-complete-file-name-partially t)
+(add-to-list 'hippie-expand-try-functions-list 'try-complete-file-name t)
+
 
 (defun my/setup-osx-fonts ()
   (interactive)
@@ -303,9 +308,6 @@
     ;; Anti-aliasing
     (setq mac-allow-anti-aliasing t)))
 
-;; (when (eq system-type 'darwin)
-;;   (add-hook 'after-init-hook #'my/setup-osx-fonts))
-
 
 (defun my/setup-x11-fonts ()
   (interactive)
@@ -319,7 +321,6 @@
     ;; (set-frame-font "Inconsolata")
     (set-face-attribute 'default nil :height 105)))
 
-;; (when (eq window-system 'x);;   (add-hook 'after-init-hook #'my/setup-x11-fonts))
 
 (use-package better-defaults)
 

@@ -2252,7 +2252,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
     (define-key xah-fly-key-map (kbd "dr") 'xah-cut-all-or-region)
     (define-key xah-fly-key-map (kbd "dw") 'ivy-kill-word)
-    (define-key xah-fly-key-map (kbd "de") 'lispy-kill-sentence)
+    (define-key xah-fly-key-map (kbd "de") 'lispy-kill)
     (define-key xah-fly-key-map (kbd "d$") 'lispy-kill-sentence)
     (define-key xah-fly-key-map (kbd "d0") 'lispy-backward-kill-word)
     (define-key xah-fly-key-map (kbd "fr") 'ivy-recentf)

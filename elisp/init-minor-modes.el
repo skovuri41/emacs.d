@@ -15,7 +15,6 @@
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
-
 (use-package with-editor
   :ensure t
   :init

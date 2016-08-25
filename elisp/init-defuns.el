@@ -252,43 +252,44 @@ function does not kill the buffer."
   (set-buffer-file-coding-system 'unix 't))
 
 (defun open-terminal-at (directory)
-    "Open a terminal at the `directory' passed in using a name derived
+  "Open a terminal at the `directory' passed in using a name derived
 from the directory.  If a terminal by that name already exists, just
 switch to it instead of creating a new one.
 If the directory does not exist, an error message is displayed."
-    (interactive)
-    (if (not (file-exists-p directory))
-        (message (concat
-                  "Terminal not created, Directory does not exist: "
-                  directory))
-      (let* ((name (concat "term-" directory))
-             (term-name (concat "*" name "*"))
-             (default-directory directory))
-        (if (get-buffer term-name)
-            (switch-to-buffer term-name)
-          (progn
-            (ansi-term "/bin/bash" name) ;; wraps name with *'s
-            (process-send-string
-             (get-process term-name)
-             (concat "cd " directory "\nclear\n")))))))
+  (interactive)
+  (if (not (file-exists-p directory))
+      (message (concat
+                "Terminal not created, Directory does not exist: "
+                directory))
+    (let* ((name (concat "term-" directory))
+           (term-name (concat "*" name "*"))
+           (default-directory directory))
+      (if (get-buffer term-name)
+          (switch-to-buffer term-name)
+        (progn
+          (ansi-term "/bin/bash" name) ;; wraps name with *'s
+          (process-send-string
+           (get-process term-name)
+           (concat "cd " directory "\nclear\n")))))))
+
 (defun open-eshell-at (directory)
-    "Open an eshell at the `directory' passed in using a name derived
+  "Open an eshell at the `directory' passed in using a name derived
 from the directory.  If an eashll by that name already exists, just
 switch to it instead of creating a new one.
 If the directory does not exit, an error message is displayed."
-    (interactive)
-    (if (not (file-exists-p directory))
-        (message (concat
-                  "Eshell not created, Directory does not exist: "
-                  directory))
-      (let* ((name (concat "*eshell-" directory "*"))
-             (default-directory directory))
-        (if (not (get-buffer name))
-            (progn
-              (setq eshell-buffer-name name)
-              (eshell)
-              (setq eshell-buffer-name "*eshell*")))
-        (switch-to-buffer name))))
+  (interactive)
+  (if (not (file-exists-p directory))
+      (message (concat
+                "Eshell not created, Directory does not exist: "
+                directory))
+    (let* ((name (concat "*eshell-" directory "*"))
+           (default-directory directory))
+      (if (not (get-buffer name))
+          (progn
+            (setq eshell-buffer-name name)
+            (eshell)
+            (setq eshell-buffer-name "*eshell*")))
+      (switch-to-buffer name))))
 
 (defun current-location ()
     "Function that works in buffers, dired, term and eshell to return
@@ -332,10 +333,6 @@ Try the repeated popping up to 10 times."
 
 (advice-add 'pop-to-mark-command :around
             #'modi/multi-pop-to-mark)
-
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  (lispy-flet (process-list ()) ad-do-it))
 
 (defun xah-html-decode-percent-encoded-url ()
   "Decode percent encoded URI of URI under cursor or selection.
@@ -406,16 +403,14 @@ Version 2015-09-14."
     (shell-command-on-region b e
                              "python -mjson.tool" (current-buffer) t)))
 
-(defun paste-from-x-clipboard()
+(defun paste-from-x-clipboard ()
   (interactive)
   (shell-command
    (cond
     (*cygwin* "getclip")
     (*is-a-mac* "pbpaste")
-    (t "xsel -ob")
-    )
-   1)
-  )
+    (t "xsel -ob"))
+   1))
 
 (defun my/paste-in-minibuffer ()
   (local-set-key (kbd "M-y") 'paste-from-x-clipboard)
