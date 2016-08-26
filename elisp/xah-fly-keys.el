@@ -1952,6 +1952,17 @@ If `universal-argument' is called first, do switch frame."
    ("W" . xah-insert-double-angle-bracket《》)
    ("y" . xah-insert-double-angle-quote«»)))
 
+(xah-fly-map-keys
+ (define-prefix-command 'search-replace-keymap)
+ '(
+   ("ad" . counsel-ag)
+   ("ap" . counsel-ag-projectile)
+   ("at" . counsel-ag-project-symbol)
+   ("qr" . anzu-query-replace)
+   ("qx" . anzu-query-replace-regexp)
+   ("qt" . anzu-query-replace-at-cursor-thing)
+   ("qc" . anzu-replace-at-cursor-thing)))
+
 (progn
   (define-prefix-command 'xah-fly-leader-key-map)
   (define-key xah-fly-leader-key-map (kbd "SPC") 'xah-fly-insert-mode-activate)
@@ -1998,7 +2009,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "p") 'query-replace)
   (define-key xah-fly-leader-key-map (kbd "q") 'xah-copy-all-or-region)
   (define-key xah-fly-leader-key-map (kbd "r") 'xah-edit-cmds-keymap)
-  (define-key xah-fly-leader-key-map (kbd "s") 'save-buffer)
+  (define-key xah-fly-leader-key-map (kbd "s") 'search-replace-keymap)
   (define-key xah-fly-leader-key-map (kbd "t") 'xah-leader-t-keymap)
   (define-key xah-fly-leader-key-map (kbd "u") 'switch-to-buffer)
   ;; (define-key xah-fly-leader-key-map (kbd "v") nil)
@@ -2517,7 +2528,6 @@ If buffer-or-name is nil return current buffer's mode."
   "Turn off xah-fly-keys minor mode."
   (interactive)
   (xah-fly-keys 0))
-
 
 (provide 'xah-fly-keys)
 
