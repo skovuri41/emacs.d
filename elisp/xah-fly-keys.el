@@ -2276,7 +2276,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "g;") 'goto-last-change)
     (define-key xah-fly-key-map (kbd "gp") 'smartscan-symbol-go-backward)
     (define-key xah-fly-key-map (kbd "gs") 'magit-status)
-    (define-key xah-fly-key-map (kbd "gt") 'git-timemachine-toggle)
+    (define-key xah-fly-key-map (kbd "gt") 'git-timemachine-hydra/body)
     (define-key xah-fly-key-map (kbd "gh") 'hydra-git-gutter/body)
     (define-key xah-fly-key-map (kbd "gf") 'find-file-at-point)
     (define-key xah-fly-key-map (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point)

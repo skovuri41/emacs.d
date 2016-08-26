@@ -135,6 +135,25 @@ _d_: defun   _u_: url       | _F_: full path
       ("m" yas/minor-mode)
       ("a" yas-reload-all))
     (global-set-key (kbd "C-c C-y") 'hydra-yasnippet/body)
+
+    (defhydra git-timemachine-hydra (:post (if (bound-and-true-p git-timemachine-mode) (git-timemachine-quit))
+                                           :hint nil :color pink)
+      "
+Git Timemachine
+    _e_: enter
+    _k_: previous     _j_: next    _g_: go to nth
+    _w_: copy abbr    _W_: copy full
+_q_: Quit
+"
+      ("e" git-timemachine)
+      ("k" git-timemachine-show-previous-revision)
+      ("j" git-timemachine-show-next-revision)
+      ("g" git-timemachine-show-nth-revision)
+      ("w" git-timemachine-kill-abbreviated-revision)
+      ("W" git-timemachine-kill-revision)
+      ("q" nil))
+
+
     ))
 
 

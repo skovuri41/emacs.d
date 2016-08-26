@@ -7,6 +7,10 @@
   (progn
     (use-package thingatpt)
     (setq anzu-mode-lighter "")
+    (global-set-key [remap query-replace] 'anzu-query-replace)
+    (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+    (setq anzu-replace-threshold 1000)
+    (setq anzu-search-threshold 1000)
     (set-face-attribute 'anzu-mode-line nil :foreground "yellow")
     (global-anzu-mode)))
 
