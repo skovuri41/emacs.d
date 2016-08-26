@@ -11,6 +11,7 @@
     (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
     (setq anzu-replace-threshold 1000)
     (setq anzu-search-threshold 1000)
+    (setq anzu-replace-to-string-separator " =>")
     (set-face-attribute 'anzu-mode-line nil :foreground "yellow")
     (global-anzu-mode)))
 
