@@ -114,6 +114,8 @@
                     key-chord
                     mwim
                     worf
+                    outshine
+                    outorg
                     ))
 
 

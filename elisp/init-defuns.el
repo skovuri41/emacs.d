@@ -115,6 +115,11 @@
                   (line-beginning-position (+ 1 arg)))
   (message "%d line(s) copied" arg ))
 
+(defun backward-kill-line (arg)
+  "Kill ARG lines backward."
+  (interactive "p")
+  (kill-line (- 1 arg)))
+
 (defun nxml-pretty-print-buffer ()
   "pretty print the XML in a buffer."
   (interactive)
