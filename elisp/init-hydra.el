@@ -153,6 +153,40 @@ _q_: Quit
       ("W" git-timemachine-kill-revision)
       ("q" nil))
 
+    (defhydra hydra-vi (:pre (set-cursor-color "#e52b50")
+                             :post (set-cursor-color "#ffffff")
+                             :color pink)
+      "vi"
+      ;; movement
+      ("w" forward-word)
+      ("b" backward-word)
+      ;; scrolling
+      ("C-v" scroll-up-command nil)
+      ("M-v" scroll-down-command nil)
+      ("v" recenter-top-bottom)
+      ;; arrows
+      ("h" backward-char)
+      ("j" next-line)
+      ("k" previous-line)
+      ("l" forward-char)
+      ;; delete
+      ("x" delete-char)
+      ("d" hydra-vi-del/body "del" :exit t)
+      ("u" undo)
+      ;; should be generic "open"
+      ("r" push-button "open")
+      ("." hydra-repeat)
+      ;; bad
+      ("m" set-mark-command "mark")
+      ("a" move-beginning-of-line "beg")
+      ("e" move-end-of-line "end")
+      ("y" kill-ring-save "yank" :exit t)
+      ;; exit points
+      ("q" nil "ins")
+      ("C-n" (forward-line 1) nil :exit t)
+      ("C-p" (forward-line -1) nil :exit t))
+
+    ;; (global-set-key (kbd "C-v") 'hydra-vi/body)
 
     ))
 
