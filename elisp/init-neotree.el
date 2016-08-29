@@ -75,7 +75,9 @@
       (local-set-key  (kbd "h") 'neotree-select-up-node)
       (local-set-key  (kbd "o") 'find-file-next-in-dir)
       (local-set-key  (kbd "O") 'find-file-prev-in-dir)
-      (local-set-key  (kbd "l") 'neotree-enter)
+      (local-set-key (kbd "l") '(lambda () (interactive)
+                                  (progn (neotree-enter)
+                                         (xah-fly-command-mode-activate))))
       )
     (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
     ;; (lambda () (progn
