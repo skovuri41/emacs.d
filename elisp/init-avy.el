@@ -3,13 +3,13 @@
   :config
   (progn
     (defhydra hydra-avy (:color teal)
-      ("j" avy-goto-char "char")
-      ("k" avy-goto-word-1 "word")
+      ("c" avy-goto-char "char")
+      ("w" avy-goto-word-1 "word")
       ("l" avy-goto-line "line")
-      ("s" avy-goto-char-timer "timer")
+      ("t" avy-goto-char-timer "timer")
       ("f" counsel-find-file "find-file")
       ("q" nil))
-    )
-  )
+    (global-set-key (kbd "M-p") 'avy-pop-mark)
+    ))
 
 (provide 'init-avy)

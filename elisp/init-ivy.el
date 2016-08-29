@@ -32,6 +32,7 @@
             (ivy-switch-buffer . ivy--regex-fuzzy)
             (counsel-M-x . ivy--regex-fuzzy)
             (t . ivy--regex-plus)))
+    (advice-add 'swiper :before 'avy-push-mark)
     )
   :config
   (progn

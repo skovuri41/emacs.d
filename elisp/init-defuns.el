@@ -1,4 +1,4 @@
-;; masteringemacs.org fixing mark commands tmm
+;;; masteringemacs.org fixing mark commands tmm
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region
    Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
@@ -37,7 +37,7 @@
   (indent-region (point-min)
                  (point-max)))
 
-;; To facilitate easier keyboard macro usage (from http://www.emacswiki.org/emacs/KeyboardMacros)
+;;; To facilitate easier keyboard macro usage (from http://www.emacswiki.org/emacs/KeyboardMacros)
 (defun toggle-kbd-macro-recording-on ()
   "One-key keyboard macros: turn recording on."
   (interactive)
@@ -57,12 +57,11 @@
   (interactive)
   ;; @see http://www.gnu.org/software/emacs/manual/html_node/elisp/Splitting-Windows.html
   (if (window-parent)
-    (delete-other-windows)
-  (winner-undo)
-  ))
+      (delete-other-windows)
+    (winner-undo)
+    ))
 
 ;;; Open Lines
-
 (defun open-line-below ()
   (interactive)
   (end-of-line)
@@ -85,29 +84,29 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-;;;;Join Lines
+;;; Join Lines
 (defun join-lines ()
-   "If at the end of the line, will join the following line to the
+  "If at the end of the line, will join the following line to the
    end of this one...unless it is blank, in which case, it will
    keep joining lines until the next line with text is
    connected."
-   (interactive)
-   ;; Move to the the beginning of the white space before attempting
-   ;; this process. This allows us to join lines even if we are in the
-   ;; middle of some empty lines.
-   (re-search-backward "[^[:space:]\\r\\n]")
-   (forward-char)
-   ;; Just in case we have some trailing whitespace we can't see, let's
-   ;; just get rid of it. Won't do anything if in the middle of a line,
-   ;; or if there is not trailing whitespace.
-   (delete-trailing-whitespace (point) (point-at-eol))
-   ;; While we are at the end of the line, join a line, remove the
-   ;; whitespace, and keep on going until we're through...
-   (while (eq (point-at-eol) (point))
-     (delete-char 1)
-     (delete-trailing-whitespace (point) (point-at-eol))))
+  (interactive)
+  ;; Move to the the beginning of the white space before attempting
+  ;; this process. This allows us to join lines even if we are in the
+  ;; middle of some empty lines.
+  (re-search-backward "[^[:space:]\\r\\n]")
+  (forward-char)
+  ;; Just in case we have some trailing whitespace we can't see, let's
+  ;; just get rid of it. Won't do anything if in the middle of a line,
+  ;; or if there is not trailing whitespace.
+  (delete-trailing-whitespace (point) (point-at-eol))
+  ;; While we are at the end of the line, join a line, remove the
+  ;; whitespace, and keep on going until we're through...
+  (while (eq (point-at-eol) (point))
+    (delete-char 1)
+    (delete-trailing-whitespace (point) (point-at-eol))))
 
-;;;; copy-line with variable arugments
+;;; copy-line with variable arugments
 (defun copy-line (&optional arg)
   "Copy lines (as many as prefix argument) in the kill ring"
   (interactive "p")
@@ -125,13 +124,13 @@
   (interactive)
   (nxml-pretty-print-region (point-min) (point-max)))
 
-;; XML pretty print
+;;; XML pretty print
 (defun pretty-print-xml-region (begin end)
   (interactive "r")
   (save-excursion
-  (nxml-mode)
-  (goto-char begin)
-  (while (search-forward-regexp "\>[ \\t]*\<" nil t)
+    (nxml-mode)
+    (goto-char begin)
+    (while (search-forward-regexp "\>[ \\t]*\<" nil t)
       (backward-char) (insert "\n"))
     (indent-region begin end))
   (message "Ah, much better!"))
@@ -327,7 +326,7 @@ current location."
       (process-send-string proc text)
       (process-send-eof proc))))
 
-;; Faster pop-to-mark command
+;;; Faster pop-to-mark command
 (defun modi/multi-pop-to-mark (orig-fun &rest args)
   "Call ORIG-FUN until the cursor moves.
 Try the repeated popping up to 10 times."

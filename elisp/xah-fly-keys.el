@@ -2231,7 +2231,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "g.") 'elisp-slime-nav-find-elisp-thing-at-point)
     (define-key xah-fly-key-map (kbd "G") 'end-of-buffer)
     (define-key xah-fly-key-map (kbd "gg") 'beginning-of-buffer)
-    (define-key xah-fly-key-map (kbd "go") 'evilmi-jump-items)
+    (define-key xah-fly-key-map (kbd "go") 'hydra-avy/body)
     (define-key xah-fly-key-map (kbd "gd") 'my-jump-to-elisp-docs)
     (define-key xah-fly-key-map (kbd "gx") 'counsel-osx-app)
     (define-key xah-fly-key-map (kbd "j") 'next-line)
