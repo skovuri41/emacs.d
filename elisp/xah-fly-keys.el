@@ -1707,9 +1707,7 @@ If `universal-argument' is called first, do switch frame."
 (defvar xah-fly-key-map nil "Keybinding for `xah-fly-keys' minor mode.")
 (progn
   (setq xah-fly-key-map (make-sparse-keymap))
-
   ;; (define-key xah-fly-key-map (kbd "'") 'self-insert-command)
-
   )
 
 ;; commands in search-map and facemenu-keymap
@@ -1966,57 +1964,24 @@ If `universal-argument' is called first, do switch frame."
 (progn
   (define-prefix-command 'xah-fly-leader-key-map)
   (define-key xah-fly-leader-key-map (kbd "SPC") 'xah-fly-insert-mode-activate)
-  (define-key xah-fly-leader-key-map (kbd "DEL") 'xah-delete-current-file)
   (define-key xah-fly-leader-key-map (kbd "RET") 'counsel-M-x)
   (define-key xah-fly-leader-key-map (kbd "TAB") xah-leader-tab-keymap)
-
   (define-key xah-fly-leader-key-map (kbd ".") xah-highlight-keymap)
-
-  (define-key xah-fly-leader-key-map (kbd "'") 'xah-fill-or-unfill)
-  (define-key xah-fly-leader-key-map (kbd ",") nil)
-  (define-key xah-fly-leader-key-map (kbd "-") nil)
   (define-key xah-fly-leader-key-map (kbd ";") 'xah-comment-keymap)
-  (define-key xah-fly-leader-key-map (kbd "=") nil)
-  (define-key xah-fly-leader-key-map (kbd "[") nil)
-  (define-key xah-fly-leader-key-map (kbd "\\") nil)
-  (define-key xah-fly-leader-key-map (kbd "`") nil)
-
-  (define-key xah-fly-leader-key-map (kbd "3") 'delete-other-windows)
-  (define-key xah-fly-leader-key-map (kbd "4") 'split-window-right)
-
-  (define-key xah-fly-leader-key-map (kbd "8") 'find-file-at-point)
   (define-key xah-fly-leader-key-map (kbd "9") 'ispell-word)
-
-  (define-key xah-fly-leader-key-map (kbd "a") 'mark-whole-buffer)
-  (define-key xah-fly-leader-key-map (kbd "b") 'end-of-buffer)
   (define-key xah-fly-leader-key-map (kbd "c") 'xah-leader-c-keymap)
-  (define-key xah-fly-leader-key-map (kbd "d") 'beginning-of-buffer)
-  ;; (define-key xah-fly-leader-key-map (kbd "e") nil)
-  (define-key xah-fly-leader-key-map (kbd "f") 'xah-search-current-word)
-  (define-key xah-fly-leader-key-map (kbd "g") 'isearch-forward)
   (define-key xah-fly-leader-key-map (kbd "h") 'xah-help-keymap)
   (define-key xah-fly-leader-key-map (kbd "i") 'xah-leader-i-keymap)
-  (define-key xah-fly-leader-key-map (kbd "j") 'xah-cut-all-or-region)
-  (define-key xah-fly-leader-key-map (kbd "k") 'yank)
-  (define-key xah-fly-leader-key-map (kbd "l") 'recenter-top-bottom)
   (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
-  ;; (define-key xah-fly-leader-key-map (kbd "m") 'xah-mode-keymap)
   ;; (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
   (define-key xah-fly-leader-key-map (kbd "nt") 'neotree-toggle)
   (define-key xah-fly-leader-key-map (kbd "ne") 'neotree-find)
   (define-key xah-fly-leader-key-map (kbd "ns") 'neotree-show)
   (define-key xah-fly-leader-key-map (kbd "o") 'my-org-prefix-map)
-  (define-key xah-fly-leader-key-map (kbd "p") 'query-replace)
-  (define-key xah-fly-leader-key-map (kbd "q") 'xah-copy-all-or-region)
   (define-key xah-fly-leader-key-map (kbd "r") 'xah-edit-cmds-keymap)
   (define-key xah-fly-leader-key-map (kbd "s") 'search-replace-keymap)
   (define-key xah-fly-leader-key-map (kbd "t") 'xah-leader-t-keymap)
-  (define-key xah-fly-leader-key-map (kbd "u") 'switch-to-buffer)
-  ;; (define-key xah-fly-leader-key-map (kbd "v") nil)
-  (define-key xah-fly-leader-key-map (kbd "w") 'xah-danger-keymap)
-  ;; (define-key xah-fly-leader-key-map (kbd "x") nil)
-  (define-key xah-fly-leader-key-map (kbd "y") 'xah-copy-file-path)
-  (define-key xah-fly-leader-key-map (kbd "z") 'comment-dwim))
+  (define-key xah-fly-leader-key-map (kbd "w") 'xah-danger-keymap))
 
 ;;;;; misc
 
@@ -2248,7 +2213,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "de") 'lispy-kill)
     (define-key xah-fly-key-map (kbd "d$") 'lispy-kill-sentence)
     (define-key xah-fly-key-map (kbd "d0") 'lispy-delete-backward)
-    (define-key xah-fly-key-map (kbd "da") 'lispy-delete-backward)
+    (define-key xah-fly-key-map (kbd "da") 'backward-kill-line)
     (define-key xah-fly-key-map (kbd "fr") 'counsel-recentf)
     (define-key xah-fly-key-map (kbd "fd") 'bjm/ivy-dired-recent-dirs)
     (define-key xah-fly-key-map (kbd "ff") 'counsel-find-file)
@@ -2308,9 +2273,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
     (define-key xah-fly-key-map (kbd "y") 'easy-kill)
-    (define-key xah-fly-key-map (kbd "z") nil)
-    ;;
-    ))
+    (define-key xah-fly-key-map (kbd "z") nil)))
 
 ;;;;; insert mode keys
 (defun xah-fly-insert-mode-init ()
@@ -2323,7 +2286,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "|") nil)
     (define-key xah-fly-key-map (kbd ".") nil)
     (define-key xah-fly-key-map (kbd "/") nil)
-    (define-key xah-fly-key-map (kbd "?") '())
+    (define-key xah-fly-key-map (kbd "?") nil)
     (define-key xah-fly-key-map (kbd "$") nil)
     (define-key xah-fly-key-map (kbd ";") nil)
     (define-key xah-fly-key-map (kbd "=") nil)
@@ -2391,10 +2354,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "x") nil)
     (define-key xah-fly-key-map (kbd "X") nil)
     (define-key xah-fly-key-map (kbd "y") nil)
-    (define-key xah-fly-key-map (kbd "z") nil)
-
-    ;;
-    ))
+    (define-key xah-fly-key-map (kbd "z") nil)))
 
 (defun xah-fly-mode-toggle ()
   "Switch between {insertion, command} modes."

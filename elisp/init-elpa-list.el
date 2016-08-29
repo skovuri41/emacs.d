@@ -116,6 +116,9 @@
                     worf
                     outshine
                     outorg
+                    gitconfig-mode
+                    gitignore-mode
+                    gitattributes-mode
                     ))
 
 

@@ -175,7 +175,6 @@
 (depends-on "evil-matchit")
 (depends-on "evil-leader")
 
-
 ;;themes
 (depends-on "zenburn-theme")
 (depends-on "monokai-theme")
@@ -201,7 +200,9 @@
 (depends-on "tiny")
 (depends-on "sequential-command")
 (depends-on "counsel-osx-app")
-
+(depends-on "gitconfig-mode")
+(depends-on "gitignore-mode")
+(depends-on "gitattributes-mode")
 
 
 

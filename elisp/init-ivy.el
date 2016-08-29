@@ -173,5 +173,4 @@
   :commands tiny-expand)
 
 
-
 (provide 'init-ivy)
