@@ -86,6 +86,7 @@
 ;; Save a list of recent files visited. (open recent file with C-x f)
 (recentf-mode 1)
 (setq recentf-max-saved-items 1000) ;; just 20 is too recent
+(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 (setq delete-old-versions t) ;; dont ask to delete excess backup versions
 
 ;; Remember the current position of files when re-opening them

@@ -199,6 +199,8 @@
 (depends-on "bind-key")
 (depends-on "worf")
 (depends-on "tiny")
+(depends-on "sequential-command")
+(depends-on "counsel-osx-app")
 
 
 

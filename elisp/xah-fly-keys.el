@@ -2383,6 +2383,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "t") nil)
     (define-key xah-fly-key-map (kbd "u") nil)
     (define-key xah-fly-key-map (kbd "v") nil)
+    (define-key xah-fly-key-map (kbd "V") nil)
     (define-key xah-fly-key-map (kbd "w") nil)
     (define-key xah-fly-key-map (kbd "W") nil)
     (define-key xah-fly-key-map (kbd "x") nil)

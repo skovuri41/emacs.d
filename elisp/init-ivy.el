@@ -165,6 +165,9 @@
   :bind (:map projectile-command-map
               ("p" . counsel-projectile)))
 
+(use-package  counsel-osx-app
+  :ensure t
+  )
 
 (use-package tiny
   :commands tiny-expand)

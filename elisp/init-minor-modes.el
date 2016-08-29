@@ -81,5 +81,10 @@
   (setq paradox-github-token t
         paradox-column-width-package 30))
 
+;; https://www.emacswiki.org/emacs/sequential-command-config.el
+(use-package sequential-command
+  :ensure t
+  )
+
 
 (provide 'init-minor-modes)
