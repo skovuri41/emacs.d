@@ -70,6 +70,7 @@
 (require 'init-spaceline)
 (require 'init-keybindings)
 (require 'init-xah-fly-keys)
+(require 'init-docker)
 
 (let ((elapsed (float-time (time-subtract (current-time)
                                           emacs-start-time))))
