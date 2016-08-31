@@ -1762,14 +1762,10 @@ If `universal-argument' is called first, do switch frame."
  (define-prefix-command 'xah-leader-c-keymap)
  '(
    ("," . xah-open-in-external-app)
-   ("." . find-file)
    ("c" . bookmark-bmenu-list)
-   ("h" . recentf-open-files)
    ("l" . bookmark-set)
-   ("n" . xah-new-empty-buffer)
    ("o" . xah-open-in-desktop)
    ("p" . xah-open-last-closed)
-   ("f" . xah-open-recently-closed)
    ("y" . xah-list-recently-closed)
    ("r" . bookmark-jump)
    ("s" . write-file)
@@ -1807,10 +1803,9 @@ If `universal-argument' is called first, do switch frame."
  (define-prefix-command 'xah-leader-i-keymap) ; commands in goto-map
  '(
    ("TAB" . move-to-column)
-   ("c" . goto-char)
-   ("t" . goto-line)
-   ("n" . next-error)
-   ("d" . previous-error
+   ("l" . goto-line-with-feedback)
+   ("j" . next-error)
+   ("k" . previous-error
     )))
 
 (xah-fly-map-keys
@@ -1892,7 +1887,6 @@ If `universal-argument' is called first, do switch frame."
    ("," . sort-numeric-fields)
    ("'" . reverse-region)
    ("d" . mark-defun)
-   ("h" . xah-close-current-buffer)
    ("j" . copy-to-register)
    ("k" . insert-register)
    ("l" . increment-register)
@@ -1963,7 +1957,7 @@ If `universal-argument' is called first, do switch frame."
 
 (progn
   (define-prefix-command 'xah-fly-leader-key-map)
-  (define-key xah-fly-leader-key-map (kbd "SPC") 'xah-fly-insert-mode-activate)
+  (define-key xah-fly-leader-key-map (kbd "SPC") 'which-key-abort)
   (define-key xah-fly-leader-key-map (kbd "RET") 'counsel-M-x)
   (define-key xah-fly-leader-key-map (kbd "TAB") xah-leader-tab-keymap)
   (define-key xah-fly-leader-key-map (kbd ".") xah-highlight-keymap)
@@ -2269,6 +2263,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "wh") 'split-window-horizontally)
     (define-key xah-fly-key-map (kbd "wv") 'split-window-vertically)
     (define-key xah-fly-key-map (kbd "wf") 'make-frame-command)
+    (define-key xah-fly-key-map (kbd "wu") 'winner-undo)
+    (define-key xah-fly-key-map (kbd "wr") 'winner-redo)
     (define-key xah-fly-key-map (kbd "W") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)

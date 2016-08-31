@@ -115,6 +115,7 @@
                     key-chord
                     mwim
                     worf
+                    tiny
                     outshine
                     outorg
                     gitconfig-mode

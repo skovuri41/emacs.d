@@ -11,11 +11,11 @@
     (setq easy-kill-alist '((?w word           " ")
                             (?s sexp           "\n")
                             (?p list           "\n")
-                            (?f filename       "\n")
                             (?d defun          "\n\n")
                             (?D defun-name     " ")
                             (?l line           "\n")
-                            (?b buffer-file-name)))
+                            (?n buffer-file-name)))
+
     (defun easy-kill-config ()
       "Configure easy-kill."
       (define-key easy-kill-base-map (kbd "C-d") 'easy-kill-delete-region)

@@ -19,7 +19,7 @@
 ^^^^^^-------------------------^-------------------^--------^---------------------------
 _w_: word    _._: sentence      _P_: Inside Pairs   _q_: Inside Quotes
 _s_: symbol  _b_: paragraph     _p_: Outside Pairs  _Q_: Outside Quotes
-_d_: defun   _l_: line          _=_: expand-region
+_d_: defun   _l_: line          _;_: Comment _=_: expand-region
 "
       ("w" er/mark-word )
       ("s" er/mark-symbol)
@@ -31,6 +31,7 @@ _d_: defun   _l_: line          _=_: expand-region
       ("." er/mark-text-sentence)
       ("b" er/mark-text-paragraph)
       ("l" er/mark-line)
+      (";" er/mark-comment)
       ("=" er/expand-region)
       ("q" nil "quit")))
   )
