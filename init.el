@@ -65,7 +65,6 @@
 (require 'init-minor-modes)
 (require 'init-window-numbering)
 (require 'init-pbcopy)
-(require 'init-mu4e)
 (require 'init-cal)
 (require 'init-spaceline)
 (require 'init-keybindings)

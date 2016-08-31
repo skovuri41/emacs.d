@@ -60,15 +60,6 @@
         (run-hooks 'projectile-find-file-hook)
         (cider-jack-in)))
 
-    (add-to-list 'projectile-globally-ignored-files ".DS_Store")
-    (add-to-list 'projectile-globally-ignored-files "*.pyc")
-    (add-to-list 'projectile-globally-ignored-files "*.python-version")
-    (add-to-list 'projectile-globally-ignored-files "*.egg-info")
-    (add-to-list 'projectile-globally-ignored-directories "__pycache__")
-    (add-to-list 'projectile-globally-ignored-directories ".env")
-    (add-to-list 'projectile-globally-ignored-directories ".venv")
-    (add-to-list 'projectile-globally-ignored-directories ".cask")
-    (add-to-list 'projectile-globally-ignored-directories ".cache")
     (setq projectile-globally-ignored-directories
           '(".idea"
             ".eunit"
@@ -81,6 +72,15 @@
             ".svn"
             "build")
           )
+    (add-to-list 'projectile-globally-ignored-files ".DS_Store")
+    (add-to-list 'projectile-globally-ignored-files "*.pyc")
+    (add-to-list 'projectile-globally-ignored-files "*.python-version")
+    (add-to-list 'projectile-globally-ignored-files "*.egg-info")
+    (add-to-list 'projectile-globally-ignored-directories "__pycache__")
+    (add-to-list 'projectile-globally-ignored-directories ".env")
+    (add-to-list 'projectile-globally-ignored-directories ".venv")
+    (add-to-list 'projectile-globally-ignored-directories ".cask")
+    (add-to-list 'projectile-globally-ignored-directories ".cache")
     ))
 
 (provide 'init-projectile)

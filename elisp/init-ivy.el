@@ -76,11 +76,7 @@
     ;; ** Find file actions
     (ivy-add-actions
      'counsel-find-file
-     '(("a" (lambda (x)
-              (unless (memq major-mode '(mu4e-compose-mode message-mode))
-                (compose-mail))
-              (mml-attach-file x)) "Attach to email")
-       ("c" (lambda (x) (kill-new (f-relative x))) "Copy relative path")
+     '(("c" (lambda (x) (kill-new (f-relative x))) "Copy relative path")
        ("4" (lambda (x) (find-file-other-window x)) "Open in new window")
        ("5" (lambda (x) (find-file-other-frame x)) "Open in new frame")
        ("C" (lambda (x) (kill-new x)) "Copy absolute path")
