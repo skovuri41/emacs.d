@@ -17,19 +17,20 @@
       "
 ^Mark^                     ^Pairs^             ^Quotes^
 ^^^^^^-------------------------^-------------------^--------^---------------------------
-_w_: word    _._: sentence      _p_: Inside Pairs   _O_: Inside Quotes
-_s_: symbol  _h_: paragraph     _l_: Outside Pairs  _o_: Outside Quotes
-_d_: defun   _=_: expand-region
+_w_: word    _._: sentence      _P_: Inside Pairs   _q_: Inside Quotes
+_s_: symbol  _b_: paragraph     _p_: Outside Pairs  _Q_: Outside Quotes
+_d_: defun   _l_: line          _=_: expand-region
 "
       ("w" er/mark-word )
-      ("s" er/mark-symbol  )
-      ("d" er/mark-defun  )
-      ("p" er/mark-inside-pairs)
-      ("l" er/mark-outside-pairs)
-      ("O" er/mark-inside-quotes)
-      ("o" er/mark-outside-quotes )
-      ("." er/mark-text-sentence )
-      ("h" er/mark-text-paragraph)
+      ("s" er/mark-symbol)
+      ("d" er/mark-defun)
+      ("P" er/mark-inside-pairs)
+      ("p" er/mark-outside-pairs)
+      ("q" er/mark-inside-quotes)
+      ("Q" er/mark-outside-quotes)
+      ("." er/mark-text-sentence)
+      ("b" er/mark-text-paragraph)
+      ("l" er/mark-line)
       ("=" er/expand-region)
       ("q" nil "quit")))
   )

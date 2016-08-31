@@ -43,6 +43,7 @@
                     ace-window
                     projectile
                     easy-kill
+                    easy-kill-extras
                     zop-to-char
                     web-mode
                     csv-mode
