@@ -65,7 +65,6 @@
 (require 'ido) ; in emacs
 (require 'lispy)
 
-
 (defvar xah-fly-command-mode-activate-hook nil "Hook for `xah-fly-command-mode-activate'")
 (defvar xah-fly-insert-mode-activate-hook nil "Hook for `xah-fly-insert-mode-activate'")
 
@@ -141,7 +140,6 @@ version 2016-06-15"
           ;;(end-of-line)
           (mwim-end-of-code-or-line))
       (progn (xah-forward-block n)))))
-
 
 (defvar xah-brackets nil "string of left/right brackets pairs.")
 (setq xah-brackets "()[]{}<>（）［］｛｝⦅⦆〚〛⦃⦄“”‘’‹›«»「」〈〉《》【】〔〕⦗⦘『』〖〗〘〙｢｣⟦⟧⟨⟩⟪⟫⟮⟯⟬⟭⌈⌉⌊⌋⦇⦈⦉⦊❛❜❝❞❨❩❪❫❴❵❬❭❮❯❰❱❲❳〈〉⦑⦒⧼⧽﹙﹚﹛﹜﹝﹞⁽⁾₍₎⦋⦌⦍⦎⦏⦐⁅⁆⸢⸣⸤⸥⟅⟆⦓⦔⦕⦖⸦⸧⸨⸩｟｠⧘⧙⧚⧛⸜⸝⸌⸍⸂⸃⸄⸅⸉⸊᚛᚜༺༻༼༽⏜⏝⎴⎵⏞⏟⏠⏡﹁﹂﹃﹄︹︺︻︼︗︘︿﹀︽︾﹇﹈︷︸")
@@ -2092,7 +2090,6 @@ If `universal-argument' is called first, do switch frame."
 ;; r o       other-frame
 ;; r r       find-file-read-only-other-frame
 
-
 
 ;;;;; setting keys
 
@@ -2214,6 +2211,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "fp") 'helm-projectile)
     (define-key xah-fly-key-map (kbd "fb") 'helm-bookmarks)
     (define-key xah-fly-key-map (kbd "fo") 'counsel-outline)
+    (define-key xah-fly-key-map (kbd "fj") 'dired-jump)
+    (define-key xah-fly-key-map (kbd "fJ") 'dired-jump-other-window)
     (define-key xah-fly-key-map (kbd "gn") 'smartscan-symbol-go-forward)
     (define-key xah-fly-key-map (kbd "g,") 'goto-last-change-reverse)
     (define-key xah-fly-key-map (kbd "g;") 'goto-last-change)
@@ -2438,7 +2437,6 @@ If buffer-or-name is nil return current buffer's mode."
       (xah-fly-insert-mode-activate)
     (xah-fly-command-mode-activate)))
 
-
 ;; when in going into minibuffer, switch to insertion mode.
 (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'minibuffer-exit-hook 'xah-fly-command-mode-activate)
@@ -2455,7 +2453,6 @@ If buffer-or-name is nil return current buffer's mode."
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)
-
 
 ;; experimental. auto switch back to command mode after some sec of idle time
 ;; (setq xah-fly-timer-id (run-with-idle-timer 20 t 'xah-fly-command-mode-activate))

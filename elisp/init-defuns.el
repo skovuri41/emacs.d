@@ -459,4 +459,8 @@ Version 2015-09-14."
   (eshell-send-input)
   (goto-char (point-max)))
 
+;; ;;* Customize
+(defmacro csetq (variable value)
+  `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
+
 (provide 'init-defuns)

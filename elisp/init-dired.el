@@ -9,6 +9,7 @@
   ;; always delete and copy recursively
   (setq dired-recursive-deletes 'always)
   ;; (setq dired-listing-switches "-ABhl --si --group-directories-first")
+  (setq dired-listing-switches "-Al --si --time-style long-iso")
   (setq directory-free-space-args "-Pmh")
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
@@ -159,32 +160,43 @@
   ;; (add-hook 'dired-mode-hook #'hl-line-mode)
   (add-hook 'dired-mode-hook #'my/dired-mode-hook)
 
+  (defun xah-dired-sort ()
+    "Sort dired dir listing in different ways.
+Prompt for a choice.
+URL `http://ergoemacs.org/emacs/dired_sort.html'
+Version 2015-07-30"
+    (interactive)
+    (let (-sort-by -arg)
+      (setq -sort-by (ido-completing-read "Sort by:" '( "date" "size" "name" "dir")))
+      (cond
+       ((equal -sort-by "name") (setq -arg "-Al --si --time-style long-iso "))
+       ((equal -sort-by "date") (setq -arg "-Al --si --time-style long-iso -t"))
+       ((equal -sort-by "size") (setq -arg "-Al --si --time-style long-iso -S"))
+       ((equal -sort-by "dir") (setq -arg "-Al --si --time-style long-iso --group-directories-first"))
+       (t (error "logic error 09535" )))
+      (dired-sort-other -arg )))
+
   ;;* bind and hook
-  ;; (define-key dired-mode-map "r" 'ora-dired-start-process)
-  (define-key dired-mode-map "e" 'my/dired-diff)
+  (define-key dired-mode-map (kbd "e") 'my/dired-diff)
   (define-key dired-mode-map (kbd "C-t") nil)
-  (define-key dired-mode-map "h" 'ora-dired-up-directory)
-  (define-key dired-mode-map "i" 'counsel-find-file)
-  (define-key dired-mode-map "j" 'dired-next-line)
-  (define-key dired-mode-map "k" 'dired-previous-line)
-  (define-key dired-mode-map "l" 'diredp-find-file-reuse-dir-buffer)
-  ;; (define-key dired-mode-map "Y" 'ora-dired-rsync)
+  (define-key dired-mode-map (kbd "h") 'ora-dired-up-directory)
+  (define-key dired-mode-map (kbd "i") 'counsel-find-file)
+  (define-key dired-mode-map (kbd "j") 'dired-next-line)
+  (define-key dired-mode-map (kbd "k") 'dired-previous-line)
+  (define-key dired-mode-map (kbd "l") 'diredp-find-file-reuse-dir-buffer)
   (define-key dired-mode-map (kbd "%^") 'dired-flag-garbage-files)
   (define-key dired-mode-map (kbd "z") 'ora-dired-get-size)
-  (define-key dired-mode-map "F" 'find-name-dired)
-  (define-key dired-mode-map "f" 'dired-goto-file)
+  (define-key dired-mode-map (kbd "F") 'find-name-dired)
+  (define-key dired-mode-map (kbd "f") 'dired-goto-file)
   (define-key dired-mode-map (kbd "M-o") 'dired-omit-mode)
-  ;; (define-key dired-mode-map (kbd "`") 'ora-dired-open-term)
   (define-key dired-mode-map (kbd "'") 'eshell-this-dir)
   (define-key dired-mode-map (kbd "u") 'dired-undo)
-  (define-key dired-mode-map "U" 'dired-unmark-all-marks)
-  (define-key dired-mode-map "!" 'sudired)
-  (define-key dired-mode-map "." 'my/dotfiles-toggle)
-  (define-key dired-mode-map "O" 'ora-dired-other-window)
+  (define-key dired-mode-map (kbd "U") 'dired-unmark-all-marks)
+  (define-key dired-mode-map (kbd "!") 'sudired)
+  (define-key dired-mode-map (kbd ".") 'my/dotfiles-toggle)
+  (define-key dired-mode-map (kbd "O") 'ora-dired-other-window)
   (define-key dired-mode-map (kbd "`") 'dired-toggle-read-only)
-  (define-key dired-mode-map (kbd "C-j") 'dired-next-subdir)
-  (define-key dired-mode-map (kbd "C-k") 'dired-prev-subdir)
-
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 
   (use-package wdired
     :init

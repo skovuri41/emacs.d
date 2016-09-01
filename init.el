@@ -8,6 +8,7 @@
 (require 'use-package)
 (require 'init-defaults)
 (require 'init-defuns)
+(require 'init-ediff)
 (require 'init-diminish)
 (require 'init-helm)
 (require 'init-whichkey)
