@@ -6,15 +6,33 @@
   (setq dired-no-confirm
         '(byte-compile chgrp chmod chown copy delete load move symlink))
   (setq dired-deletion-confirmer (lambda (x) t))
-  ;; dired - reuse current buffer by pressing 'a'
-  ;;(put 'dired-find-alternate-file 'disabled nil)
-
   ;; always delete and copy recursively
   (setq dired-recursive-deletes 'always)
-
+  ;; (setq dired-listing-switches "-ABhl --si --group-directories-first")
+  (setq directory-free-space-args "-Pmh")
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+  (setq dired-omit-files "\\(?:.*\\.\\(?:aux\\|log\\|synctex\\.gz\\|run\\.xml\\|bcf\\|am\\|in\\)\\'\\)\\|^\\.\\|-blx\\.bib")
+  (setq dired-garbage-files-regexp
+        "\\.idx\\|\\.run\\.xml$\\|\\.bbl$\\|\\.bcf$\\|.blg$\\|-blx.bib$\\|.nav$\\|.snm$\\|.out$\\|.synctex.gz$\\|\\(?:\\.\\(?:aux\\|bak\\|dvi\\|log\\|orig\\|rej\\|toc\\|pyg\\)\\)\\'")
   ;; if there is a dired buffer displayed in the next window, use its
   ;; current subdir, instead of the current subdir of this dired buffer
   (setq dired-dwim-target t)
+
+  ;; (setq dired-guess-shell-alist-user
+  ;;       '(("\\.pdf\\'" "evince" "okular")
+  ;;         ("\\.\\(?:djvu\\|eps\\)\\'" "evince")
+  ;;         ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\|bmp\\)\\'" "eog")
+  ;;         ("\\.\\(?:xcf\\)\\'" "gimp")
+  ;;         ("\\.csv\\'" "libreoffice")
+  ;;         ("\\.tex\\'" "pdflatex" "latex")
+  ;;         ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\|ifo\\|m4v\\|wmv\\)\\(?:\\.part\\)?\\'"
+  ;;          "vlc")
+  ;;         ("\\.\\(?:mp3\\|flac\\|wv\\)\\'" "rhythmbox")
+  ;;         ("\\.html?\\'" "firefox")
+  ;;         ("\\.cue?\\'" "audacious")
+  ;;         ("\\.pptx\\'" "libreoffice")))
+
   :config
   (use-package dired-x
     :init
@@ -24,7 +42,6 @@
         (load "dired-x"))
       (add-hook 'dired-load-hook 'my-load-dired-x)))
 
-  (define-key dired-mode-map (kbd "`") 'dired-toggle-read-only)
   ;; make rename use ido and not helm
   (put 'dired-do-rename 'ido 'find-file)
   ;; make copy use ido and not helm
@@ -91,8 +108,83 @@
     (interactive "P")
     (let* ((fn-list (dired-get-marked-files nil arg)))
       (mapc 'find-file fn-list)))
-  (add-hook 'dired-mode-hook #'hl-line-mode)
+
+  (defun ora-dired-other-window ()
+    (interactive)
+    (save-selected-window
+      (dired-find-file-other-window)))
+
+  (defun ora-dired-up-directory ()
+    (interactive)
+    (let ((buffer (current-buffer)))
+      (dired-up-directory)
+      (unless (equal buffer (current-buffer))
+        (kill-buffer buffer))))
+
+  (defun ora-dired-get-size ()
+    (interactive)
+    (let ((files (dired-get-marked-files)))
+      (with-temp-buffer
+        (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+        (message
+         "Size of all marked files: %s"
+         (progn
+           (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
+           (match-string 1))))))
+
+  ;;* advice
+  (defadvice dired-advertised-find-file (around ora-dired-subst-directory activate)
+    "Replace current buffer if file is a directory."
+    (interactive)
+    (let* ((orig (current-buffer))
+           (filename (dired-get-filename t t))
+           (bye-p (file-directory-p filename)))
+      ad-do-it
+      (when (and bye-p (not (string-match "[/\\\\]\\.$" filename)))
+        (kill-buffer orig))))
+
+  (defadvice dired-delete-entry (before ora-force-clean-up-buffers (file) activate)
+    (let ((buffer (get-file-buffer file)))
+      (when buffer
+        (kill-buffer buffer))))
+
+
+  (require 'hydra)
+  (defhydra hydra-marked-items (dired-mode-map "")
+    "
+   Number of marked items: %(length (dired-get-marked-files))
+"
+    ("m" dired-mark "mark"))
+
+  ;; (add-hook 'dired-mode-hook #'hl-line-mode)
   (add-hook 'dired-mode-hook #'my/dired-mode-hook)
+
+  ;;* bind and hook
+  ;; (define-key dired-mode-map "r" 'ora-dired-start-process)
+  (define-key dired-mode-map "e" 'my/dired-diff)
+  (define-key dired-mode-map (kbd "C-t") nil)
+  (define-key dired-mode-map "h" 'ora-dired-up-directory)
+  (define-key dired-mode-map "i" 'counsel-find-file)
+  (define-key dired-mode-map "j" 'dired-next-line)
+  (define-key dired-mode-map "k" 'dired-previous-line)
+  (define-key dired-mode-map "l" 'diredp-find-file-reuse-dir-buffer)
+  ;; (define-key dired-mode-map "Y" 'ora-dired-rsync)
+  (define-key dired-mode-map (kbd "%^") 'dired-flag-garbage-files)
+  (define-key dired-mode-map (kbd "z") 'ora-dired-get-size)
+  (define-key dired-mode-map "F" 'find-name-dired)
+  (define-key dired-mode-map "f" 'dired-goto-file)
+  (define-key dired-mode-map (kbd "M-o") 'dired-omit-mode)
+  ;; (define-key dired-mode-map (kbd "`") 'ora-dired-open-term)
+  (define-key dired-mode-map (kbd "'") 'eshell-this-dir)
+  (define-key dired-mode-map (kbd "u") 'dired-undo)
+  (define-key dired-mode-map "U" 'dired-unmark-all-marks)
+  (define-key dired-mode-map "!" 'sudired)
+  (define-key dired-mode-map "." 'my/dotfiles-toggle)
+  (define-key dired-mode-map "O" 'ora-dired-other-window)
+  (define-key dired-mode-map (kbd "`") 'dired-toggle-read-only)
+  (define-key dired-mode-map (kbd "C-j") 'dired-next-subdir)
+  (define-key dired-mode-map (kbd "C-k") 'dired-prev-subdir)
+
 
   (use-package wdired
     :init
@@ -112,7 +204,7 @@
   (use-package dired-narrow
     :ensure t
     :bind (:map dired-mode-map
-                ("/" . dired-narrow)))
+                ("/" . dired-narrow-fuzzy)))
 
   (defconst media-files-extensions
     '("mp3" "mp4" "avi" "mpg" "flv" "ogg" "mkv" "mpeg" "wmv" "wav" "mov" "flv" "ogm")
@@ -136,8 +228,7 @@
     :ensure t
     :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
     :bind (:map dired-mode-map
-                ("P" . peep-dired)))
-  )
+                ("P" . peep-dired))))
 
 (use-package ranger
   :ensure t

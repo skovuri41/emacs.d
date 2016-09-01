@@ -430,18 +430,33 @@ Version 2015-09-14."
                       (if (looking-back "^ *") "%d. " "%d"))
          (read-number "From: " 1)))
   (save-excursion
-  (goto-char start)
-  (setq start (point-marker))
-  (goto-char end)
-  (setq end (point-marker))
-  (delete-rectangle start end)
-  (goto-char start)
-  (loop with column = (current-column)
+    (goto-char start)
+    (setq start (point-marker))
+    (goto-char end)
+    (setq end (point-marker))
+    (delete-rectangle start end)
+    (goto-char start)
+    (loop with column = (current-column)
           while (and (<= (point) end) (not (eobp)))
           for i from from   do
           (move-to-column column t)
           (insert (format format-string i))
           (forward-line 1)))
   (goto-char start))
+
+(require 'eshell)
+
+;;;###autoload
+(defun eshell-this-dir ()
+  "Open or move eshell in `default-directory'."
+  (interactive)
+  (unless (get-buffer eshell-buffer-name)
+    (eshell))
+  (switch-to-buffer eshell-buffer-name)
+  (goto-char (point-max))
+  (eshell-kill-input)
+  (insert (format "cd %s" default-directory))
+  (eshell-send-input)
+  (goto-char (point-max)))
 
 (provide 'init-defuns)
