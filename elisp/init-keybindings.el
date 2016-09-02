@@ -34,7 +34,11 @@
 (define-key Buffer-menu-mode-map "k" 'previous-line)
 (define-key Buffer-menu-mode-map "j" 'next-line)
 (define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
-
+(define-key ibuffer-mode-map "k" 'ibuffer-backward-line)
+(define-key ibuffer-mode-map "j" 'ibuffer-forward-line)
+(define-key ibuffer-mode-map "l" (lambda () (interactive) (progn
+                                                       (ibuffer-visit-buffer)
+                                                       (xah-fly-command-mode-activate))))
 (define-key bookmark-bmenu-mode-map "k" 'previous-line)
 (define-key bookmark-bmenu-mode-map "j" 'next-line)
 (define-key bookmark-bmenu-mode-map "s" 'bookmark-bmenu-save)

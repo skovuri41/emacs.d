@@ -78,11 +78,6 @@
       (local-set-key (kbd "l") '(lambda () (interactive)
                                   (save-selected-window (neotree-enter)))))
     (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
-    ;; (lambda () (progn
-    ;;         (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
-    ;;         (add-hook 'neotree-mode-hook 'xah-fly-insert-mode-activate)
-    ;;         ))
-    ;; (add-hook 'neotree-mode-hook 'xah-fly-insert-mode-activate)
     ))
 
 (provide 'init-neotree)

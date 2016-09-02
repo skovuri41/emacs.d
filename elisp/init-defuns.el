@@ -452,6 +452,12 @@ Version 2015-09-14."
           (forward-line 1)))
   (goto-char start))
 
+(defun get-buffer-mode (&optional buffer-or-name)
+  "Returns the major mode associated with a buffer.
+If buffer-or-name is nil return current buffer's mode."
+  (buffer-local-value 'major-mode
+                      (if buffer-or-name (get-buffer buffer-or-name) (current-buffer))))
+
 (require 'eshell)
 
 ;;;###autoload

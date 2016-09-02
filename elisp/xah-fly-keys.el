@@ -2410,16 +2410,10 @@ If `universal-argument' is called first, do switch frame."
   (xah-fly-insert-mode-activate)
   (left-char))
 
-(defun buffer-mode (&optional buffer-or-name)
-  "Returns the major mode associated with a buffer.
-If buffer-or-name is nil return current buffer's mode."
-  (buffer-local-value 'major-mode
-                      (if buffer-or-name (get-buffer buffer-or-name) (current-buffer))))
-
 (defun lispy-mode-activate ()
   "Enable lispy mode for selected major modes only"
   (let ((buffer-major-mode
-         (format "%s" (buffer-mode))))
+         (format "%s" (get-buffer-mode))))
     (when (or (equal "emacs-lisp-mode" buffer-major-mode)
               (equal "clojure-mode" buffer-major-mode)
               (equal "cider-repl-mode-hook" buffer-major-mode))

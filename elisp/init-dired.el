@@ -201,7 +201,11 @@
   (define-key dired-mode-map (kbd "l") '(lambda () (interactive)
                                           (progn
                                             (diredp-find-file-reuse-dir-buffer)
-                                            (xah-fly-command-mode-activate))))
+                                            (let ((buffer-major-mode
+                                                   (format "%s" (get-buffer-mode))))
+                                              (if (equal "dired-mode" buffer-major-mode)
+                                                  (xah-fly-insert-mode-activate)
+                                                (xah-fly-command-mode-activate))))))
   (define-key dired-mode-map (kbd "n") 'dired-next-marked-file)
   (define-key dired-mode-map (kbd "p") 'dired-prev-marked-file)
   (define-key dired-mode-map (kbd "%^") 'dired-flag-garbage-files)
