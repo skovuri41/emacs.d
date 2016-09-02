@@ -54,13 +54,9 @@
       (progn
         (message "switching meta and command")
         (setq mac-option-modifier 'meta)
-        (setq mac-command-modifier 'hyper)
-        )
+        (setq mac-command-modifier 'hyper))
     (progn
       (setq mac-option-modifier nil)
-      (setq mac-command-modifier 'meta)
-      )
-    )
-  )
+      (setq mac-command-modifier 'meta))))
 
 (provide 'init-keybindings)
