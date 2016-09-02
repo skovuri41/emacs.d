@@ -154,7 +154,7 @@
   (defhydra hydra-marked-items (dired-mode-map "")
     "
    Number of marked items: %(length (dired-get-marked-files))
-"
+    "
     ("m" dired-mark "mark"))
 
   ;; (add-hook 'dired-mode-hook #'hl-line-mode)
@@ -162,9 +162,9 @@
 
   (defun xah-dired-sort ()
     "Sort dired dir listing in different ways.
-Prompt for a choice.
-URL `http://ergoemacs.org/emacs/dired_sort.html'
-Version 2015-07-30"
+     Prompt for a choice.
+     URL `http://ergoemacs.org/emacs/dired_sort.html'
+     Version 2015-07-30"
     (interactive)
     (let (-sort-by -arg)
       (setq -sort-by (ido-completing-read "Sort by:" '( "date" "size" "name" "dir")))
@@ -176,8 +176,21 @@ Version 2015-07-30"
        (t (error "logic error 09535" )))
       (dired-sort-other -arg )))
 
+  (defun my/dired-toggle-hide-details ()
+    "Toggle details and hidden files in dired."
+    (interactive)
+    (when (not (string-equal major-mode "dired-mode"))
+      (error "Major mode is not dired."))
+    (let* ((b (or dired-omit-mode
+                  dired-hide-details-mode))
+           (v (if b -1 1)))
+      (progn
+        (dired-omit-mode v)
+        (dired-hide-details-mode v))))
+
   ;;* bind and hook
   (define-key dired-mode-map (kbd "e") 'my/dired-diff)
+  (define-key dired-mode-map (kbd "E") 'dired-toggle-read-only)
   (define-key dired-mode-map (kbd "C-t") nil)
   (define-key dired-mode-map (kbd "h") 'ora-dired-up-directory)
   (define-key dired-mode-map (kbd "i") 'counsel-find-file)
@@ -188,15 +201,16 @@ Version 2015-07-30"
   (define-key dired-mode-map (kbd "z") 'ora-dired-get-size)
   (define-key dired-mode-map (kbd "F") 'find-name-dired)
   (define-key dired-mode-map (kbd "f") 'dired-goto-file)
-  (define-key dired-mode-map (kbd "M-o") 'dired-omit-mode)
   (define-key dired-mode-map (kbd "'") 'eshell-this-dir)
   (define-key dired-mode-map (kbd "u") 'dired-undo)
   (define-key dired-mode-map (kbd "U") 'dired-unmark-all-marks)
   (define-key dired-mode-map (kbd "!") 'sudired)
-  (define-key dired-mode-map (kbd ".") 'my/dotfiles-toggle)
   (define-key dired-mode-map (kbd "O") 'ora-dired-other-window)
   (define-key dired-mode-map (kbd "`") 'dired-toggle-read-only)
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+  (define-key dired-mode-map (kbd ".") 'my/dired-toggle-hide-details)
+
+  (unbind-key "SPC" dired-mode-map)
 
   (use-package wdired
     :init
@@ -212,6 +226,11 @@ Version 2015-07-30"
     (setq diredp-hide-details-propagate-flag nil)
     :config
     (diredp-toggle-find-file-reuse-dir 1))
+
+  (use-package dired-quick-sort
+    :ensure t
+    :bind (:map dired-mode-map
+                ("s" . hydra-dired-quick-sort/body)))
 
   (use-package dired-narrow
     :ensure t
@@ -274,7 +293,7 @@ Version 2015-07-30"
 
   (setq ranger-preview-header-func (lambda () (interactive)
                                      (last (s-split "/" (buffer-file-name) t))))
-  :bind ("<f10>" . ranger)
+  ;; :bind ("<f10>" . ranger)
   :bind (:map ranger-mode-map
               ("/" . dired-narrow)))
 

@@ -32,8 +32,47 @@
     (define-key magit-refs-mode-map "k" 'magit-section-backward)
     (define-key magit-refs-mode-map "i" 'magit-section-toggle)
 
+    (defun ora-move-key (key-from key-to keymap)
+      "Move the command bound to KEY-FROM to KEY-TO in KEYMAP."
+      (if (null key-to)
+          (define-key keymap (kbd key-from) nil)
+        (let* ((key-from (kbd key-from))
+               (key-to (kbd key-to))
+               (cmd (lookup-key keymap key-from)))
+          (when cmd
+            (define-key keymap key-to cmd)
+            (define-key keymap key-from nil)))))
+
+    (ora-move-key "k" "C-k" magit-file-section-map)
+    (ora-move-key "k" "C-k" magit-untracked-section-map)
+    (ora-move-key "k" "C-k" magit-tag-section-map)
+    (ora-move-key "k" "C-k" magit-stash-section-map)
+    (ora-move-key "k" "C-k" magit-stashes-section-map)
+    (ora-move-key "k" "C-k" magit-unstaged-section-map)
+    (ora-move-key "k" "C-k" magit-hunk-section-map)
+    (ora-move-key "k" "C-k" magit-branch-section-map)
+    (ora-move-key "<C-tab>" nil magit-log-mode-map)
+    (ora-move-key "<C-tab>" nil magit-revision-mode-map)
+    (ora-move-key "<C-tab>" nil magit-status-mode-map)
+    (define-key magit-hunk-section-map (kbd "RET") 'magit-diff-visit-file-worktree)
+
     (define-key magit-status-mode-map (kbd "M-m") 'lispy-mark-symbol)
 
+    (csetq magit-status-sections-hook
+           '(magit-insert-status-headers
+             magit-insert-merge-log
+             magit-insert-rebase-sequence
+             magit-insert-am-sequence
+             magit-insert-sequencer-sequence
+             magit-insert-bisect-output
+             magit-insert-bisect-rest
+             magit-insert-bisect-log
+             magit-insert-stashes
+             magit-insert-untracked-files
+             magit-insert-unstaged-changes
+             magit-insert-staged-changes
+             magit-insert-unpulled-from-upstream
+             magit-insert-unpushed-to-upstream))
 
     (setq magit-status-headers-hook
           '(magit-insert-repo-header
