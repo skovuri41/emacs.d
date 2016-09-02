@@ -30,6 +30,16 @@
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
 
+(define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
+(define-key Buffer-menu-mode-map "k" 'previous-line)
+(define-key Buffer-menu-mode-map "j" 'next-line)
+(define-key ibuffer-mode-map "." 'hydra-ibuffer-main/body)
+
+(define-key bookmark-bmenu-mode-map "k" 'previous-line)
+(define-key bookmark-bmenu-mode-map "j" 'next-line)
+(define-key bookmark-bmenu-mode-map "s" 'bookmark-bmenu-save)
+
+
 ;; swith meta and mac command key for mac port emacs build
 (setq mac-option-modifier 'meta)
 ;; mac switch meta key

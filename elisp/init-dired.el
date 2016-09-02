@@ -190,13 +190,20 @@
 
   ;;* bind and hook
   (define-key dired-mode-map (kbd "e") 'my/dired-diff)
+  (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
   (define-key dired-mode-map (kbd "E") 'dired-toggle-read-only)
+  (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
   (define-key dired-mode-map (kbd "C-t") nil)
   (define-key dired-mode-map (kbd "h") 'ora-dired-up-directory)
   (define-key dired-mode-map (kbd "i") 'counsel-find-file)
   (define-key dired-mode-map (kbd "j") 'dired-next-line)
   (define-key dired-mode-map (kbd "k") 'dired-previous-line)
-  (define-key dired-mode-map (kbd "l") 'diredp-find-file-reuse-dir-buffer)
+  (define-key dired-mode-map (kbd "l") '(lambda () (interactive)
+                                          (progn
+                                            (diredp-find-file-reuse-dir-buffer)
+                                            (xah-fly-command-mode-activate))))
+  (define-key dired-mode-map (kbd "n") 'dired-next-marked-file)
+  (define-key dired-mode-map (kbd "p") 'dired-prev-marked-file)
   (define-key dired-mode-map (kbd "%^") 'dired-flag-garbage-files)
   (define-key dired-mode-map (kbd "z") 'ora-dired-get-size)
   (define-key dired-mode-map (kbd "F") 'find-name-dired)
@@ -209,7 +216,6 @@
   (define-key dired-mode-map (kbd "`") 'dired-toggle-read-only)
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
   (define-key dired-mode-map (kbd ".") 'my/dired-toggle-hide-details)
-
   (unbind-key "SPC" dired-mode-map)
 
   (use-package wdired

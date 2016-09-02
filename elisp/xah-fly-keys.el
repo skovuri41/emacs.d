@@ -2196,6 +2196,11 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "bk") 'xah-close-current-buffer)
     (define-key xah-fly-key-map (kbd "bn") 'xah-new-empty-buffer)
     (define-key xah-fly-key-map (kbd "bs") 'save-buffer)
+    (define-key xah-fly-key-map (kbd "bl") '(lambda () (interactive)
+                                              (progn
+                                                (call-interactively 'projectile-ibuffer)
+                                                (xah-fly-insert-mode-activate)
+                                                (hydra-ibuffer-main/body))))
     (define-key xah-fly-key-map (kbd "c") 'local-clojure-mode-keymap)
     (define-key xah-fly-key-map (kbd "e") 'xah-end-of-line-or-block)
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
@@ -2211,7 +2216,10 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "fp") 'helm-projectile)
     (define-key xah-fly-key-map (kbd "fb") 'helm-bookmarks)
     (define-key xah-fly-key-map (kbd "fo") 'counsel-outline)
-    (define-key xah-fly-key-map (kbd "fj") 'dired-jump)
+    (define-key xah-fly-key-map (kbd "fj") '(lambda () (interactive)
+                                              (progn
+                                                (dired-jump)
+                                                (xah-fly-insert-mode-activate))))
     (define-key xah-fly-key-map (kbd "fJ") 'dired-jump-other-window)
     (define-key xah-fly-key-map (kbd "gn") 'smartscan-symbol-go-forward)
     (define-key xah-fly-key-map (kbd "g,") 'goto-last-change-reverse)
