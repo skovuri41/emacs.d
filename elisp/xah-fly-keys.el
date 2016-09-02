@@ -1966,7 +1966,9 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "i") 'xah-leader-i-keymap)
   (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
   ;; (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
-  (define-key xah-fly-leader-key-map (kbd "nt") 'neotree-toggle)
+  (define-key xah-fly-leader-key-map (kbd "nt") '(lambda () (interactive)
+                                                  (xah-insert-mode-wrapper
+                                                   'neotree-toggle)))
   (define-key xah-fly-leader-key-map (kbd "ne") 'neotree-find)
   (define-key xah-fly-leader-key-map (kbd "ns") 'neotree-show)
   (define-key xah-fly-leader-key-map (kbd "o") 'my-org-prefix-map)
@@ -2217,9 +2219,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "fb") 'helm-bookmarks)
     (define-key xah-fly-key-map (kbd "fo") 'counsel-outline)
     (define-key xah-fly-key-map (kbd "fj") '(lambda () (interactive)
-                                              (progn
-                                                (dired-jump)
-                                                (xah-fly-insert-mode-activate))))
+                                              (xah-insert-mode-wrapper
+                                               'dired-jump)))
     (define-key xah-fly-key-map (kbd "fJ") 'dired-jump-other-window)
     (define-key xah-fly-key-map (kbd "gn") 'smartscan-symbol-go-forward)
     (define-key xah-fly-key-map (kbd "g,") 'goto-last-change-reverse)
@@ -2433,11 +2434,11 @@ If `universal-argument' is called first, do switch frame."
      (lispy-define-key lispy-mode-map "n" 'lispy-occur)
      (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)))
 
-(defun xah-fly-mode-hook-fn (&rest args)
+(defun xah-insert-mode-wrapper (fun)
   (interactive)
-  (if buffer-read-only
-      (xah-fly-insert-mode-activate)
-    (xah-fly-command-mode-activate)))
+  (progn
+    (xah-fly-insert-mode-activate)
+    (funcall fun)))
 
 ;; when in going into minibuffer, switch to insertion mode.
 (add-hook 'minibuffer-setup-hook 'xah-fly-insert-mode-activate)
@@ -2451,7 +2452,6 @@ If `universal-argument' is called first, do switch frame."
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
 ;; (add-hook 'minibuffer-exit-hook 'xah-fly-mode-hook-fn)
-;; (add-hook 'window-configuration-change-hook 'xah-fly-mode-hook-fn)
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)
