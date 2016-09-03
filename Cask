@@ -203,6 +203,10 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "gitattributes-mode")
+(depends-on "outshine")
+(depends-on "outorg")
+
+
 
 
 

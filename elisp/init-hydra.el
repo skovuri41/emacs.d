@@ -247,7 +247,10 @@ _~_: modified      ^ ^                ^ ^                ^^                     
 
       ("o" ibuffer-visit-buffer-other-window "other window" :color blue)
       ;; ("q" ibuffer-quit "quit ibuffer" :color blue)
-      ("q" quit-window "quit ibuffer" :color blue)
+      ("q" (lambda () (interactive)
+             (progn
+               (quit-window)
+               (xah-fly-command-mode-activate)))  "quit ibuffer" :color blue)
       ("." nil "toggle hydra" :color blue))
 
     (defhydra hydra-ibuffer-mark (:color teal :columns 5

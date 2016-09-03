@@ -68,7 +68,7 @@
     (ivy-set-actions
      t
      '(("i" (lambda (x) (with-ivy-window
-                     (insert x))) "insert candidate")
+                          (insert x))) "insert candidate")
        (" " (lambda (x) (ivy-resume)) "resume")
        ("?" (lambda (x)
               (interactive)
@@ -128,7 +128,21 @@
                              ;;ivy--regex
                              :sort nil
                              :initial-input nil)))
-          (dired dir)))))
+          (dired dir))))
+
+
+    (defun ivy-dired ()
+      (interactive)
+      (if ivy--directory
+          (ivy-quit-and-run
+           (dired ivy--directory)
+           (when (re-search-forward
+                  (regexp-quote
+                   (substring ivy--current 0 -1)) nil t)
+             (goto-char (match-beginning 0))))
+        (user-error
+         "Not completing files currently")))
+    (define-key ivy-minibuffer-map (kbd "C-:") 'ivy-dired))
   :init
   (progn
     (ivy-mode 1)))

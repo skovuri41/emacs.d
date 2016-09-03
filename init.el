@@ -68,9 +68,9 @@
 (require 'init-pbcopy)
 (require 'init-cal)
 (require 'init-spaceline)
-(require 'init-keybindings)
-(require 'init-xah-fly-keys)
 (require 'init-docker)
+(require 'init-xah-fly-keys)
+(require 'init-keybindings)
 
 (let ((elapsed (float-time (time-subtract (current-time)
                                           emacs-start-time))))

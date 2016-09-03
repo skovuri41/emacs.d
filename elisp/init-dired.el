@@ -1,6 +1,5 @@
-;;;; dired
-;; directory-browsing commands
 (use-package dired
+  :defer t
   :init
   (setq dired-auto-revert-buffer t)
   (setq dired-no-confirm
@@ -61,7 +60,7 @@
             (message "h")
             (dired-mark-files-regexp "^\\\.")
             (dired-do-kill-lines))
-        (progn (revert-buffer) ; otherwise just revert to re-show
+        (progn (revert-buffer)      ; otherwise just revert to re-show
                (set (make-local-variable 'dired-dotfiles-show-p) t)))))
 
   (defun my/back-to-top ()
@@ -190,24 +189,18 @@
 
   ;;* bind and hook
   (define-key dired-mode-map (kbd "e") 'my/dired-diff)
-  (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
   (define-key dired-mode-map (kbd "E") 'dired-toggle-read-only)
-  (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
   (define-key dired-mode-map (kbd "C-t") nil)
   (define-key dired-mode-map (kbd "h") 'ora-dired-up-directory)
   (define-key dired-mode-map (kbd "i") 'counsel-find-file)
   (define-key dired-mode-map (kbd "j") 'dired-next-line)
   (define-key dired-mode-map (kbd "k") 'dired-previous-line)
-  (define-key dired-mode-map (kbd "l") '(lambda () (interactive)
-                                          (progn
-                                            (diredp-find-file-reuse-dir-buffer)
-                                            (let ((buffer-major-mode
-                                                   (format "%s" (get-buffer-mode))))
-                                              (if (equal "dired-mode" buffer-major-mode)
-                                                  (xah-fly-insert-mode-activate)
-                                                (xah-fly-command-mode-activate))))))
   (define-key dired-mode-map (kbd "n") 'dired-next-marked-file)
   (define-key dired-mode-map (kbd "p") 'dired-prev-marked-file)
+  (define-key dired-mode-map (kbd "q") '(lambda () (interactive)
+                                          (progn
+                                            (xah-fly-command-mode-activate)
+                                            (quit-window))) )
   (define-key dired-mode-map (kbd "%^") 'dired-flag-garbage-files)
   (define-key dired-mode-map (kbd "z") 'ora-dired-get-size)
   (define-key dired-mode-map (kbd "F") 'find-name-dired)
@@ -228,14 +221,24 @@
     (setq wdired-allow-to-change-permissions t))
 
   (use-package dired+
-    ;; dired+ adds some features to standard dired (like reusing buffers)
     :bind ("C-x C-j" . dired-jump)
     :defer 1
     :init
     (setq diredp-hide-details-initially-flag nil)
     (setq diredp-hide-details-propagate-flag nil)
     :config
-    (diredp-toggle-find-file-reuse-dir 1))
+    (progn
+      (diredp-toggle-find-file-reuse-dir 1)
+      (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
+      (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
+      (define-key dired-mode-map (kbd "l") '(lambda () (interactive)
+                                              (progn
+                                                (diredp-find-file-reuse-dir-buffer)
+                                                (let ((buffer-major-mode
+                                                       (format "%s" (get-buffer-mode))))
+                                                  (if (equal "dired-mode" buffer-major-mode)
+                                                      (xah-fly-insert-mode-activate)
+                                                    (xah-fly-command-mode-activate))))))))
 
   (use-package dired-quick-sort
     :ensure t
@@ -257,8 +260,8 @@
     :ensure t
     :init
     (setq dired-rainbow-date-regexp
-	  (concat "\\(?:[0-3][0-9]/[0-1][0-9]/[0-9][0-9]"
-		  time-style-space "[0-2][0-9]:[0-5][0-9]\\)"))
+          (concat "\\(?:[0-3][0-9]/[0-1][0-9]/[0-9][0-9]"
+                  time-style-space "[0-2][0-9]:[0-5][0-9]\\)"))
     ;; highlight executable files, but not directories
     (dired-rainbow-define-chmod executable-unix "#2aa198" "-.*x.*")
     (dired-rainbow-define html "#4e9a06" ("htm" "html" "xhtml"))
