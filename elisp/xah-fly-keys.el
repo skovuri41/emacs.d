@@ -1642,54 +1642,6 @@ If `universal-argument' is called first, do switch frame."
 
 
 
-(setq xah-dvorak-to-qwerty-kmap
-      '(
-        ("a" . "a")
-        ("b" . "n")
-        ("c" . "i")
-        ("d" . "h")
-        ("e" . "d")
-        ("f" . "y")
-        ("g" . "u")
-        ("h" . "j")
-        ("i" . "g")
-        ("j" . "c")
-        ("k" . "v")
-        ("l" . "p")
-        ("m" . "m")
-        ("n" . "l")
-        ("o" . "s")
-        ("p" . "r")
-        ("q" . "x")
-        ("r" . "o")
-        ("s" . ";")
-        ("t" . "k")
-        ("u" . "f")
-        ("v" . ".")
-        ("w" . ",")
-        ("x" . "b")
-        ("y" . "t")
-        ("z" . "/")
-        ("." . "e")
-        ("," . "w")
-        ("'" . "q")
-        (";" . "z")
-        ("/" . "[")
-        ("[" . "-")
-        ("]" . "=")
-        ("=" . "]")
-        ("-" . "'")))
-
-(defun xah-dvorak-to-qwerty (charstr)
-  "Convert dvorak key to qwerty. charstr is single char string."
-  (interactive)
-  (cdr (assoc charstr xah-dvorak-to-qwerty-kmap)))
-
-(defun xah-qwerty-to-dvorak (charstr)
-  "Convert qwerty key to dvorak. charstr is single char string."
-  (interactive)
-  (car (rassoc charstr xah-dvorak-to-qwerty-kmap)))
-
 (defun xah-fly-map-keys (kmap-name key-cmd-alist)
   "similar to `define-key' but map over a alist."
   (interactive)
@@ -1946,6 +1898,7 @@ If `universal-argument' is called first, do switch frame."
  (define-prefix-command 'search-replace-keymap)
  '(
    ("ad" . counsel-ag)
+   ("ag" . ag)
    ("ap" . counsel-ag-projectile)
    ("at" . counsel-ag-project-symbol)
    ("qr" . anzu-query-replace)
@@ -2257,7 +2210,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "o") 'smart-open-line)
     (define-key xah-fly-key-map (kbd "O") 'open-line-above)
     (define-key xah-fly-key-map (kbd "p") 'yank)
-    (define-key xah-fly-key-map (kbd "P") 'helm-show-kill-ring)
+    ;; (define-key xah-fly-key-map (kbd "P") 'helm-show-kill-ring)
+    (define-key xah-fly-key-map (kbd "P") 'counsel-yank-pop)
     (define-key xah-fly-key-map (kbd "q") 'popwin:close-popup-window)
     (define-key xah-fly-key-map (kbd "r") 'undo-tree-redo)
     (define-key xah-fly-key-map (kbd "s") 'embrace-commander)

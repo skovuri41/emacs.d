@@ -259,16 +259,24 @@
   (defconst time-style-space (string ?\u2008) "Punctuation space Unicode char.")
 
   (use-package dired-rainbow
-    :disabled t
-    :ensure t
     :init
-    (setq dired-rainbow-date-regexp
-          (concat "\\(?:[0-3][0-9]/[0-1][0-9]/[0-9][0-9]"
-                  time-style-space "[0-2][0-9]:[0-5][0-9]\\)"))
-    ;; highlight executable files, but not directories
-    (dired-rainbow-define-chmod executable-unix "#2aa198" "-.*x.*")
-    (dired-rainbow-define html "#4e9a06" ("htm" "html" "xhtml"))
-    (dired-rainbow-define media "#ce5c00" media-files-extensions))
+    (progn
+      (dired-rainbow-define html "#4e9a06" ("htm" "html" "xhtml"))
+      (dired-rainbow-define xml "#b4fa70" ("xml" "xsd" "xsl" "xslt" "wsdl"))
+      (dired-rainbow-define document "#fce94f" ("doc" "docx" "odt" "pdb" "pdf"
+                                                "ps" "rtf" "djvu" "epub"))
+      (dired-rainbow-define excel "#3465a4" ("xlsx"))
+      (dired-rainbow-define media "#ce5c00" media-files-extensions)
+      (dired-rainbow-define image "#ff4b4b" ("jpg" "png" "jpeg" "gif"))
+      (dired-rainbow-define log "#c17d11" ("log"))
+      (dired-rainbow-define sourcefile "#fcaf3e" ("py" "c" "cc" "h" "java" "pl"
+                                                  "rb" "R" "php"))
+      (dired-rainbow-define executable "#8cc4ff" ("exe" "msi"))
+      (dired-rainbow-define compressed "#ad7fa8" ("zip" "bz2" "tgz" "txz" "gz"
+                                                  "xz" "z" "Z" "jar" "war" "ear" "rar" "sar" "xpi" "apk" "xz" "tar"))
+      (dired-rainbow-define packaged "#e6a8df" ("deb" "rpm"))
+      (dired-rainbow-define encrypted "LightBlue" ("gpg" "pgp"))
+      (dired-rainbow-define-chmod executable-unix "Green" "-.*x.*")))
 
   ;;preview files in dired
   (use-package peep-dired
