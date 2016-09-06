@@ -167,19 +167,15 @@
       (counsel-ag (if (region-active-p)
                       (buffer-substring-no-properties (region-beginning) (region-end))
                     (thing-at-point 'symbol))
-                  (projectile-project-root)))
-
-    )
-  )
+                  (projectile-project-root)))))
 
 (use-package counsel-projectile       ; Ivy integration for Projectile
   :ensure t
   :bind (:map projectile-command-map
               ("p" . counsel-projectile)))
 
-(use-package  counsel-osx-app
-  :ensure t
-  )
+(use-package counsel-osx-app
+  :ensure t)
 
 (use-package tiny
   :commands tiny-expand)
@@ -188,6 +184,6 @@
   :ensure t
   :after flyspell
   :bind (:map flyspell-mode-map
-              ("C-c $" . flyspell-correct-word-generic)))
+              ("C-$" . flyspell-correct-word-generic)))
 
 (provide 'init-ivy)

@@ -190,4 +190,9 @@
     (require 'cider-eval-sexp-fu))
   (add-hook 'cider-mode-hook 'config-init-cider-eval-sexp-fu))
 
+;;; clojurescript (build from emacs, and pop up stacktrack when
+;;; there's a error):
+(use-package cljsbuild-mode
+  :diminish cljsbuild-mode)
+
 (provide 'init-clojure)

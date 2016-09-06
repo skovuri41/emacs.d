@@ -123,6 +123,7 @@
                     gitattributes-mode
                     lyspell-correct-ivy
                     dired-launch
+                    cljsbuild-mode
                     ))
 
 

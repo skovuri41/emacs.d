@@ -108,6 +108,7 @@
 (depends-on "eval-sexp-fu")
 (depends-on "cider-eval-sexp-fu")
 (depends-on "4clojure")
+(depends-on "cljsbuild-mode")
 
 (depends-on "flx-ido")
 (depends-on "ido-vertical-mode")
