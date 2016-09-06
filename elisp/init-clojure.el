@@ -163,6 +163,8 @@
     (setq cider-show-error-buffer t)
     (setq nrepl-popup-stacktraces nil)
     (setq cider-prompt-save-file-on-load nil)
+    ;; (load-file (expand-file-name "git/cider-buddy/cider-buddy.el" user-emacs-directory))
+    (require 'cider-buddy)
     ;; (setq cider-refresh-before-fn "reloaded.repl/suspend")
     ;; (setq cider-refresh-after-fn "reloaded.repl/resume")
     ))

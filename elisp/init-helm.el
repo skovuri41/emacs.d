@@ -47,7 +47,7 @@
   :commands (helm-ag helm-projectile-ag))
 
 (use-package helm-backup
-  :bind ("C-c b" . helm-backup)
+  ;; :bind ("C-c b" . helm-backup)
   :config
   (add-hook 'after-save-hook 'helm-backup-versioning))
 

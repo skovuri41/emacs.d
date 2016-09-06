@@ -121,6 +121,9 @@
                     gitconfig-mode
                     gitignore-mode
                     gitattributes-mode
+                    lyspell-correct-ivy
+                    dired-launch
                     ))
+
 
 

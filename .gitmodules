@@ -1,3 +1,3 @@
-[submodule "elisp/org-mode"]
-	path = elisp/org-mode
-	url = git://orgmode.org/org-mode.git
+[submodule "git/cider-buddy"]
+	path = git/cider-buddy
+	url = https://github.com/seanirby/cider-buddy.git

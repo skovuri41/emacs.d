@@ -250,6 +250,9 @@
     :bind (:map dired-mode-map
                 ("/" . dired-narrow-fuzzy)))
 
+  (use-package dired-launch
+    :ensure t)
+
   (defconst media-files-extensions
     '("mp3" "mp4" "avi" "mpg" "flv" "ogg" "mkv" "mpeg" "wmv" "wav" "mov" "flv" "ogm")
     "Media files.")

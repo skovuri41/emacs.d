@@ -205,6 +205,8 @@
 (depends-on "gitattributes-mode")
 (depends-on "outshine")
 (depends-on "outorg")
+(depends-on "dired-launch")
+(depends-on "flyspell-correct-ivy")
 
 
 

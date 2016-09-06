@@ -184,5 +184,10 @@
 (use-package tiny
   :commands tiny-expand)
 
+(use-package flyspell-correct-ivy
+  :ensure t
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ("C-c $" . flyspell-correct-word-generic)))
 
 (provide 'init-ivy)
