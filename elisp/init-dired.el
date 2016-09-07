@@ -259,7 +259,8 @@
   (defconst time-style-space (string ?\u2008) "Punctuation space Unicode char.")
 
   (use-package dired-rainbow
-    :init
+    :ensure t
+    :config
     (progn
       (dired-rainbow-define html "#4e9a06" ("htm" "html" "xhtml"))
       (dired-rainbow-define xml "#b4fa70" ("xml" "xsd" "xsl" "xslt" "wsdl"))
