@@ -223,7 +223,7 @@ _~_: modified      ^ ^                ^ ^                ^^                     
  ^Navigation^ | ^Mark^        | ^Actions^        | ^View^
 -^----------^-+-^----^--------+-^-------^--------+-^----^-------
   _k_:    ʌ   | _m_: mark     | _D_: delete      | _g_: refresh
-  _l_: visit | _u_: unmark   | _S_: save        | _s_: sort
+  _l_: visit  | _u_: unmark   | _S_: save        | _s_: sort
   _j_:    v   | _*_: specific | _a_: all actions | _/_: filter
 -^----------^-+-^----^--------+-^-------^--------+-^----^-------
 "
@@ -244,8 +244,9 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("g" ibuffer-update)
       ("s" hydra-ibuffer-sort/body :color blue)
       ("/" hydra-ibuffer-filter/body :color blue)
-
-      ("o" ibuffer-visit-buffer-other-window "other window" :color blue)
+      ("o" (lambda () (interactive) (progn
+                                 (ibuffer-visit-buffer-other-window)
+                                 (xah-fly-command-mode-activate))) "other window" :color blue)
       ;; ("q" ibuffer-quit "quit ibuffer" :color blue)
       ("q" (lambda () (interactive)
              (progn

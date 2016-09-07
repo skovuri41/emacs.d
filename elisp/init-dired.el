@@ -187,10 +187,30 @@
         (dired-omit-mode v)
         (dired-hide-details-mode v))))
 
+  (defun xah-wrapper-dired-commands ()
+    "enable command mode when dired commands are called from"
+    (interactive)
+    (progn
+      (let ((buffer-major-mode
+             (format "%s" (get-buffer-mode))))
+        (if (equal "dired-mode" buffer-major-mode)
+            (xah-fly-insert-mode-activate)
+          (xah-fly-command-mode-activate)))))
+
+  (defadvice dired-find-file-other-window (after xah-wrapper-dired-commands activate)
+    (xah-wrapper))
+
+  (defadvice ora-dired-other-window (after xah-wrapper-dired-commands activate)
+    (xah-wrapper))
+
+  (defadvice diredp-find-file-reuse-dir-buffer (after xah-wrapper-dired-commands activate)
+    (xah-wrapper))
+
   ;;* bind and hook
   (define-key dired-mode-map (kbd "e") 'my/dired-diff)
   (define-key dired-mode-map (kbd "E") 'dired-toggle-read-only)
   (define-key dired-mode-map (kbd "C-t") nil)
+
   (define-key dired-mode-map (kbd "h") 'ora-dired-up-directory)
   (define-key dired-mode-map (kbd "i") 'counsel-find-file)
   (define-key dired-mode-map (kbd "j") 'dired-next-line)
@@ -231,14 +251,7 @@
       (diredp-toggle-find-file-reuse-dir 1)
       (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
       (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
-      (define-key dired-mode-map (kbd "l") '(lambda () (interactive)
-                                              (progn
-                                                (diredp-find-file-reuse-dir-buffer)
-                                                (let ((buffer-major-mode
-                                                       (format "%s" (get-buffer-mode))))
-                                                  (if (equal "dired-mode" buffer-major-mode)
-                                                      (xah-fly-insert-mode-activate)
-                                                    (xah-fly-command-mode-activate))))))))
+      (define-key dired-mode-map (kbd "l") 'diredp-find-file-reuse-dir-buffer)))
 
   (use-package dired-quick-sort
     :ensure t

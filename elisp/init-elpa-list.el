@@ -121,7 +121,7 @@
                     gitconfig-mode
                     gitignore-mode
                     gitattributes-mode
-                    lyspell-correct-ivy
+                    flyspell-correct-ivy
                     dired-launch
                     cljsbuild-mode
                     ))

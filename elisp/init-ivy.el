@@ -21,7 +21,6 @@
     (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
-    ;; (ivy-mode 1)
     (setq ivy-initial-inputs-alist nil)
     ;; (setq ivy-re-builders-alist
     ;;       '((t . ivy--regex-fuzzy)))
@@ -34,6 +33,7 @@
             (counsel-M-x . ivy--regex-fuzzy)
             (t . ivy--regex-plus)))
     ;; (advice-add 'swiper :before 'avy-push-mark)
+    ;; (ivy-mode 1)
     )
   :config
   (progn
@@ -169,7 +169,7 @@
                     (thing-at-point 'symbol))
                   (projectile-project-root)))))
 
-(use-package counsel-projectile       ; Ivy integration for Projectile
+(use-package counsel-projectile
   :ensure t
   :bind (:map projectile-command-map
               ("p" . counsel-projectile)))
