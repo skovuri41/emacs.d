@@ -13,8 +13,8 @@
     (setq company-tooltip-align-annotations t
           company-tooltip-flip-when-above t
           company-require-match nil
-          company-minimum-prefix-length 2
-          company-idle-delay 0.20
+          company-minimum-prefix-length 3
+          company-idle-delay 0.10
           company-show-numbers t
           company-occurrence-weight-function #'company-occurrence-prefer-any-closest
           company-continue-commands
@@ -31,6 +31,7 @@
       (add-to-list 'company-backends 'company-ispell t)
       ;; (add-to-list 'company-backends 'company-web-html)
       )
+
     (define-key company-active-map (kbd "\C-n") 'company-select-next)
     (define-key company-active-map (kbd "\C-p") 'company-select-previous)
     (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)

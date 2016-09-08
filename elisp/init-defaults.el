@@ -96,8 +96,19 @@
   (setq-default save-place t)
   (setq save-place-file (expand-file-name ".saveplaces" user-emacs-directory)))
 
-;; Undo/redo window configuration with C-c <left>/<right>
-(winner-mode 1)
+(use-package winner
+  :config
+  (setq winner-boring-buffers '("*Completions*"
+                                "*Compile-Log*"
+                                "*inferior-lisp*"
+                                "*Fuzzy Completions*"
+                                "*Apropos*"
+                                "*Help*"
+                                "*cvs*"
+                                "*Buffer List*"
+                                "*Ibuffer*"
+                                ))
+  (winner-mode 1))
 
 ;; Never insert tabs
 (set-default 'indent-tabs-mode nil)

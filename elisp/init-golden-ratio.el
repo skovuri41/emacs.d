@@ -3,12 +3,13 @@
   :diminish golden-ratio-mode
   :config
   (setq golden-ratio-exclude-modes
-        '( "sr-mode" "neotree-mode" "ediff-mode" "gnus-summary-mode" "ranger-mode" "dired-mode" ))
+        '("calendar--mode" "sr-mode" "neotree-mode" "ediff-mode" "gnus-summary-mode" "ranger-mode" "dired-mode" ))
   (setq golden-ratio-extra-commands
         (append golden-ratio-extra-commands
                 '(ivy-switch-buffer
                   cider-popup-buffer-quit-function
                   ace-window)))
+  (setq golden-ratio-recenter t)
   (golden-ratio-mode 1))
 
 (use-package golden-ratio-scroll-screen
