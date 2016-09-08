@@ -198,13 +198,13 @@
           (xah-fly-command-mode-activate)))))
 
   (defadvice dired-find-file-other-window (after xah-wrapper-dired-commands activate)
-    (xah-wrapper))
+    (xah-wrapper-dired-commands))
 
   (defadvice ora-dired-other-window (after xah-wrapper-dired-commands activate)
-    (xah-wrapper))
+    (xah-wrapper-dired-commands))
 
   (defadvice diredp-find-file-reuse-dir-buffer (after xah-wrapper-dired-commands activate)
-    (xah-wrapper))
+    (xah-wrapper-dired-commands))
 
   ;;* bind and hook
   (define-key dired-mode-map (kbd "e") 'my/dired-diff)
@@ -223,7 +223,7 @@
                                             (quit-window))) )
   (define-key dired-mode-map (kbd "%^") 'dired-flag-garbage-files)
   (define-key dired-mode-map (kbd "z") 'ora-dired-get-size)
-  (define-key dired-mode-map (kbd "F") 'find-name-dired)
+  ;; (define-key dired-mode-map (kbd "F") 'find-name-dired)
   (define-key dired-mode-map (kbd "f") 'dired-goto-file)
   (define-key dired-mode-map (kbd "'") 'eshell-this-dir)
   (define-key dired-mode-map (kbd "u") 'dired-undo)
@@ -241,8 +241,9 @@
     (setq wdired-allow-to-change-permissions t))
 
   (use-package dired+
-    :bind ("C-x C-j" . dired-jump)
+    :ensure t
     :defer 1
+    :bind ("C-x C-j" . dired-jump)
     :init
     (setq diredp-hide-details-initially-flag nil)
     (setq diredp-hide-details-propagate-flag nil)

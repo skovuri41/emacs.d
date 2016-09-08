@@ -100,5 +100,35 @@
   :ensure t
   )
 
+(use-package bm
+  :ensure t
+  :commands (bm-buffer-restore bm-buffer-save bm-toggle bm-next bm-previous)
+  :bind (("M-[" . bm-previous)
+         ("M-]" . bm-next))
+  :init
+  (setq bm-repository-file "~/.emacs.d/.bm-repository")
+  (setq-default bm-buffer-persistence t)
+  (setq bm-restore-repository-on-load t)
+  (setq bm-marker 'bm-marker-left)
+  (setq bm-highlight-style 'bm-highlight-only-fringe)
+  (setq bm-cycle-all-buffers t)
+  (defface bm-fringe-persistent-face
+    '((((class grayscale)
+        (background light)) (:background "DimGray"))
+      (((class grayscale)
+        (background dark))  (:background "LightGray"))
+      (((class color)
+        (background light)) (:foreground "White" :background "#E593C3"))
+      (((class color)
+        (background dark))  (:foreground "White" :background "#E593C3")))
+    "Face used to highlight current line if bookmark is persistent."
+    :group 'bm)
+  :config
+  (add-hook 'find-file-hooks 'bm-buffer-restore)
+  (add-hook 'kill-buffer-hook 'bm-buffer-save)
+  (add-hook 'after-save-hook 'bm-buffer-save)
+  (add-hook 'after-revert-hook 'bm-buffer-restore)
+  (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
+  (add-hook 'find-file-hooks 'bm-buffer-restore))
 
 (provide 'init-minor-modes)

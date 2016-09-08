@@ -14,7 +14,7 @@
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
-(global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
+;;(global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)

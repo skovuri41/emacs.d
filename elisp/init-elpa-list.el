@@ -55,7 +55,7 @@
                     tidy
                     drag-stuff
                     elisp-slime-nav
-                    emacs-eclim
+                    ;;emacs-eclim
                     better-defaults
                     color-identifiers-mode
                     whitespace-cleanup-mode
@@ -124,6 +124,7 @@
                     flyspell-correct-ivy
                     dired-launch
                     cljsbuild-mode
+                    lispy
                     ))
 
 
