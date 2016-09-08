@@ -1895,6 +1895,17 @@ If `universal-argument' is called first, do switch frame."
    ("y" . xah-insert-double-angle-quote«»)))
 
 (xah-fly-map-keys
+ (define-prefix-command 'xah-projectile-keymap)
+ '(
+   ("d" . projectile-dired)
+   ("f" . counsel-projectile-find-file)
+   ("g" . counsel-ag-projectile)
+   ("o" . projectile-find-other-file)
+   ("h" . hydra-projectile/body)
+   ("p" . helm-projectile-switch-project)
+   ("r" . projectile-run-shell-command-in-root)))
+
+(xah-fly-map-keys
  (define-prefix-command 'search-replace-keymap)
  '(
    ("ad" . counsel-ag)
@@ -1918,10 +1929,11 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "h") 'xah-help-keymap)
   (define-key xah-fly-leader-key-map (kbd "i") 'xah-leader-i-keymap)
   (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
+  (define-key xah-fly-leader-key-map (kbd "p") 'xah-projectile-keymap)
   ;; (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
   (define-key xah-fly-leader-key-map (kbd "nt") '(lambda () (interactive)
-                                                  (xah-insert-mode-wrapper
-                                                   'neotree-toggle)))
+                                                   (xah-insert-mode-wrapper
+                                                    'neotree-toggle)))
   (define-key xah-fly-leader-key-map (kbd "ne") 'neotree-find)
   (define-key xah-fly-leader-key-map (kbd "ns") 'neotree-show)
   (define-key xah-fly-leader-key-map (kbd "o") 'my-org-prefix-map)
@@ -2077,6 +2089,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "M-m") 'lispy-mark-symbol)
   (define-key xah-fly-key-map (kbd "M-d") 'lispy-kill-word)
   (define-key xah-fly-key-map (kbd "C-,") 'lispy-kill-at-point)
+
   ;; (define-key xah-fly-key-map (kbd "C-k") 'lispy-kill)
 
   (define-key xah-fly-key-map (kbd "C-y") 'lispy-yank)
