@@ -103,8 +103,6 @@
 (use-package bm
   :ensure t
   :commands (bm-buffer-restore bm-buffer-save bm-toggle bm-next bm-previous)
-  :bind (("M-[" . bm-previous)
-         ("M-]" . bm-next))
   :init
   (setq bm-repository-file "~/.emacs.d/.bm-repository")
   (setq-default bm-buffer-persistence t)
@@ -123,12 +121,24 @@
         (background dark))  (:foreground "White" :background "#E593C3")))
     "Face used to highlight current line if bookmark is persistent."
     :group 'bm)
-  :config
   (add-hook 'find-file-hooks 'bm-buffer-restore)
   (add-hook 'kill-buffer-hook 'bm-buffer-save)
   (add-hook 'after-save-hook 'bm-buffer-save)
   (add-hook 'after-revert-hook 'bm-buffer-restore)
   (add-hook 'vc-before-checkin-hook 'bm-buffer-save)
-  (add-hook 'find-file-hooks 'bm-buffer-restore))
+  (add-hook 'find-file-hooks 'bm-buffer-restore)
+
+  (defadvice bm-show-mode
+      (around bm-show-mode-with-linum activate)
+    ad-do-it
+    (linum-mode))
+
+  ;; Saving the repository to file when on exit.
+  ;; kill-buffer-hook is not called when emacs is killed, so we
+  ;; must save all bookmarks first.
+  (add-hook 'kill-emacs-hook '(lambda nil
+                                (bm-buffer-save-all)
+                                (bm-repository-save)))
+  )
 
 (provide 'init-minor-modes)

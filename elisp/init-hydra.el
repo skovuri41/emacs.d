@@ -368,6 +368,15 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("V"   projectile-ibuffer)
       ("X"   fixmee-mode)
       ("x"   fixmee-view-listing))
+
+    (defhydra hydra-bm (:hint nil :color teal)
+      ("j" bm-next "next" :exit nil)
+      ("k" bm-previous "prev" :exit nil)
+      ("s" bm-show-all "show all")
+      ("l" helm-bookmarks "list")
+      ("t" bm-toggle "toggle" :exit nil)
+      ("q" nil "quit" :exit t))
+
     ))
 
 

@@ -37,6 +37,7 @@
     (push '(" *undo-tree*" :width 0.3 :position right) popwin:special-display-config)
     (push "*Ibuffer*" popwin:special-display-config)
     (push '("*Org Agenda*") popwin:special-display-config)
+    (push '(cider-clojure-interaction-mode :position bottom :height 8) popwin:special-display-config)
     (push '(cider-inspector-mode) popwin:special-display-config)
     (push '(cider-popup-buffer-mode) popwin:special-display-config)
     (push '("*cider grimoire*") popwin:special-display-config)
@@ -51,6 +52,8 @@
     (push '("*cider-doc*" :dedicated t :position bottom :stick t :noselect nil :height 0.4)
           popwin:special-display-config)
     (push '(cider-macroexpansion-mode :noselect t) popwin:special-display-config)
+    (push '(bm-show-mode :position right :noselect t :stick t) popwin:special-display-config)
+    (push '("*bm-bookmarks*" :position right :noselect t :stick t) popwin:special-display-config)
     (when (fboundp 'neo-persist-show)
       (add-hook 'popwin:before-popup-hook
                 (lambda () (setq neo-persist-show nil)))

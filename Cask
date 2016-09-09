@@ -184,7 +184,7 @@
 (depends-on "avy")
 
 ;;emacs eclim
-(depends-on "emacs-eclim")
+(depends-on "eclim")
 (depends-on "java-imports")
 
 (depends-on "quickrun")
@@ -208,6 +208,7 @@
 (depends-on "outorg")
 (depends-on "dired-launch")
 (depends-on "flyspell-correct-ivy")
+(depends-on "bm")
 
 
 
