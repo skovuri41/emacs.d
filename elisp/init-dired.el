@@ -249,6 +249,31 @@
     (setq diredp-hide-details-propagate-flag nil)
     :config
     (progn
+      ;; Privilege indicator faces
+      (defun modi/dired-update-privilege-faces ()
+        (set-face-attribute 'diredp-dir-priv nil
+                            :foreground "#7474FFFFFFFF"
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-exec-priv nil
+                            :foreground "dodger blue"
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-other-priv nil
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-write-priv nil
+                            :foreground "#25258F8F2929"
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-read-priv nil
+                            :foreground "#999932325555"
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-no-priv nil
+                            :foreground "#2C2C2C2C2C2C"
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-rare-priv nil
+                            :foreground "Green"
+                            :background (face-background 'default))
+        (set-face-attribute 'diredp-link-priv nil
+                            :foreground "#00007373FFFF"))
+      (add-hook 'dired-mode-hook #'modi/dired-update-privilege-faces)
       (diredp-toggle-find-file-reuse-dir 1)
       (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
       (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
