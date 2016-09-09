@@ -373,6 +373,7 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("j" bm-next "next" :exit nil)
       ("k" bm-previous "prev" :exit nil)
       ("s" bm-show-all "show all")
+      ("b" bm-show "show")
       ("l" helm-bookmarks "list")
       ("t" bm-toggle "toggle" :exit nil)
       ("q" nil "quit" :exit t))
