@@ -2179,6 +2179,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "d$") 'lispy-kill-sentence)
     (define-key xah-fly-key-map (kbd "d0") 'lispy-delete-backward)
     (define-key xah-fly-key-map (kbd "da") 'backward-kill-line)
+    (define-key xah-fly-key-map (kbd "ds") 'kill-symbol)
     (define-key xah-fly-key-map (kbd "fr") 'counsel-recentf)
     (define-key xah-fly-key-map (kbd "fd") 'bjm/ivy-dired-recent-dirs)
     (define-key xah-fly-key-map (kbd "ff") 'counsel-find-file)
@@ -2223,7 +2224,6 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "o") 'smart-open-line)
     (define-key xah-fly-key-map (kbd "O") 'open-line-above)
     (define-key xah-fly-key-map (kbd "p") 'yank)
-    ;; (define-key xah-fly-key-map (kbd "P") 'helm-show-kill-ring)
     (define-key xah-fly-key-map (kbd "P") 'counsel-yank-pop)
     (define-key xah-fly-key-map (kbd "q") 'popwin:close-popup-window)
     (define-key xah-fly-key-map (kbd "r") 'undo-tree-redo)
@@ -2244,7 +2244,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
     (define-key xah-fly-key-map (kbd "y") 'easy-kill)
-    (define-key xah-fly-key-map (kbd "z") nil)))
+    (define-key xah-fly-key-map (kbd "z") 'zop-up-to-char)))
 
 ;;;;; insert mode keys
 (defun xah-fly-insert-mode-init ()

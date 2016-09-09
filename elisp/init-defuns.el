@@ -472,6 +472,24 @@ If buffer-or-name is nil return current buffer's mode."
 (global-set-key [remap fill-paragraph]
                 #'endless/fill-or-unfill)
 
+(defun symbol-boundary (backward)
+  "Returns position of either left or right boundary of current symbol."
+  (save-excursion
+    (let ((skip (if backward 'skip-syntax-backward 'skip-syntax-forward))
+ 	  (syntax "w_"))
+      (funcall skip syntax)
+      (point))))
+
+(defun kill-symbol ()
+  "Kill current symbol."
+  (interactive)
+  (kill-region (symbol-boundary t) (symbol-boundary nil)))
+
+(defun delete-symbol ()
+  "Delete current symbol."
+  (interactive)
+  (delete-region (symbol-boundary t) (symbol-boundary nil)))
+
 (require 'eshell)
 
 ;;;###autoload
