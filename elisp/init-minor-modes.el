@@ -27,9 +27,11 @@
   :init
   (add-hook #'prog-mode-hook #'smartscan-mode)
   :config
-  (define-key smartscan-map (kbd "M-n") nil)
-  (define-key smartscan-map (kbd "M-p") nil)
-  (define-key smartscan-map (kbd "M-'") nil))
+  (progn
+    (setq smartscan-symbol-selector "symbol")
+    (define-key smartscan-map (kbd "M-n") nil)
+    (define-key smartscan-map (kbd "M-p") nil)
+    (define-key smartscan-map (kbd "M-'") nil)))
 
 ;;; Visible mark
 (use-package visible-mark
@@ -98,7 +100,9 @@
 ;; https://www.emacswiki.org/emacs/sequential-command-config.el
 (use-package sequential-command
   :ensure t
-  )
+  :config
+  (progn
+    (define-sequential-command my-quit-dwim quit-window popwin:close-popup-window)))
 
 (use-package bm
   :ensure t

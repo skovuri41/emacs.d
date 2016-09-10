@@ -386,6 +386,12 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("m" bm-toggle "toggle" :exit nil)
       ("q" nil "quit" :exit t))
 
+    (defhydra hydra-smartscan (:hint nil :color teal)
+      ("j" smartscan-symbol-go-forward "next" :exit nil)
+      ("k" smartscan-symbol-go-backward "prev" :exit nil)
+      ("r" smartscan-symbol-replace "replace" :exit nil)
+      ("q" nil "quit" :exit t))
+
     ))
 
 
