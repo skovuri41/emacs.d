@@ -20,7 +20,6 @@
 (require 'init-org-2)
 (require 'init-org-bullets)
 (require 'init-clojure)
-(require 'init-color-theme)
 (require 'init-programming)
 (require 'init-expand-region)
 (require 'init-undotree)

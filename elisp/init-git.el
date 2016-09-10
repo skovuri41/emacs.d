@@ -60,7 +60,7 @@
       _j_: next hunk        _s_tage hunk     _q_uit
       _k_: previous hunk    _r_evert hunk   
       _m_: git-gutter+-mode _c_ommit 
-      _b_: stage & commit  _B_: stage & commit whole buffer
+      _b_: stage & commit   _B_: stage & commit whole buffer
       _h_: show hunk inline at point
 "
       ("j" git-gutter+-next-hunk)

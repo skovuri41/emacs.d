@@ -1709,44 +1709,31 @@ If `universal-argument' is called first, do switch frame."
 
 
 (xah-fly-map-keys
- (define-prefix-command 'xah-leader-c-keymap)
- '(
-   ("," . xah-open-in-external-app)
-   ("c" . bookmark-bmenu-list)
-   ("l" . bookmark-set)
-   ("o" . xah-open-in-desktop)
-   ("p" . xah-open-last-closed)
-   ("y" . xah-list-recently-closed)
-   ("r" . bookmark-jump)
-   ("s" . write-file)
-   ("t" . ibuffer)))
-
-(xah-fly-map-keys
  (define-prefix-command 'xah-help-keymap)
  '(
    (";" . Info-goto-emacs-command-node)
    ("a" . apropos-command)
-   ("b" . describe-bindings)
+   ("b" . counsel-descbinds)
    ("c" . describe-char)
    ("d" . apropos-documentation)
    ("e" . view-echo-area-messages)
-   ("f" . describe-face)
+   ("h" . describe-face)
    ("g" . info-lookup-symbol)
-   ("h" . describe-function)
+   ("f" . counsel-describe-function)
    ("i" . info)
    ("j" . man)
-   ("k" . describe-input-method)
+   ("t" . describe-input-method)
    ("K" . Info-goto-emacs-key-command-node)
    ("l" . view-lossage)
    ("m" . xah-describe-major-mode)
-   ("n" . describe-variable)
+   ("v" . counsel-describe-variable)
    ("o" . describe-language-environment)
    ("p" . finder-by-keyword)
    ("r" . apropos-variable)
    ("s" . describe-syntax)
-   ("t" . describe-key)
+   ("k" . describe-key)
    ("u" . elisp-index-search)
-   ("v" . apropos-value)
+   ("n" . apropos-value)
    ("z" . describe-coding-system)))
 
 (xah-fly-map-keys
@@ -1928,7 +1915,6 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "c") 'xah-leader-c-keymap)
   (define-key xah-fly-leader-key-map (kbd "h") 'xah-help-keymap)
   (define-key xah-fly-leader-key-map (kbd "i") 'xah-leader-i-keymap)
-  (define-key xah-fly-leader-key-map (kbd "m") 'dired-jump)
   (define-key xah-fly-leader-key-map (kbd "p") 'xah-projectile-keymap)
   ;; (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
   (define-key xah-fly-leader-key-map (kbd "nt") '(lambda () (interactive)
@@ -1942,122 +1928,6 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "t") 'xah-leader-t-keymap)
   (define-key xah-fly-leader-key-map (kbd "w") 'xah-danger-keymap))
 
-;;;;; misc
-
-;; these commands have keys in emacs, but right now i decided not to give them a key
-
-;; C-x C-p	mark-page
-;; C-x C-l	downcase-region
-;; C-x C-u	upcase-region
-
-;; C-x C-t	transpose-lines
-;; C-x C-o	delete-blank-lines
-
-;; C-x C-r	find-file-read-only
-;; C-x C-v	find-alternate-file
-
-;; C-x =	what-cursor-position, use describe-char instead
-;; C-x <	scroll-left
-;; C-x >	scroll-right
-;; C-x [	backward-page
-;; C-x ]	forward-page
-;; C-x ^	enlarge-window
-
-;; C-x {	shrink-window-horizontally
-;; C-x }	enlarge-window-horizontally
-;; C-x DEL	backward-kill-sentence
-
-;; C-x C-z	suspend-frame
-;; C-x +	balance-windows
-
-;; C-x k	kill-buffer , use xah-close-current-buffer
-;; C-x l	count-lines-page
-;; C-x m	compose-mail
-
-
-;; undecided yet
-
-;; C-x e	kmacro-end-and-call-macro
-;; C-x q	kbd-macro-query
-;; C-x C-k	kmacro-keymap(require 'init-xah-fly-keys)
-
-;; C-x C-d	list-directory
-;; C-x C-n	set-goal-column
-;; C-x ESC	Prefix Command
-;; C-x $	set-selective-display
-;; C-x *	calc-dispatch
-;; C-x -	shrink-window-if-larger-than-buffer
-;; C-x .	set-fill-prefix
-
-;; C-x 4	ctl-x-4-prefix
-;; C-x 5	ctl-x-5-prefix
-;; C-x 6	2C-command
-;; C-x ;	comment-set-column
-
-;; C-x `	next-error
-;; C-x f	set-fill-column
-;; C-x i	insert-file
-;; C-x n	Prefix Command
-;; C-x r	Prefix Command
-
-;; C-x C-k C-a	kmacro-add-counter
-;; C-x C-k C-c	kmacro-set-counter
-;; C-x C-k C-d	kmacro-delete-ring-head
-;; C-x C-k C-e	kmacro-edit-macro-repeat
-;; C-x C-k C-f	kmacro-set-format
-;; C-x C-k TAB	kmacro-insert-counter
-;; C-x C-k C-k	kmacro-end-or-call-macro-repeat
-;; C-x C-k C-l	kmacro-call-ring-2nd-repeat
-;; C-x C-k RET	kmacro-edit-macro
-;; C-x C-k C-n	kmacro-cycle-ring-next
-;; C-x C-k C-p	kmacro-cycle-ring-previous
-;; C-x C-k C-s	kmacro-start-macro
-;; C-x C-k C-t	kmacro-swap-ring
-;; C-x C-k C-v	kmacro-view-macro-repeat
-;; C-x C-k SPC	kmacro-step-edit-macro
-;; C-x C-k b	kmacro-bind-to-key
-;; C-x C-k e	edit-kbd-macro
-;; C-x C-k l	kmacro-edit-lossage
-;; C-x C-k n	kmacro-name-last-macro
-;; C-x C-k q	kbd-macro-query
-;; C-x C-k r	apply-macro-to-region-lines
-;; C-x C-k s	kmacro-start-macro
-
-
-
-;; C-x 4 C-f	find-file-other-window
-;; C-x 4 C-o	display-buffer
-;; C-x 4 .	find-tag-other-window
-;; C-x 4 0	kill-buffer-and-window
-;; C-x 4 a	add-change-log-entry-other-window
-;; C-x 4 b	switch-to-buffer-other-window
-;; C-x 4 c	clone-indirect-buffer-other-window
-;; C-x 4 d	dired-other-window
-;; C-x 4 f	find-file-other-window
-;; C-x 4 m	compose-mail-other-window
-;; C-x 4 r	find-file-read-only-other-window
-
-;; C-x 6 2	2C-two-columns
-;; C-x 6 b	2C-associate-buffer
-;; C-x 6 s	2C-split
-;; C-x 6 <f2>	2C-two-columns
-
-;; (define-key xah-leader-i-keymap (kbd "r") ctl-x-5-map)
-
-;; r C-f     find-file-other-frame
-;; r C-o     display-buffer-other-frame
-;; r .       find-tag-other-frame
-;; r 0       delete-frame
-;; r 1       delete-other-frames
-;; r 2       make-frame-command
-;; r b       switch-to-buffer-other-frame
-;; r d       dired-other-frame
-;; r f       find-file-other-frame
-;; r m       compose-mail-other-frame
-;; r o       other-frame
-;; r r       find-file-read-only-other-frame
-
-
 ;;;;; setting keys
 
 (progn
@@ -2417,7 +2287,6 @@ If `universal-argument' is called first, do switch frame."
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
-;; (add-hook 'minibuffer-exit-hook 'xah-fly-mode-hook-fn)
 
 ;; ;; when in shell mode, switch to insertion mode.
 ;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)

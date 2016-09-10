@@ -3,7 +3,6 @@
   :defer t
   :init
   (progn
-
     (defun restclient-http-send-current-raw-stay-in-window ()
       (interactive)
       (restclient-http-send-current t t))
