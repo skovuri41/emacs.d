@@ -173,12 +173,6 @@ Position the cursor at its beginning, according to the current mode."
   (interactive)
   (find-file-other-window user-init-file))
 
-(defun new-scratch-buffer ()
-  "Open a new empty buffer."
-  (interactive)
-  (scratch)
-  (delete-other-windows))
-
 (defun save-buffer-always ()
   "Save the buffer even if it is not modified.
 Useful if something is watching file modification times."
@@ -236,22 +230,6 @@ function does not kill the buffer."
   "Show the full path file name in the minibuffer."
   (interactive)
   (message (buffer-file-name)))
-
-(defun smarter-move-beginning-of-line (arg)
-  "Toggle between beginning-of-line and back-to-indentation"
-  (interactive "^p")
-  (setq arg (or arg 1))
-  ;; Move lines first
-  (when (/= arg 1)
-    (let ((line-move-visual nil))
-      (forward-line (1- arg))))
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-
-;; (global-set-key [remap move-beginning-of-line]
-;;                 'smarter-move-beginning-of-line)
 
 (use-package mwim
   :bind (("C-a" . mwim-beginning-of-code-or-line)

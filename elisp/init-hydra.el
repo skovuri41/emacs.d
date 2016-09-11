@@ -392,6 +392,28 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("r" smartscan-symbol-replace "replace" :exit nil)
       ("q" nil "quit" :exit t))
 
+    (defhydra hydra-winner (:color red :columns 8)
+      "Winner"
+      ("h" winner-undo "undo")
+      ("l" winner-redo "redo")
+      ("q" nil "quit" :exit t))
+
+    (defhydra hydra-eval (:color blue :columns 8)
+      "Eval"
+      ("e" eval-expression "expression")
+      ("d" eval-defun "defun")
+      ("b" eval-buffer "buffer")
+      ("l" eval-last-sexp "last sexp")
+      ("1" async-shell-command "shell-command"))
+
+    (defhydra hydra-hl (:color blue :columns 8)
+      "Highlight"
+      ("s" highlight-symbol-at-point "symbol at point")
+      ("r" highlight-regexp "regexp")
+      ("i" highlight-indentation-mode "indentation")
+      ("h" hi-lock-mode "toggle hi-lock-mode"))
+
+
     ))
 
 

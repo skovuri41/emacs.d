@@ -11,6 +11,7 @@
 
 ;; This file is not part of GNU Emacs.
 
+
 ;;; License:
 
 ;; You can redistribute this program and/or modify it under the terms of the GNU General Public License version 2.
@@ -1911,7 +1912,6 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "TAB") xah-leader-tab-keymap)
   (define-key xah-fly-leader-key-map (kbd ".") xah-highlight-keymap)
   (define-key xah-fly-leader-key-map (kbd ";") 'xah-comment-keymap)
-  (define-key xah-fly-leader-key-map (kbd "9") 'ispell-word)
   (define-key xah-fly-leader-key-map (kbd "c") 'xah-leader-c-keymap)
   (define-key xah-fly-leader-key-map (kbd "h") 'xah-help-keymap)
   (define-key xah-fly-leader-key-map (kbd "i") 'xah-leader-i-keymap)
@@ -2107,8 +2107,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "wh") 'split-window-horizontally)
     (define-key xah-fly-key-map (kbd "wv") 'split-window-vertically)
     (define-key xah-fly-key-map (kbd "wf") 'make-frame-command)
-    (define-key xah-fly-key-map (kbd "wu") 'winner-undo)
-    (define-key xah-fly-key-map (kbd "wr") 'winner-redo)
+    (define-key xah-fly-key-map (kbd "wi") 'hydra-winner/body)
     (define-key xah-fly-key-map (kbd "W") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)

@@ -61,4 +61,16 @@
   (progn
     (add-hook 'after-init-hook 'company-statistics-mode)))
 
+(use-package company-dabbrev
+  :after company
+  :config
+  (setq company-dabbrev-minimum-length 2))
+
+(use-package company-dabbrev-code
+  :after company
+  :config
+  (setq company-dabbrev-code-modes t
+        company-dabbrev-code-everywhere t))
+
+
 (provide 'init-company)

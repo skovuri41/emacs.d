@@ -209,6 +209,10 @@
 (depends-on "dired-launch")
 (depends-on "flyspell-correct-ivy")
 (depends-on "bm")
+(depends-on "company-dabbrev")
+(depends-on "company-dabbrev-code")
+
+
 
 
 
