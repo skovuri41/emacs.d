@@ -2051,7 +2051,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "da") 'backward-kill-line)
     (define-key xah-fly-key-map (kbd "ds") 'kill-symbol)
     (define-key xah-fly-key-map (kbd "fr") 'counsel-recentf)
-    (define-key xah-fly-key-map (kbd "fd") 'bjm/ivy-dired-recent-dirs)
+    (define-key xah-fly-key-map (kbd "fd") 'counsel-goto-recent-directory)
     (define-key xah-fly-key-map (kbd "ff") 'counsel-find-file)
     (define-key xah-fly-key-map (kbd "fp") 'helm-projectile)
     (define-key xah-fly-key-map (kbd "fo") 'counsel-outline)
