@@ -104,7 +104,8 @@
   :diminish ""
   :config
   (progn
-    (setq abbrev-file-name (locate-user-emacs-file "abbrev_defs"))
+    ;; abbrev file name
+    (setq abbrev-file-name (expand-file-name "elisp/emacs_abbrev.el" user-emacs-directory))
     (unless (file-exists-p abbrev-file-name)
       (with-temp-buffer (write-file abbrev-file-name)))
     (setq save-abbrevs 'silently) ; Silently save abbrevs on quitting emacs
@@ -119,14 +120,14 @@
       (dolist (hook my/abbrev-hooks)
         (add-hook hook #'abbrev-mode)))
 
-    (defun my/turn-of-abbrev-mode ()
+    (defun my/turn-off-abbrev-mode ()
       "Turn off abbrev only for specific modes."
       (interactive)
       (dolist (hook my/abbrev-hooks)
         (remove-hook hook #'abbrev-mode)))
 
     (my/turn-on-abbrev-mode)
-    (quietly-read-abbrev-file))) ; Reads the abbreviations file on startup
+    (quietly-read-abbrev-file)))
 
 
 ;; Origami code folding

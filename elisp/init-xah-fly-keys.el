@@ -17,12 +17,11 @@
        ((use-region-p) (progn
                          (xah-fly-command-mode-activate)
                          (keyboard-quit)))
-       ((eq t xah-fly-insert-state-q) (xah-fly-command-mode-activate))
-       ((eq nil xah-fly-insert-state-q) (counsel-M-x))))
+       ((eq t xah-fly-insert-state-q) (xah-fly-command-mode-activate))))
     (key-chord-define-global "kj" 'kj-chord-dwim)
+    (key-chord-define-global "df" 'counsel-M-x)
     (key-chord-define minibuffer-local-map "kj" (kbd "C-g"))
     (key-chord-define company-active-map "kj" 'company-abort)
-    ;; (key-chord-define-global "kj" 'xah-fly-command-mode-activate)
     ;; (key-chord-define-global "cv" 'counsel-M-x)
     ))
 

@@ -7,7 +7,6 @@
 ;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 ;;(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;;(global-set-key (kbd "C-M-%") 'query-replace)
-;;switch prev nex user buffers
 
 (global-set-key '[(f1)] 'call-last-kbd-macro)
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
@@ -59,8 +58,6 @@
       (setq mac-option-modifier nil)
       (setq mac-command-modifier 'meta))))
 
-(provide 'init-keybindings)
-
 ;;;;; aliases
 
 ;; make frequently used commands short
@@ -80,7 +77,6 @@
 (defalias 'rb 'revert-buffer)
 
 (defalias 'sh 'shell)
-(defalias 'fb 'flyspell-buffer)
 (defalias 'sbc 'set-background-color)
 (defalias 'rof 'recentf-open-files)
 (defalias 'lcd 'list-colors-display)
@@ -106,11 +102,10 @@
 (defalias 'vlm 'visual-line-mode)
 (defalias 'glm 'global-linum-mode)
 
-(defalias 'kb 'kill-buffer)
 (defalias 'dv 'describe-variable)
 (defalias 'df 'describe-function)
 (defalias 'dk 'describe-key)
-(defalias 'db 'describe-bindings)
+(defalias 'db 'counsel-descbinds)
 (defalias 'fnd 'find-name-dired)
 (defalias 'ne 'next-error)
 (defalias 'pe 'previous-error)
@@ -118,3 +113,7 @@
 (defalias 'pff 'projectile-find-file)
 (defalias 'pfd 'projectile-find-dir)
 (defalias 'psp 'projectile-switch-project)
+
+
+
+(provide 'init-keybindings)

@@ -56,7 +56,9 @@
 ;; For detail about design and other info, see home page at
 ;; http://ergoemacs.org/misc/ergoemacs_vi_mode.html
 
-;; If you like this project, Buy Xah Emacs Tutorial http://ergoemacs.org/emacs/buy_xah_emacs_tutorial.html or make a donation. Thanks.
+;; If you like this project, Buy Xah Emacs Tutorial
+;; http://ergoemacs.org/emacs/buy_xah_emacs_tutorial.html or make a
+;; donation. Thanks.
 
 
 ;;; Code:
@@ -495,7 +497,10 @@ When there is a text selection, act on the the selection, else, act on a text bl
 URL `http://ergoemacs.org/emacs/modernization_fill-paragraph.html'
 Version 2016-07-13"
   (interactive)
-  ;; This command symbol has a property “'compact-p”, the possible values are t and nil. This property is used to easily determine whether to compact or uncompact, when this command is called again
+  ;; This command symbol has a property “'compact-p”, the possible
+  ;; values are t and nil. This property is used to easily determine
+  ;; whether to compact or uncompact, when this command is called
+  ;; again
   (let ( (-compact-p
           (if (eq last-command this-command)
               (get this-command 'compact-p)

@@ -64,7 +64,6 @@
 (require 'init-fancy-battery)
 (require 'init-minor-modes)
 (require 'init-window-numbering)
-(require 'init-pbcopy)
 (require 'init-cal)
 (require 'init-spaceline)
 (require 'init-docker)

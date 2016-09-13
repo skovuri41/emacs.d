@@ -83,11 +83,16 @@
 ;; Lines should be 80 characters wide, not 72
 (setq fill-column 100)
 
-;; Save a list of recent files visited. (open recent file with C-x f)
-(recentf-mode 1)
-(setq recentf-max-saved-items 1000) ;; just 20 is too recent
-(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
-(setq delete-old-versions t) ;; dont ask to delete excess backup versions
+(use-package recentf
+  :config
+  (setq recentf-save-file "~/.emacs.d/.recentf")
+  (setq recentf-max-saved-items 1000)
+  (setq recentf-auto-cleanup 10)
+  (setq delete-old-versions t)
+  (setq recentf-exclude '("/TAGS$" "/var/tmp/" ".recentf"))
+  (run-with-idle-timer 60 t 'recentf-save-list)
+  (use-package recentf-ext
+    :ensure t))
 
 ;; Remember the current position of files when re-opening them
 (use-package saveplace

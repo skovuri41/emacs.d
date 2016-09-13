@@ -125,8 +125,7 @@
                     dired-launch
                     cljsbuild-mode
                     lispy
-                    company-dabbrev
-                    company-dabbrev-code
+                    recentf-ext
                     ))
 
 

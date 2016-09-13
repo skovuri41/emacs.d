@@ -118,11 +118,11 @@
     '((((class grayscale)
         (background light)) (:background "DimGray"))
       (((class grayscale)
-        (background dark))  (:background "LightGray"))
+        (background dark)) (:background "LightGray"))
       (((class color)
         (background light)) (:foreground "White" :background "#E593C3"))
       (((class color)
-        (background dark))  (:foreground "White" :background "#E593C3")))
+        (background dark)) (:foreground "White" :background "#E593C3")))
     "Face used to highlight current line if bookmark is persistent."
     :group 'bm)
   (add-hook 'find-file-hooks 'bm-buffer-restore)
@@ -142,7 +142,13 @@
   ;; must save all bookmarks first.
   (add-hook 'kill-emacs-hook '(lambda nil
                                 (bm-buffer-save-all)
-                                (bm-repository-save)))
-  )
+                                (bm-repository-save))))
+
+(use-package volatile-highlights
+  :ensure t
+  :config
+  (volatile-highlights-mode 1)
+  (vhl/define-extension 'undo-tree 'undo-tree-yank 'undo-tree-move)
+  (vhl/install-extension 'undo-tree))
 
 (provide 'init-minor-modes)

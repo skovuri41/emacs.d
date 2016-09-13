@@ -58,17 +58,14 @@
   ;;  default-frame-alist '((font . "Hasklig-16")
   ;;                        (width . 120)    ;character
   ;;                        (height . 52)))  ; lines
-
-
   )
 
 (when *is-a-mac*
-  (require 'init-fira)
-  )
+  (require 'init-fira))
 
 (when *is-a-mac*
   (require 'init-cask)
-  )
+  (require 'init-pbcopy))
 
 (when *is-gnu-linux*
   (setq
@@ -76,11 +73,10 @@
    ;; default-frame-alist '((font . "Monaco-10"))
    ;; default-frame-alist '((font . "Fira Code-11"))
    default-frame-alist '((font . "Hasklig-12")
-                         (width . 120)  ;character
+                         (width . 120) ;character
                          (height . 40)) ; lines
    ;; make emacs use the clipboard
-   x-select-enable-clipboard t)
-  )
+   x-select-enable-clipboard t))
 
 
 (provide 'init-platform)

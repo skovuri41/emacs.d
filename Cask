@@ -211,6 +211,9 @@
 (depends-on "bm")
 (depends-on "company-dabbrev")
 (depends-on "company-dabbrev-code")
+(depends-on "volatile-highlights")
+(depends-on "recentf-ext")
+
 
 
 
