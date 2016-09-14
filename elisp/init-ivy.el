@@ -195,7 +195,8 @@
 (use-package flyspell-correct-ivy
   :ensure t
   :after flyspell
-  :bind (:map flyspell-mode-map
-              ("C-$" . flyspell-correct-word-generic)))
+  :config
+  (progn
+    (bind-key [remap ispell-word] 'flyspell-correct-word-generic)))
 
 (provide 'init-ivy)

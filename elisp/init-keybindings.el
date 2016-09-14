@@ -28,6 +28,7 @@
 ;; (global-set-key (kbd "C-b") 'golden-ratio-scroll-screen-down)
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
+(global-set-key (kbd "M-k") 'my/kill-sentence-dwim)
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
 (define-key Buffer-menu-mode-map "k" 'previous-line)

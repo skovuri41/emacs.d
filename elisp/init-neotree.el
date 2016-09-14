@@ -77,7 +77,6 @@
       (local-set-key (kbd "O") 'find-file-prev-in-dir)
       (local-set-key (kbd "l") '(lambda () (interactive)
                                   (save-selected-window (neotree-enter)))))
-    (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
-    ))
+    (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)))
 
 (provide 'init-neotree)

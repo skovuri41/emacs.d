@@ -468,6 +468,35 @@ If buffer-or-name is nil return current buffer's mode."
   (interactive)
   (delete-region (symbol-boundary t) (symbol-boundary nil)))
 
+(defun my/forward-to-sentence-end ()
+  "Move point to just before the end of the current sentence."
+  (forward-sentence)
+  (backward-char)
+  (unless (looking-back "[[:alnum:]]")
+    (backward-char)))
+
+(defun my/beginning-of-sentence-p ()
+  "Return  t if point is at the beginning of a sentence."
+  (let ((start (point))
+        (beg (save-excursion (forward-sentence) (forward-sentence -1))))
+    (eq start beg)))
+
+(defun my/kill-sentence-dwim ()
+  "Kill the current sentence up to and possibly including the punctuation.
+When point is at the beginning of a sentence, kill the entire
+sentence. Otherwise kill forward but preserve any punctuation at
+the sentence end."
+  (interactive)
+  (expand-abbrev)
+  (if (my/beginning-of-sentence-p)
+      (progn
+        (kill-sentence)
+        (just-one-space)
+        (when (looking-back "^[[:space:]]+") (delete-horizontal-space)))
+    (kill-region (point) (progn (my/forward-to-sentence-end) (point)))
+    (just-one-space 0)))
+
+
 (require 'eshell)
 
 ;;;###autoload
