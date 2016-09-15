@@ -159,4 +159,16 @@
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+(use-package vkill
+  :defer t
+  :disabled t
+  :commands vkill
+  :bind ("C-x L" . vkill-and-helm-occur)
+  :init
+  (defun vkill-and-helm-occur ()
+    (interactive)
+    (vkill)
+    (my/turn-on-hl-line-mode)
+    (call-interactively #'helm-occur)))
+
 (provide 'init-minor-modes)

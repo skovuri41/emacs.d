@@ -229,8 +229,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
 "
       ("j" ibuffer-forward-line)
       ("l" (lambda () (interactive) (progn
-                                      (ibuffer-visit-buffer)
-                                      (xah-fly-command-mode-activate)))  :color blue)
+                                 (ibuffer-visit-buffer)
+                                 (xah-fly-command-mode-activate)))  :color blue)
       ("k" ibuffer-backward-line)
 
       ("m" ibuffer-mark-forward)
@@ -245,8 +245,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("s" hydra-ibuffer-sort/body :color blue)
       ("/" hydra-ibuffer-filter/body :color blue)
       ("o" (lambda () (interactive) (progn
-                                      (ibuffer-visit-buffer-other-window)
-                                      (xah-fly-command-mode-activate))) "other window" :color blue)
+                                 (ibuffer-visit-buffer-other-window)
+                                 (xah-fly-command-mode-activate))) "other window" :color blue)
       ;; ("q" ibuffer-quit "quit ibuffer" :color blue)
       ("q" (lambda () (interactive)
              (progn
@@ -425,6 +425,12 @@ _~_: modified      ^ ^                ^ ^                ^^                     
                (xah-fly-insert-mode-activate)
                (hydra-ibuffer-main/body))) "buffer list" :exit t)
       ("q" nil "quit" :exit t))
+
+    (defhydra hydra-next-error (:color red :columns 2)
+      "next-error"
+      ("j" next-error "next" :bind nil)
+      ("k" previous-error "previous" :bind nil)
+      ("l" flycheck-list-errors "list-errors" :exit t))
 
     ))
 

@@ -83,6 +83,9 @@
 ;; Lines should be 80 characters wide, not 72
 (setq fill-column 100)
 
+(setq debug-on-error t)
+(setq debug-on-quit t)
+
 (use-package recentf
   :init
   (setq recentf-save-file "~/.emacs.d/.recentf")
@@ -95,6 +98,9 @@
   (setq recentf-max-saved-items 1000)
   (setq recentf-auto-cleanup 'never)
   (setq delete-old-versions t)
+  (setq delete-auto-save-files t)
+  (setq backup-directory-alist
+        '(("." . "~/.emacs_backups")))
   (setq recentf-exclude '("/TAGS$" "/var/tmp/" ".recentf"))
   ;; (run-with-idle-timer (* 5 60) t 'recentf-save-list)
   (run-with-idle-timer 60 t '(lambda ()
@@ -174,13 +180,13 @@
               (push '("lambda" . ?λ) prettify-symbols-alist)))
   (global-prettify-symbols-mode +1))
 
-;; A saner ediff
-(use-package ediff
-  :config
-  (progn
-    (setq ediff-diff-options "-w")
-    (setq ediff-split-window-function 'split-window-horizontally)
-    (setq ediff-window-setup-function 'ediff-setup-windows-plain)))
+;; savehist
+(setq savehist-additional-variables
+      ;; also save my search entries
+      '(search-ring regexp-search-ring)
+      savehist-file "~/.emacs.d/savehist")
+(savehist-mode t)
+
 
 
 ;; Match fringe colour to background colour
