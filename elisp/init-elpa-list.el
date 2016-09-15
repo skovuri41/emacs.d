@@ -126,6 +126,7 @@
                     cljsbuild-mode
                     lispy
                     recentf-ext
+                    diff-hl
                     ))
 
 

@@ -297,12 +297,70 @@
 ;;         try-expand-by-dict))
 
 ;; Hippie expand: at times perhaps too hip
-(dolist (f '(try-expand-line try-expand-list try-complete-file-name-partially try-complete-file-name))
-  (setq hippie-expand-try-functions-list (delete f hippie-expand-try-functions-list)))
-(add-to-list 'hippie-expand-try-functions-list 'try-expand-by-dict t)
-;; Add this back in at the end of the list.
-(add-to-list 'hippie-expand-try-functions-list 'try-complete-file-name-partially t)
-(add-to-list 'hippie-expand-try-functions-list 'try-complete-file-name t)
+;; (dolist (f '(try-expand-line try-expand-list try-complete-file-name-partially try-complete-file-name))
+;;   (setq hippie-expand-try-functions-list (delete f hippie-expand-try-functions-list)))
+;; (add-to-list 'hippie-expand-try-functions-list 'try-expand-by-dict t)
+;; ;; Add this back in at the end of the list.
+;; (add-to-list 'hippie-expand-try-functions-list 'try-complete-file-name-partially t)
+;; (add-to-list 'hippie-expand-try-functions-list 'try-complete-file-name t)
+
+;; If there is a tab, make it the size of 2 spaces
+(setq-default tab-width 2)
+
+;; Mode specific indent sizes
+;; TODO: Consider putting these in their own mode specific inits
+(setq c-basic-offset 4)
+(setq css-indent-offset 2)
+(setq sh-basic-offset 2)
+(set-default 'javascript-indent-level 2)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Hippie expand.
+(setq hippie-expand-try-functions-list
+      '(yas-hippie-try-expand
+        try-expand-all-abbrevs
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name
+        try-complete-lisp-symbol
+        try-expand-by-dict
+        try-complete-file-name-partially
+        try-complete-file-name
+        ))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Smart Tab
+
+(defvar smart-tab-using-hippie-expand t
+  "turn this on if you want to use hippie-expand completion.")
+
+(defun smart-tab (prefix)
+  "Needs `transient-mark-mode' to be on. This smart tab is
+  minibuffer compliant: it acts as usual in the minibuffer.
+  In all other buffers: if PREFIX is \\[universal-argument], calls
+  `smart-indent'. Else if point is at the end of a symbol,
+  expands it. Else calls `smart-indent'."
+  (interactive "P")
+  (labels ((smart-tab-must-expand (&optional prefix)
+                                  (unless (or (consp prefix)
+                                              mark-active)
+                                    (looking-at "\\_>"))))
+    (cond ((minibufferp)
+           (minibuffer-complete))
+          ((smart-tab-must-expand prefix)
+           (if smart-tab-using-hippie-expand
+               (hippie-expand prefix)
+             (dabbrev-expand prefix)))
+          ((smart-indent)))))
+
+(defun smart-indent ()
+  "Indents region if mark is active, or current line otherwise."
+  (interactive)
+  (if mark-active
+      (indent-region (region-beginning)
+                     (region-end))
+    (indent-for-tab-command)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 (defun my/setup-osx-fonts ()

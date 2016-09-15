@@ -213,6 +213,8 @@
 (depends-on "company-dabbrev-code")
 (depends-on "volatile-highlights")
 (depends-on "recentf-ext")
+(depends-on "diff-hl")
+
 
 
 

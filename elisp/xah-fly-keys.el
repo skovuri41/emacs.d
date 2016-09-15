@@ -2255,6 +2255,7 @@ If `universal-argument' is called first, do switch frame."
          (format "%s" (get-buffer-mode))))
     (when (or (equal "emacs-lisp-mode" buffer-major-mode)
               (equal "clojure-mode" buffer-major-mode)
+              (equal "clojurescript-mode" buffer-major-mode)
               (equal "cider-repl-mode-hook" buffer-major-mode))
       (lispy-mode 1))))
 

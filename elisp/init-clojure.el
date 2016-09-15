@@ -11,7 +11,6 @@
   :config
   (progn
     ;; (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-    ;; (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
     (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
     (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
 
@@ -142,7 +141,6 @@
   :commands (cider cider-connect cider-jack-in)
   :init
   (progn
-    ;; (add-hook 'cider-mode-hook #'cider-turn-on-eldoc-mode)
     (add-hook 'cider-mode-hook #'eldoc-mode)
     (add-hook 'cider-repl-mode-hook #'eldoc-mode)
     (add-hook 'cider-repl-mode-hook 'company-mode)

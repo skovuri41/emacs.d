@@ -7,7 +7,6 @@
 ;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 ;;(global-set-key (kbd "M-%") 'query-replace-regexp)
 ;;(global-set-key (kbd "C-M-%") 'query-replace)
-
 (global-set-key '[(f1)] 'call-last-kbd-macro)
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
@@ -29,6 +28,13 @@
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
 (global-set-key (kbd "M-k") 'my/kill-sentence-dwim)
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "M-TAB") 'yas-expand)
+(define-key outline-minor-mode-map (kbd "TAB") 'org-cycle)
+(define-key outline-mode-map "\t" 'org-cycle)
+(global-set-key (kbd "M-/") 'smart-tab)
+;; (global-set-key (kbd "TAB") 'indent-or-complete)
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
 (define-key Buffer-menu-mode-map "k" 'previous-line)
