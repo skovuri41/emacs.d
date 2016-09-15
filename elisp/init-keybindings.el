@@ -33,8 +33,9 @@
 (define-key yas-minor-mode-map (kbd "M-TAB") 'yas-expand)
 (define-key outline-minor-mode-map (kbd "TAB") 'org-cycle)
 (define-key outline-mode-map "\t" 'org-cycle)
-(global-set-key (kbd "M-/") 'smart-tab)
+;; (global-set-key (kbd "M-/") 'smart-tab)
 ;; (global-set-key (kbd "TAB") 'indent-or-complete)
+(global-set-key (kbd "C-SPC") 'company-complete)
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
 (define-key Buffer-menu-mode-map "k" 'previous-line)

@@ -47,4 +47,7 @@ smex-item
 bookmarks
 smex-items
 recentf
+.recentf
 projectile.cache
+.DS_Store
+.bm-repository
