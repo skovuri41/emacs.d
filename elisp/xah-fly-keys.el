@@ -1186,6 +1186,35 @@ Version 2015-05-16"
 
 ;; misc
 
+(eval-when-compile
+  (require 'cl))
+
+(defun count-buffers (&optional display-anyway)
+  "Display or return the number of buffers."
+  (interactive)
+  (let ((buf-count (length (buffer-list))))
+    (if (or (interactive-p) display-anyway)
+        (message "%d buffers in this Emacs" buf-count)) buf-count))
+
+(defun get-buffers-matching-mode (mode)
+  "Returns a list of buffers where their major-mode is equal to MODE"
+  (let ((buffer-mode-matches '()))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (if (eq mode major-mode)
+            (add-to-list 'buffer-mode-matches buf))))
+    buffer-mode-matches))
+
+(defun count-user-buffers ()
+  "Returns a list of buffers where their major-mode is equal to MODE"
+  (interactive)
+  (let ((i 0))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (if (xah-user-buffer-q)
+            (setq i (1+ i)))))
+    (message "Count User Buffers %d" i)))
+
 (defun xah-user-buffer-q ()
   "Return t if current buffer is a user buffer, else nil.
 Typically, if buffer name starts with *, it's not considered a user buffer.
@@ -2102,7 +2131,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "s") 'embrace-commander)
     (define-key xah-fly-key-map (kbd "t") 'evilmi-jump-items)
     (define-key xah-fly-key-map (kbd "u") 'undo-tree-undo)
-    ;; (define-key xah-fly-key-map (kbd "v") 'evilmi-select-items)
+    (define-key xah-fly-key-map (kbd "v") 'hydra-view-buffer/body)
     (define-key xah-fly-key-map (kbd "ww") 'ace-window)
     (define-key xah-fly-key-map (kbd "wd") 'delete-window)
     (define-key xah-fly-key-map (kbd "wo") 'delete-other-windows)

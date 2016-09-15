@@ -84,22 +84,27 @@
 (setq fill-column 100)
 
 (use-package recentf
-  :config
+  :init
   (setq recentf-save-file "~/.emacs.d/.recentf")
+  :config
+  (defmacro with-suppressed-message (&rest body)
+    "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
+    (declare (indent 0))
+    (let ((message-log-max nil))
+      `(with-temp-message (or (current-message) "") ,@body)))
   (setq recentf-max-saved-items 1000)
-  (setq recentf-auto-cleanup 10)
+  (setq recentf-auto-cleanup 'never)
   (setq delete-old-versions t)
   (setq recentf-exclude '("/TAGS$" "/var/tmp/" ".recentf"))
-  (run-with-idle-timer 60 t 'recentf-save-list)
+  ;; (run-with-idle-timer (* 5 60) t 'recentf-save-list)
+  (run-with-idle-timer 60 t '(lambda ()
+                               (with-suppressed-message (recentf-save-list))))
   (use-package recentf-ext
     :ensure t))
 
-;; Remember the current position of files when re-opening them
-(use-package saveplace
-  :defer t
-  :init
-  (setq-default save-place t)
-  (setq save-place-file (expand-file-name ".saveplaces" user-emacs-directory)))
+(save-place-mode +1)
+(setq save-place-version-control "never")
+(setq save-place-forget-unreadable-files nil)
 
 (use-package winner
   :config

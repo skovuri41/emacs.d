@@ -229,8 +229,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
 "
       ("j" ibuffer-forward-line)
       ("l" (lambda () (interactive) (progn
-                                 (ibuffer-visit-buffer)
-                                 (xah-fly-command-mode-activate)))  :color blue)
+                                      (ibuffer-visit-buffer)
+                                      (xah-fly-command-mode-activate)))  :color blue)
       ("k" ibuffer-backward-line)
 
       ("m" ibuffer-mark-forward)
@@ -245,8 +245,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("s" hydra-ibuffer-sort/body :color blue)
       ("/" hydra-ibuffer-filter/body :color blue)
       ("o" (lambda () (interactive) (progn
-                                 (ibuffer-visit-buffer-other-window)
-                                 (xah-fly-command-mode-activate))) "other window" :color blue)
+                                      (ibuffer-visit-buffer-other-window)
+                                      (xah-fly-command-mode-activate))) "other window" :color blue)
       ;; ("q" ibuffer-quit "quit ibuffer" :color blue)
       ("q" (lambda () (interactive)
              (progn
@@ -392,10 +392,10 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("r" smartscan-symbol-replace "replace" :exit nil)
       ("q" nil "quit" :exit t))
 
-    (defhydra hydra-winner (:color red :columns 8)
+    (defhydra hydra-winner (:color red :columns 2)
       "Winner"
-      ("h" winner-undo "undo")
-      ("l" winner-redo "redo")
+      ("j" winner-undo "undo")
+      ("k" winner-redo "redo")
       ("q" nil "quit" :exit t))
 
     (defhydra hydra-eval (:color blue :columns 8)
@@ -413,6 +413,18 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("i" highlight-indentation-mode "indentation")
       ("h" hi-lock-mode "toggle hi-lock-mode"))
 
+    (defhydra hydra-view-buffer (:color red :columns 2)
+      "Switch Buffers"
+      ("j" xah-previous-user-buffer "previous user buffer")
+      ("k" xah-next-user-buffer "next user buffer")
+      ("h" xah-previous-emacs-buffer "previous emacs buffer")
+      ("l" xah-next-emacs-buffer "next emacs buffer")
+      ("b" (lambda () (interactive)
+             (progn
+               (call-interactively 'projectile-ibuffer)
+               (xah-fly-insert-mode-activate)
+               (hydra-ibuffer-main/body))) "buffer list" :exit t)
+      ("q" nil "quit" :exit t))
 
     ))
 
