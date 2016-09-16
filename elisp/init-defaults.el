@@ -84,7 +84,7 @@
 (setq fill-column 100)
 
 (setq debug-on-error t)
-(setq debug-on-quit t)
+;; (setq debug-on-quit t)
 
 (use-package recentf
   :init

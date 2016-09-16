@@ -1,14 +1,28 @@
+(source melpa-stable)
 (source gnu)
-(source melpa)
-(source marmalade)
-(source org)
 
-(depends-on "cask")
+(depends-on "clojure-mode")
+(depends-on "clojure-snippets")
+(depends-on "cider")
+(depends-on "clj-refactor")
+(depends-on "clojure-cheatsheet")
+(depends-on "typed-clojure-mode")
+(depends-on "eval-sexp-fu")
+(depends-on "cider-eval-sexp-fu")
+(depends-on "4clojure")
+(depends-on "cljsbuild-mode")
+(depends-on "helm-cider")
+
+
+(source melpa)
+;; (source marmalade)
+;; (source org)
+
 (depends-on "use-package")
 (depends-on "better-defaults")
 (depends-on "dash")
 
-;git
+;;git
 (depends-on "magit")
 (depends-on "git-gutter-fringe+")
 (depends-on "git-gutter+")
@@ -20,9 +34,7 @@
 (depends-on "flyspell-popup")
 (depends-on "projectile")
 (depends-on "grizzl")
-
 (depends-on "yasnippet")
-
 (depends-on "yaml-mode")
 (depends-on "markdown-mode")
 (depends-on "json-mode")
@@ -35,7 +47,6 @@
 (depends-on "web-mode")
 (depends-on "csv-mode")
 (depends-on "csv-nav")
-
 (depends-on "diminish")
 (depends-on "company")
 (depends-on "company-statistics")
@@ -94,22 +105,10 @@
 (depends-on "mu4e-alert")
 ;;(depends-on "w3m")
 
-;;clojure
-(depends-on "clojure-mode")
-(depends-on "clojure-snippets")
 (depends-on "paren-face")
-(depends-on "cider")
-(depends-on "clj-refactor")
 (depends-on "rainbow-mode")
 (depends-on "highlight-parentheses")
-(depends-on "paren-face")
-(depends-on "clojure-cheatsheet")
-(depends-on "typed-clojure-mode")
 (depends-on "eval-sexp-fu")
-(depends-on "cider-eval-sexp-fu")
-(depends-on "4clojure")
-(depends-on "cljsbuild-mode")
-
 (depends-on "flx-ido")
 (depends-on "ido-vertical-mode")
 (depends-on "fancy-narrow")
@@ -122,8 +121,6 @@
 (depends-on "link-hint")
 (depends-on "restclient")
 (depends-on "restclient-helm")
-
-;;(depends-on "ace-jump-buffer")
 (depends-on "ace-window")
 (depends-on "buffer-move")
 (depends-on "undo-tree")
@@ -169,7 +166,6 @@
 (depends-on "helm-mu")
 (depends-on "helm-org-rifle")
 ;;(depends-on "helm-config")
-(depends-on "helm-cider")
 
 ;;evil mode
 (depends-on "evil-nerd-commenter")
@@ -192,7 +188,6 @@
 (depends-on "docker")
 (depends-on "xah-fly-keys")
 (depends-on "key-chord")
-
 (depends-on "embrace")
 (depends-on "lispy")
 (depends-on "mwim")
@@ -209,13 +204,9 @@
 (depends-on "dired-launch")
 (depends-on "flyspell-correct-ivy")
 (depends-on "bm")
-(depends-on "company-dabbrev")
-(depends-on "company-dabbrev-code")
 (depends-on "volatile-highlights")
 (depends-on "recentf-ext")
 (depends-on "diff-hl")
-
-
 
 
 

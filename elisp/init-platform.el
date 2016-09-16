@@ -61,9 +61,7 @@
   )
 
 (when *is-a-mac*
-  (require 'init-fira))
-
-(when *is-a-mac*
+  (require 'init-fira)
   (require 'init-cask)
   (require 'init-pbcopy))
 

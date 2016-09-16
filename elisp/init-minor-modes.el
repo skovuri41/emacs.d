@@ -172,6 +172,7 @@
     (call-interactively #'helm-occur)))
 
 (use-package view
+  :ensure t
   :defer t
   :bind
   (("C-M-n" . View-scroll-half-page-forward)
