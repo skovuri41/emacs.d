@@ -24,8 +24,7 @@
     (define-key cfw:calendar-mode-map "D" 'cfw:change-view-day)
     (define-key cfw:calendar-mode-map "M" 'cfw:change-view-month)
     (define-key cfw:calendar-mode-map "W" 'cfw:change-view-week)
-    (define-key cfw:calendar-mode-map "o" 'cfw:navi-goto-date-command)
-    )
+    (define-key cfw:calendar-mode-map "o" 'cfw:navi-goto-date-command))
   (add-hook 'cfw:calendar-mode-hook 'keymaps/calfw)
   ;; (setq cfw:org-agenda-schedule-args '(:timestamp))
   (add-hook 'cfw:calendar-mode-hook #'(lambda () (visual-line-mode -1)))
@@ -72,9 +71,27 @@
       :config
       (setq org-gcal-client-id gcal-client-id
             org-gcal-client-secret gcal-client-secret
-            org-gcal-file-alist `((,gcal-email .  "~/org/gcal.org")))))
+            org-gcal-file-alist `((,gcal-email . "~/org/gcal.org")))))
   (setq org-gcal-up-days 30)
-  (setq org-gcal-down-days 180)
+  (setq org-gcal-down-days 180))
 
-  )
+(use-package calendar
+  :commands calendar
+  :config
+  (bind-keys
+   :map calendar-mode-map
+   ("." . calendar-goto-today)
+   ("?" . calendar-goto-info-node)
+   ("C-," . (lambda () (interactive) (calendar-backward-month 1)))
+   ("C-." . (lambda () (interactive) (calendar-forward-month 1)))
+   ("C-h" . (lambda () (interactive) (calendar-backward-day 1)))
+   ("C-j" . (lambda () (interactive) (calendar-forward-week 1)))
+   ("C-k" . (lambda () (interactive) (calendar-backward-week 1)))
+   ("C-l" . (lambda () (interactive) (calendar-forward-day 1)))
+   ("h" . (lambda () (interactive) (calendar-backward-day 1)))
+   ("j" . (lambda () (interactive) (calendar-forward-week 1)))
+   ("k" . (lambda () (interactive) (calendar-backward-week 1)))
+   ("l" . (lambda () (interactive) (calendar-forward-day 1))))
+  (setq calendar-week-start-day 1))
+
 (provide 'init-cal)

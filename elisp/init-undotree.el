@@ -7,6 +7,10 @@
     (global-undo-tree-mode)
     (setq undo-tree-visualizer-timestamps t)
     (setq undo-tree-visualizer-diff t)
+    (setq undo-tree-mode-lighter "")
+    (setq undo-tree-auto-save-history t
+          undo-tree-history-directory-alist
+          `(("." . ,(expand-file-name "undo" user-emacs-directory))))
 
     ;; Keep region when undoing in region
     (defadvice undo-tree-undo (around keep-region activate)
@@ -20,14 +24,22 @@
             (set-marker m nil))
         ad-do-it))
 
-    (add-hook 'undo-tree-visualizer-mode-hook
-              'my-undo-tree-visualizer-settings)
     (defun my-undo-tree-visualizer-settings ()
       (interactive)
       (define-key undo-tree-visualizer-mode-map (kbd "C-c C-k") 'undo-tree-visualizer-quit)
       (define-key undo-tree-visualizer-mode-map (kbd "C-k") 'undo-tree-visualizer-quit)
-      ;; (define-key undo-tree-visualizer-mode-map (kbd "k") 'undo-tree-visualizer-quit)
-      (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-abort))
+      (define-key undo-tree-visualizer-mode-map (kbd "C-g") 'undo-tree-visualizer-abort)
+      (bind-keys :map undo-tree-visualizer-mode-map
+                 ("RET" . undo-tree-visualizer-quit)
+                 ("q" . undo-tree-visualizer-quit)
+                 ("h" . undo-tree-visualize-switch-branch-left)
+                 ("j" . undo-tree-visualize-redo)
+                 ("k" . undo-tree-visualize-undo)
+                 ("l" . undo-tree-visualize-switch-branch-right)))
+
+    (add-hook 'undo-tree-visualizer-mode-hook
+              'my-undo-tree-visualizer-settings)
+
     ))
 
 ;; (setq undo-tree-mode-lighter "")

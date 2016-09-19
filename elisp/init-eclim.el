@@ -54,99 +54,81 @@
     (add-to-list 'minor-mode-alist
                  '(eclim-mode (:eval (eclim-modeline-string))))
 
-    (evil-define-key 'insert java-mode-map
-      (kbd ".") 'java-completing-dot
-      (kbd ":") 'java-completing-double-colon
-      (kbd "M-.") 'eclim-java-find-declaration
-      (kbd "M-,") 'pop-tag-mark
-      (kbd "M-<mouse-3>") 'eclim-java-find-declaration
-      (kbd "<mouse-8>") 'pop-tag-mark)
+    (defhydra hydra-eclim (:color teal
+                                  :hint nil)
+      "
+Eclim:
+ ╭─────────────────────────────────────────────────────┐
+ │ Java                                                │       Problems
+╭┴─────────────────────────────────────────────────────┴────────────────────────────────────╯
+  _d_: Show Doc             _i_: Implement (Override)          _ea_: Show Problems
+  _g_: Make getter/setter  _fd_: Find Declarations             _ec_: Show Corrections
+  _o_: Organize Imports    _fr_: Find References               _er_: Buffer Refresh
+  _h_: Hierarchy            _r_: Refactor Symbol
+  _c_: Java Constructor    _ft_: Find Type
+  _f_: Java Format
+Project                            Maven
+─────────────────────────────────────────────────────────
+_pj_: Jump to proj           _mi_: Mvn Clean Install
+_pc_: Create                 _mI_: Mvn Install
+_pi_: Import Proj            _mt_: Mvn Test
+                           ^_mr_: Mvn Run
+"
+      ("d"   eclim-java-show-documentation-for-current-element)
+      ("g"   eclim-java-generate-getter-and-setter)
+      ("o"   eclim-java-import-organize)
+      ("h"   eclim-java-call-hierarchy)
+      ("i"   eclim-java-implement)
+      ("fd"  eclim-java-find-declaration)
+      ("fr"  eclim-java-find-references)
+      ("r"   eclim-java-refactor-rename-symbol-at-point)
+      ("fg"  eclim-java-find-generic)
+      ("ft"  eclim-java-find-type)
+      ("c"   eclim-java-constructor)
+      ("f"   eclim-java-format)
+      ("I"  eclim-java-hierarchy)
 
-    (evil-define-key 'normal java-mode-map
-      (kbd "M-.") 'eclim-java-find-declaration
-      (kbd "M-,") 'pop-tag-mark
-      (kbd "M-<mouse-3>") 'eclim-java-find-declaration
-      (kbd "<mouse-8>") 'pop-tag-mark)
+      ("mi" java-maven-clean-install)
+      ("mI" java-maven-install)
+      ("mp" eclim-maven-lifecycle-phases)
+      ("mr" eclim-maven-run)
+      ("mR" eclim-maven-lifecycle-phase-run)
+      ("mt" java-maven-test)
 
-    (evil-define-key 'normal eclim-problems-mode-map
-      (kbd "a") 'eclim-problems-show-all
-      (kbd "e") 'eclim-problems-show-errors
-      (kbd "g") 'eclim-problems-buffer-refresh
-      (kbd "q") 'eclim-quit-window
-      (kbd "w") 'eclim-problems-show-warnings
-      (kbd "f") 'eclim-problems-toggle-filefilter
-      (kbd "c") 'eclim-problems-correct
-      (kbd "RET") 'eclim-problems-open-current)
+      ("." java-completing-dot)
+      (":" java-completing-double-colon)
 
-    (evil-define-key 'normal eclim-project-mode-map
-      (kbd "N") 'eclim-project-create
-      (kbd "m") 'eclim-project-mark-current
-      (kbd "M") 'eclim-project-mark-all
-      (kbd "u") 'eclim-project-unmark-current
-      (kbd "U") 'eclim-project-unmark-all
-      (kbd "o") 'eclim-project-open
-      (kbd "c") 'eclim-project-close
-      (kbd "i") 'eclim-project-info-mode
-      (kbd "I") 'eclim-project-import
-      (kbd "RET") 'eclim-project-goto
-      (kbd "D") 'eclim-project-delete
-      (kbd "p") 'eclim-project-update
-      (kbd "g") 'eclim-project-mode-refresh
-      (kbd "R") 'eclim-project-rename
-      (kbd "q") 'eclim-quit-window)
+      ("ea" eclim-problems-show-all)
+      ("eb" eclim-problems)
+      ("ec" eclim-problems-correct)
+      ("ee" eclim-problems-show-errors)
+      ("ef" eclim-problems-toggle-filefilter)
+      ("en" eclim-problems-next-same-window)
+      ("eo" eclim-problems-open)
+      ("ep" eclim-problems-previous-same-window)
+      ("ew" eclim-problems-show-warnings)
+      ("er" eclim-problems-buffer-refresh)
+      ("eO" eclim-problems-open-current)
 
-    (evil-leader/set-key-for-mode 'java-mode
-      "mea" 'eclim-problems-show-all
-      "meb" 'eclim-problems
-      "mec" 'eclim-problems-correct
-      "mee" 'eclim-problems-show-errors
-      "mef" 'eclim-problems-toggle-filefilter
-      "men" 'eclim-problems-next-same-window
-      "meo" 'eclim-problems-open
-      "mep" 'eclim-problems-previous-same-window
-      "mew" 'eclim-problems-show-warnings
 
-      "mff" 'eclim-java-find-generic
-
-      "mgg" 'eclim-java-find-declaration
-      "mgt" 'eclim-java-find-type
-
-      "mrc" 'eclim-java-constructor
-      "mrg" 'eclim-java-generate-getter-and-setter
-      "mrf" 'eclim-java-format
-      "mri" 'eclim-java-import-organize
-      "mrj" 'eclim-java-implement
-      "mrr" 'eclim-java-refactor-rename-symbol-at-point
-
-      "mhc" 'eclim-java-call-hierarchy
-      "mhh" 'eclim-java-show-documentation-for-current-element
-      "mhi" 'eclim-java-hierarchy
-      "mhu" 'eclim-java-find-references
-
-      "mmi" 'java-maven-clean-install
-      "mmI" 'java-maven-install
-      "mmp" 'eclim-maven-lifecycle-phases
-      "mmr" 'eclim-maven-run
-      "mmR" 'eclim-maven-lifecycle-phase-run
-      "mmt" 'java-maven-test
-
-      "maa" 'eclim-ant-run
-      "mac" 'eclim-ant-clear-cache
-      "mar" 'eclim-ant-run
-      "mav" 'eclim-ant-validate
-
-      "mpb" 'eclim-project-build
-      "mpc" 'eclim-project-create
-      "mpd" 'eclim-project-delete
-      "mpg" 'eclim-project-goto
-      "mpi" 'eclim-project-import
-      "mpj" 'eclim-project-info-mode
-      "mpk" 'eclim-project-close
-      "mpo" 'eclim-project-open
-      "mpp" 'eclim-project-mode
-      "mpu" 'eclim-project-update
-
-      "mtt" 'eclim-run-junit)))
+      ("pj" eclim-project-goto)
+      ("pc" eclim-project-create)
+      ("pi" eclim-project-import)
+      ("pb" eclim-project-build)
+      ("pd" eclim-project-delete)
+      ("pI" eclim-project-info-mode)
+      ("pk" eclim-project-close)
+      ("po" eclim-project-open)
+      ("p1" eclim-project-mode)
+      ("pu" eclim-project-update)
+      ("pm" eclim-project-mark-current)
+      ("pM" eclim-project-mark-all)
+      ("pu" eclim-project-unmark-current)
+      ("pU" eclim-project-unmark-all)
+      ("pg" eclim-project-mode-refresh)
+      ("pr" eclim-project-rename)
+      ("q"  nil "cancel" :color blue))
+    ))
 
 (use-package company-emacs-eclim
   :functions company-emacs-eclim-setup

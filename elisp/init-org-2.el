@@ -423,6 +423,8 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   (setq org-log-redeadline (quote time))
   (setq org-log-reschedule (quote time))
 
+  (setq org-ellipsis "⤵")
+
   ;; Org todo keywords
   (setq org-todo-keywords
         '((sequence "TODO(t)" "|" "DONE(d)")

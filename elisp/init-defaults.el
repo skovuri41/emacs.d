@@ -155,11 +155,6 @@
 ;; enable erase-buffer command
 (put 'erase-buffer 'disabled nil)
 
-;; Represent undo-history as an actual tree (visualize with C-x u)
-(setq undo-tree-mode-lighter "")
-(require 'undo-tree)
-(global-undo-tree-mode)
-
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)
 
@@ -181,11 +176,15 @@
   (global-prettify-symbols-mode +1))
 
 ;; savehist
-(setq savehist-additional-variables
-      ;; also save my search entries
-      '(search-ring regexp-search-ring)
-      savehist-file "~/.emacs.d/savehist")
-(savehist-mode t)
+(use-package savehist
+  :ensure nil
+  :config
+  (progn
+    (setq savehist-additional-variables
+          ;; also save my search entries
+          '(search-ring regexp-search-ring)
+          savehist-file "~/.emacs.d/savehist")
+    (savehist-mode)))
 
 
 
@@ -360,6 +359,7 @@
 (setq auto-insert-query nil)
 (add-hook 'find-file-hook 'auto-insert)
 (add-hook 'find-file-not-found-hooks 'auto-insert)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 
 (setq read-file-name-completion-ignore-case t)

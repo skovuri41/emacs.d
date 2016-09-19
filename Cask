@@ -208,6 +208,8 @@
 (depends-on "recentf-ext")
 (depends-on "diff-hl")
 (depends-on "fullframe")
+(depends-on "engine-mode")
+
 
 
 

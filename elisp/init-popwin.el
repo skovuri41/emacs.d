@@ -9,7 +9,7 @@
     (push '("*Help*" :stick t) popwin:special-display-config)
     ;; (push '("*Backtrace*" :stick t) popwin:special-display-config)
     (push '("*Register Preview*" :noselect t) popwin:special-display-config)
-    (push '(magit-status-mode :stick t :noselect t :position right) popwin:special-display-config)
+    ;; (push '(magit-status-mode :stick t :noselect t :position right) popwin:special-display-config)
     (push '(ag-mode :stick t) popwin:special-display-config)
     (push '(ranger-mode :stick t) popwin:special-display-config)
     (push '(makey-key-mode :stick t) popwin:special-display-config)
@@ -52,8 +52,9 @@
     (push '("*cider-doc*" :dedicated t :position bottom :stick t :noselect nil :height 0.4)
           popwin:special-display-config)
     (push '(cider-macroexpansion-mode :noselect t) popwin:special-display-config)
-    (push '(bm-show-mode :position right :noselect t :stick t) popwin:special-display-config)
-    (push '("*bm-bookmarks*" :position right :noselect t :stick t) popwin:special-display-config)
+    (push '(bm-show-mode :stick t) popwin:special-display-config)
+    (push '(bm-bookmarks :position right :stick t) popwin:special-display-config)
+
     (when (fboundp 'neo-persist-show)
       (add-hook 'popwin:before-popup-hook
                 (lambda () (setq neo-persist-show nil)))
@@ -78,19 +79,9 @@
     (setq psw-use-flx t)))
 
 (use-package popup-imenu
-  :commands (popup-imenu)
-  )
+  :commands (popup-imenu))
 
 (use-package flyspell-popup
-  :ensure t
-  )
-
+  :ensure t)
 
 (provide 'init-popwin)
-
-
-
-
-
-
-
