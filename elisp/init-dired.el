@@ -292,6 +292,13 @@
     :bind (:map dired-mode-map
                 ("/" . dired-narrow-fuzzy)))
 
+  (use-package dired-subtree
+    :ensure t
+    :config
+    (bind-keys :map dired-mode-map
+               ("i" . dired-subtree-toggle)
+               ("<tab>" . dired-subtree-cycle)))
+
   (use-package dired-launch
     :ensure t)
 

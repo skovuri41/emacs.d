@@ -1,5 +1,4 @@
 (use-package undo-tree
-  :defer t
   :ensure t
   :diminish undo-tree-mode
   :config
