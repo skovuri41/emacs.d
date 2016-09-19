@@ -127,6 +127,11 @@ Position the cursor at its beginning, according to the current mode."
   (interactive "p")
   (kill-line (- 1 arg)))
 
+(defun kill-to-beginning-of-line ()
+  (interactive)
+  (kill-region (save-excursion (beginning-of-line) (point))
+               (point)))
+
 (defun nxml-pretty-print-buffer ()
   "pretty print the XML in a buffer."
   (interactive)

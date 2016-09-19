@@ -35,7 +35,19 @@
 (define-key outline-mode-map "\t" 'org-cycle)
 ;; (global-set-key (kbd "M-/") 'smart-tab)
 ;; (global-set-key (kbd "TAB") 'indent-or-complete)
-(global-set-key (kbd "C-SPC") 'company-complete)
+(global-set-key (kbd "C-.") 'company-complete)
+
+;; Move more quickly
+(global-set-key (kbd "C-S-j")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-line 5))))
+
+(global-set-key (kbd "C-S-k")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-line 5))))
+
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
 (define-key Buffer-menu-mode-map "k" 'previous-line)

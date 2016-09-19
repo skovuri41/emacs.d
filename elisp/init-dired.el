@@ -240,6 +240,8 @@
     ;; allow changing of file permissions
     (setq wdired-allow-to-change-permissions t))
 
+
+
   (use-package dired+
     :ensure t
     :defer 1
@@ -274,6 +276,7 @@
         (set-face-attribute 'diredp-link-priv nil
                             :foreground "#00007373FFFF"))
       (add-hook 'dired-mode-hook #'modi/dired-update-privilege-faces)
+
       (diredp-toggle-find-file-reuse-dir 1)
       (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
       (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)

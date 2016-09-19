@@ -55,7 +55,6 @@
                     tidy
                     drag-stuff
                     elisp-slime-nav
-                    ;;emacs-eclim
                     better-defaults
                     color-identifiers-mode
                     whitespace-cleanup-mode
@@ -127,6 +126,7 @@
                     lispy
                     recentf-ext
                     diff-hl
+                    fullframe
                     ))
 
 

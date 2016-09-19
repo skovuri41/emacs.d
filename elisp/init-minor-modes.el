@@ -208,4 +208,14 @@
   (define-key doc-view-mode-map (kbd "q")
     #'kill-this-buffer))
 
+(use-package fullframe
+  :ensure t
+  :config
+  (progn
+    (after 'magit
+      (fullframe magit-log-all magit-mode-quit-window)
+      (fullframe magit-log-current magit-mode-quit-window)
+      (fullframe magit-status magit-mode-quit-window))
+    (fullframe list-packages quit-window) ))
+
 (provide 'init-minor-modes)

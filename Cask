@@ -207,6 +207,8 @@
 (depends-on "volatile-highlights")
 (depends-on "recentf-ext")
 (depends-on "diff-hl")
+(depends-on "fullframe")
+
 
 
 
