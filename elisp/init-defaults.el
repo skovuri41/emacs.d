@@ -25,6 +25,9 @@
 ;;Suppress symbolic link warnings
 (setq find-file-visit-truename t)
 
+(use-package validate                   ; Validate options
+  :ensure t)
+
 (use-package autorevert              ; Auto-revert buffers of changed files
   :init (global-auto-revert-mode)
   :config
@@ -95,9 +98,6 @@
  kill-do-not-save-duplicates t               ; No duplicates in kill ring
  ;; Save the contents of the clipboard to kill ring before killing
  save-interprogram-paste-before-kill t)
-
-(use-package validate                   ; Validate options
-  :ensure t)
 
 (use-package recentf
   :init
