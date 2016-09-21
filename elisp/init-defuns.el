@@ -521,4 +521,19 @@ the sentence end."
 (defmacro csetq (variable value)
   `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
 
+;;  http://zck.me/emacs-repeat-emacs-repeat
+(setq insert-here-keymap
+      (let ((map (make-sparse-keymap)))
+        (define-key map (kbd "h") #'insert-here)
+        (define-key map (kbd "k") #'insert-here)
+        map))
+
+(defun insert-here ()
+  (interactive)
+  (insert "here")
+  (set-transient-map
+   insert-here-keymap))
+;;;;;;;;;;;
+
+
 (provide 'init-defuns)

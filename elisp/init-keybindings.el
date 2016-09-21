@@ -1,6 +1,6 @@
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-r") 'helm-recentf)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;; (global-set-key (kbd "C-x b") 'helm-mini)
+;; (global-set-key (kbd "C-x C-r") 'helm-recentf)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 ;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
@@ -33,8 +33,6 @@
 (define-key yas-minor-mode-map (kbd "M-TAB") 'yas-expand)
 (define-key outline-minor-mode-map (kbd "TAB") 'org-cycle)
 (define-key outline-mode-map "\t" 'org-cycle)
-;; (global-set-key (kbd "M-/") 'smart-tab)
-;; (global-set-key (kbd "TAB") 'indent-or-complete)
 (global-set-key (kbd "C-.") 'company-complete)
 
 ;; Move more quickly

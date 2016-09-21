@@ -26,16 +26,23 @@
 
   ;; keep the installed packages in .emacs.d
   (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
-  ;; Install all packages required
-  (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
 
-  (package-initialize)
-  ;; Fetch packages the first time
-  (unless (file-exists-p package-user-dir)
-    (package-refresh-contents))
-  (dolist (p my-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+  ;; Bootstrap `use-package'
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+
+  ;; ;; Install all packages required
+  ;; (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
+
+  ;; (package-initialize)
+  ;; ;; Fetch packages the first time
+  ;; (unless (file-exists-p package-user-dir)
+  ;;   (package-refresh-contents))
+  ;; (dolist (p my-packages)
+  ;;   (when (not (package-installed-p p))
+  ;;     (package-install p)))
+  )
 
 (when *is-a-mac*
   (setq
@@ -52,15 +59,6 @@
    interprogram-cut-function 'paste-to-osx
    interprogram-paste-function 'copy-from-osx
    mac-command-modifier nil)
-
-  ;; (setq
-  ;;  ;; font
-  ;;  default-frame-alist '((font . "Hasklig-16")
-  ;;                        (width . 120)    ;character
-  ;;                        (height . 52)))  ; lines
-  )
-
-(when *is-a-mac*
   (require 'init-fira)
   (require 'init-cask)
   (require 'init-pbcopy))

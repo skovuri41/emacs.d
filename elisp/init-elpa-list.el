@@ -127,6 +127,8 @@
                     recentf-ext
                     diff-hl
                     fullframe
+                    engine-mode
+                    dired-subtree
                     ))
 
 

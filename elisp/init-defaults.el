@@ -25,12 +25,16 @@
 ;;Suppress symbolic link warnings
 (setq find-file-visit-truename t)
 
-;; Auto refresh buffers
-(global-auto-revert-mode 1)
-
-;; Also auto refresh dired, but be quiet about it
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
+(use-package autorevert              ; Auto-revert buffers of changed files
+  :init (global-auto-revert-mode)
+  :config
+  (validate-setq auto-revert-verbose nil ; Shut up, please!
+                 ;; Revert Dired buffers, too
+                 global-auto-revert-non-file-buffers t)
+  (when (eq system-type 'darwin)
+    ;; File notifications aren't supported on OS X
+    (validate-setq auto-revert-use-notify nil))
+  :diminish (auto-revert-mode . ""))
 
 ;; Show keystrokes in progress
 (setq echo-keystrokes 0.1)
@@ -86,6 +90,15 @@
 (setq debug-on-error t)
 ;; (setq debug-on-quit t)
 
+(validate-setq
+ kill-ring-max 200                           ; More killed items
+ kill-do-not-save-duplicates t               ; No duplicates in kill ring
+ ;; Save the contents of the clipboard to kill ring before killing
+ save-interprogram-paste-before-kill t)
+
+(use-package validate                   ; Validate options
+  :ensure t)
+
 (use-package recentf
   :init
   (setq recentf-save-file "~/.emacs.d/.recentf")
@@ -102,6 +115,11 @@
   (setq backup-directory-alist
         '(("." . "~/.emacs_backups")))
   (setq recentf-exclude '("/TAGS$" "/var/tmp/" ".recentf"))
+  (validate-setq
+   recentf-max-menu-items 15
+   recentf-exclude (list "/\\.git/.*\\'"     ; Git contents
+                         "/elpa/.*\\'"       ; Package files
+                         ))
   ;; (run-with-idle-timer (* 5 60) t 'recentf-save-list)
   (run-with-idle-timer 60 t '(lambda ()
                                (with-suppressed-message (recentf-save-list))))
@@ -184,6 +202,8 @@
           ;; also save my search entries
           '(search-ring regexp-search-ring)
           savehist-file "~/.emacs.d/savehist")
+    (setq savehist-save-minibuffer-history t
+          savehist-autosave-interval 180)
     (savehist-mode)))
 
 
@@ -360,7 +380,6 @@
 (add-hook 'find-file-hook 'auto-insert)
 (add-hook 'find-file-not-found-hooks 'auto-insert)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-
 
 (setq read-file-name-completion-ignore-case t)
 (setq read-buffer-completion-ignore-case t)

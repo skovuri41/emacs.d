@@ -67,5 +67,12 @@
   :config
   (setq company-dabbrev-code-everywhere t))
 
+(use-package company-math               ; Completion for Math symbols
+  :ensure t
+  :after company
+  :config
+  ;; Add backends for math characters
+  (add-to-list 'company-backends 'company-math-symbols-unicode)
+  (add-to-list 'company-backends 'company-math-symbols-latex))
 
 (provide 'init-company)

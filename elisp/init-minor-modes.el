@@ -146,6 +146,7 @@
 
 (use-package volatile-highlights
   :ensure t
+  :diminish (volatile-highlights-mode . " ")
   :config
   (volatile-highlights-mode 1)
   (vhl/define-extension 'undo-tree 'undo-tree-yank 'undo-tree-move)
@@ -217,5 +218,10 @@
       (fullframe magit-log-current magit-mode-quit-window)
       (fullframe magit-status magit-mode-quit-window))
     (fullframe list-packages quit-window) ))
+
+(use-package osx-trash                  ; Trash support for OS X
+  :if (eq system-type 'darwin)
+  :ensure t
+  :init (osx-trash-setup))
 
 (provide 'init-minor-modes)

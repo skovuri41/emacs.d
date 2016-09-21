@@ -7,7 +7,7 @@
           neo-banner-message "File Tree browser"
           neo-smart-open t
           neo-persist-show nil)
-    (setq neo-theme 'nerd) ; 'classic, 'nerd, 'ascii, 'arrow
+    (setq neo-theme 'nerd)           ; 'classic, 'nerd, 'ascii, 'arrow
     (defun neo-buffer--insert-header ()
       (let ((start (point)))
         (set-text-properties start (point) '(face neo-header-face)))
@@ -77,6 +77,17 @@
       (local-set-key (kbd "O") 'find-file-prev-in-dir)
       (local-set-key (kbd "l") '(lambda () (interactive)
                                   (save-selected-window (neotree-enter)))))
-    (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)))
+    (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
+
+    (defun neotree-project-root (&optional directory)
+      "Open a NeoTree browser for a project DIRECTORY."
+      (interactive)
+      (let ((default-directory (or directory default-directory)))
+        (if (and (fboundp 'neo-global--window-exists-p)
+                 (neo-global--window-exists-p))
+            (neotree-hide)
+          (neotree-find (projectile-project-root)))))
+
+    ))
 
 (provide 'init-neotree)
