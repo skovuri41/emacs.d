@@ -25,14 +25,13 @@
 ;;Suppress symbolic link warnings
 (setq find-file-visit-truename t)
 
-(use-package validate                   ; Validate options
+(use-package validate
   :ensure t)
 
-(use-package autorevert              ; Auto-revert buffers of changed files
+(use-package autorevert
   :init (global-auto-revert-mode)
   :config
-  (validate-setq auto-revert-verbose nil ; Shut up, please!
-                 ;; Revert Dired buffers, too
+  (validate-setq auto-revert-verbose nil
                  global-auto-revert-non-file-buffers t)
   (when (eq system-type 'darwin)
     ;; File notifications aren't supported on OS X
@@ -181,9 +180,7 @@
 (use-package uniquify
   :config
   (setq uniquify-separator "/")
-  ;; rename after killing uniquified
   (setq uniquify-after-kill-buffer-p t)
-  ;; don't muck with special buffers
   (setq uniquify-ignore-buffers-re "^\\*")
   (setq uniquify-buffer-name-style 'post-forward uniquify-separator ":"))
 
@@ -206,8 +203,6 @@
           savehist-autosave-interval 180)
     (savehist-mode)))
 
-
-
 ;; Match fringe colour to background colour
 (defun my/set-fringe-bg()
   (set-face-attribute 'fringe nil
@@ -217,7 +212,7 @@
 ;; Indicate where a buffer starts and stops
 (setq-default indicate-buffer-boundaries 'right)
 
-(setq initial-major-mode 'org-mode)
+(setq initial-major-mode 'fundamental-mode)
 (setq  initial-scratch-message nil)
 (use-package scratch-message
   :ensure t
