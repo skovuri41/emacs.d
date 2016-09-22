@@ -99,14 +99,14 @@
       (make-local-variable 'company-backends)
       (validate-setq company-backends backends))
 
-    (add-hook 'emacs-lisp-mode-hook '(lambda () (setup-company-mode '(company-elisp
-                                                                  company-capf
-                                                                  (company-dabbrev-code
-                                                                   company-gtags
-                                                                   company-etags
-                                                                   company-keywords)
-                                                                  company-files
-                                                                  ))))
+    (add-hook 'emacs-lisp-mode-hook '(lambda () (setup-company-mode '((company-dabbrev-code
+                                                                  company-gtags
+                                                                  company-etags
+                                                                  company-keywords)
+                                                                 company-elisp
+                                                                 company-capf
+                                                                 company-files
+                                                                 ))))
 
     (add-hook 'clojure-mode-hook '(lambda () (setup-company-mode '((company-dabbrev-code
                                                                company-gtags
