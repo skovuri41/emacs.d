@@ -11,11 +11,9 @@
     ;; `self-insert-command` means typing IO.
     (validate-setq company-begin-commands '(self-insert-command))
     (validate-setq company-idle-delay 0)
-
     (validate-setq company-tooltip-align-annotations t
                    company-tooltip-flip-when-above t
                    company-occurrence-weight-function #'company-occurrence-prefer-any-closest)
-
     (validate-setq company-frontends
                    '(company-pseudo-tooltip-unless-just-one-frontend
                      company-preview-if-just-one-frontend))
@@ -32,8 +30,13 @@
     (define-key company-active-map (kbd "\C-n") 'company-select-next)
     (define-key company-active-map (kbd "\C-p") 'company-select-previous)
     (define-key company-active-map (kbd "\C-d") 'company-show-doc-buffer)
-    (define-key company-active-map (kbd "<tab>") 'company-complete)
+    (define-key company-active-map (kbd "C-<SPC>") 'company-complete)
     (define-key company-active-map [escape] 'company-abort)
+    ;; (define-key company-active-map (kbd "<tab>") #'company-complete-common-or-cycle)
+    (define-key company-active-map (kbd "C-o") #'company-other-backend)
+    (define-key company-active-map (kbd "C-s") #'company-filter-candidates)
+    (define-key company-active-map (kbd "C-M-s") #'company-search-candidates)
+    (define-key company-active-map (kbd "<tab>") #'company-other-backend)
 
     (use-package company-statistics
       :commands (company-statistics-mode))
@@ -47,10 +50,10 @@
       :commands company-try-hard
       :ensure t
       :after company
-      :bind ("C-\\" . company-try-hard)
+      :bind ("C-'" . company-try-hard)
       :config
       (bind-keys :map company-active-map
-                 ("C-\\" . company-try-hard)))
+                 ("C-'" . company-try-hard)))
     (use-package company-quickhelp
       :ensure t
       :after company
@@ -99,45 +102,51 @@
       (make-local-variable 'company-backends)
       (validate-setq company-backends backends))
 
-    (add-hook 'emacs-lisp-mode-hook '(lambda () (setup-company-mode '((company-dabbrev-code
-                                                                  company-gtags
-                                                                  company-etags
-                                                                  company-keywords)
-                                                                 company-elisp
-                                                                 company-capf
-                                                                 company-files
-                                                                 ))))
+    (add-hook 'emacs-lisp-mode-hook
+              '(lambda () (setup-company-mode '((company-dabbrev-code
+                                            company-gtags
+                                            company-etags
+                                            company-keywords)
+                                           company-elisp
+                                           company-capf
+                                           company-files
+                                           ))))
 
-    (add-hook 'clojure-mode-hook '(lambda () (setup-company-mode '((company-dabbrev-code
-                                                               company-gtags
-                                                               company-etags
-                                                               company-keywords)
-                                                              company-capf
-                                                              company-files
-                                                              ))))
+    (add-hook 'clojure-mode-hook
+              '(lambda () (setup-company-mode '((company-dabbrev-code
+                                            company-gtags
+                                            company-etags
+                                            company-keywords)
+                                           company-capf
+                                           company-files
+                                           ))))
 
-    (add-hook 'cider-mode-hook '(lambda () (setup-company-mode '((company-dabbrev-code
-                                                             company-gtags
-                                                             company-etags
-                                                             company-keywords)
-                                                            company-capf
-                                                            company-files
-                                                            ))))
+    (add-hook 'cider-mode-hook
+              '(lambda () (setup-company-mode '((company-dabbrev-code
+                                            company-gtags
+                                            company-etags
+                                            company-keywords)
+                                           company-capf
+                                           company-files
+                                           ))))
 
-    (add-hook 'java-mode-hook '(lambda () (setup-company-mode '(company-eclim (company-dabbrev-code
-                                                                          company-gtags
-                                                                          company-etags
-                                                                          company-keywords)
-                                                                         company-capf
-                                                                         company-files))))
+    (add-hook 'java-mode-hook
+              '(lambda () (setup-company-mode '(company-eclim
+                                           (company-dabbrev-code
+                                            company-gtags
+                                            company-etags
+                                            company-keywords)
+                                           company-capf
+                                           company-files))))
 
-    (add-hook 'org-mode-hook '(lambda () (setup-company-mode '(company-dabbrev
-                                                          (company-dabbrev-code
-                                                           company-gtags
-                                                           company-etags
-                                                           company-keywords)
-                                                          company-capf
-                                                          company-files company-ispell))))
+    (add-hook 'org-mode-hook
+              '(lambda () (setup-company-mode '(company-dabbrev
+                                           (company-dabbrev-code
+                                            company-gtags
+                                            company-etags
+                                            company-keywords)
+                                           company-capf
+                                           company-files company-ispell))))
 
     ))
 
