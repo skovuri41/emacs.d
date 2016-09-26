@@ -51,9 +51,11 @@
 (define-key ibuffer-mode-map "l" (lambda () (interactive) (progn
                                                        (ibuffer-visit-buffer)
                                                        (xah-fly-command-mode-activate))))
-(define-key bookmark-bmenu-mode-map "k" 'previous-line)
-(define-key bookmark-bmenu-mode-map "j" 'next-line)
-(define-key bookmark-bmenu-mode-map "s" 'bookmark-bmenu-save)
+(defun my-bookmark-bmenu-mode-hook-fun ()
+  (define-key bookmark-bmenu-mode-map "k" 'previous-line)
+  (define-key bookmark-bmenu-mode-map "j" 'next-line)
+  (define-key bookmark-bmenu-mode-map "s" 'bookmark-bmenu-save))
+(add-hook 'bookmark-bmenu-mode-hook 'my-bookmark-bmenu-mode-hook-fun)
 
 (require 'info)
 ;; (setq Info-additional-directory-list (list (expand-file-name "etc/info/" emacs-d)))

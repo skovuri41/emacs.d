@@ -2,17 +2,15 @@
   :mode (("\\.edn$" . clojure-mode)
          ("\\.cljc$" . clojure-mode)
          ("\\.clj$" . clojure-mode))
-  :init
+  :config
   (progn
+    (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
+    (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
+
     (use-package clj-refactor
       :init
       (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
-      ))
-  :config
-  (progn
-    ;; (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-    (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
-    (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
+      )
 
     (define-clojure-indent
       (defroutes 'defun)
