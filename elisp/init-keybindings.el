@@ -1,18 +1,10 @@
-;; (global-set-key (kbd "C-x b") 'helm-mini)
-;; (global-set-key (kbd "C-x C-r") 'helm-recentf)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
-;;(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-;;(global-set-key (kbd "M-%") 'query-replace-regexp)
-;;(global-set-key (kbd "C-M-%") 'query-replace)
 (global-set-key '[(f1)] 'call-last-kbd-macro)
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
-;;(global-set-key (kbd "C-[ [ a a") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
@@ -23,8 +15,6 @@
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
-;; (global-set-key (kbd "C-f") 'golden-ratio-scroll-screen-up)
-;; (global-set-key (kbd "C-b") 'golden-ratio-scroll-screen-down)
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
 (global-set-key (kbd "M-k") 'my/kill-sentence-dwim)
@@ -33,7 +23,8 @@
 (define-key yas-minor-mode-map (kbd "M-TAB") 'yas-expand)
 (define-key outline-minor-mode-map (kbd "TAB") 'org-cycle)
 (define-key outline-mode-map "\t" 'org-cycle)
-(global-set-key (kbd "C-.") 'company-complete)
+(global-set-key (kbd "C-.") 'company-try-hard)
+;; (global-set-key (kbd "M-g") 'company-try-hard)
 
 ;; Move more quickly
 (global-set-key (kbd "C-S-j")
@@ -45,6 +36,9 @@
                 (lambda ()
                   (interactive)
                   (ignore-errors (previous-line 5))))
+(define-key occur-mode-map "k" 'previous-line)
+(define-key occur-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
+(define-key occur-mode-map (kbd "C-c C-c") 'wgrep-finish-edit)
 
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
@@ -60,6 +54,57 @@
 (define-key bookmark-bmenu-mode-map "j" 'next-line)
 (define-key bookmark-bmenu-mode-map "s" 'bookmark-bmenu-save)
 
+(require 'info)
+;; (setq Info-additional-directory-list (list (expand-file-name "etc/info/" emacs-d)))
+
+(define-key Info-mode-map "j" 'ora-para-down)
+(define-key Info-mode-map "k" 'ora-para-up)
+(define-key Info-mode-map "v" 'recenter-top-bottom)
+(define-key Info-mode-map "h" 'backward-char)
+(define-key Info-mode-map "l" 'forward-char)
+(define-key Info-mode-map "w" 'forward-word)
+(define-key Info-mode-map "b" 'backward-word)
+(define-key Info-mode-map "a" 'beginning-of-line)
+(define-key Info-mode-map "e" 'end-of-line)
+(define-key Info-mode-map "A" 'beginning-of-buffer)
+(define-key Info-mode-map "E" 'end-of-buffer)
+(define-key Info-mode-map "t" 'hydra-info-to/body)
+(define-key Info-mode-map "u" 'Info-history-back)
+(define-key Info-mode-map "c" 'counsel-ace-link)
+
+(defun ora-open-info (topic bname)
+  "Open info on TOPIC in BNAME."
+  (if (get-buffer bname)
+      (progn
+        (switch-to-buffer bname)
+        (unless (string-match topic Info-current-file)
+          (Info-goto-node (format "(%s)" topic))))
+    (info topic bname)))
+
+(defun ora-para-down (arg)
+  (interactive "p")
+  (if (bolp)
+      (progn
+        (forward-paragraph arg)
+        (forward-line 1))
+    (line-move arg)))
+
+(defun ora-para-up (arg)
+  (interactive "p")
+  (if (bolp)
+      (progn
+        (forward-line -1)
+        (backward-paragraph arg)
+        (forward-line 1))
+    (line-move (- arg))))
+
+(defhydra hydra-info-to (:hint nil :color teal)
+  "
+_o_rg e_l_isp _e_macs _h_yperspec"
+  ("o" (ora-open-info "org" "*org info*"))
+  ("l" (ora-open-info "elisp" "*elisp info*"))
+  ("e" (ora-open-info "emacs" "*emacs info*"))
+  ("h" (ora-open-info "gcl" "*hyperspec*")))
 
 ;; swith meta and mac command key for mac port emacs build
 (setq mac-option-modifier 'meta)

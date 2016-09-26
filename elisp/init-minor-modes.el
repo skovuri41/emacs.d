@@ -219,9 +219,15 @@
       (fullframe magit-status magit-mode-quit-window))
     (fullframe list-packages quit-window) ))
 
-(use-package osx-trash                  ; Trash support for OS X
+(use-package osx-trash
   :if (eq system-type 'darwin)
   :ensure t
   :init (osx-trash-setup))
+
+(eval-after-load 'grep
+  '(define-key grep-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode))
+(eval-after-load 'wgrep
+  '(define-key grep-mode-map (kbd "C-c C-c") 'wgrep-finish-edit))
+
 
 (provide 'init-minor-modes)

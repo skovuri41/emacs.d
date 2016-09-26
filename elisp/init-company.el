@@ -10,14 +10,13 @@
     ;; what commands of emacs can triger the starting of company.
     ;; `self-insert-command` means typing IO.
     (validate-setq company-begin-commands '(self-insert-command))
-    (validate-setq company-idle-delay 0)
+    (validate-setq company-idle-delay 0.5)
     (validate-setq company-tooltip-align-annotations t
                    company-tooltip-flip-when-above t
                    company-occurrence-weight-function #'company-occurrence-prefer-any-closest)
     (validate-setq company-frontends
                    '(company-pseudo-tooltip-unless-just-one-frontend
                      company-preview-if-just-one-frontend))
-
     (let ((map company-active-map))
       (mapc (lambda (x) (define-key map (format "%d" x)
                      `(lambda () (interactive) (company-complete-number ,x))))
@@ -37,6 +36,7 @@
     (define-key company-active-map (kbd "C-s") #'company-filter-candidates)
     (define-key company-active-map (kbd "C-M-s") #'company-search-candidates)
     (define-key company-active-map (kbd "<tab>") #'company-other-backend)
+    (define-key company-active-map (kbd "C-.") #'company-try-hard)
 
     (use-package company-statistics
       :commands (company-statistics-mode))
@@ -50,10 +50,10 @@
       :commands company-try-hard
       :ensure t
       :after company
-      :bind ("C-'" . company-try-hard)
+      :bind ("C-\\" . company-try-hard)
       :config
       (bind-keys :map company-active-map
-                 ("C-'" . company-try-hard)))
+                 ("C-\\" . company-try-hard)))
     (use-package company-quickhelp
       :ensure t
       :after company
@@ -71,10 +71,7 @@
         (validate-setq company-dabbrev-minimum-length 2)))
     (use-package company-emoji
       :after company
-      :ensure t
-      :config
-      (progn
-        (add-to-list 'company-backends 'company-math-symbols-unicode)))
+      :ensure t)
     (use-package company-dabbrev-code
       :after company
       :init (require #'company-dabbrev-code)
@@ -111,7 +108,6 @@
                                            company-capf
                                            company-files
                                            ))))
-
     (add-hook 'clojure-mode-hook
               '(lambda () (setup-company-mode '((company-dabbrev-code
                                             company-gtags
@@ -120,7 +116,6 @@
                                            company-capf
                                            company-files
                                            ))))
-
     (add-hook 'cider-mode-hook
               '(lambda () (setup-company-mode '((company-dabbrev-code
                                             company-gtags
@@ -129,7 +124,6 @@
                                            company-capf
                                            company-files
                                            ))))
-
     (add-hook 'java-mode-hook
               '(lambda () (setup-company-mode '(company-eclim
                                            (company-dabbrev-code
@@ -141,13 +135,11 @@
 
     (add-hook 'org-mode-hook
               '(lambda () (setup-company-mode '(company-dabbrev
-                                           (company-dabbrev-code
-                                            company-gtags
-                                            company-etags
-                                            company-keywords)
+                                           company-abbrev
                                            company-capf
-                                           company-files company-ispell))))
-
+                                           company-files
+                                           company-emoji
+                                           company-ispell))))
     ))
 
 ;;; useful company-backend

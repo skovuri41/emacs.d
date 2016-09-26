@@ -209,6 +209,8 @@
 (depends-on "diff-hl")
 (depends-on "fullframe")
 (depends-on "engine-mode")
+(depends-on "osx-trash")
+
 
 
 

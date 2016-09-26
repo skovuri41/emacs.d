@@ -3,8 +3,8 @@
   :commands (ag ag-mode ag-files ag-regexp)
   :init
   (progn
-    (setq ag-highlight-search t)
-    (setq ag-reuse-buffers t)
+    (validate-setq ag-highlight-search t)
+    (validate-setq ag-reuse-buffers t)
     (defun setup-ag ()
       "Function called to set my ag stuff up."
       (toggle-truncate-lines t)
@@ -18,7 +18,7 @@
 (use-package wgrep
   :ensure t
   :config
-  (setq wgrep-auto-save-buffer t))
+  (validate-setq wgrep-auto-save-buffer t))
 
 (use-package wgrep-ag
   :ensure t

@@ -65,6 +65,7 @@
 (require 'init-minor-modes)
 (require 'init-window-numbering)
 (require 'init-cal)
+(require 'init-engine)
 (require 'init-spaceline)
 (require 'init-docker)
 (require 'init-xah-fly-keys)
