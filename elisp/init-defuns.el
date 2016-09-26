@@ -533,7 +533,23 @@ the sentence end."
   (insert "here")
   (set-transient-map
    insert-here-keymap))
-;;;;;;;;;;;
 
+(defun my-pop-to-mark-command ()
+  (interactive)
+  (pop-to-mark-command)
+  (set-transient-map
+   (let ((map (make-sparse-keymap)))
+     (define-key map (kbd "k") #'my-pop-to-mark-command)
+     map)))
+
+(require 'ansi-color)
+(defun endless/colorize-compilation ()
+  "Colorize from `compilation-filter-start' to `point'."
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region
+     compilation-filter-start (point))))
+
+(add-hook 'compilation-filter-hook
+          #'endless/colorize-compilation)
 
 (provide 'init-defuns)

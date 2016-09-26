@@ -25,6 +25,7 @@
 (define-key outline-mode-map "\t" 'org-cycle)
 (global-set-key (kbd "C-.") 'company-try-hard)
 ;; (global-set-key (kbd "M-g") 'company-try-hard)
+(bind-key "C-x p" 'my-pop-to-mark-command)
 
 ;; Move more quickly
 (global-set-key (kbd "C-S-j")

@@ -1987,7 +1987,7 @@ If `universal-argument' is called first, do switch frame."
 
   (define-key xah-fly-key-map (kbd "M-RET") 'xah-cycle-hyphen-underscore-space)
   (define-key xah-fly-key-map (kbd "M-c") 'xah-toggle-letter-case)
-  (define-key xah-fly-key-map (kbd "M-g") 'hippie-expand)
+  (define-key xah-fly-key-map (kbd "M-i") 'hippie-expand)
   (define-key xah-fly-key-map (kbd "M-m") 'lispy-mark-symbol)
   (define-key xah-fly-key-map (kbd "M-d") 'lispy-kill-word)
   (define-key xah-fly-key-map (kbd "C-,") 'lispy-kill-at-point)
