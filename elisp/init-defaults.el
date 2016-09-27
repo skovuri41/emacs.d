@@ -390,4 +390,8 @@
         "-pkg.el" "-autoloads.el"
         "Notes.bib" "auto/"))
 
+
+(setq custom-file "~/.emacs.d/emacs-customizations.el")
+(load custom-file 'noerror)
+
 (provide 'init-defaults)

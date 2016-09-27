@@ -172,7 +172,7 @@
     ))
 
 (use-package typed-clojure-mode
-  :init
+  :config
   (add-hook 'clojure-mode-hook 'typed-clojure-mode))
 
 (use-package flycheck-clojure
@@ -180,17 +180,17 @@
   :config
   (eval-after-load 'flycheck '(flycheck-clojure-setup)))
 
-(use-package
-  4clojure
+(use-package 4clojure
   :ensure t
   :defer t)
 
 (use-package cider-eval-sexp-fu
   :ensure t
   :config
-  (defun config-init-cider-eval-sexp-fu ()
-    (require 'cider-eval-sexp-fu))
-  (add-hook 'cider-mode-hook 'config-init-cider-eval-sexp-fu))
+  (progn
+    (defun config-init-cider-eval-sexp-fu ()
+      (require 'cider-eval-sexp-fu))
+    (add-hook 'cider-mode-hook 'config-init-cider-eval-sexp-fu)))
 
 ;;; clojurescript (build from emacs, and pop up stacktrack when
 ;;; there's a error):

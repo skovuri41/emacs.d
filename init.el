@@ -1,5 +1,4 @@
 (package-initialize)
-(defconst emacs-start-time (current-time))
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq default-directory (getenv "HOME"))
@@ -68,16 +67,9 @@
 (require 'init-engine)
 (require 'init-spaceline)
 (require 'init-docker)
+(require 'init-local)
 (require 'init-xah-fly-keys)
 (require 'init-keybindings)
-
-(let ((elapsed (float-time (time-subtract (current-time)
-                                          emacs-start-time))))
-  (message "Loaded packages in %.3fs" elapsed))
-
-(let ((local-config (expand-file-name "local.el" user-emacs-directory)))
-  (when (file-exists-p local-config)
-    (load local-config)))
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions
@@ -90,10 +82,4 @@
 (require 'server)
 (or (server-running-p) (server-start))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(show-paren-match ((t (:background "default" :foreground "yellow" :underline t :overline nil))))
- '(show-paren-mismatch ((((class color)) (:background "red" :foreground "white")))))
+

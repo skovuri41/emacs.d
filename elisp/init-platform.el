@@ -1,4 +1,4 @@
-;; Platform specific settings
+;;; ;; Platform specific settings
 (defvar *is-a-mac*)
 (defvar *is-carbon-emacs*)
 (defvar *is-cocoa-emacs*)
@@ -24,9 +24,7 @@
   (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
   (add-to-list 'package-pinned-packages '(cider-eval-sexp-fu. "melpa-stable") t)
 
-  ;; keep the installed packages in .emacs.d
   (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
-
   ;; Bootstrap `use-package'
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
@@ -42,7 +40,15 @@
   ;; (dolist (p my-packages)
   ;;   (when (not (package-installed-p p))
   ;;     (package-install p)))
-  )
+  (setq
+   ;; font
+   ;; default-frame-alist '((font . "Monaco-10"))
+   ;; default-frame-alist '((font . "Fira Code-11"))
+   default-frame-alist '((font . "Hasklig-12")
+                         (width . 120) ;character
+                         (height . 40)) ; lines
+   ;; make emacs use the clipboard
+   x-select-enable-clipboard t))
 
 (when *is-a-mac*
   (setq
@@ -62,17 +68,5 @@
   (require 'init-fira)
   (require 'init-cask)
   (require 'init-pbcopy))
-
-(when *is-gnu-linux*
-  (setq
-   ;; font
-   ;; default-frame-alist '((font . "Monaco-10"))
-   ;; default-frame-alist '((font . "Fira Code-11"))
-   default-frame-alist '((font . "Hasklig-12")
-                         (width . 120) ;character
-                         (height . 40)) ; lines
-   ;; make emacs use the clipboard
-   x-select-enable-clipboard t))
-
 
 (provide 'init-platform)

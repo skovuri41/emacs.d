@@ -26,6 +26,7 @@
 (global-set-key (kbd "C-.") 'company-try-hard)
 ;; (global-set-key (kbd "M-g") 'company-try-hard)
 (bind-key "C-x p" 'my-pop-to-mark-command)
+(global-set-key (kbd "C-;") 'iedit-mode)
 
 ;; Move more quickly
 (global-set-key (kbd "C-S-j")
@@ -147,6 +148,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'rof 'recentf-open-files)
 (defalias 'lcd 'list-colors-display)
 (defalias 'cc 'calc)
+(defalias 'cal 'calendar)
 
 ;; ; elisp
 (defalias 'eb 'eval-buffer)
@@ -183,3 +185,4 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 
 
 (provide 'init-keybindings)
+;;; init-keybindings.el ends here

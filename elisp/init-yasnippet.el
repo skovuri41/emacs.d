@@ -1,7 +1,7 @@
 (use-package yasnippet
   :ensure t
   :defer t
-  :init
+  :config
   (progn
     ;; (yas-reload-all)
     ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets"))

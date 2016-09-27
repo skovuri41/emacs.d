@@ -920,6 +920,8 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
    '((sh         . t)
      (js         . t)
      (emacs-lisp . t)
+     (ditaa      . t)
+     (ledger     . t)
      (perl       . t)
      (scala      . t)
      (clojure    . t)
