@@ -741,7 +741,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
           ("e" "Emacs note" entry
            (file+headline "~/org/notes.org" "Emacs Links")
            "* %? :NOTE:\n%U\n")
-          ("j" "Journal Note"     entry
+          ("j" "Journal Note" entry
            (file (get-journal-file-today))
            "* %?\n\n  %i\n\n  From: %f" :empty-lines 1)
           ("B" "Book/Bibliography" entry
@@ -750,8 +750,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
 
   (add-hook 'org-capture-mode-hook
             (lambda ()
-              (xah-fly-insert-mode-activate)))
-  )
+              (xah-fly-insert-mode-activate))))
 
 (use-package org-journal
   :ensure t
@@ -785,24 +784,22 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
     ;; (evil-leader/set-key-for-mode 'org-journal-mode
     ;;   "m j [" 'org-journal-open-previous-entry
     ;;   "m j ]" 'org-journal-open-next-entry)
-
     )
 
   (defun journal-file-insert ()
     "Insert's the journal heading based on the file's name."
     (interactive)
     (when (string-match "\\(20[0-9][0-9]\\)\\([0-9][0-9]\\)\\([0-9][0-9]\\)" (buffer-name))
-      (let ((year  (string-to-number (match-string 1 (buffer-name))))
+      (let ((year (string-to-number (match-string 1 (buffer-name))))
             (month (string-to-number (match-string 2 (buffer-name))))
-            (day   (string-to-number (match-string 3 (buffer-name))))
+            (day (string-to-number (match-string 3 (buffer-name))))
             (datim nil))
         (setq datim (encode-time 0 0 0 day month year))
         (insert (format-time-string org-journal-date-format datim))
-        (insert "\n\n"))))  ; Start with a blank separating line
+        (insert "\n\n"))))        ; Start with a blank separating line
 
   (setq auto-insert-alist (append '(
-                                    (".*/[0-9]*$" . journal-file-insert)
-                                    )
+                                    (".*/[0-9]*$" . journal-file-insert))
                                   auto-insert-alist))
 
   (add-to-list 'org-agenda-files (expand-file-name "~/journal"))
@@ -825,15 +822,13 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   (defun journal-file-yesterday ()
     "Creates and load a file based on yesterday's date."
     (interactive)
-    (find-file (get-journal-file-yesterday)))
-  )
+    (find-file (get-journal-file-yesterday))))
 
 (use-package org-research
   :disabled t
   :config
   (progn
-    (setq org-research-root "~/research")
-    ))
+    (setq org-research-root "~/research")))
 
 (use-package org-pomodoro
   :commands (org-pomodoro)
@@ -931,8 +926,6 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
      (css        . t)
      (plantuml   . t)))
 
-  ;;thisiswhereFedorainstallsit,YMMV
-  (setq org-plantuml-jar-path "/usr/share/java/plantuml.jar")
   ;;ensurethisvariableisdefined
   (unless (boundp 'org-babel-default-header-args:sh)
     (setq org-babel-default-header-args:sh '()))
@@ -998,9 +991,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
     ;; Either the Key ID or set to nil to use symmetric encryption.
     (setq org-crypt-key "C6FC9277")
     ;; (org-crypt-use-before-save-magic)
-    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-    )
-  )
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))))
 
 ;; Generate unique IDs for all entries
 (use-package org-id

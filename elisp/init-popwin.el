@@ -54,6 +54,13 @@
     (push '(cider-macroexpansion-mode :noselect t) popwin:special-display-config)
     (push '(bm-show-mode :stick t) popwin:special-display-config)
     (push '(bm-bookmarks :position right :stick t) popwin:special-display-config)
+    (push '("*ag search*") popwin:special-display-config)
+
+    (add-to-list 'popwin:special-display-config '("*Completions*" :noselect t))
+    (add-to-list 'popwin:special-display-config '("*Occur*" :noselect t))
+    (add-to-list 'popwin:special-display-config '("*Backtrace*"))
+    (add-to-list 'popwin:special-display-config '("*Apropos*"))
+    (add-to-list 'popwin:special-display-config '("*Warnings*"))
 
     (when (fboundp 'neo-persist-show)
       (add-hook 'popwin:before-popup-hook

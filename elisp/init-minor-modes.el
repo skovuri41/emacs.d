@@ -229,5 +229,11 @@
 (eval-after-load 'wgrep
   '(define-key grep-mode-map (kbd "C-c C-c") 'wgrep-finish-edit))
 
+(use-package graphviz-dot-mode
+  :mode (("\\.diag\\'" . graphviz-dot-mode)
+         ("\\.dot\\'" . graphviz-dot-mode)
+         ("\\.gv\\'" . graphviz-dot-mode))
+  :ensure t
+  :config (setq graphviz-dot-indent-width 4))
 
 (provide 'init-minor-modes)
