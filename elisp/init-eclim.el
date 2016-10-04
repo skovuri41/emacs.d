@@ -36,14 +36,14 @@
 
 (use-package eclim
   :defer t
-  :ensure emacs-eclim
+  :ensure t
   :diminish eclim-mode
   :functions (eclim--project-dir eclim--project-name)
   :commands (eclim-mode global-eclim-mode)
   :init
   (add-hook 'java-mode-hook 'eclim-mode)
   (setq eclim-eclipse-dirs '("~/eclipse")
-        eclim-executable     "~/eclipse/eclim")
+        eclim-executable "~/eclipse/eclim")
   :config
   (progn
     (setq help-at-pt-display-when-idle t
@@ -66,7 +66,7 @@ Eclim:
   _o_: Organize Imports    _fr_: Find References               _er_: Buffer Refresh
   _h_: Hierarchy            _r_: Refactor Symbol
   _c_: Java Constructor    _ft_: Find Type
-  _f_: Java Format
+  _F_: Java Format
 Project                            Maven
 ─────────────────────────────────────────────────────────
 _pj_: Jump to proj           _mi_: Mvn Clean Install
@@ -74,19 +74,19 @@ _pc_: Create                 _mI_: Mvn Install
 _pi_: Import Proj            _mt_: Mvn Test
                            ^_mr_: Mvn Run
 "
-      ("d"   eclim-java-show-documentation-for-current-element)
-      ("g"   eclim-java-generate-getter-and-setter)
-      ("o"   eclim-java-import-organize)
-      ("h"   eclim-java-call-hierarchy)
-      ("i"   eclim-java-implement)
-      ("fd"  eclim-java-find-declaration)
-      ("fr"  eclim-java-find-references)
-      ("r"   eclim-java-refactor-rename-symbol-at-point)
-      ("fg"  eclim-java-find-generic)
-      ("ft"  eclim-java-find-type)
-      ("c"   eclim-java-constructor)
-      ("f"   eclim-java-format)
-      ("I"  eclim-java-hierarchy)
+      ("d" eclim-java-show-documentation-for-current-element)
+      ("g" eclim-java-generate-getter-and-setter)
+      ("o" eclim-java-import-organize)
+      ("h" eclim-java-call-hierarchy)
+      ("i" eclim-java-implement)
+      ("fd" eclim-java-find-declaration)
+      ("fr" eclim-java-find-references)
+      ("r" eclim-java-refactor-rename-symbol-at-point)
+      ("fg" eclim-java-find-generic)
+      ("ft" eclim-java-find-type)
+      ("c" eclim-java-constructor)
+      ("F" eclim-java-format)
+      ("I" eclim-java-hierarchy)
 
       ("mi" java-maven-clean-install)
       ("mI" java-maven-install)
@@ -127,8 +127,7 @@ _pi_: Import Proj            _mt_: Mvn Test
       ("pU" eclim-project-unmark-all)
       ("pg" eclim-project-mode-refresh)
       ("pr" eclim-project-rename)
-      ("q"  nil "cancel" :color blue))
-    ))
+      ("q" nil "cancel" :color blue))))
 
 (use-package company-emacs-eclim
   :functions company-emacs-eclim-setup

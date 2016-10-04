@@ -64,6 +64,7 @@
 (require 'init-minor-modes)
 (require 'init-window-numbering)
 (require 'init-cal)
+(require 'init-eclim)
 (require 'init-engine)
 (require 'init-spaceline)
 (require 'init-docker)
