@@ -210,6 +210,10 @@
 (depends-on "fullframe")
 (depends-on "engine-mode")
 (depends-on "osx-trash")
+(depends-on "graphviz-dot-mode")
+(depends-on "region-bindings-mode")
+
+
 
 
 

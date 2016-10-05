@@ -11,7 +11,6 @@
 
 ;; This file is not part of GNU Emacs.
 
-
 ;;; License:
 
 ;; You can redistribute this program and/or modify it under the terms of the GNU General Public License version 2.
@@ -1937,7 +1936,8 @@ If `universal-argument' is called first, do switch frame."
    ("qr" . anzu-query-replace)
    ("qx" . anzu-query-replace-regexp)
    ("qt" . anzu-query-replace-at-cursor-thing)
-   ("qc" . anzu-replace-at-cursor-thing)))
+   ("qc" . anzu-replace-at-cursor-thing)
+   ("e" . hydra-engine/body)))
 
 (progn
   (define-prefix-command 'xah-fly-leader-key-map)

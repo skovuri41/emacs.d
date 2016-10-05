@@ -2,7 +2,6 @@
   :ensure t
   :config
   (progn
-    (engine-mode 1)
     (defengine google
       "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
       :keybinding "g")
@@ -18,6 +17,21 @@
     (defengine wikipedia
       "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
       :keybinding "w")
+    (defengine google-images
+      "http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s")
+    (defengine google-maps
+      "http://maps.google.com/maps?q=%s"
+      :docstring "Mappin' it up.")
+
+    (eval-after-load 'hydra
+      `(defhydra hydra-engine (:color blue)
+         ("w" engine/search-wikipedia     "wikipedia")
+         ("d" engine/search-duckduckgo    "duckduckgo")
+         ("h" engine/search-github        "github")
+         ("s" engine/search-stackoverflow "stackoverflow")
+         ("g" engine/search-google        "google")
+         ("i" engine/search-google-images "google-images")
+         ("m" engine/search-google-maps   "google-maps")))
     
     (use-package osx-browse
       :ensure t

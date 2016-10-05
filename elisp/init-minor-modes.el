@@ -236,4 +236,38 @@
   :ensure t
   :config (setq graphviz-dot-indent-width 4))
 
+
+(use-package region-bindings-mode
+  :ensure t
+  :config
+  (progn
+    ;; Do not activate `region-bindings-mode' in Special modes like `dired' and
+    ;; `ibuffer'. Single-key bindings like 'm' are useful in those modes even
+    ;; when a region is selected.
+    (setq region-bindings-mode-disabled-modes '(dired-mode
+                                                ibuffer-mode))
+    (region-bindings-mode-enable)
+
+    (defun modi/disable-rbm-deactivate-mark ()
+      "Disable `region-bindings-mode' and deactivate mark."
+      (interactive)
+      (region-bindings-mode -1)
+      (deactivate-mark)
+      (message "Mark deactivated"))
+
+    (bind-keys
+     :map region-bindings-mode-map
+     ("x" . xah-cut-line-or-region)
+     ("y" . xah-copy-line-or-region)
+     ("(" . lispy-parens)
+     ("{" . lispy-braces)
+     ("'" . lispy-quotes)
+     ("\"" . lispy-doublequote)
+     ("c" . duplicate-current-line-or-region)
+     ("n" . fancy-narrow-region)
+     ("e" . eval-region)
+     ("q" . anzu-query-replace)
+     ("<C-SPC>" . modi/disable-rbm-deactivate-mark))))
+
+
 (provide 'init-minor-modes)
