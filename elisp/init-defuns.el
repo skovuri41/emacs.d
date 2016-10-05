@@ -135,7 +135,7 @@ Position the cursor at its beginning, according to the current mode."
 (defun nxml-pretty-print-buffer ()
   "pretty print the XML in a buffer."
   (interactive)
-  (nxml-pretty-print-region (point-min) (point-max)))
+  (pretty-print-xml-region (point-min) (point-max)))
 
 ;;; XML pretty print
 (defun pretty-print-xml-region (begin end)
