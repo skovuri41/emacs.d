@@ -522,17 +522,14 @@ the sentence end."
   `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
 
 ;;  http://zck.me/emacs-repeat-emacs-repeat
-(setq insert-here-keymap
-      (let ((map (make-sparse-keymap)))
-        (define-key map (kbd "h") #'insert-here)
-        (define-key map (kbd "k") #'insert-here)
-        map))
-
 (defun insert-here ()
   (interactive)
   (insert "here")
   (set-transient-map
-   insert-here-keymap))
+   (let ((map (make-sparse-keymap)))
+     (define-key map (kbd "h") #'insert-here)
+     (define-key map (kbd "k") #'insert-here)
+     map)))
 
 (defun my-pop-to-mark-command ()
   (interactive)
@@ -584,8 +581,24 @@ If there's no region, the current line will be duplicated."
   (if (region-active-p)
       (let ((beg (region-beginning))
             (end (region-end)))
-        (duplicate-region arg beg end)
-        (one-shot-keybinding "d" (λ (duplicate-region 1 beg end))))
+        (duplicate-region arg beg end))
     (duplicate-current-line arg)))
+
+
+(defun my/package-upgrade-packages (&optional no-fetch)
+  "Upgrade all packages.  No questions asked.
+This function is equivalent to `list-packages', followed by a
+`package-menu-mark-upgrades' and a `package-menu-execute'.  Except
+the user isn't asked to confirm deletion of packages.
+The NO-FETCH prefix argument is passed to `list-packages'.  It
+prevents re-download of information about new versions.  It does
+not prevent downloading the actual packages (obviously)."
+  (interactive "P")
+  (let ((package-menu-async nil)) ; This variable was introduced in emacs 25.0
+    (save-window-excursion
+      (package-list-packages no-fetch)
+      (package-menu-mark-upgrades)
+      (package-menu-execute 'noquery))))
+
 
 (provide 'init-defuns)

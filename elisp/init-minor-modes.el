@@ -266,6 +266,7 @@
      ("c" . duplicate-current-line-or-region)
      ("n" . fancy-narrow-region)
      ("e" . eval-region)
+     ("/" . swiper-the-thing)
      ("q" . anzu-query-replace)
      ("<C-SPC>" . modi/disable-rbm-deactivate-mark))))
 
