@@ -9,7 +9,7 @@
       (linum-mode 0)
       (switch-to-buffer-other-window "*ag search*")
       (validate-setq ag-highlight-search t)
-      (validate-setq ag-reuse-buffers t))
+      (validate-setq ag-reuse-buffers nil))
     (add-hook 'ag-mode-hook 'setup-ag)
     (add-hook 'ag-mode-hook
               (lambda ()
@@ -21,7 +21,12 @@
   (validate-setq wgrep-auto-save-buffer t))
 
 (use-package wgrep-ag
-  :ensure t
-  :commands (wgrep-ag-setup))
+  :defer t
+  :config
+  (progn
+    (add-hook 'ag-mode-hook #'wgrep-ag-setup)
+    (bind-keys
+     :map wgrep-mode-map
+     ("C-x s" . wgrep-save-all-buffers))))
 
 (provide 'init-ag)

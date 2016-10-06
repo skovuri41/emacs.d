@@ -265,7 +265,7 @@
      ("'" . lispy-quotes)
      ("\"" . lispy-doublequote)
      ("c" . duplicate-current-line-or-region)
-     ("n" . fancy-narrow-region)
+     ("n" . fancy-narrow-to-region)
      ("E" . eval-region)
      ("/" . swiper-the-thing)
      ("q" . anzu-query-replace)
