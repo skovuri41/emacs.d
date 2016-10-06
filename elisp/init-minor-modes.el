@@ -239,6 +239,7 @@
 
 (use-package region-bindings-mode
   :ensure t
+  :after xah-fly-keys
   :config
   (progn
     ;; Do not activate `region-bindings-mode' in Special modes like `dired' and
@@ -265,7 +266,7 @@
      ("\"" . lispy-doublequote)
      ("c" . duplicate-current-line-or-region)
      ("n" . fancy-narrow-region)
-     ("e" . eval-region)
+     ("E" . eval-region)
      ("/" . swiper-the-thing)
      ("q" . anzu-query-replace)
      ("<C-SPC>" . modi/disable-rbm-deactivate-mark))))
