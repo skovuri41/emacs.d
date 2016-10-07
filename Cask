@@ -212,6 +212,8 @@
 (depends-on "osx-trash")
 (depends-on "graphviz-dot-mode")
 (depends-on "region-bindings-mode")
+(depends-on "company-emacs-eclim")
+
 
 
 
