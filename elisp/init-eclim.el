@@ -110,7 +110,6 @@ _pi_: Import Proj            _mt_: Mvn Test
       ("er" eclim-problems-buffer-refresh)
       ("eO" eclim-problems-open-current)
 
-
       ("pj" eclim-project-goto)
       ("pc" eclim-project-create)
       ("pi" eclim-project-import)
@@ -127,13 +126,44 @@ _pi_: Import Proj            _mt_: Mvn Test
       ("pU" eclim-project-unmark-all)
       ("pg" eclim-project-mode-refresh)
       ("pr" eclim-project-rename)
-      ("q" nil "cancel" :color blue))))
+      ("q" nil "cancel" :color blue))
+
+    (require 'cc-mode)
+
+    (bind-keys
+     :map eclim-problems-mode-map
+     ("a" . eclim-problems-show-all)
+     ("e" . eclim-problems-show-errors)
+     ("g" . eclim-problems-buffer-refresh)
+     ("q" . eclim-quit-window)
+     ("w" . eclim-problems-show-warnings)
+     ("f" . eclim-problems-toggle-filefilter)
+     ("c" . eclim-problems-correct)
+     ("RET" . eclim-problems-open-current))
+
+    (bind-keys
+     :map java-mode-map
+     ("C-c C-i" . eclim-java-import-organize)
+     ("C-c p" . eclim-problems)
+     ("C-c C-p" . eclim-problems-correct)
+     ("C-c C-l" . eclim-problems-compilation-buffer)
+     ("C-c C-c" . eclim-run-class)
+     ("C-c C-u" . eclim-maven-lifecycle-phase-run)
+     ("C-c C-c" . eclim-run-class)
+     ("C-c C-r" . eclim-java-refactor-rename-symbol-at-point)
+     ("C-c C-f" . eclim-java-find-references)
+     ("C-c C-d" . eclim-java-show-documentation-for-current-element)
+     ("C-c u" . eclim-maven-run)
+     ("." . java-completing-dot)
+     (":" . java-completing-double-colon))))
 
 (use-package company-emacs-eclim
+  :ensure t
   :functions company-emacs-eclim-setup
   :config (company-emacs-eclim-setup))
 
 (use-package java-imports
+  :ensure t
   :config
   ;; Elasticsearch's import style
   (setq java-imports-find-block-function 'java-imports-find-place-sorted-block))
