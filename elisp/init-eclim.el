@@ -129,7 +129,10 @@ _pi_: Import Proj            _mt_: Mvn Test
       ("q" nil "cancel" :color blue))
 
     (require 'cc-mode)
-
+    (add-hook 'java-mode-hook
+              (lambda ()
+                (setq c-basic-offset 4))
+              t)
     (bind-keys
      :map eclim-problems-mode-map
      ("a" . eclim-problems-show-all)
@@ -153,8 +156,9 @@ _pi_: Import Proj            _mt_: Mvn Test
      ("C-c C-r" . eclim-java-refactor-rename-symbol-at-point)
      ("C-c C-f" . eclim-java-find-references)
      ("C-c C-d" . eclim-java-show-documentation-for-current-element)
-     ("C-c u" . eclim-maven-run)
+     ("C-c m" . java-maven-clean-install)
      ("." . java-completing-dot)
+     ("M-." . eclim-java-find-declaration)
      (":" . java-completing-double-colon))))
 
 (use-package company-emacs-eclim
