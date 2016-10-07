@@ -125,7 +125,7 @@
                                            company-files
                                            ))))
     (add-hook 'java-mode-hook
-              '(lambda () (setup-company-mode '(company-eclim
+              '(lambda () (setup-company-mode '(company-emacs-eclim
                                            (company-dabbrev-code
                                             company-gtags
                                             company-etags

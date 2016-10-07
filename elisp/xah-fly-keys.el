@@ -1923,7 +1923,7 @@ If `universal-argument' is called first, do switch frame."
    ("g" . counsel-ag-projectile)
    ("o" . projectile-find-other-file)
    ("h" . hydra-projectile/body)
-   ("p" . helm-projectile-switch-project)
+   ("p" . projectile-switch-open-project)
    ("r" . projectile-run-shell-command-in-root)))
 
 (xah-fly-map-keys
