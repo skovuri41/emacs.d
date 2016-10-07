@@ -117,7 +117,26 @@
              (goto-char (match-beginning 0))))
         (user-error
          "Not completing files currently")))
-    (define-key ivy-minibuffer-map (kbd "C-:") 'ivy-dired))
+    (define-key ivy-minibuffer-map (kbd "C-:") 'ivy-dired)
+
+    (defun ivy-switch-project ()
+      (interactive)
+      (ivy-read
+       "Switch to project: "
+       (if (projectile-project-p)
+           (cons (abbreviate-file-name (projectile-project-root))
+                 (projectile-relevant-known-projects))
+         projectile-known-projects)
+       :action #'projectile-switch-project-by-name))
+
+    (ivy-set-actions
+     'ivy-switch-project
+     '(("d" dired "Open Dired in project's directory")
+       ("v" counsel-projectile "Open project root in vc-dir or magit")
+       ("c" projectile-compile-project "Compile project")
+       ("r" projectile-remove-known-project "Remove project(s)")))
+
+    )
   :init
   (progn
     (ivy-mode 1)))

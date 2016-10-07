@@ -2,6 +2,39 @@
   :ensure t
   :config
   (progn
+
+    (defhydra hydra-calendar
+      (:color pink
+              :hint nil
+              :columns 4
+              :body-pre (calendar)
+              )
+      "
+ ^Calendar^     ^Journal^   ^ ^           ^Quit^
+  _._: today    _n_ext      _e_: edit     _b_: journal
+  _?_: date     _p_revious  _C-e_: view   _q_: quit
+  ^ ^           _N_ew
+"
+      ("." calendar-goto-today)
+      ("?" calendar-goto-date)
+      ("n" org-journal-next-entry)
+      ("p" org-journal-previous-entry)
+      ("e" org-journal-read-entry :color blue)
+      ("C-e" org-journal-display-entry)
+      ("N" org-journal-new-date-entry)
+      ("b" hydra-journal/body :color blue :exit-function (calendar-exit))
+      ("q" nil "quit" :color blue :exit-function (calendar-exit)))
+
+
+    (defhydra hydra-journal (:color pink :hint nil :columns 4)
+      "
+Journal
+"
+      ("n" org-journal-new-entry "new" :color blue)
+      ("/" org-journal-search-forever "search" :color blue)
+      ("c" hydra-calendar/body "calendar" :color blue)
+      ("q" nil "quit" :color blue))
+
     ;; hydra zoom
     (defhydra hydra-zoom (global-map "<f5>")
       "zoom"
@@ -431,6 +464,41 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("j" next-error "next" :bind nil)
       ("k" previous-error "previous" :bind nil)
       ("l" flycheck-list-errors "list-errors" :exit t))
+
+    (defhydra hydra-outline
+      (:hint nil :body-pre (outline-minor-mode 1))
+      "
+Outline
+
+   ^Navigate^     ^Show/Hide^                            ^Manipulate^
+_c_: up      _C-c_: hide subtree  _C-S-c_: hide all   _M-r_: demote
+_t_: next    _C-t_: show entry    _C-S-t_: show child _M-c_: promote
+_s_: prev    _C-s_: hide entry    _C-S-s_: hide child _M-t_: move down
+_r_: next    _C-r_: show subtree  _C-S-r_: show all   _M-s_: move up
+_b_: bwd
+_f_: fwd
+"
+      ("c" outline-up-heading)
+      ("t" outline-next-visible-heading)
+      ("s" outline-previous-visible-heading)
+      ("r" outline-next-heading)
+      ("b" outline-backward-same-level)
+      ("f" outline-forward-same-level)
+      ("C-c" outline-hide-subtree)
+      ("C-t" outline-show-entry)
+      ("C-s" outline-hide-entry)
+      ("C-r" outline-show-subtree)
+      ("C-S-c" outline-hide-body)
+      ("C-S-t" outline-show-children)
+      ("C-S-s" outline-hide-sublevels)
+      ("C-S-r" outline-show-all)
+      ("M-r" outline-demote)
+      ("M-c" outline-promote)
+      ("M-t" outline-move-subtree-down)
+      ("M-s" outline-move-subtree-up)
+      ("i" outline-insert-heading "insert heading" :color blue)
+      ("q" nil "quit" :color blue))
+
 
     ))
 

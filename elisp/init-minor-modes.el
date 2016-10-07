@@ -236,10 +236,10 @@
   :ensure t
   :config (setq graphviz-dot-indent-width 4))
 
-
 (use-package region-bindings-mode
   :ensure t
   :after xah-fly-keys
+  :disabled t
   :config
   (progn
     ;; Do not activate `region-bindings-mode' in Special modes like `dired' and
@@ -270,6 +270,32 @@
      ("/" . swiper-the-thing)
      ("q" . anzu-query-replace)
      ("<C-SPC>" . modi/disable-rbm-deactivate-mark))))
+
+(use-package selected
+  :ensure t
+  :after xah-fly-keys
+  :commands selected-minor-mode
+  :init
+  (setq selected-org-mode-map (make-sparse-keymap))
+  (selected-global-mode)
+  :bind (:map selected-keymap
+              ("x" . xah-cut-line-or-region)
+              ("y" . xah-copy-line-or-region)
+              ("(" . lispy-parens)
+              ("{" . lispy-braces)
+              ("'" . lispy-quotes)
+              ("\"" . lispy-doublequote)
+              ("c" . duplicate-current-line-or-region)
+              ("n" . fancy-narrow-to-region)
+              ("E" . eval-region)
+              ("/" . swiper-the-thing)
+              ("q" . anzu-query-replace)
+              ("<C-SPC>" . modi/disable-rbm-deactivate-mark)
+              ("l" . xah-toggle-letter-case)
+              ("w" . count-words-region)
+              ("m" . apply-macro-to-region-lines)
+              :map selected-org-mode-map
+              ("t" . org-table-convert-region)))
 
 
 (provide 'init-minor-modes)
