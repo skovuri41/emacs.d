@@ -213,6 +213,8 @@
 (depends-on "graphviz-dot-mode")
 (depends-on "region-bindings-mode")
 (depends-on "company-emacs-eclim")
+(depends-on "page-break-lines")
+
 
 
 

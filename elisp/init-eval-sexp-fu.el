@@ -1,4 +1,5 @@
 (use-package eval-sexp-fu
+  :disabled t
   :ensure t
   :no-require t
   :config

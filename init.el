@@ -71,6 +71,7 @@
 (require 'init-local)
 (require 'init-xah-fly-keys)
 (require 'init-keybindings)
+(require 'startscreen)
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions
@@ -79,8 +80,7 @@
                 (setq ns-use-srgb-colorspace nil)
                 (load-theme 'spacemacs-dark t)))
   (load-theme 'spacemacs-dark t))
+(setup-startscreen-hook)
 
 (require 'server)
 (or (server-running-p) (server-start))
-
-

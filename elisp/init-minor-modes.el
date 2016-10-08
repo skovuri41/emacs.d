@@ -274,6 +274,7 @@
 (use-package selected
   :ensure t
   :after xah-fly-keys
+  :disabled t
   :commands selected-minor-mode
   :init
   (setq selected-org-mode-map (make-sparse-keymap))
@@ -297,5 +298,10 @@
               :map selected-org-mode-map
               ("t" . org-table-convert-region)))
 
+(use-package page-break-lines
+  :ensure t
+  :diminish page-break-lines-mode
+  :init
+  (global-page-break-lines-mode))
 
 (provide 'init-minor-modes)
