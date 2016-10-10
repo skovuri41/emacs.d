@@ -66,8 +66,8 @@
                                        "xah-fly-keys" )))
       (spaceline-install
        '(*macro-recording
-         ((window-number) :separator " | ")
-         (*xah-fly-keys-state  :separator " | " )
+         ((workspace-number window-number) :separator " | ")
+         (*xah-fly-keys-state :separator " | ")
          (buffer-modified buffer-size buffer-id remote-host)
          major-mode
          ((flycheck-error flycheck-warning flycheck-info) :when active)
@@ -80,7 +80,7 @@
        `(selection-info
          ((*selection-info buffer-encoding-abbrev point-position line-column) :separator " | ")
          (global :when active)
-         buffer-position
+         buffeir-position
          hud))
 
       ;; (setq mode-line-format (default-value 'mode-line-format))

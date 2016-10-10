@@ -1686,8 +1686,6 @@ If `universal-argument' is called first, do switch frame."
 
 ;;;;; keymaps
 
-(defvar xah-fly-swapped-1827-p nil "Boolean. If true, it means keys 1 and 8 are swapped, and 2 and 7 are swapped. See: http://xahlee.info/kbd/best_number_key_layout.html")
-
 (defvar xah-fly-key-map nil "Keybinding for `xah-fly-keys' minor mode.")
 (progn
   (setq xah-fly-key-map (make-sparse-keymap))
@@ -2073,7 +2071,9 @@ If `universal-argument' is called first, do switch frame."
                                                 (xah-fly-insert-mode-activate)
                                                 (hydra-ibuffer-main/body))))
     (define-key xah-fly-key-map (kbd "bm") 'hydra-bm/body)
-    (define-key xah-fly-key-map (kbd "c") 'local-clojure-mode-keymap)
+    (define-key xah-fly-key-map (kbd "cm") 'smex-major-mode-commands)
+    (define-key xah-fly-key-map (kbd "cc") 'local-clojure-mode-keymap)
+    (define-key xah-fly-key-map (kbd "cj") 'hydra-eclim/body)
     (define-key xah-fly-key-map (kbd "e") 'xah-end-of-line-or-block)
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
     (define-key xah-fly-key-map (kbd "dr") 'xah-cut-all-or-region)
