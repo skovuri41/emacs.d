@@ -19,7 +19,7 @@
     (eval-after-load "smartparens" '(diminish 'smartparens-mode))
     (eval-after-load "super-save" '(diminish 'super-save-mode))
     (eval-after-load "flycheck" '(diminish 'flycheck-mode))
-    (eval-after-load "xah-fly-keys" '(diminish 'xah-fly-keys "xf"))
+    (eval-after-load "xah-fly-keys" '(diminish 'xah-fly-keys ))
     (diminish 'auto-revert-mode)
     (eval-after-load "drag-stuff" '(diminish 'drag-stuff-mode))))
 
