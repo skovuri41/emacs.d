@@ -304,4 +304,19 @@
   :init
   (global-page-break-lines-mode))
 
+(use-package log4j-mode
+  :ensure t
+  :init
+  (autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.log\\'" . log4j-mode))
+    (add-hook 'log4j-mode-hook
+              (lambda ()
+                (setq truncate-lines t)
+                (text-scale-set -1)
+                (toggle-read-only t)
+                (buffer-disable-undo)
+                (end-of-buffer)))))
+
 (provide 'init-minor-modes)

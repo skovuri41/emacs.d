@@ -2143,7 +2143,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "wf") 'aw-flip-window)
     (define-key xah-fly-key-map (kbd "wi") 'hydra-winner/body)
     (define-key xah-fly-key-map (kbd "ws") 'ace-swap-window)
-    (define-key xah-fly-key-map (kbd "wp") 'ivy-switch-project-with-eyebrowse)
+    (define-key xah-fly-key-map (kbd "wp") 'hydra-perspective/body)
     (define-key xah-fly-key-map (kbd "wn") 'eyebrowse-switch-to-window-config)
     (define-key xah-fly-key-map (kbd "W") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)

@@ -72,7 +72,7 @@ Project                            Maven
 _pj_: Jump to proj           _mi_: Mvn Clean Install
 _pc_: Create                 _mI_: Mvn Install
 _pi_: Import Proj            _mt_: Mvn Test
-                           ^_mr_: Mvn Run
+_pg_: Refresh Mode           _mr_: Mvn Run
 "
       ("d" eclim-java-show-documentation-for-current-element)
       ("g" eclim-java-generate-getter-and-setter)
@@ -147,8 +147,8 @@ _pi_: Import Proj            _mt_: Mvn Test
     (bind-keys
      :map java-mode-map
      ("C-c C-i" . eclim-java-import-organize)
-     ("C-c p" . eclim-problems)
-     ("C-c C-p" . eclim-problems-correct)
+     ("C-c C-p" . eclim-problems)
+     ;; ("C-c C-p" . eclim-problems-correct)
      ("C-c C-l" . eclim-problems-compilation-buffer)
      ("C-c C-c" . eclim-run-class)
      ("C-c C-u" . eclim-maven-lifecycle-phase-run)
@@ -156,7 +156,7 @@ _pi_: Import Proj            _mt_: Mvn Test
      ("C-c C-r" . eclim-java-refactor-rename-symbol-at-point)
      ("C-c C-f" . eclim-java-find-references)
      ("C-c C-d" . eclim-java-show-documentation-for-current-element)
-     ("C-c m" . java-maven-clean-install)
+     ("C-c C-m" . java-maven-clean-install)
      ("." . java-completing-dot)
      ("M-." . eclim-java-find-declaration)
      (":" . java-completing-double-colon))))
@@ -165,6 +165,10 @@ _pi_: Import Proj            _mt_: Mvn Test
   :ensure t
   :functions company-emacs-eclim-setup
   :config (company-emacs-eclim-setup))
+
+(use-package eclim-java-run
+  :defer t
+  :init (require 'eclim-java-run))
 
 (use-package java-imports
   :ensure t

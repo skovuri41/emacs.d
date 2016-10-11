@@ -459,6 +459,19 @@ _~_: modified      ^ ^                ^ ^                ^^                     
                (hydra-ibuffer-main/body))) "buffer list" :exit t)
       ("q" nil "quit" :exit t))
 
+    (defhydra hydra-perspective (:color red :columns 2)
+      "Switch Window Config"
+      ("j" eyebrowse-next-window-config "previous view")
+      ("k" eyebrowse-prev-window-config "next view")
+      ("h" eyebrowse-switch-to-window-config-0 "first view")
+      ("l" eyebrowse-last-window-config "last view")
+      ("w" eyebrowse-switch-to-window-config "switch view" :exit t)
+      ("o" ivy-switch-project-with-eyebrowse "open view" :exit t)
+      ("c" eyebrowse-create-window-config "create view" :exit t)
+      ("," eyebrowse-rename-window-config "rename view" :exit t)
+      ("x" eyebrowse-close-window-config "close view" :exit t)
+      ("q" nil "quit" :exit t))
+
     (defhydra hydra-next-error (:color red :columns 2)
       "next-error"
       ("j" next-error "next" :bind nil)

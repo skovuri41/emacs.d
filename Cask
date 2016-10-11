@@ -215,6 +215,8 @@
 (depends-on "company-emacs-eclim")
 (depends-on "page-break-lines")
 (depends-on "eyebrowse")
+(depends-on "log4j-mode")
+
 
 
 
