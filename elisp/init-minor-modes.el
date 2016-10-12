@@ -319,4 +319,9 @@
                 (buffer-disable-undo)
                 (end-of-buffer)))))
 
+(use-package focus
+  :ensure t
+;;  :mode (("\\.el$" . focus-mode))
+  )
+
 (provide 'init-minor-modes)

@@ -1981,7 +1981,7 @@ If `universal-argument' is called first, do switch frame."
       (define-key xah-fly-key-map (kbd "C--") 'text-scale-decrease)
       (define-key xah-fly-key-map (kbd "C-0") (lambda () (interactive) (text-scale-set 0)))))
 
-  (define-key xah-fly-key-map (kbd "M-1") 'xah-pop-local-mark-ring)
+  (define-key xah-fly-key-map (kbd "<f2>") 'xah-pop-local-mark-ring)
   (define-key xah-fly-key-map (kbd "M-2") 'pop-global-mark)
 
   (define-key xah-fly-key-map (kbd "M-RET") 'xah-cycle-hyphen-underscore-space)
