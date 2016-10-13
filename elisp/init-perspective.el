@@ -76,8 +76,9 @@
 
   (setq eyebrowse-mode-line-style 'smart)
   (setq eyebrowse-close-window-config-prompt t)
-  (setq eyebrowse-new-workspace "*startscreen*")
-
+  (validate-setq eyebrowse-new-workspace '(lambda () (progn (jethro/insert-startupify-lists)
+                                                       (switch-to-buffer "*startscreen*"))))
+  ;; (validate-setq eyebrowse-new-workspace "*startscreen*")
   (setq eyebrowse-keymap-prefix (kbd "C-c w"))
   (setq eyebrowse-wrap-around t)
 

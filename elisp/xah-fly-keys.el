@@ -1921,7 +1921,7 @@ If `universal-argument' is called first, do switch frame."
    ("g" . counsel-ag-projectile)
    ("o" . projectile-find-other-file)
    ("h" . hydra-projectile/body)
-   ("p" . projectile-switch-open-project)
+   ("p" . projectile-switch-project)
    ("l" . magit-list-repositories)
    ("r" . projectile-run-shell-command-in-root)))
 

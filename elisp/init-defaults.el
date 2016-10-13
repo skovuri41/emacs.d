@@ -118,6 +118,7 @@
    recentf-max-menu-items 15
    recentf-exclude (list "/\\.git/.*\\'"     ; Git contents
                          "/elpa/.*\\'"       ; Package files
+                         "company-statistics-cache.el"
                          ))
   ;; (run-with-idle-timer (* 5 60) t 'recentf-save-list)
   (run-with-idle-timer 60 t '(lambda ()
