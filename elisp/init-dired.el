@@ -1,5 +1,4 @@
 (use-package dired
-  :defer t
   :init
   (setq dired-auto-revert-buffer t)
   (setq dired-no-confirm
@@ -243,9 +242,6 @@
     ;; allow changing of file permissions
     (setq wdired-allow-to-change-permissions t))
 
-  (use-package dired-narrow
-    :ensure t)
-
   (use-package dired+
     :ensure t
     :defer 1
@@ -283,15 +279,21 @@
 
       (diredp-toggle-find-file-reuse-dir 1)
       (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
-      (define-key dired-mode-map (kbd "/") 'dired-narrow-fuzzy)
       (define-key dired-mode-map (kbd "f") 'projectile-find-file-dwim)
       (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
       (define-key dired-mode-map (kbd "l") 'diredp-find-file-reuse-dir-buffer)))
 
+  (use-package dired-narrow
+    :ensure t
+    :config
+    (bind-keys :map dired-mode-map
+               ("/" . dired-narrow-fuzzy)))
+
   (use-package dired-quick-sort
     :ensure t
-    :bind (:map dired-mode-map
-                ("s" . hydra-dired-quick-sort/body)))
+    :config
+    (bind-keys :map dired-mode-map
+               ("s" . hydra-dired-quick-sort/body)))
 
   (use-package dired-subtree
     :ensure t
