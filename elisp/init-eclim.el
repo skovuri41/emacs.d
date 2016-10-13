@@ -35,13 +35,14 @@
   (eclim-maven-run "install"))
 
 (use-package eclim
-  :defer t
   :ensure t
   :diminish eclim-mode
   :functions (eclim--project-dir eclim--project-name)
   :commands (eclim-mode global-eclim-mode)
   :init
   (add-hook 'java-mode-hook 'eclim-mode)
+  (eval-when-compile
+    (require 'eclimd))
   (setq eclim-eclipse-dirs '("~/eclipse")
         eclim-executable "~/eclipse/eclim")
   :config
