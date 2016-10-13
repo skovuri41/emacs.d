@@ -1,4 +1,3 @@
-;;; masteringemacs.org fixing mark commands tmm
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region
    Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
@@ -549,41 +548,27 @@ the sentence end."
 (add-hook 'compilation-filter-hook
           #'endless/colorize-compilation)
 
-(defun duplicate-region (&optional num start end)
-  "Duplicates the region bounded by START and END NUM times.
-If no START and END is provided, the current region-beginning and
-region-end is used."
-  (interactive "p")
+(defun tidy ()
+  "Ident, untabify and unwhitespacify current buffer, or region if active."
+  (interactive)
+  (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+        (end (if (region-active-p) (region-end) (point-max))))
+    (indent-region beg end)
+    (whitespace-cleanup)
+    (untabify beg (if (< end (point-max)) end (point-max)))))
+
+(defun duplicate-thing (comment)
+  "Duplicates the current line, or the region if active. If an argument is
+given, the duplicated region will be commented out."
+  (interactive "P")
   (save-excursion
-    (let* ((start (or start (region-beginning)))
-           (end (or end (region-end)))
-           (region (buffer-substring start end)))
+    (let ((start (if (region-active-p) (region-beginning) (point-at-bol)))
+          (end   (if (region-active-p) (region-end) (point-at-eol))))
       (goto-char end)
-      (dotimes (i num)
-        (insert region)))))
-
-(defun duplicate-current-line (&optional num)
-  "Duplicate the current line NUM times."
-  (interactive "p")
-  (if (bound-and-true-p paredit-mode)
-      (paredit-duplicate-current-line)
-    (save-excursion
-      (when (eq (point-at-eol) (point-max))
-        (goto-char (point-max))
-        (newline)
-        (forward-char -1))
-      (duplicate-region num (point-at-bol) (1+ (point-at-eol))))))
-
-(defun duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated."
-  (interactive "p")
-  (if (region-active-p)
-      (let ((beg (region-beginning))
-            (end (region-end)))
-        (duplicate-region arg beg end))
-    (duplicate-current-line arg)))
-
+      (unless (region-active-p)
+        (newline))
+      (insert (buffer-substring start end))
+      (when comment (comment-region start end)))))
 
 (defun my/package-upgrade-packages (&optional no-fetch)
   "Upgrade all packages.  No questions asked.
@@ -599,8 +584,6 @@ not prevent downloading the actual packages (obviously)."
       (package-list-packages no-fetch)
       (package-menu-mark-upgrades)
       (package-menu-execute 'noquery))))
-
-
 
 (defun iterm-goto-filedir-or-home ()
   "Go to present working dir and focus iterm"
@@ -622,5 +605,21 @@ not prevent downloading the actual packages (obviously)."
   (do-applescript
    " do shell script \"open -a iTerm\"\n"
    ))
+
+(defun toggle-shell ()
+  "Jumps to eshell or back."
+  (interactive)
+  (if (string= (buffer-name) "*shell*")
+      (switch-to-prev-buffer)
+    (shell)))
+
+(defun clear-comint ()
+  "Runs `comint-truncate-buffer' with the
+`comint-buffer-maximum-size' set to zero."
+  (interactive)
+  (let ((comint-buffer-maximum-size 0))
+    (comint-truncate-buffer)))
+
+(add-hook 'comint-mode-hook (lambda () (local-set-key (kbd "C-l") 'clear-comint)))
 
 (provide 'init-defuns)

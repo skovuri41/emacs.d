@@ -136,6 +136,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'sl 'sort-lines)
 (defalias 'rr 'reverse-region)
 (defalias 'rs 'replace-string)
+(defalias 'dup 'duplicate-thing)
 
 (defalias 'g 'grep)
 (defalias 'gf 'grep-find)
@@ -149,6 +150,12 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'lcd 'list-colors-display)
 (defalias 'cc 'calc)
 (defalias 'cal 'calendar)
+(defalias 'fold 'hydra-folding/body)
+
+;; Macro
+(defalias 'sm 'start-kbd-macro)
+(defalias 'em 'end-kbd-macro)
+(defalias 'lm 'call-last-kbd-macro)
 
 ;; ; elisp
 (defalias 'eb 'eval-buffer)
@@ -169,6 +176,8 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'gwsm 'global-whitespace-mode)
 (defalias 'vlm 'visual-line-mode)
 (defalias 'glm 'global-linum-mode)
+(defalias 'fm 'focus-mode)
+
 
 (defalias 'dv 'describe-variable)
 (defalias 'df 'describe-function)

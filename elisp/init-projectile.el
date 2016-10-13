@@ -18,6 +18,9 @@
           (expand-file-name "cache/projectile.cache" user-emacs-directory))
     (setq projectile-completion-system 'ivy)
     (setq projectile-indexing-method 'alien)
+    (setq projectile-switch-project-action 'projectile-dired)
+    (defadvice projectile-dired (after xah-wrapper-dired-commands activate)
+      (xah-wrapper-dired-commands))
 
     (def-projectile-commander-method ?s
       "Open a *shell* buffer for the project."
@@ -70,8 +73,7 @@
             "_darcs"
             ".tox"
             ".svn"
-            "build")
-          )
+            "build"))
     (add-to-list 'projectile-globally-ignored-files ".DS_Store")
     (add-to-list 'projectile-globally-ignored-files "*.pyc")
     (add-to-list 'projectile-globally-ignored-files "*.python-version")

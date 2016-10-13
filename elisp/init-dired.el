@@ -206,6 +206,9 @@
   (defadvice diredp-find-file-reuse-dir-buffer (after xah-wrapper-dired-commands activate)
     (xah-wrapper-dired-commands))
 
+  (defadvice projectile-find-file-dwim (after xah-wrapper-dired-commands activate)
+    (xah-wrapper-dired-commands))
+
   ;;* bind and hook
   (define-key dired-mode-map (kbd "e") 'my/dired-diff)
   (define-key dired-mode-map (kbd "E") 'dired-toggle-read-only)
@@ -240,7 +243,8 @@
     ;; allow changing of file permissions
     (setq wdired-allow-to-change-permissions t))
 
-
+  (use-package dired-narrow
+    :ensure t)
 
   (use-package dired+
     :ensure t
@@ -279,6 +283,8 @@
 
       (diredp-toggle-find-file-reuse-dir 1)
       (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
+      (define-key dired-mode-map (kbd "/") 'dired-narrow-fuzzy)
+      (define-key dired-mode-map (kbd "f") 'projectile-find-file-dwim)
       (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
       (define-key dired-mode-map (kbd "l") 'diredp-find-file-reuse-dir-buffer)))
 
@@ -286,11 +292,6 @@
     :ensure t
     :bind (:map dired-mode-map
                 ("s" . hydra-dired-quick-sort/body)))
-
-  (use-package dired-narrow
-    :ensure t
-    :bind (:map dired-mode-map
-                ("/" . dired-narrow-fuzzy)))
 
   (use-package dired-subtree
     :ensure t
@@ -337,6 +338,7 @@
 
 (use-package ranger
   :ensure t
+  :disabled t
   :init
   (setq ranger-cleanup-on-disable t
         ranger-cleanup-eagerly t
@@ -348,7 +350,7 @@
   ;; section width ratios
   (setq ranger-width-parents 0.25)
   (setq ranger-max-parent-width 0.25)
-  (setq ranger-width-preview 0.50)
+  (setq ranger-width-preview 0.5)
   (setq ranger-override-dired nil)
   (setq ranger-preview-file t)
   (setq ranger-max-preview-size 10)
@@ -360,15 +362,11 @@
   (defun my/ranger-hooks ()
     "Hooks to run in ranger buffers."
     (interactive)
-    (linum-mode -1)
-    )
+    (linum-mode -1))
   (add-hook 'ranger-mode-hook 'my/ranger-hooks)
   (add-hook 'ranger-parent-dir-hook 'my/ranger-hooks)
 
   (setq ranger-preview-header-func (lambda () (interactive)
-                                     (last (s-split "/" (buffer-file-name) t))))
-  ;; :bind ("<f10>" . ranger)
-  :bind (:map ranger-mode-map
-              ("/" . dired-narrow)))
+                                     (last (s-split "/" (buffer-file-name) t)))))
 
 (provide 'init-dired)
