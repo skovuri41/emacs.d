@@ -216,6 +216,7 @@
 (depends-on "page-break-lines")
 (depends-on "eyebrowse")
 (depends-on "log4j-mode")
+(depends-on "logview")
 
 
 

@@ -1,5 +1,11 @@
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
+(defun isearch-exit-other-end ()
+  "Exit isearch, at the opposite end of the string."
+  (interactive)
+  (isearch-exit)
+  (goto-char isearch-other-end))
+(define-key isearch-mode-map [(control return)]
+  #'isearch-exit-other-end)
+
 (global-set-key '[(f1)] 'call-last-kbd-macro)
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)

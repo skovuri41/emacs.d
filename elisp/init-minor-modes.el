@@ -306,6 +306,7 @@
 
 (use-package log4j-mode
   :ensure t
+  :disabled t
   :init
   (autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
   :config
@@ -319,9 +320,21 @@
                 (buffer-disable-undo)
                 (end-of-buffer)))))
 
+(use-package logview
+  :ensure t
+  :mode ("log$" . logview-mode)
+  :init
+  (add-hook
+   'logview-mode-hook
+   (lambda ()
+     (linum-mode -1)
+     (toggle-truncate-lines 1)))
+  :config
+  (setq logview-auto-revert-mode 'auto-revert-tail-mode))
+
 (use-package focus
   :ensure t
-;;  :mode (("\\.el$" . focus-mode))
+  ;;  :mode (("\\.el$" . focus-mode))
   )
 
 (provide 'init-minor-modes)

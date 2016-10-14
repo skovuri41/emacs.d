@@ -1683,7 +1683,6 @@ If `universal-argument' is called first, do switch frame."
    (lambda (pair)
      (define-key kmap-name (kbd (car pair)) (cdr pair)))
    key-cmd-alist))
-
 ;;;;; keymaps
 
 (defvar xah-fly-key-map nil "Keybinding for `xah-fly-keys' minor mode.")
@@ -1972,7 +1971,7 @@ If `universal-argument' is called first, do switch frame."
       ;; (define-key xah-fly-key-map (kbd "C-v") 'yank)
       (define-key xah-fly-key-map (kbd "C-z") 'undo)
       ;; (define-key xah-fly-key-map (kbd "C-o") 'find-file)
-      (define-key xah-fly-key-map (kbd "C-s") 'save-buffer)
+      (define-key xah-fly-key-map (kbd "C-s") 'isearch-forward)
       (define-key xah-fly-key-map (kbd "C-S-s") 'write-file)
       (define-key xah-fly-key-map (kbd "C-S-t") 'xah-open-last-closed)
       (define-key xah-fly-key-map (kbd "C-S-n") 'make-frame-command)
