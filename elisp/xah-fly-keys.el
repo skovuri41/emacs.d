@@ -2007,16 +2007,13 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "<C-f11>") 'xah-previous-emacs-buffer)
   (define-key xah-fly-key-map (kbd "<C-f12>") 'xah-next-emacs-buffer)
 
-  (progn
-    ;; set arrow keys in isearch. left/right is backward/forward, up/down is history. press Return to exit
-    (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
-    (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
-    (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
-    (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
-    (define-key minibuffer-local-isearch-map (kbd "<left>") 'isearch-reverse-exit-minibuffer)
-    (define-key minibuffer-local-isearch-map (kbd "<right>") 'isearch-forward-exit-minibuffer)
-    ;;
-    )
+  ;; (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
+  ;; (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
+  (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
+  (define-key minibuffer-local-isearch-map (kbd "<left>") 'isearch-reverse-exit-minibuffer)
+  (define-key minibuffer-local-isearch-map (kbd "<right>") 'isearch-forward-exit-minibuffer)
+
   (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
