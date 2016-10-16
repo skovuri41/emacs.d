@@ -332,9 +332,4 @@
   :config
   (setq logview-auto-revert-mode 'auto-revert-tail-mode))
 
-(use-package focus
-  :ensure t
-  ;;  :mode (("\\.el$" . focus-mode))
-  )
-
 (provide 'init-minor-modes)
