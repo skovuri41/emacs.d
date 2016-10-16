@@ -1930,7 +1930,7 @@ If `universal-argument' is called first, do switch frame."
    ("ad" . counsel-ag)
    ("ag" . ag)
    ("ap" . counsel-ag-projectile)
-   ("at" . counsel-ag-project-symbol)
+   ("at" . counsel-ag-project-ymbol)
    ("qr" . anzu-query-replace)
    ("qx" . anzu-query-replace-regexp)
    ("qt" . anzu-query-replace-at-cursor-thing)

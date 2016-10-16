@@ -80,7 +80,7 @@
     (use-package company-math
       :init (require #'company-math)
       :after company
-      :defer t
+      :disabled t
       :config
       (progn
         (add-to-list 'company-backends 'company-math-symbols-unicode)

@@ -51,6 +51,7 @@
    x-select-enable-clipboard t))
 
 (when *is-a-mac*
+  (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
   (setq
    ;; for multilingual environments
    default-input-method "MacOSX"

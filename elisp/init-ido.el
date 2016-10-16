@@ -25,9 +25,7 @@
 
 (use-package smex
   :defer t
-  :bind (
-         ;; ("M-x" . smex)
-         ("M-X" . smex-major-mode-commands))
+  :bind (("M-X" . smex-major-mode-commands))
   :config
   (progn
     (smex-initialize)))

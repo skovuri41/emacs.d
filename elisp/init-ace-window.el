@@ -1,6 +1,5 @@
 (use-package ace-window
   :ensure t
-  :bind ("M-p" . ace-window)
   :config
   (progn
     (validate-setq aw-ignore-on t)

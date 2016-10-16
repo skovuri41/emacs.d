@@ -4,13 +4,12 @@
 (use-package swiper
   :ensure t
   :diminish ivy-mode
-  :bind (("C-c C-r" . ivy-resume))
   :init
   (progn
     (setq projectile-completion-system 'ivy)
     (setq swiper-completion-method 'ivy)
     (setq magit-completing-read-function 'ivy-completing-read)
-    (global-set-key (kbd "C-s") 'swiper)
+    (setq ivy-display-function nil)
     (with-eval-after-load "ivy"
       (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
       (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
@@ -18,7 +17,7 @@
       (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
       ;; (key-chord-define ivy-minibuffer-map "kj" 'keyboard-quit)
       )
-    (setq ivy-use-virtual-buffers t
+    (setq ivy-use-virtual-buffers nil
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-initial-inputs-alist nil)
@@ -143,12 +142,6 @@
 
 (use-package counsel
   :ensure t
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-c k" . counsel-ag)
-         ("C-c y" . counsel-yank-pop)
-         ("C-c g" . counsel-git)
-         ("C-x l" . counsel-locate))
   :config
   (progn
 
@@ -201,9 +194,7 @@
                   (projectile-project-root)))))
 
 (use-package counsel-projectile
-  :ensure t
-  :bind (:map projectile-command-map
-              ("p" . counsel-projectile)))
+  :ensure t)
 
 (use-package counsel-osx-app
   :ensure t)
