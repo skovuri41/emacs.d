@@ -60,10 +60,10 @@ Eclim:
   _c_: Java Constructor    _ft_: Find Type
   _F_: Java Format
   _r_: Java Run
-Project                            Maven
-─────────────────────────────────────────────────────────
-_pj_: Jump to proj           _mi_: Mvn Clean Install
-_pc_: Create                 _mI_: Mvn Install
+Project                            Maven                        Eclim
+───────────────────────────────────────────────────────────────────────────────────────────
+_pj_: Jump to proj           _mi_: Mvn Clean Install           _S_: Start Eclim
+_pc_: Create                 _mI_: Mvn Install                 _X_: Stop Eclim
 _pi_: Import Proj            _mt_: Mvn Test
 _pg_: Mode Refresh           _mr_: Mvn Run
 _pr_: Proj Refresh
@@ -123,6 +123,9 @@ _pm_: Proj Mode
     ("pg" eclim-project-mode-refresh)
     ("pR" eclim-project-rename)
     ("pr" eclim-project-refresh)
+
+    ("S" start-eclimd)
+    ("X" stop-eclimd)
     ("q" nil "cancel" :color blue)))
 
 (use-package company-emacs-eclim

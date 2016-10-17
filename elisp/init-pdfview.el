@@ -1,4 +1,5 @@
 (use-package pdf-tools
+  :if (eq system-type 'darwin)
   :ensure t
   :init (pdf-tools-install)
   :bind (:map pdf-view-mode-map
@@ -75,7 +76,7 @@
     (define-key pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)
     (define-key pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
     (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp)
-    (define-key pdf-outline-buffer-mode-map  (kbd "k") 'previous-line)
+    (define-key pdf-outline-buffer-mode-map (kbd "k") 'previous-line)
     (define-key pdf-outline-buffer-mode-map (kbd "j") 'next-line)
     (define-key pdf-annot-list-mode-map (kbd "k") 'previous-line)
     (define-key pdf-annot-list-mode-map (kbd "j") 'next-line)
@@ -105,7 +106,7 @@
       ("aa" pdf-annot-attachment-dired)
       ("am" pdf-annot-add-markup-annotation)
       ("at" pdf-annot-add-text-annotation)
-      ("y"  pdf-view-kill-ring-save)
+      ("y" pdf-view-kill-ring-save)
       ("+" pdf-view-enlarge :color red)
       ("-" pdf-view-shrink :color red)
       ("0" pdf-view-scale-reset)
@@ -132,8 +133,8 @@
       ("h" image-backward-hscroll :color red))))
 
 (use-package org-pdfview
+  :if (eq system-type 'darwin)
   :ensure t
-  :after pdf-tools
-  )
+  :after pdf-tools)
 
 (provide 'init-pdfview)
