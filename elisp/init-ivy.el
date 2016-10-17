@@ -15,16 +15,11 @@
       (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
       (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
       (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
-      ;; (key-chord-define ivy-minibuffer-map "kj" 'keyboard-quit)
       )
-    (setq ivy-use-virtual-buffers nil
+    (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-initial-inputs-alist nil)
-    ;; (setq ivy-re-builders-alist
-    ;;       '((t . ivy--regex-fuzzy)))
-    ;; (setq ivy-re-builders-alist
-    ;;       '((t . ivy--regex-plus)))
     (setq ivy-re-builders-alist
           '((read-file-name-internal . ivy--regex-fuzzy)
             (counsel-find-file . ivy--regex-fuzzy)

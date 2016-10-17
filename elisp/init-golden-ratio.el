@@ -10,7 +10,8 @@
                   cider-popup-buffer-quit-function
                   ace-swap-window
                   aw-flip-window
-                  ace-window)))
+                  ace-window
+                  pdf-outline-select-pdf-window)))
   (setq golden-ratio-recenter t)
   (golden-ratio-mode 1))
 
