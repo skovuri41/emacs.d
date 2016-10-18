@@ -4,18 +4,23 @@
 (use-package swiper
   :ensure t
   :diminish ivy-mode
-  :init
+  :config
   (progn
-    (setq projectile-completion-system 'ivy)
-    (setq swiper-completion-method 'ivy)
-    (setq magit-completing-read-function 'ivy-completing-read)
+    (define-key swiper-map (kbd "C-w")
+      (lambda () (interactive) (insert (format "\\<%s\\>" (with-ivy-window
+                                                       (thing-at-point 'symbol))))))
+    (defun swiper-the-thing ()
+      (interactive)
+      (swiper (if (region-active-p)
+                  (buffer-substring-no-properties (region-beginning) (region-end))
+                (thing-at-point 'symbol))))))
+
+(use-package ivy
+  :ensure swiper
+  :diminish ivy-mode
+  :config
+  (progn
     (setq ivy-display-function nil)
-    (with-eval-after-load "ivy"
-      (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
-      (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
-      (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
-      (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
-      )
     (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
@@ -26,29 +31,12 @@
             (ivy-switch-buffer . ivy--regex-fuzzy)
             (counsel-M-x . ivy--regex-fuzzy)
             (t . ivy--regex-plus)))
-    ;; (advice-add 'swiper :before 'avy-push-mark)
-    ;; (ivy-mode 1)
-    )
-  :config
-  (progn
-    (define-key swiper-map (kbd "C-.")
-      (lambda () (interactive) (insert (format "\\<%s\\>" (with-ivy-window
-                                                       (thing-at-point 'symbol))))))
-    (defun swiper-the-thing ()
-      (interactive)
-      (swiper (if (region-active-p)
-                  (buffer-substring-no-properties (region-beginning) (region-end))
-                (thing-at-point 'symbol))))
-    ))
-
-(use-package ivy
-  :ensure swiper
-  :diminish ivy-mode
-  :config
-  (progn
+    (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-insert-current)
+    (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-backward-kill-word)
+    (define-key ivy-minibuffer-map [escape] (kbd "C-g"))
+    (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
     ;; partial complete without exiting
-    (define-key ivy-minibuffer-map
-      (kbd "TAB") #'ivy-partial)
+    (define-key ivy-minibuffer-map (kbd "TAB") #'ivy-partial)
     ;;advise swiper to recenter on exit
     (defun bjm-swiper-recenter (&rest args)
       "recenter display after swiper"
@@ -189,6 +177,10 @@
                   (projectile-project-root)))))
 
 (use-package counsel-projectile
+  :after projectile
+  :ensure t)
+
+(use-package ivy-hydra
   :ensure t)
 
 (use-package counsel-osx-app

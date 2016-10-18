@@ -193,7 +193,6 @@
 
 ;; savehist
 (use-package savehist
-  :ensure nil
   :config
   (progn
     (setq savehist-additional-variables

@@ -1742,29 +1742,42 @@ If `universal-argument' is called first, do switch frame."
 (xah-fly-map-keys
  (define-prefix-command 'xah-help-keymap)
  '(
+   ;;    `C-h B'      `describe-buffer'
+   ;;    `C-h c'      `describe-command'
+   ;;    `C-h o'      `describe-option'
+   ;;    `C-h C-c'    `describe-key-briefly'
+   ;;    `C-h C-o'    `describe-option-of-type'
+   ;;    `C-h M-c'    `describe-copying'
+   ;;    `C-h M-f'    `describe-file'
+   ;;    `C-h M-k'    `describe-keymap'
+   ;;    `C-h M-l'    `find-function-on-key'
    (";" . Info-goto-emacs-command-node)
+   ("." . find-function-on-key)
    ("a" . apropos-command)
    ("b" . counsel-descbinds)
+   ("B" . describe-buffer)
    ("c" . describe-char)
    ("d" . apropos-documentation)
    ("e" . view-echo-area-messages)
-   ("h" . describe-face)
-   ("g" . info-lookup-symbol)
    ("f" . counsel-describe-function)
+   ("F" . describe-file)
+   ("g" . info-lookup-symbol)
+   ("h" . describe-face)
    ("i" . info)
    ("j" . man)
-   ("t" . describe-input-method)
+   ("k" . describe-key)
    ("K" . Info-goto-emacs-key-command-node)
    ("l" . view-lossage)
    ("m" . xah-describe-major-mode)
-   ("v" . counsel-describe-variable)
+   ("M" . describe-keymap)
+   ("n" . apropos-value)
    ("o" . describe-language-environment)
    ("p" . finder-by-keyword)
    ("r" . apropos-variable)
    ("s" . describe-syntax)
-   ("k" . describe-key)
+   ("t" . describe-input-thod)
    ("u" . elisp-index-search)
-   ("n" . apropos-value)
+   ("v" . counsel-describe-variable)
    ("z" . describe-coding-system)))
 
 (xah-fly-map-keys

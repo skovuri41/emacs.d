@@ -23,6 +23,7 @@
     (key-chord-define-global "dd" 'xah-delete-current-line)
     (key-chord-define-global "uu" 'undo-tree-undo)
     (key-chord-define minibuffer-local-map "kj" (kbd "C-g"))
+    (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
     (key-chord-define company-active-map "kj" 'company-abort)
     ))
 

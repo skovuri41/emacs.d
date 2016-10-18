@@ -21,6 +21,11 @@
 (define-key help-mode-map (kbd "C-M-i") nil)
 (define-key help-mode-map "c" 'counsel-ace-link)
 
+(use-package help-fns+
+  :ensure t
+  :init
+  (autoload 'describe-keymap "help-fns+"))
+
 (use-package know-your-http-well :ensure t :defer t)
 
 (provide 'init-help)
