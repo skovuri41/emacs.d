@@ -102,7 +102,8 @@
   :ensure t
   :config
   (progn
-    (define-sequential-command my-quit-dwim quit-window popwin:close-popup-window)))
+    (define-sequential-command my-quit-dwim quit-window
+      popwin:close-popup-window)))
 
 (use-package bm
   :ensure t
@@ -319,6 +320,13 @@
                 (toggle-read-only t)
                 (buffer-disable-undo)
                 (end-of-buffer)))))
+
+(use-package fill-column-indicator
+  :ensure t
+  :commands fci-mode
+  :config
+  (fci-mode)
+  (setq fci-rule-column 79))
 
 (use-package logview
   :ensure t

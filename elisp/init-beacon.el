@@ -11,6 +11,7 @@
      beacon-blink-when-window-changes t
      beacon-blink-when-window-scrolls nil
      beacon-blink-when-focused t
+     beacon-color "deep sky blue"
      beacon-blink-duration 0.6)
     (beacon-mode 1)))
 
