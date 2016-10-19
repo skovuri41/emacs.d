@@ -28,15 +28,13 @@
 
 (use-package boxquote
   :ensure t
-  :defer t
   :config
   (setq-default  boxquote-bottom-corner "╰"      ; U+2570
                  boxquote-side          "│ "     ; U+2572 + space
                  boxquote-top-and-tail  "────"   ; U+2500 (×4)
                  boxquote-top-corner    "╭")     ; U+256F
-  (when (package-installed-p 'hydra)
-    (defhydra hydra-boxquote (:color blue :hint nil)
-      "
+  (defhydra hydra-boxquote (:color blue :hint nil)
+    "
                                                                     ╭──────────┐
   Text           External           Apropos         Do              │ Boxquote │
 ╭───────────────────────────────────────────────────────────────────┴──────────╯
@@ -48,27 +46,27 @@
   [_q_] boxquote      [_Y_] yanked     ^ ^                      [_x_] kill
 --------------------------------------------------------------------------------
        "
-      ("<esc>" nil "quit")
-      ("x" boxquote-kill)
-      ("Y" boxquote-yank)
-      ("e" boxquote-text)
-      ("u" boxquote-unbox)
-      ("d" boxquote-defun)
-      ("t" boxquote-title)
-      ("r" boxquote-region)
-      ("a" boxquote-buffer)
-      ("q" boxquote-boxquote)
-      ("W" boxquote-where-is)
-      ("p" boxquote-paragraph)
-      ("f" boxquote-insert-file)
-      ("K" boxquote-describe-key)
-      ("s" boxquote-shell-command)
-      ("b" boxquote-insert-buffer)
-      ("y" boxquote-kill-ring-save)
-      ("w" boxquote-fill-paragraph)
-      ("F" boxquote-describe-function)
-      ("V" boxquote-describe-variable)
-      ("n" boxquote-narrow-to-boxquote)
-      ("c" boxquote-narrow-to-boxquote-content))))
+    ("<esc>" nil "quit")
+    ("x" boxquote-kill)
+    ("Y" boxquote-yank)
+    ("e" boxquote-text)
+    ("u" boxquote-unbox)
+    ("d" boxquote-defun)
+    ("t" boxquote-title)
+    ("r" boxquote-region)
+    ("a" boxquote-buffer)
+    ("q" boxquote-boxquote)
+    ("W" boxquote-where-is)
+    ("p" boxquote-paragraph)
+    ("f" boxquote-insert-file)
+    ("K" boxquote-describe-key)
+    ("s" boxquote-shell-command)
+    ("b" boxquote-insert-buffer)
+    ("y" boxquote-kill-ring-save)
+    ("w" boxquote-fill-paragraph)
+    ("F" boxquote-describe-function)
+    ("V" boxquote-describe-variable)
+    ("n" boxquote-narrow-to-boxquote)
+    ("c" boxquote-narrow-to-boxquote-content)))
 
 (provide 'init-utils)
