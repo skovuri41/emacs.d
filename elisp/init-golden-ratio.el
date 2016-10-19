@@ -11,6 +11,7 @@
                   ace-swap-window
                   aw-flip-window
                   ace-window
+                  pdf-outline-follow-link
                   pdf-outline-select-pdf-window)))
   (setq golden-ratio-recenter t)
   (golden-ratio-mode 1))

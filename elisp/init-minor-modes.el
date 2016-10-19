@@ -47,7 +47,7 @@
   (setq visible-mark-faces `(face2 visible-mark-face2))
   (global-visible-mark-mode 1))
 
-(use-package bug-hunter                            ; Search init file for bugs
+(use-package bug-hunter    ; Search init file for bugs
   :ensure t)
 
 (use-package shrink-whitespace

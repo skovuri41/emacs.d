@@ -2,11 +2,13 @@
 
 (when *is-a-mac*
   ;; (set-frame-font "Fira Code")
+  ;; (setq
+  ;;  default-frame-alist '((font . "Fira Code-15")))
   (setq
-   ;; font
    default-frame-alist '((font . "Fira Code-15")
-                         (width . 120)    ;character
-                         (height . 55)))  ; lines
+                         (width . 80)  ;character
+                         (height . 24)))
+  ;; (modify-all-frames-parameters '((fullscreen . maximized)))
   )
 
 ;; (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")

@@ -28,6 +28,7 @@
   (with-current-buffer (get-buffer-create "*startscreen*")
     (let ((buffer-read-only nil)
           (list-separator "\n\n"))
+      (erase-buffer)
       (goto-char (point-max))
       (page-break-lines-mode)
 

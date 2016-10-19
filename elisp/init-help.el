@@ -26,6 +26,10 @@
   :init
   (autoload 'describe-keymap "help-fns+"))
 
+(use-package help+ :ensure t)
+
+(use-package help-mode+ :ensure t)
+
 (use-package know-your-http-well :ensure t :defer t)
 
 (provide 'init-help)

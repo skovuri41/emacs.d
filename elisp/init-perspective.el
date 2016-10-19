@@ -19,6 +19,11 @@
     (eyebrowse-rename-window-config (eyebrowse--get 'current-slot) (projectile-default-project-name p))
     (projectile-switch-project-by-name p))
 
+  (defun my-eyebrowse-rename-1 ()
+    (interactive)
+    ;; (eyebrowse-create-window-config)
+    (eyebrowse-rename-window-config (eyebrowse--get 'current-slot) (buffer-name)))
+
   (defun my-eyebrowse-current-tag ()
     (interactive)
     (let ((current-slot (eyebrowse--get 'current-slot))

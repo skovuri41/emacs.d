@@ -8,29 +8,28 @@
 
 (global-set-key '[(f1)] 'call-last-kbd-macro)
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
-(define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
+(global-set-key [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key "\C-ca" 'org-agenda)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-(define-key global-map (kbd "C-c c") 'org-capture)
-(define-key global-map "\C-cl" 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key "\C-cl" 'org-store-link)
 (global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
 (global-set-key (kbd "M-k") 'my/kill-sentence-dwim)
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "M-TAB") 'yas-expand)
+
 (define-key outline-minor-mode-map (kbd "TAB") 'org-cycle)
 (define-key outline-mode-map "\t" 'org-cycle)
 (global-set-key (kbd "C-.") 'company-try-hard)
-;; (global-set-key (kbd "M-g") 'company-try-hard)
+(global-set-key (kbd "C-<return>") 'company-complete-common-or-cycle)
+
 (bind-key "C-x p" 'my-pop-to-mark-command)
 (global-set-key (kbd "C-;") 'iedit-mode)
 
@@ -44,10 +43,10 @@
                 (lambda ()
                   (interactive)
                   (ignore-errors (previous-line 5))))
+
 (define-key occur-mode-map "k" 'previous-line)
 (define-key occur-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
 (define-key occur-mode-map (kbd "C-c C-c") 'wgrep-finish-edit)
-
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
 (define-key Buffer-menu-mode-map "k" 'previous-line)
@@ -131,6 +130,11 @@ _o_rg e_l_isp _e_macs _h_yperspec"
       (setq mac-option-modifier nil)
       (setq mac-command-modifier 'meta))))
 
+;; (setq mac-option-key-is-meta nil)
+;; (setq mac-command-key-is-meta t)
+;; (setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier 'alt)
+
 ;;;;; aliases
 
 ;; make frequently used commands short
@@ -157,6 +161,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'cc 'calc)
 (defalias 'cal 'calendar)
 (defalias 'fold 'hydra-folding/body)
+(defalias 'of 'other-frame)
 
 ;; Macro
 (defalias 'sm 'start-kbd-macro)
@@ -183,11 +188,15 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'vlm 'visual-line-mode)
 (defalias 'glm 'global-linum-mode)
 (defalias 'fm 'focus-mode)
-
+(defalias 'xi 'xah-fly-insert-mode-activate)
+(defalias 'xc 'xah-fly-command-mode-activate)
 
 (defalias 'dv 'describe-variable)
 (defalias 'df 'describe-function)
 (defalias 'dk 'describe-key)
+(defalias 'db 'describe-buffer)
+(defalias 'dm 'describe-keymap)
+
 (defalias 'db 'counsel-descbinds)
 (defalias 'fnd 'find-name-dired)
 (defalias 'ne 'next-error)
@@ -196,7 +205,6 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'pff 'projectile-find-file)
 (defalias 'pfd 'projectile-find-dir)
 (defalias 'psp 'projectile-switch-project)
-
 
 
 (provide 'init-keybindings)

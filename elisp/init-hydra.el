@@ -461,14 +461,15 @@ _~_: modified      ^ ^                ^ ^                ^^                     
 
     (defhydra hydra-perspective (:color red :columns 2)
       "Switch Window Config"
-      ("j" eyebrowse-next-window-config "previous view")
-      ("k" eyebrowse-prev-window-config "next view")
+      ("j" eyebrowse-next-window-config "next view")
+      ("k" eyebrowse-prev-window-config "prev view")
       ("h" eyebrowse-switch-to-window-config-0 "first view")
       ("l" eyebrowse-last-window-config "last view")
       ("w" eyebrowse-switch-to-window-config "switch view" :exit t)
       ("o" ivy-switch-project-with-eyebrowse "open view" :exit t)
       ("c" eyebrowse-create-window-config "create view" :exit t)
       ("," eyebrowse-rename-window-config "rename view" :exit t)
+      ("r" my-eyebrowse-rename-1 "rename(buffer-name)" :exit t)
       ("x" eyebrowse-close-window-config "close view" :exit t)
       ("q" nil "quit" :exit t))
 
@@ -512,6 +513,20 @@ _f_: fwd
       ("i" outline-insert-heading "insert heading" :color blue)
       ("q" nil "quit" :color blue))
 
+    (defhydra hydra-draw-box (:color pink)
+      "Draw box with IBM single line box characters (ESC to Quit)."
+      ("ESC" nil :color blue) ;; Esc to exit.
+      ("q" (lambda () (interactive) (insert "┌")) "top left ┌")
+      ("w" (lambda () (interactive) (insert "┬")) "top ┬")
+      ("e" (lambda () (interactive) (insert "┐")) "top right ┐")
+      ("a" (lambda () (interactive) (insert "├")) "left ├")
+      ("s" (lambda () (interactive) (insert "┼")) "center ┼")
+      ("d" (lambda () (interactive) (insert "┤")) "right ┤")
+      ("z" (lambda () (interactive) (insert "└")) "bottom left └")
+      ("x" (lambda () (interactive) (insert "┴")) "bottom ┴")
+      ("c" (lambda () (interactive) (insert "┘")) "bottom right ┘")
+      ("r" (lambda () (interactive) (insert "─")) "horizontal ─")
+      ("v" (lambda () (interactive) (insert "│")) "vertical │"))
 
     ))
 
