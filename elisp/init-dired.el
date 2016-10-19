@@ -196,6 +196,28 @@
             (xah-fly-insert-mode-activate)
           (xah-fly-command-mode-activate)))))
 
+  (defun dired-do-find-marked-files-and-select-in-ibuffer ()
+    "Open marked files in ibuffer and select them."
+    (interactive)
+    (let ((current (current-buffer)))
+      (dired-map-over-marks
+       (let* ((filename (dired-get-file-for-visit))
+              (buffer (find-file-noselect filename)))
+         ;; Select buffer in ibuffer
+         (ibuffer)
+         (ibuffer-mark-on-buffer #'(lambda (buf)
+                                     (eq buf buffer)))
+         ;; Go back to dired
+         (switch-to-buffer current))
+       nil)
+
+      ;; Remove other buffers from ibuffer listing
+      (ibuffer)
+      (ibuffer-toggle-marks)
+      (ibuffer-do-kill-lines)
+      (ibuffer-toggle-marks))
+    (xah-fly-insert-mode-activate))
+
   (defadvice dired-find-file-other-window (after xah-wrapper-dired-commands activate)
     (xah-wrapper-dired-commands))
 
@@ -235,6 +257,8 @@
   (define-key dired-mode-map (kbd "`") 'dired-toggle-read-only)
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
   (define-key dired-mode-map (kbd ".") 'my/dired-toggle-hide-details)
+  (define-key dired-mode-map (kbd "F") 'dired-do-find-marked-files-and-select-in-ibuffer)
+
   (unbind-key "SPC" dired-mode-map)
 
   (use-package wdired

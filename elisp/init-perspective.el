@@ -21,8 +21,11 @@
 
   (defun my-eyebrowse-rename-1 ()
     (interactive)
-    ;; (eyebrowse-create-window-config)
     (eyebrowse-rename-window-config (eyebrowse--get 'current-slot) (buffer-name)))
+
+  (defun my-eyebrowse-rename-2 ()
+    (interactive)
+    (eyebrowse-rename-window-config (eyebrowse--get 'current-slot) (projectile-project-name)))
 
   (defun my-eyebrowse-current-tag ()
     (interactive)

@@ -469,7 +469,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("o" ivy-switch-project-with-eyebrowse "open view" :exit t)
       ("c" eyebrowse-create-window-config "create view" :exit t)
       ("," eyebrowse-rename-window-config "rename view" :exit t)
-      ("r" my-eyebrowse-rename-1 "rename(buffer-name)" :exit t)
+      ("rb" my-eyebrowse-rename-1 "rename(buffer-name)" :exit t)
+      ("rp" my-eyebrowse-rename-2 "rename(project-name)" :exit t)
       ("x" eyebrowse-close-window-config "close view" :exit t)
       ("q" nil "quit" :exit t))
 

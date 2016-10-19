@@ -97,7 +97,7 @@
          ^^_g_^^      _B_    ^↧^    _+_    ^ ^     [_al_] list    [_s_] search    [_u_] revert buffer
          ^^^↑^^^      ^↑^    _H_    ^↑^  ↦ _W_ ↤   [_am_] markup  [_o_] outline   [_i_] info
          ^^_k_^^      ^ ^    ^↥^    _0_    ^ ^     [_at_] text    [_F_] link      [_d_] dark mode
-         ^^^↑^^^      ^↓^  ╭─^─^─┐  ^↓^  ╭─^ ^─┐   [_ad_] delete  [_f_] search link
+         ^^^↑^^^      ^↓^  ╭─^─^─┐  ^↓^  ╭─^ ^─┐   [_ad_] delete  [_f_] search link [_m_] bookmark
     _h_ ←pag_e_→ _l_  _N_  │ _P_ │  _-_    _b_     [_aa_] dired
          ^^^↓^^^      ^ ^  ╰─^─^─╯  ^ ^  ╰─^ ^─╯   [_y_]  yank
          ^^_j_^^      ^ ^  _r_eset slice box
@@ -123,6 +123,7 @@
       ("k" pdf-view-previous-page-command :color red)
       ("d" pdf-view-dark-minor-mode)
       ("b" pdf-view-set-slice-from-bounding-box)
+      ("m" pdf-view-save-bookmark)
       ("r" pdf-view-reset-slice)
       ("g" pdf-view-first-page)
       ("G" pdf-view-last-page)
