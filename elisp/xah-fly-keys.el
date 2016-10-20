@@ -12,52 +12,7 @@
 ;; This file is not part of GNU Emacs.
 
 ;;; License:
-
 ;; You can redistribute this program and/or modify it under the terms of the GNU General Public License version 2.
-
-;;; Commentary:
-
-;; xah-fly-keys is a efficient keybinding for emacs. (more efficient than vim)
-
-;; It is a modal mode like vi, but key choices are based on statistics of command call frequency.
-
-;; --------------------------------------------------
-;; HOW TO USE
-
-;; M-x xah-fly-keys to toggle the mode on/off.
-
-;; When in command mode:
-;; 【Space】 is a leader key. For example, 【SPACE p】 calls query-replace. Press 【SPACE C-h】 to see the full list.
-;; 【Space Space】 also activates insertion mode.
-;; 【Space Enter】 calls execute-extended-command or smex (if smex is installed).
-
-;; The leader key sequence basically replace ALL emacs commands that starts with C-x key.
-
-;; When using xah-fly-keys, you don't need to press Control or Meta, with the following exceptions:
-
-;; C-c for major mode commands.
-;; C-g for cancel.
-;; C-q for quoted-insert.
-;; C-h for getting a list of keys following a prefix/leader key.
-
-;; Leader key
-
-;; All emacs C-x keys have a key sequence. Most commands are 2 to 3 keys. The first key we call it leader key.
-
-;; You NEVER need to press Ctrl+x
-
-;; When in command mode, the 【SPACE】 is a leader key.
-
-;; globally, the leader key is the 【f9】 key.
-
-;; the following stardard keys with Control are supported, when the variable xah-fly-use-control-key is t
-
-;; For detail about design and other info, see home page at
-;; http://ergoemacs.org/misc/ergoemacs_vi_mode.html
-
-;; If you like this project, Buy Xah Emacs Tutorial
-;; http://ergoemacs.org/emacs/buy_xah_emacs_tutorial.html or make a
-;; donation. Thanks.
 
 
 ;;; Code:
@@ -2144,7 +2099,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "u") 'undo-tree-undo)
     (define-key xah-fly-key-map (kbd "v") 'hydra-view-buffer/body)
     (define-key xah-fly-key-map (kbd "ww") 'ace-window)
-    (define-key xah-fly-key-map (kbd "wd") 'ace-delete-window)
+    (define-key xah-fly-key-map (kbd "wd") 'delete-window)
+    (define-key xah-fly-key-map (kbd "wx") 'ace-delete-window)
     (define-key xah-fly-key-map (kbd "wm") 'ace-maximize-window)
     (define-key xah-fly-key-map (kbd "wo") 'delete-other-windows)
     (define-key xah-fly-key-map (kbd "wt") 'hydra-transpose-frame/body)

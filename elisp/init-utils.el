@@ -9,6 +9,9 @@
 
 (use-package vlf-setup)
 
+(use-package esup
+  :ensure t)
+
 (use-package typit
   :ensure t)
 

@@ -1,61 +1,52 @@
 (use-package git-timemachine
   :ensure t
-  :commands git-timemachine-toggle
-  :config)
+  :commands git-timemachine-toggle)
 
 (use-package git-gutter+
+  :diminish (git-gutter+-mode . "")
   :commands global-git-gutter+-mode
-  :diminish (git-gutter+-mode . "gg")
+  :defer 2
   :init
   (progn
     (setq git-gutter+-hide-gutter t)
-    (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh)))
-
-(use-package git-gutter-fringe+
-  :init
-  (progn
-    (when (display-graphic-p)
-      (with-eval-after-load 'git-gutter+
-        (require 'git-gutter-fringe+)))
+    (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh)
     (global-git-gutter+-mode)
-    ;; (setq git-gutter-fr+-side 'right-fringe))
-    )
-  :config
-  (progn
-    ;; (set-face-background 'git-gutter+-modified "purple") ;; background color
-    ;; (set-face-foreground 'git-gutter+-added "green")
-    ;; (set-face-foreground 'git-gutter+-deleted "red")
+    (use-package git-gutter-fringe+
+      ;; :init
+      ;; (global-git-gutter+-mode)
+      :config
+      (progn
+        (set-face-foreground 'git-gutter-fr+-modified "magenta")
+        (set-face-foreground 'git-gutter-fr+-added "green")
+        (set-face-foreground 'git-gutter-fr+-deleted "red")
+        ;; (setq-default left-fringe-width  40)
 
-    (set-face-foreground 'git-gutter-fr+-modified "magenta")
-    (set-face-foreground 'git-gutter-fr+-added "green")
-    (set-face-foreground 'git-gutter-fr+-deleted "red")
-    ;; (setq-default left-fringe-width  40)
+        (add-hook 'git-gutter+-mode-hook 'my/set-fringe-bg)
 
-    (add-hook 'git-gutter+-mode-hook 'my/set-fringe-bg)
-
-    ;; custom graphics that works nice with half-width fringes
-    (fringe-helper-define 'git-gutter-fr+-added nil
-      "..X...."
-      "..X...."
-      "XXXXX.."
-      "..X...."
-      "..X....")
-    (fringe-helper-define 'git-gutter-fr+-deleted nil
-      "......."
-      "......."
-      "XXXXX.."
-      "......."
-      ".......")
-    (fringe-helper-define 'git-gutter-fr+-modified nil
-      "..X...."
-      ".XXX..."
-      "XX.XX.."
-      ".XXX..."
-      "..X....")
-    ;; hydra git-gutter
-    (defhydra hydra-git-gutter (:body-pre (global-git-gutter+-mode 1)
-                                          :hint nil)
-      "
+        ;; custom graphics that works nice with half-width fringes
+        (fringe-helper-define 'git-gutter-fr+-added nil
+          "..X...."
+          "..X...."
+          "XXXXX.."
+          "..X...."
+          "..X....")
+        (fringe-helper-define 'git-gutter-fr+-deleted nil
+          "......."
+          "......."
+          "XXXXX.."
+          "......."
+          ".......")
+        (fringe-helper-define 'git-gutter-fr+-modified nil
+          "..X...."
+          ".XXX..."
+          "XX.XX.."
+          ".XXX..."
+          "..X....")
+        
+        ;; hydra git-gutter
+        (defhydra hydra-git-gutter (:body-pre (global-git-gutter+-mode 1)
+                                              :hint nil)
+          "
       Git gutter:
       _j_: next hunk        _s_tage hunk     _q_uit
       _k_: previous hunk    _r_evert hunk   
@@ -63,22 +54,22 @@
       _b_: stage & commit   _B_: stage & commit whole buffer
       _h_: show hunk inline at point
 "
-      ("j" git-gutter+-next-hunk)
-      ("k" git-gutter+-previous-hunk)
-      ("s" git-gutter+-stage-hunks)
-      ("r" git-gutter+-revert-hunk)
-      ("m" global-git-gutter+-mode)
-      ("c" (lambda () (interactive)
-             (git-gutter+-commit)
-             (switch-to-buffer-other-window "*Commit Message*")) :exit t)
-      ("b" (lambda () (interactive)
-             (git-gutter+-stage-and-commit)
-             (switch-to-buffer-other-window "*Commit Message*")) :exit t)
-      ("B" (lambda () (interactive)
-             (git-gutter+-stage-and-commit-whole-buffer)
-             (switch-to-buffer-other-window "*Commit Message*")))
-      ("h" git-gutter+-show-hunk-inline-at-point)
-      ("q" nil :color blue))))
+          ("j" git-gutter+-next-hunk)
+          ("k" git-gutter+-previous-hunk)
+          ("s" git-gutter+-stage-hunks)
+          ("r" git-gutter+-revert-hunk)
+          ("m" global-git-gutter+-mode)
+          ("c" (lambda () (interactive)
+                 (git-gutter+-commit)
+                 (switch-to-buffer-other-window "*Commit Message*")) :exit t)
+          ("b" (lambda () (interactive)
+                 (git-gutter+-stage-and-commit)
+                 (switch-to-buffer-other-window "*Commit Message*")) :exit t)
+          ("B" (lambda () (interactive)
+                 (git-gutter+-stage-and-commit-whole-buffer)
+                 (switch-to-buffer-other-window "*Commit Message*")))
+          ("h" git-gutter+-show-hunk-inline-at-point)
+          ("q" nil :color blue))))))
 
 
 (use-package gitconfig-mode

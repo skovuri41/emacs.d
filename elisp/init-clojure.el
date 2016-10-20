@@ -172,11 +172,13 @@
     ))
 
 (use-package typed-clojure-mode
+  :disabled t
   :config
   (add-hook 'clojure-mode-hook 'typed-clojure-mode))
 
 (use-package flycheck-clojure
   :ensure t
+  :defer t
   :config
   (eval-after-load 'flycheck '(flycheck-clojure-setup)))
 

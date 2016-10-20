@@ -56,7 +56,7 @@
 
 (use-package paren-face
   :ensure t
-  :init (global-paren-face-mode))
+  :config (global-paren-face-mode))
 
 (use-package find-file-in-project
   :ensure t

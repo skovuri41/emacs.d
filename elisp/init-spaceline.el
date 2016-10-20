@@ -3,11 +3,10 @@
   :config
   (progn
     (use-package spaceline-config
-      :init
-      (setq spaceline-workspace-numbers-unicode t)
-      (setq  spaceline-window-numbers-unicode t)
-      (setq powerline-height 20)
       :config
+      (setq spaceline-workspace-numbers-unicode t)
+      (setq spaceline-window-numbers-unicode t)
+      (setq powerline-height 18)
       ;; (spaceline-spacemacs-theme)
       (spaceline-emacs-theme)
       (spaceline-toggle-flycheck-warning-off)
