@@ -40,7 +40,6 @@ Journal
       "zoom"
       ("+" text-scale-increase "in")
       ("-" text-scale-decrease "out"))
-    (global-set-key (kbd "<f5>") 'hydra-zoom/body)
 
     ;; hydra rectangle
     (defun my-ex-point-mark ()
@@ -513,21 +512,6 @@ _f_: fwd
       ("M-s" outline-move-subtree-up)
       ("i" outline-insert-heading "insert heading" :color blue)
       ("q" nil "quit" :color blue))
-
-    (defhydra hydra-draw-box (:color pink)
-      "Draw box with IBM single line box characters (ESC to Quit)."
-      ("ESC" nil :color blue) ;; Esc to exit.
-      ("q" (lambda () (interactive) (insert "┌")) "top left ┌")
-      ("w" (lambda () (interactive) (insert "┬")) "top ┬")
-      ("e" (lambda () (interactive) (insert "┐")) "top right ┐")
-      ("a" (lambda () (interactive) (insert "├")) "left ├")
-      ("s" (lambda () (interactive) (insert "┼")) "center ┼")
-      ("d" (lambda () (interactive) (insert "┤")) "right ┤")
-      ("z" (lambda () (interactive) (insert "└")) "bottom left └")
-      ("x" (lambda () (interactive) (insert "┴")) "bottom ┴")
-      ("c" (lambda () (interactive) (insert "┘")) "bottom right ┘")
-      ("r" (lambda () (interactive) (insert "─")) "horizontal ─")
-      ("v" (lambda () (interactive) (insert "│")) "vertical │"))
 
     ))
 

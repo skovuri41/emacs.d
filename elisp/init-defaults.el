@@ -166,9 +166,10 @@
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)
+(setq minibuffer-auto-raise nil)
 
 ;; Don't be so stingy on the memory, we have lots now. It's the distant future.
-(setq gc-cons-threshold 20000000)
+(setq gc-cons-threshold (* 20 1024 1024))
 
 ;; enable erase-buffer command
 (put 'erase-buffer 'disabled nil)

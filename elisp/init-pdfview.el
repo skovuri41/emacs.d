@@ -9,8 +9,6 @@
               ("G" . pdf-view-last-page)
               ("l" . image-forward-hscroll)
               ("h" . image-backward-hscroll)
-              ("j" . pdf-view-next-page)
-              ("k" . pdf-view-previous-page)
               ("e" . pdf-view-goto-page)
               ("u" . pdf-view-revert-buffer)
               ("al" . pdf-annot-list-annotations)
