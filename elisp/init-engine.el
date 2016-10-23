@@ -22,11 +22,19 @@
     (defengine google-maps
       "http://maps.google.com/maps?q=%s"
       :docstring "Mappin' it up.")
-
+    (defengine word
+      "http://wordnik.com/words/%s"
+      :term-transformation-hook downcase
+      :keybinding "d")
+    (defengine duckduckgo
+      "https://duckduckgo.com/html/?q=%s"
+      :keybinding "k")
+    
     (eval-after-load 'hydra
       `(defhydra hydra-engine (:color blue)
          ("w" engine/search-wikipedia     "wikipedia")
-         ("d" engine/search-duckduckgo    "duckduckgo")
+         ("k" engine/search-duckduckgo    "duckduckgo")
+         ("w" engine/search-word          "word")
          ("h" engine/search-github        "github")
          ("s" engine/search-stackoverflow "stackoverflow")
          ("g" engine/search-google        "google")

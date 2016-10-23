@@ -325,8 +325,8 @@
   :ensure t
   :commands fci-mode
   :config
-  (fci-mode)
-  (setq fci-rule-column 79))
+  (setq fci-rule-column 79)
+  (fci-mode))
 
 (use-package logview
   :ensure t

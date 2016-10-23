@@ -13,6 +13,7 @@
                   ace-window
                   pdf-outline-follow-link
                   pdf-outline-select-pdf-window)))
+  (add-to-list 'golden-ratio-exclude-buffer-regexp "^\\*Ilist\\*")
   (setq golden-ratio-recenter t)
   (golden-ratio-mode 1))
 

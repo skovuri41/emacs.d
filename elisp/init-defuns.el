@@ -308,7 +308,7 @@ current location."
 (defalias 'tt 'terminal-here)
 
 (defun copy-from-osx ()
-    (shell-command-to-string "pbpaste"))
+  (shell-command-to-string "pbpaste"))
 
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
