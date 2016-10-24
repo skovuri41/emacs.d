@@ -631,7 +631,6 @@ possible. No trailing slash. Returns nil otherwise."
       default-directory)))
 
 ;;;; path searching
-
 (defun find-path-parent-directory (path file-name)
   "Search PATH and all parent directories for file FILE-NAME,
 returning the path where FILE-NAME can be found."
@@ -643,13 +642,6 @@ returning the path where FILE-NAME can be found."
 (add-hook 'comint-mode-hook (lambda () (local-set-key (kbd "C-l") 'clear-comint)))
 
 ;;;###autoload
-(defun ora-occur ()
-  "Call `occur' with a sane default."
-  (interactive)
-  (push (ora-region-str-or-symbol) regexp-history)
-  (call-interactively 'occur))
-
-;;;###autoload
 (defun ora-region-str-or-symbol ()
   "Return the contents of region or current symbol."
   (if (region-active-p)
@@ -659,5 +651,12 @@ returning the path where FILE-NAME can be found."
     (let ((sym (thing-at-point 'symbol)))
       (when (stringp sym)
         (regexp-quote sym)))))
+
+;;;###autoload
+(defun ora-occur ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (ora-region-str-or-symbol) regexp-history)
+  (call-interactively 'occur))
 
 (provide 'init-defuns)

@@ -9,6 +9,29 @@
   :config
   (load-theme 'zenburn t))
 
+(use-package oceanic-theme
+  :disabled t
+  :ensure t
+  :config
+  (load-theme 'oceanic t))
+
+(use-package atom-one-dark-theme
+  :disabled t
+  :ensure t
+  :config
+  (load-theme 'atom-one-dark t))
+
+(use-package tangotango-theme
+  :disabled t
+  :ensure t
+  :config
+  (load-theme 'tangotango t))
+
+(use-package material-theme
+  :ensure t
+  :disabled t
+  :init (load-theme 'material-light t))
+
 ;; (use-package gruvbox-theme
 ;;   :disabled t
 ;;   :ensure t

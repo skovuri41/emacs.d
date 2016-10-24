@@ -5,7 +5,11 @@
   (goto-char isearch-other-end))
 (define-key isearch-mode-map [(control return)]
   #'isearch-exit-other-end)
-
+;; Activate occur easily inside isearch
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda () (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
 (global-set-key '[(f1)] 'call-last-kbd-macro)
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
 (global-set-key [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
@@ -15,7 +19,6 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c I") 'find-user-init-file)
 (global-set-key (kbd "C-c E")  'erase-buffer)
 (global-set-key (kbd "C-c m") 'counsel-osx-app)
 (global-set-key (kbd "C-c o") 'counsel-outline)
@@ -23,8 +26,10 @@
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
 (global-set-key (kbd "C-c i") 'counsel-imenu)
+(global-set-key (kbd "C-c I") ' modi/imenu-list-display-toggle)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
+(global-set-key (kbd "C-c r") 'ora-occur)
 (global-set-key (kbd "M-k") 'my/kill-sentence-dwim)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "M-i") 'iedit-mode)
@@ -37,6 +42,12 @@
 (define-key outline-minor-mode-map (kbd "TAB") 'org-cycle)
 (define-key outline-mode-map "\t" 'org-cycle)
 (bind-key "C-x p" 'my-pop-to-mark-command)
+(global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+;; Start eshell or switch to it if it's active.
+(global-set-key (kbd "C-x m") 'eshell)
+;; Start a new eshell even if one is active.
+(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+
 ;; (global-set-key (kbd "C-;") 'iedit-mode)
 
 ;; Move more quickly

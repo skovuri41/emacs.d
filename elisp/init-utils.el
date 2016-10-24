@@ -1,5 +1,6 @@
 (use-package symon
   :ensure t
+  :defer 20
   :init
   (setq symon-refresh-rate 2
         symon-delay 5)
@@ -13,13 +14,16 @@
   :ensure t)
 
 (use-package typit
-  :ensure t)
+  :ensure t
+  :defer 20
+  )
 
 (use-package define-word
   :ensure t)
 
 (use-package chess
   :ensure t
+  :defer 20
   :commands chess
   :config
   (setq chess-images-default-size 70
@@ -27,10 +31,12 @@
 
 (use-package lorem-ipsum
   :ensure t
+  :defer 20
   :commands lorem-ipsum-insert-paragraphs)
 
 (use-package boxquote
   :ensure t
+  :disabled t
   :config
   (setq-default  boxquote-bottom-corner "╰"      ; U+2570
                  boxquote-side          "│ "     ; U+2572 + space
@@ -70,7 +76,7 @@
     ("F" boxquote-describe-function)
     ("V" boxquote-describe-variable)
     ("n" boxquote-narrow-to-boxquote)
-    ("c" boxquote-narrow-to-jjjjjjjjjjjjjjjjjjjjjjboxquote-content)))
+    ("c" boxquote-narrow-to-boxquote-content)))
 
 (use-package back-button
   :commands back-button-mode
@@ -87,6 +93,9 @@
   (progn
     (validate-setq back-button-show-index 'echo)
     (validate-setq back-button-show-toolbar-buttons nil)
+    (validate-setq back-button-local-keystrokes nil)
+    ;; (validate-setq back-button-smartrep-prefix 'nil)
+    (define-key back-button-mode-map (kbd "C-x SPC") nil)
     (back-button-mode 1)))
 
 (use-package col-highlight

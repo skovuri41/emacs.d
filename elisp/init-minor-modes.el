@@ -27,7 +27,7 @@
 ;;; Visible mark
 (use-package visible-mark
   :ensure t
-  ;; :disabled t
+  :disabled t
   :init
   (defface face2
     '((((type tty) (class mono)))
