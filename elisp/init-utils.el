@@ -72,4 +72,21 @@
     ("n" boxquote-narrow-to-boxquote)
     ("c" boxquote-narrow-to-boxquote-content)))
 
+(use-package back-button
+  :commands back-button-mode
+  :diminish back-button-mode
+  :ensure t
+  :defer t
+  :bind (
+         ("<f2>" . back-button-push-mark-local-and-global)
+         ("M-u" . back-button-global-backward)
+         ("M-l" . back-button-global-forward)
+         ("M-p" . back-button-local-backward)
+         ("M-n" . back-button-local-forward))
+  :config
+  (progn
+    (validate-setq back-button-show-index 'echo)
+    (validate-setq back-button-show-toolbar-buttons nil)
+    (back-button-mode 1)))
+
 (provide 'init-utils)

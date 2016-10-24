@@ -19,6 +19,7 @@
                   web-mode-enable-auto-pairing t
                   web-mode-enable-engine-detection t
                   web-mode-enable-current-element-highlight t)))
+
 (use-package css-mode
   :config (setq css-indent-offset 2))
 
@@ -52,10 +53,8 @@
   (progn
     (setq tab-always-indent 'complete)
     (add-to-list 'completion-styles 'initials t))
-  :bind (("M-." . find-function-at-point)
-         ("M-&" . complete-symbol))
+  :bind (("M-&" . complete-symbol))
   :interpreter (("emacs" . emacs-lisp-mode))
-  ;; :mode ("Cask" . emacs-lisp-mode)
   )
 
 (use-package yaml-mode
@@ -67,6 +66,13 @@
   :mode ("\\.tsv\\'" . csv-mode)
   :mode ("\\.[Cc][Ss][Vv]\\'". csv-mode)
   )
+
+(use-package markdown-mode
+  :mode (("\\.markdown$" . markdown-mode)
+         ("\\.md$" . markdown-mode)))
+
+(use-package json-mode
+  :defer t)
 
 (use-package csv-nav
   :ensure t

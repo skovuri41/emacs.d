@@ -1,12 +1,3 @@
-(use-package yaml-mode
-  :mode ("\\.yml$" . yaml-mode))
-
-(use-package markdown-mode
-  :mode (("\\.markdown$" . markdown-mode)
-         ("\\.md$" . markdown-mode)))
-(use-package json-mode
-  :defer t)
-
 (use-package scratch
   :ensure t)
 
@@ -36,6 +27,7 @@
 ;;; Visible mark
 (use-package visible-mark
   :ensure t
+  ;; :disabled t
   :init
   (defface face2
     '((((type tty) (class mono)))
