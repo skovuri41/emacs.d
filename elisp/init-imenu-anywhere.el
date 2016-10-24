@@ -1,5 +1,7 @@
 (use-package imenu-anywhere
   :ensure t
+  :config
+  (setq imenu-auto-rescan t)
   )
 
 (use-package imenu-list

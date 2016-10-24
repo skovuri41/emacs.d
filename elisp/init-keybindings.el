@@ -51,6 +51,8 @@
                   (ignore-errors (previous-line 5))))
 
 (define-key occur-mode-map "k" 'previous-line)
+(define-key occur-mode-map "j" 'next-line)
+(define-key occur-mode-map "l" 'occur-mode-goto-occurrence)
 (define-key occur-mode-map (kbd "C-x C-q") 'wgrep-change-to-wgrep-mode)
 (define-key occur-mode-map (kbd "C-c C-c") 'wgrep-finish-edit)
 

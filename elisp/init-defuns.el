@@ -642,4 +642,22 @@ returning the path where FILE-NAME can be found."
 
 (add-hook 'comint-mode-hook (lambda () (local-set-key (kbd "C-l") 'clear-comint)))
 
+;;;###autoload
+(defun ora-occur ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (ora-region-str-or-symbol) regexp-history)
+  (call-interactively 'occur))
+
+;;;###autoload
+(defun ora-region-str-or-symbol ()
+  "Return the contents of region or current symbol."
+  (if (region-active-p)
+      (buffer-substring-no-properties
+       (region-beginning)
+       (region-end))
+    (let ((sym (thing-at-point 'symbol)))
+      (when (stringp sym)
+        (regexp-quote sym)))))
+
 (provide 'init-defuns)

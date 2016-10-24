@@ -70,7 +70,7 @@
     ("F" boxquote-describe-function)
     ("V" boxquote-describe-variable)
     ("n" boxquote-narrow-to-boxquote)
-    ("c" boxquote-narrow-to-boxquote-content)))
+    ("c" boxquote-narrow-to-jjjjjjjjjjjjjjjjjjjjjjboxquote-content)))
 
 (use-package back-button
   :commands back-button-mode
@@ -88,5 +88,12 @@
     (validate-setq back-button-show-index 'echo)
     (validate-setq back-button-show-toolbar-buttons nil)
     (back-button-mode 1)))
+
+(use-package col-highlight
+  :ensure t
+  :disabled t
+  :config
+  (set-face-background 'col-highlight "#ddd")
+  (column-highlight-mode))
 
 (provide 'init-utils)
