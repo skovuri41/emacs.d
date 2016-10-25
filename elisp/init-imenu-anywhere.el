@@ -123,6 +123,7 @@
     (advice-add 'switch-to-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-previous-user-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-next-user-buffer :around #'modi/imenu-auto-update)
+    (advice-add 'xah-close-current-buffer :around #'modi/imenu-auto-update)
     (advice-add 'revert-buffer    :around #'modi/imenu-auto-update)))
 
   (provide 'init-imenu-anywhere)

@@ -43,17 +43,14 @@
   :ensure t)
 
 (use-package shrink-whitespace
-  :ensure t
-  )
+  :ensure t)
 
 (use-package paren-face
   :ensure t
   :config (global-paren-face-mode))
 
 (use-package find-file-in-project
-  :ensure t
-  ;; :config (setq ffip-prefer-ido-mode t)
-  )
+  :ensure t)
 
 (use-package outshine
   :diminish outline-minor-mode
