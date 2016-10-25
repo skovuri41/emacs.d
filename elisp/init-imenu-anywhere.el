@@ -43,6 +43,7 @@
                 (setq imenu-create-index-function 'my-merge-imenu)))))
 
 (use-package imenu-list
+  :ensure t
   :commands (modi/imenu-list-display-toggle)
   :init
   (defface imenu-list-entry-face-0
@@ -87,7 +88,6 @@
       "Toggle the display of Imenu-list buffer.
        If NOSELECT is non-nil, do not select the imenu-list buffer."
       (interactive "P")
-      (xah-fly-insert-mode-activate)
       (if (modi/imenu-list-visible-p)
           (modi/imenu-list-hide)
         (if noselect

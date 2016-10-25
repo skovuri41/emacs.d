@@ -57,7 +57,6 @@
 
 (use-package outshine
   :diminish outline-minor-mode
-  :disabled t
   :commands outshine-hook-function
   :init
   (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
@@ -67,8 +66,7 @@
   (add-hook 'clojure-mode-hook 'outline-minor-mode)
   (add-hook 'ess-mode-hook 'outline-minor-mode)
   (add-hook 'ledger-mode-hook 'outline-minor-mode)
-  (add-hook 'message-mode-hook 'outline-minor-mode)
-  )
+  (add-hook 'message-mode-hook 'outline-minor-mode))
 
 (use-package paradox
   :ensure t
