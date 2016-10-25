@@ -16,6 +16,14 @@
 (add-hook 'c-mode-hook #'my/setup-semantic-mode)
 (add-hook 'java-mode-hook #'my/setup-semantic-mode)
 
+(defun my:setup-imenu-for-use-package ()
+  "Recognize `use-package` in imenu"
+  (add-to-list
+   'imenu-generic-expression
+   '("Packages" "^\\s-*(\\(use-package\\)\\s-+\\(\\(\\sw\\|\\s_\\)+\\)" 2)))
+
+(add-hook 'emacs-lisp-mode-hook #'my:setup-imenu-for-use-package)
+
 (use-package imenu-anywhere
   :ensure t
   :config
@@ -36,6 +44,26 @@
 
 (use-package imenu-list
   :commands (modi/imenu-list-display-toggle)
+  :init
+  (defface imenu-list-entry-face-0
+    '((((class color) (background light))
+       :inherit imenu-list-entry-face
+       :foreground "maroon")
+      (((class color) (background dark))
+       :inherit imenu-list-entry-face
+       :foreground "#4f97d7"))
+    "Face for outermost imenu-list entries (depth 0)."
+    :group 'imenu-list)
+
+  (defface imenu-list-entry-face-1
+    '((((class color) (background light))
+       :inherit imenu-list-entry-face
+       :foreground "dark green")
+      (((class color) (background dark))
+       :inherit imenu-list-entry-face
+       :foreground "#67b11d"))
+    "Face for imenu-list entries with depth 1."
+    :group 'imenu-list)
   :config
   (progn
     ;; (setq imenu-list-size     0.2)

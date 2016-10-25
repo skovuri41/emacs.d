@@ -57,6 +57,7 @@
 
 (use-package outshine
   :diminish outline-minor-mode
+  :disabled t
   :commands outshine-hook-function
   :init
   (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
