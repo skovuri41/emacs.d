@@ -110,6 +110,7 @@
      ("g" . beginning-of-buffer)
      ("G" . end-of-buffer)
      ("O" . ace-window)
+     ("L" . avy-goto-line)
      ("i" . hs-toggle-hiding))
 
     (defun my/imenu-list-goto-entry ()
