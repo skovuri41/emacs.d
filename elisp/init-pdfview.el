@@ -73,20 +73,21 @@
 
     (define-key pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)
     (define-key pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
+
+    (bind-key "O"
+              #'modi/imenu-list-display-toggle pdf-view-mode-map)
+
     (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp)
+
     (define-key pdf-outline-buffer-mode-map (kbd "k") 'previous-line)
     (define-key pdf-outline-buffer-mode-map (kbd "j") 'next-line)
     (define-key pdf-outline-buffer-mode-map (kbd "i") 'outline-toggle-children)
     (define-key pdf-outline-buffer-mode-map (kbd "l") 'pdf-outline-follow-link)
     (define-key pdf-outline-buffer-mode-map (kbd "h") 'pdf-outline-up-heading)
 
-
-
     (define-key pdf-annot-list-mode-map (kbd "k") 'previous-line)
     (define-key pdf-annot-list-mode-map (kbd "j") 'next-line)
     (define-key pdf-annot-list-mode-map (kbd "l") 'pdf-annot-list-display-annotation-from-id)
-
-
 
     (defhydra hydra-pdftools (:color blue :hint nil)
       "

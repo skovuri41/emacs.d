@@ -43,6 +43,7 @@
 (define-key outline-mode-map "\t" 'org-cycle)
 (bind-key "C-x p" 'my-pop-to-mark-command)
 (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+(global-set-key (kbd "C-x o") 'ace-window)
 ;; Start eshell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'eshell)
 ;; Start a new eshell even if one is active.

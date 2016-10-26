@@ -106,24 +106,42 @@
     (bind-keys
      :map imenu-list-major-mode-map
      ("j" . next-line)
-     ("k" . previous-line))
+     ("k" . previous-line)
+     ("g" . beginning-of-buffer)
+     ("G" . end-of-buffer)
+     ("O" . ace-window)
+     ("i" . hs-toggle-hiding))
+
+    (defun my/imenu-list-goto-entry ()
+      "Enable lispy mode for selected major modes only"
+      (interactive)
+      (imenu-list-goto-entry)
+      (let ((buffer-major-mode
+             (format "%s" (get-buffer-mode))))
+        (if (equal "pdf-view-mode" buffer-major-mode)
+            (xah-fly-insert-mode-activate)
+          (xah-fly-command-mode-activate))))
 
     (bind-key "l"
-              '(lambda () (interactive) (progn
-                                     (imenu-list-goto-entry)
-                                     (xah-fly-command-mode-activate)))
-              imenu-list-major-mode-map)
+              #'my/imenu-list-goto-entry imenu-list-major-mode-map)
 
     (defun modi/imenu-auto-update (orig-fun &rest args)
       "Auto update the *Ilist* buffer if visible."
       (prog1 ; Return value of the advising fn needs to be the same as ORIG-FUN
           (apply orig-fun args)
         (when (modi/imenu-list-visible-p)
-          (imenu-list-update-safe)))) ; update `imenu-list' buffer
+          (progn
+            (imenu-list-update-safe)
+            (when (string-match "^\\*Ilist\\*" (buffer-name))
+              (xah-fly-insert-mode-activate)))))) ; update `imenu-list' buffer
+
     (advice-add 'switch-to-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-previous-user-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-next-user-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-close-current-buffer :around #'modi/imenu-auto-update)
+    (advice-add 'modi/imenu-list-display-toggle :around #'modi/imenu-auto-update)
+    (advice-add 'ace-window :around #'modi/imenu-auto-update)
+    (advice-add 'ivy-done :around #'modi/imenu-auto-update)
     (advice-add 'revert-buffer    :around #'modi/imenu-auto-update)))
 
   (provide 'init-imenu-anywhere)

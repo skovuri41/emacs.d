@@ -2073,6 +2073,7 @@ If `universal-argument' is called first, do switch frame."
                                               (progn
                                                 (imenu-list-goto-entry)
                                                 (switch-to-buffer-other-window "*Ilist*")
+                                                (xah-fly-insert-mode-activate)
                                                 )))
     (define-key xah-fly-key-map (kbd "gd") 'my-jump-to-elisp-docs)
     (define-key xah-fly-key-map (kbd "gx") 'counsel-osx-app)
