@@ -74,8 +74,11 @@
     (define-key pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)
     (define-key pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
 
-    (bind-key "O"
+    (bind-key "i"
               #'modi/imenu-list-display-toggle pdf-view-mode-map)
+
+    (bind-key "O"
+              #'ace-window pdf-view-mode-map)
 
     (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp)
 

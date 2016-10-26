@@ -110,6 +110,7 @@
      ("g" . beginning-of-buffer)
      ("G" . end-of-buffer)
      ("O" . ace-window)
+     ("I" . modi/imenu-list-display-toggle)
      ("L" . avy-goto-line)
      ("i" . hs-toggle-hiding))
 

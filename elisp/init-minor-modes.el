@@ -206,6 +206,7 @@
       (fullframe magit-log-all magit-mode-quit-window)
       (fullframe magit-log-current magit-mode-quit-window)
       (fullframe magit-status magit-mode-quit-window))
+    (fullframe dired-jump quit-window)
     (fullframe list-packages quit-window) ))
 
 (use-package osx-trash
