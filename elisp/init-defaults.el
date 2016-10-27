@@ -19,6 +19,9 @@
 ;; window focus follows the mouse pointer
 (setq  mouse-autoselect-window t)
 
+;; copy by just selecting with mouse
+(setq mouse-drag-copy-region t)
+
 ;;make mouse scrolling smooth
 (setq  mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
 
@@ -394,5 +397,16 @@
 
 (setq custom-file "~/.emacs.d/emacs-customizations.el")
 (load custom-file 'noerror)
+
+(validate-setq display-time-world-list '(
+                                         ("America/New_York"      "New York")
+                                         ("Europe/London"         "London")
+                                         ("Asia/Calcutta"         "New Delhi")
+                                         ("Asia/Calcutta"         "Hyderabad")
+                                         ("Asia/Singapore"        "Singapore")
+                                         ("Asia/Tokyo"            "Tokyo")
+                                         ("Australia/Melbourne"   "Melbourne")
+                                         ("America/Los_Angeles"   "San Franscisco")
+                                         ))
 
 (provide 'init-defaults)

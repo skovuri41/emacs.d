@@ -311,7 +311,33 @@
     :ensure t
     :config
     (bind-keys :map dired-mode-map
-               ("/" . dired-narrow-fuzzy)))
+               ("N" . dired-narrow-fuzzy)))
+
+  (use-package dired-filter
+    :ensure t
+    :init
+    ;; (define-key dired-mode-map (kbd "F") dired-filter-map)
+    (define-key dired-mode-map (kbd "/") dired-filter-map)
+    :bind (:map dired-mode-map
+                ("/P" . dired-filter-pop-all))
+    :config
+    (setq dired-filter-verbose nil)
+    (setq dired-filter-group-saved-groups
+          '(("default"
+             ("Archives"
+              (extension "zip" "rar" "gz" "bz2" "tar"))
+             ("Docs"
+              (extension "pdf" "epub"))
+             ("Directory"
+              (directory))
+             ("Media"
+              (extension "mp3" "mp4" "avi" "rm" "mkv"))
+             ("Image"
+              (extension "bmp" "gif" "jpg" "png" "jpeg")))))
+    (add-hook 'dired-mode-hook
+              (lambda ()
+                (dired-filter-mode t)
+                (dired-filter-group-mode t))))
 
   (use-package dired-quick-sort
     :ensure t

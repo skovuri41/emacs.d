@@ -180,6 +180,8 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'lcd 'list-colors-display)
 (defalias 'cc 'calc)
 (defalias 'cal 'calendar)
+(defalias 'wtime 'display-time-world)
+
 (defalias 'fold 'hydra-folding/body)
 (defalias 'of 'other-frame)
 
@@ -187,7 +189,6 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'sm 'start-kbd-macro)
 (defalias 'em 'end-kbd-macro)
 (defalias 'lm 'call-last-kbd-macro)
-
 ;; ; elisp
 (defalias 'eb 'eval-buffer)
 (defalias 'er 'eval-region)
