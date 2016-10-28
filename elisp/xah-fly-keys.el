@@ -1321,6 +1321,12 @@ Version 2015-06-12"
     (funcall initial-major-mode)
     (setq buffer-offer-save t)))
 
+(defun new-same-mode-buffer ()
+  "Open a new empty buffer."
+  (interactive)
+  (scratch)
+  (delete-other-windows))
+
 ;; note: emacs won't offer to save a buffer that's
 ;; not associated with a file,
 ;; even if buffer-modified-p is true.
@@ -2028,6 +2034,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "bi") 'modi/imenu-list-display-toggle)
     (define-key xah-fly-key-map (kbd "bk") 'xah-close-current-buffer)
     (define-key xah-fly-key-map (kbd "bn") 'xah-new-empty-buffer)
+    (define-key xah-fly-key-map (kbd "bc") 'new-same-mode-buffer)
     (define-key xah-fly-key-map (kbd "bs") 'save-buffer)
     (define-key xah-fly-key-map (kbd "bl") '(lambda () (interactive)
                                               (progn
@@ -2299,13 +2306,6 @@ If `universal-argument' is called first, do switch frame."
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
-
-;; ;; when in shell mode, switch to insertion mode.
-;; (add-hook 'dired-mode-hook 'xah-fly-keys-off)
-
-;; experimental. auto switch back to command mode after some sec of idle time
-;; (setq xah-fly-timer-id (run-with-idle-timer 20 t 'xah-fly-command-mode-activate))
-;; (cancel-timer xah-fly-timer-id)
 
 (define-minor-mode xah-fly-keys
   "A modal keybinding set, like vim, but based on ergonomic principles, like Dvorak layout."

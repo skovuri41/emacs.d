@@ -131,7 +131,27 @@
   ;; must save all bookmarks first.
   (add-hook 'kill-emacs-hook '(lambda nil
                                 (bm-buffer-save-all)
-                                (bm-repository-save))))
+                                (bm-repository-save)))
+  :config
+  (progn
+    ;; Make a more bookmarky symbol for a 'mark':
+    (define-fringe-bitmap 'bm-marker-left [254 254 254 254 254 238 198 130] 8 8 'center)
+
+    (defun bm-bookmark-defun ()
+      "Drops a temporary breadcrumb/bookmark at the beginning of the current defun."
+      (interactive)
+      (save-excursion
+        (beginning-of-defun)
+        (bm-toggle)))
+
+    (defun my-add-bookmark (name)
+      (interactive
+       (list (let* ((filename (file-name-base (buffer-file-name)))
+                    (project (projectile-project-name))
+                    (func-name (which-function))
+                    (initial (format "%s::%s:%s " project filename func-name)))
+               (read-string "Bookmark: " initial))))
+      (bookmark-set name))))
 
 (use-package volatile-highlights
   :ensure t
@@ -207,6 +227,7 @@
       (fullframe magit-log-current magit-mode-quit-window)
       (fullframe magit-status magit-mode-quit-window))
     (fullframe dired-jump quit-window)
+    (fullframe ibuffer ibuffer-quit)
     (fullframe list-packages quit-window) ))
 
 (use-package osx-trash

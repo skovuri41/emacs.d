@@ -407,7 +407,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("s" bm-show-all "show all")
       ("b" bm-show "show")
       ("l" helm-bookmarks "list")
-      ("a" bm-bookmark-annotate "annotate" :exit nil :color blue)
+      ("a" my-add-bookmark "add bookmark")
+      ("n" bm-bookmark-annotate "annotate" :exit nil :color blue)
       ;; ("n" bm-common-next)
       ;; ("N" bm-lifo-next)
       ;; ("p" bm-common-previous)
@@ -415,7 +416,8 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("p" bm-toggle-buffer-persistence "toggle persistence" :exit nil)
       ("x" bm-remove-all-current-buffer "remove current buffer" :exit nil :color blue)
       ("X" bm-remove-all-all-buffers "remove all buffers" :exit nil :color blue)
-      ("m" bm-toggle "toggle" :exit nil)
+      ("m" bm-toggle "toggle" :exit t)
+      ("d" bm-bookmark-defun "bm defun" :exit t)
       ("q" nil "quit" :exit t))
 
     (defhydra hydra-smartscan (:hint nil :color teal)
@@ -511,9 +513,7 @@ _f_: fwd
       ("M-t" outline-move-subtree-down)
       ("M-s" outline-move-subtree-up)
       ("i" outline-insert-heading "insert heading" :color blue)
-      ("q" nil "quit" :color blue))
-
-    ))
+      ("q" nil "quit" :color blue))))
 
 
 (provide 'init-hydra)

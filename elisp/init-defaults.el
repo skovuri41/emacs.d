@@ -223,6 +223,11 @@
   :init
   (scratch-message-mode))
 
+(use-package scratch
+  :ensure t
+  :init
+  (autoload 'scratch "scratch" nil t))
+
 (defmacro after (feature &rest body)
   "After FEATURE is loaded, evaluate BODY."
   (declare (indent defun))
