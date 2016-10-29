@@ -413,5 +413,6 @@
                                          ("Australia/Melbourne"   "Melbourne")
                                          ("America/Los_Angeles"   "San Franscisco")
                                          ))
+(require 'init-ibuffer)
 
 (provide 'init-defaults)
