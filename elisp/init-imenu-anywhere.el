@@ -103,13 +103,24 @@
               #'modi/imenu-list-goto-entry-and-hide
               imenu-list-major-mode-map)
 
+    (defun my/imenu-ace-window ()
+      "Enable lispy mode for selected major modes only"
+      (interactive)
+      (call-interactively 'ace-window)
+      (let ((buffer-major-mode
+             (format "%s" (get-buffer-mode))))
+        (if (equal "pdf-view-mode" buffer-major-mode)
+            (xah-fly-insert-mode-activate)
+          (xah-fly-command-mode-activate))))
+
     (bind-keys
      :map imenu-list-major-mode-map
      ("j" . next-line)
      ("k" . previous-line)
+     ("ww" . my/imenu-ace-window)
      ("g" . beginning-of-buffer)
      ("G" . end-of-buffer)
-     ("O" . ace-window)
+     ("O" . my/imenu-ace-window)
      ("I" . modi/imenu-list-display-toggle)
      ("L" . avy-goto-line)
      ("i" . hs-toggle-hiding))
@@ -137,8 +148,10 @@
             (when (string-match "^\\*Ilist\\*" (buffer-name))
               (xah-fly-insert-mode-activate)))))) ; update `imenu-list' buffer
 
+    (advice-add 'other-window :around #'modi/imenu-auto-update)
     (advice-add 'switch-to-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-previous-user-buffer :around #'modi/imenu-auto-update)
+    (advice-add 'counsel-find-file :around #'modi/imenu-auto-update)
     (advice-add 'xah-next-user-buffer :around #'modi/imenu-auto-update)
     (advice-add 'xah-close-current-buffer :around #'modi/imenu-auto-update)
     (advice-add 'modi/imenu-list-display-toggle :around #'modi/imenu-auto-update)
@@ -146,4 +159,4 @@
     (advice-add 'ivy-done :around #'modi/imenu-auto-update)
     (advice-add 'revert-buffer    :around #'modi/imenu-auto-update)))
 
-  (provide 'init-imenu-anywhere)
+(provide 'init-imenu-anywhere)

@@ -35,6 +35,11 @@
   (load-theme 'spacemacs-dark t)
   )
 
+;; (set-face-background 'powerline-active1 "#5d4d7a")
+;; (set-face-background 'powerline-active2 "#5d4d7a")
+;; (set-face-foreground 'powerline-active1 "#eee8d5")
+;; (set-face-foreground 'powerline-active2 "#eee8d5")
+
 (setq packages-appearance
       '(monokai-theme solarized-theme zenburn-theme base16-theme molokai-theme
                       tango-2-theme gotham-theme sublime-themes rainbow-delimiters waher-theme

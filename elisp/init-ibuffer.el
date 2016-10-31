@@ -1,9 +1,3 @@
-;;; init-ibuffer.el ---                                -*- lexical-binding: t; -*-
-
-;;======================================================
-;; IBuffer
-;;======================================================
-
 (require 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
@@ -30,12 +24,8 @@
                        (mode . stylus-mode)
                        (mode . less-css-mode)
                        (mode . css-mode)))
-               ("JS" (or
-                      (mode . javascript-mode)
-                      (mode . js2-mode)
-                      (mode . json-mode)
-                      (name . "\\*js\\*")
-                      (mode . nodejs-repl-mode)))
+               ("Java" (mode . java-mode))
+               ("Sql" (mode . sql-mode))
                ("JS" (or
                       (mode . javascript-mode)
                       (mode . js2-mode)
@@ -65,8 +55,7 @@
                ("Ruby" (or
                         (mode . ruby-mode)
                         (mode . enh-ruby-mode)
-                        (mode . inf-ruby-mode)
-                        ))
+                        (mode . inf-ruby-mode)))
                ("LaTeX" (or (mode . latex-mode)
                             (name . "*.tex$")))
                ("IRC" (or
@@ -85,8 +74,8 @@
                ("Shell Script" (or (mode . shell-script-mode)
                                    (mode . shell-mode)
                                    (mode . sh-mode)))
-               ("Perl"  (or (mode . cperl-mode)
-                            (mode . perl-mode)))
+               ("Perl" (or (mode . cperl-mode)
+                           (mode . perl-mode)))
                ("Twitter" (mode . twittering-mode))
                ("Magit" (or (name . "*magit*")
                             (mode . magit-mode)))
@@ -109,8 +98,7 @@
                        (mode . org-mode)
                        (name . "^\\*Calendar\\*$")))
                ("helm" (name . "*helm"))
-               ("Ag" (name . "^\\*ag search"))
-               ))))
+               ("Ag" (name . "^\\*ag search"))))))
 
 
 ;; Use human readable Size column instead of original one
@@ -149,7 +137,8 @@
       (goto-line (- (count-lines (point-min) (point-max)) 2))))
 
 (defun ibuffer-next-line ()
-  (interactive) (next-line)
+  (interactive)
+  (next-line)
   (if (>= (line-number-at-pos) (- (count-lines (point-min) (point-max)) 1))
       (goto-line 3)))
 
