@@ -415,4 +415,6 @@
                                          ))
 (require 'init-ibuffer)
 
+(eval-when-compile (require 'use-package))
+
 (provide 'init-defaults)

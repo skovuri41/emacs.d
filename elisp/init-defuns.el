@@ -659,4 +659,15 @@ returning the path where FILE-NAME can be found."
   (push (ora-region-str-or-symbol) regexp-history)
   (call-interactively 'occur))
 
+(defun ensure-packages-installed (packages)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (mapcar
+   (lambda (package)
+     (if (package-installed-p package)
+         package
+       (progn (message (format "Installing package %s." package))
+              (package-install package))))
+   packages))
+
 (provide 'init-defuns)

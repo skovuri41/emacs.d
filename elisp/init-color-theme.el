@@ -1,8 +1,3 @@
-;; Fully unload previous theme before loading a new one
-;; (defadvice load-theme
-;;     (before theme-dont-propagate activate)
-;;   (mapc #'disable-theme custom-enabled-themes))
-
 (use-package zenburn-theme
   :disabled t
   :ensure t
@@ -32,39 +27,6 @@
   :disabled t
   :init (load-theme 'material-light t))
 
-;; (use-package gruvbox-theme
-;;   :disabled t
-;;   :ensure t
-;;   :config (load-theme 'gruvbox 'no-confirm))
-
-;; ;; tangotango-theme
-;; (use-package tangotango-theme
-;;   :disabled t
-;;   :ensure t
-;;   :config
-;;   (load-theme 'tangotango t))
-
-;; ;; leuven-theme
-;; (use-package leuven-theme
-;;   :disabled t
-;;   :ensure t
-;;   :config
-;;   (load-theme 'leuven t))
-
-;; ;; monokai-theme
-;; (use-package monokai-theme
-;;   :disabled t
-;;   :ensure t
-;;   :config
-;;   (load-theme 'monokai t))
-
-;; ;; molokai-theme
-;; (use-package molokai-theme
-;;   :disabled t
-;;   :ensure t
-;;   :config
-;;   (load-theme 'molokai t))
-
 (use-package spacemacs-theme
   :ensure t
   :disabled t
@@ -72,5 +34,13 @@
   :config
   (load-theme 'spacemacs-dark t)
   )
+
+(setq packages-appearance
+      '(monokai-theme solarized-theme zenburn-theme base16-theme molokai-theme
+                      tango-2-theme gotham-theme sublime-themes rainbow-delimiters waher-theme
+                      ample-theme material-theme zerodark-theme color-theme-modern leuven-theme
+                      spacemacs-theme gruvbox-theme forest-blue-theme flatland-theme afternoon-theme))
+
+(ensure-packages-installed packages-appearance)
 
 (provide 'init-color-theme)
