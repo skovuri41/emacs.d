@@ -1,12 +1,11 @@
 (use-package symon
   :ensure t
   :defer 20
-  :init
-  (setq symon-refresh-rate 2
-        symon-delay 5)
-  (symon-mode 1)
   :config
-  (setq symon-sparkline-type 'bounded))
+  (validate-setq symon-refresh-rate 5
+                 symon-delay 45)
+  (validate-setq symon-sparkline-type 'bounded)
+  (symon-mode 1))
 
 (use-package vlf-setup)
 

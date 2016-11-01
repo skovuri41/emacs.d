@@ -156,7 +156,6 @@
     (advice-add 'xah-close-current-buffer :around #'modi/imenu-auto-update)
     (advice-add 'modi/imenu-list-display-toggle :around #'modi/imenu-auto-update)
     (advice-add 'ace-window :around #'modi/imenu-auto-update)
-    (advice-add 'ivy-done :around #'modi/imenu-auto-update)
     (advice-add 'revert-buffer    :around #'modi/imenu-auto-update)))
 
 (provide 'init-imenu-anywhere)

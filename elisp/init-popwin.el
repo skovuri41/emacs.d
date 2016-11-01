@@ -13,6 +13,7 @@
     (push '(ag-mode :stick t) popwin:special-display-config)
     (push '(ranger-mode :stick t) popwin:special-display-config)
     (push '(makey-key-mode :stick t) popwin:special-display-config)
+    (push '("^\*makey-key: .+\*$" :regexp t ) popwin:special-display-config)
     (push '("*HTTP Response*" :noselect t :stick t) popwin:special-display-config)
     (push '("*magit-commit*" :noselect t :height 0.3 :width 80 :stick t) popwin:special-display-config)
     (push '("*magit-diff*" :noselect t :height 0.3 :width 80) popwin:special-display-config)

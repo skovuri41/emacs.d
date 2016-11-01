@@ -54,18 +54,16 @@
     (setq tab-always-indent 'complete)
     (add-to-list 'completion-styles 'initials t))
   :bind (("M-&" . complete-symbol))
-  :interpreter (("emacs" . emacs-lisp-mode))
-  )
+  :interpreter (("emacs" . emacs-lisp-mode)))
 
 (use-package yaml-mode
   :mode ("\\.yml$" . yaml-mode))
 
 (use-package csv-mode
   :ensure t
-  :mode  (("\\.csv\\'" . csv-mode))
+  :mode (("\\.csv\\'" . csv-mode))
   :mode ("\\.tsv\\'" . csv-mode)
-  :mode ("\\.[Cc][Ss][Vv]\\'". csv-mode)
-  )
+  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode))
 
 (use-package markdown-mode
   :mode (("\\.markdown$" . markdown-mode)
@@ -78,8 +76,7 @@
   :ensure t
   :config
   (autoload 'csv-nav-mode "csv-nav" "Major mode for navigating comma-separated value files." t)
-  (setq csv-separators '("," ";" "|" " "))
-  )
+  (setq csv-separators '("," ";" "|" " ")))
 
 (use-package scratch
   :ensure t)
@@ -87,8 +84,7 @@
 (use-package highlight-numbers
   :ensure t
   :init
-  (add-hook 'prog-mode-hook 'highlight-numbers-mode)
-  )
+  (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
 ;; whitespace
 (use-package whitespace
