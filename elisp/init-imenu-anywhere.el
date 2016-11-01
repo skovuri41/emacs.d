@@ -33,14 +33,7 @@
       (interactive)
       (let ((mode-imenu (imenu-default-create-index-function))
             (custom-imenu (imenu--generic-function imenu-generic-expression)))
-        (append mode-imenu custom-imenu)))
-    (add-hook 'python-mode-hook
-              (lambda ()
-                (add-to-list
-                 'imenu-generic-expression
-                 '("Sections" "^#### \\[ \\(.*\\) \\]$" 1))
-                (imenu-add-to-menubar "Position")
-                (setq imenu-create-index-function 'my-merge-imenu)))))
+        (append mode-imenu custom-imenu)))))
 
 (use-package imenu-list
   :ensure t
@@ -126,7 +119,7 @@
      ("i" . hs-toggle-hiding))
 
     (defun my/imenu-list-goto-entry ()
-      "Enable lispy mode for selected major modes only"
+      "imenu-list-goto-entry"
       (interactive)
       (imenu-list-goto-entry)
       (let ((buffer-major-mode

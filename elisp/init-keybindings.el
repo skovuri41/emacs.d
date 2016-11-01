@@ -166,6 +166,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'g 'grep)
 (defalias 'gf 'grep-find)
 (defalias 'fd 'find-dired)
+(defalias 'wd 'wdired-change-to-wdired-mode)
 
 (defalias 'rb 'revert-buffer)
 
