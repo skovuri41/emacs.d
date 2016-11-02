@@ -11,19 +11,7 @@
   (semantic-mode t)
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-  (local-set-key "\C-c?" 'semantic-analyze-proto-impl-toggle)
-  ;; Fixing a bug in semantic, see #22287
-  (defun semanticdb-save-all-db-idle ()
-    "Save all semantic tag databases from idle time.
-Exit the save between databases if there is user input."
-    (semantic-safe "Auto-DB Save: %S"
-      ;; FIXME: Use `while-no-input'?
-      (save-mark-and-excursion ;; <-- added line
-       (semantic-exit-on-input 'semanticdb-idle-save
-         (mapc (lambda (db)
-                 (semantic-throw-on-input 'semanticdb-idle-save)
-                 (semanticdb-save-db db t))
-               semanticdb-database-list))))))
+  (local-set-key "\C-c?" 'semantic-analyze-proto-impl-toggle))
 
 (add-hook 'c-mode-hook #'my/setup-semantic-mode)
 (add-hook 'java-mode-hook #'my/setup-semantic-mode)

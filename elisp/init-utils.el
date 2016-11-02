@@ -7,7 +7,10 @@
   (validate-setq symon-sparkline-type 'bounded)
   (symon-mode 1))
 
-(use-package vlf-setup)
+(use-package vlf
+  :ensure t
+  :config (progn
+            (require 'vlf-setup)))
 
 (use-package esup
   :ensure t)
