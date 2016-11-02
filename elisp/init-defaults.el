@@ -116,7 +116,11 @@
   (setq delete-auto-save-files t)
   (setq backup-directory-alist
         '(("." . "~/.emacs_backups")))
-  (setq recentf-exclude '("/TAGS$" "/var/tmp/" ".recentf"))
+  (setq recentf-exclude
+        '("/TAGS$" "/var/tmp/" ".recentf" "/auto-install/" "/elpa/"
+          "\\.mime-example" "\\.ido.last" "COMMIT_EDITMSG"
+          ".gz" "~$" "/tmp/" "/ssh:" "/sudo:" "/scp:"))
+
   (validate-setq
    recentf-max-menu-items 15
    recentf-exclude (list "/\\.git/.*\\'"     ; Git contents
@@ -173,6 +177,7 @@
 
 ;; Don't be so stingy on the memory, we have lots now. It's the distant future.
 (setq gc-cons-threshold (* 20 1024 1024))
+(setq large-file-warning-threshold (* 25 1024 1024))
 
 ;; enable erase-buffer command
 (put 'erase-buffer 'disabled nil)
@@ -201,7 +206,7 @@
   (progn
     (setq savehist-additional-variables
           ;; also save my search entries
-          '(search-ring regexp-search-ring)
+          '(search-ring regexp-search-ring kill-ring)
           savehist-file "~/.emacs.d/savehist")
     (setq savehist-save-minibuffer-history t
           savehist-autosave-interval 180)

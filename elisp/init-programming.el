@@ -158,4 +158,10 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
 
   (setq vc-handled-backends '(git svn)))
 
+(use-package dumb-jump
+  :ensure t
+  :init (dumb-jump-mode)
+  :config
+  (setq dumb-jump-selector 'ivy))
+
 (provide 'init-programming)
