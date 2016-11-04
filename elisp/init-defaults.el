@@ -117,7 +117,7 @@
   (setq backup-directory-alist
         '(("." . "~/.emacs_backups")))
   (setq recentf-exclude
-        '("/TAGS$" "/var/tmp/" ".recentf" "/auto-install/" "/elpa/"
+        '("/TAGS$" "/var/tmp/" "~/.emacs.d/.recentf"  ".recentf" "/auto-install/" "/elpa/"
           "\\.mime-example" "\\.ido.last" "COMMIT_EDITMSG"
           ".gz" "~$" "/tmp/" "/ssh:" "/sudo:" "/scp:"))
 
@@ -128,8 +128,8 @@
                          "company-statistics-cache.el"
                          ))
   ;; (run-with-idle-timer (* 5 60) t 'recentf-save-list)
-  (run-with-idle-timer 60 t '(lambda ()
-                               (with-suppressed-message (recentf-save-list))))
+  (run-with-idle-timer (* 5 60) t '(lambda ()
+                                     (with-suppressed-message (recentf-save-list))))
   (use-package recentf-ext
     :ensure t))
 

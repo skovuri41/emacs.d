@@ -51,6 +51,7 @@
 (global-set-key (kbd "C-x m") 'eshell)
 ;; Start a new eshell even if one is active.
 (global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+(global-set-key [(meta return)] 'toggle-frame-fullscreen)
 
 ;; (global-set-key (kbd "C-;") 'iedit-mode)
 
@@ -165,6 +166,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'rr 'reverse-region)
 (defalias 'rs 'replace-string)
 (defalias 'dup 'duplicate-thing)
+;; (defalias 'max 'maximize-frame)
 
 (defalias 'g 'grep)
 (defalias 'gf 'grep-find)
@@ -188,6 +190,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'sm 'start-kbd-macro)
 (defalias 'em 'end-kbd-macro)
 (defalias 'lm 'call-last-kbd-macro)
+
 ;; ; elisp
 (defalias 'eb 'eval-buffer)
 (defalias 'er 'eval-region)
@@ -225,7 +228,6 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'pff 'projectile-find-file)
 (defalias 'pfd 'projectile-find-dir)
 (defalias 'psp 'projectile-switch-project)
-
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

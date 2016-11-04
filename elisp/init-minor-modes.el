@@ -350,4 +350,10 @@
   :config
   (setq logview-auto-revert-mode 'auto-revert-tail-mode))
 
+(use-package frame-cmds
+  :ensure t
+  :disabled t
+  :init
+  :config)
+
 (provide 'init-minor-modes)
