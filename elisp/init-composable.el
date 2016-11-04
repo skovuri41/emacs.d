@@ -11,9 +11,6 @@
                ((kbd "k") . previous-line))
 
     (composable-def '(delete-region))
-    (composable-def '(lispy-new-copy))
-    (composable-def '(lispy-yank))
-
     (composable-mode)
     (composable-mark-mode)))
 

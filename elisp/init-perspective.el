@@ -99,12 +99,24 @@
 
     (setq eyebrowse-mode-line-style 'smart)
     (setq eyebrowse-close-window-config-prompt t)
-    (setq eyebrowse-new-workspace '(lambda () (progn (jethro/insert-startupify-lists)
-                                                (switch-to-buffer "*startscreen*"))))
-    ;; (validate-setq eyebrowse-new-workspace "*startscreen*")
+    ;; (setq eyebrowse-new-workspace '(lambda () (progn (jethro/insert-startupify-lists)
+    ;;                                             (switch-to-buffer "*startscreen*"))))
     (setq eyebrowse-keymap-prefix (kbd "C-c w"))
     (setq eyebrowse-wrap-around t)
 
     (eyebrowse-mode t)))
+
+(use-package nameframe
+  :ensure t
+  :config
+  (progn
+    (use-package nameframe-projectile
+      :ensure t)
+    (use-package nameframe-eyebrowse
+      :load-path ".cask/25.1/elpa/nameframe-eyebrowse")
+    (nameframe-projectile-mode t)
+    (nameframe-eyebrowse-mode t)
+    ;; (nameframe-eyebrowse-mode -1)
+    ))
 
 (provide 'init-perspective)

@@ -107,4 +107,11 @@
   (set-face-background 'col-highlight "#ddd")
   (column-highlight-mode))
 
+(use-package elpa-mirror
+  :ensure t
+  :commands (elpamr-create-mirror-for-installed)
+  :config
+  (progn
+    (setq elpamr-default-output-directory "~/.emacs.d/myelpa")))
+
 (provide 'init-utils)
