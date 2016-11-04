@@ -995,7 +995,9 @@ Version 2015-11-06"
     (dotimes (-i 26)
       (insert (format "%c\n" (+ -startChar -i))))))
 
-(defvar xah-unicode-list nil "Associative list of Unicode symbols. First element is a Unicode character, second element is a string used as key shortcut in `ido-completing-read'")
+(defvar xah-unicode-list nil "Associative list of Unicode
+symbols. First element is a Unicode character, second element is
+a string used as key shortcut in `ido-completing-read'")
 (setq xah-unicode-list
       '(
         ("_" . "underscore" )

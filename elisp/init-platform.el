@@ -40,13 +40,18 @@
   ;; (dolist (p my-packages)
   ;;   (when (not (package-installed-p p))
   ;;     (package-install p)))
+  (setq frame-resize-pixelwise t)
+  (set-frame-position (selected-frame) 0 0)
+  (set-frame-size (selected-frame) 1920 1080 t)
   (setq
    ;; font
    ;; default-frame-alist '((font . "Monaco-10"))
    ;; default-frame-alist '((font . "Fira Code-11"))
-   default-frame-alist '((font . "Hasklig-12")
-                         (width . 120) ;character
-                         (height . 40)) ; lines
+   default-frame-alist '((font . "Hasklig-12"))
+   ;; default-frame-alist '((font . "Hasklig-12")
+   ;;                       (width . 120) ;character
+   ;;                       (height . 40))
+                                        ; lines
    ;; make emacs use the clipboard
    x-select-enable-clipboard t))
 

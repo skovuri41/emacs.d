@@ -33,6 +33,7 @@
     (add-to-list 'helm-completing-read-handlers-alist '(helm-c-yas-complete . nil))
     (add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy . nil))
     (add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename . nil))
+    (add-to-list 'helm-completing-read-handlers-alist '(nameframe-switch-frame . nil))
     (add-to-list 'helm-completing-read-handlers-alist '(dired-create-directory . nil)))
 
   (use-package helm-descbinds )

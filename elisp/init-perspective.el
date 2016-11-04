@@ -113,10 +113,10 @@
     (use-package nameframe-projectile
       :ensure t)
     (use-package nameframe-eyebrowse
-      :load-path ".cask/25.1/elpa/nameframe-eyebrowse")
+      :load-path "elisp/"
+      ;; :load-path ".cask/25.1/elpa/nameframe-eyebrowse"
+      )
     (nameframe-projectile-mode t)
-    (nameframe-eyebrowse-mode t)
-    ;; (nameframe-eyebrowse-mode -1)
-    ))
+    (nameframe-eyebrowse-mode t)))
 
 (provide 'init-perspective)
