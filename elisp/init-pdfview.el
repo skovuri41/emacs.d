@@ -73,6 +73,8 @@
 
     (define-key pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)
     (define-key pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
+    (define-key pdf-view-mode-map "ww" 'ace-window)
+    (define-key pdf-view-mode-map (kbd "`") 'nameframe-switch-frame)
 
     (bind-key "i"
               #'modi/imenu-list-display-toggle pdf-view-mode-map)

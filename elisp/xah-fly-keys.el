@@ -2134,7 +2134,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "W") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "x") 'hungry-delete-forward)
     (define-key xah-fly-key-map (kbd "X") 'hungry-delete-backward)
-    (define-key xah-fly-key-map (kbd "y") 'easy-kill)
+    ;; (define-key xah-fly-key-map (kbd "y") 'easy-kill)
+    (define-key xah-fly-key-map (kbd "y") 'composable-save-region)
     (define-key xah-fly-key-map (kbd "z") 'zop-to-char)))
 
 ;;;;; insert mode keys

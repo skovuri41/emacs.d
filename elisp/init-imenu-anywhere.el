@@ -62,7 +62,8 @@
   :config
   (progn
     ;; (setq imenu-list-size     0.2)
-    (setq imenu-list-position 'right)
+    ;; (setq imenu-list-position 'right)
+    (setq imenu-list-position 'left)
     (setq imenu-list-focus-after-activation t
           imenu-list-auto-resize t)
 

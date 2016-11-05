@@ -40,4 +40,14 @@
     (setq forecast-country   "USA")
     (setq forecast-units     'us)))
 
+(use-package wttrin
+  :ensure t
+  :commands (wttrin)
+  :init
+  (setq wttrin-default-cities '("hyd"
+                                "07751"
+                                "newyork"
+                                "london")))
+
+
 (provide 'init-weather)
