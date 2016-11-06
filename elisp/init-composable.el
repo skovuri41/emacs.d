@@ -15,6 +15,7 @@
                ("p" . er/mark-outside-pairs)
                ("q" . er/mark-inside-quotes)
                ("Q" . er/mark-outside-quotes)
+               ("'" . avy-goto-char)
                ("." . er/mark-text-sentence)
                ("s" . composable-mark-symbol)
                ("B" . mark-whole-buffer)

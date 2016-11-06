@@ -3,6 +3,8 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config
+  (add-to-list 'interpreter-mode-alist '("python2" . python-mode))
+  (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
   (add-hook 'python-mode-hook
             (lambda () (aggressive-indent-mode -1)))
   (add-hook 'python-mode-hook

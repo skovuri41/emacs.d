@@ -114,4 +114,23 @@
   (progn
     (setq elpamr-default-output-directory "~/.emacs.d/myelpa")))
 
+(use-package sublimity
+  :ensure t
+  :init
+  (setq sublimity-auto-hscroll-mode nil
+        auto-hscroll-mode t)
+  (require 'sublimity-scroll)
+  ;; (require 'sublimity-map)
+  ;; (setq sublimity-map-size 20)
+  ;; (setq sublimity-map-fraction 0.3)
+  ;; (setq sublimity-map-text-scale -7)
+  :config
+  (setq sublimity-auto-hscroll-mode nil
+        auto-hscroll-mode t)
+  (use-package sublimity-scroll
+    :config
+    (setq sublimity-scroll-weight 5
+          sublimity-scroll-drift-length 10))
+  (sublimity-mode 1))
+
 (provide 'init-utils)

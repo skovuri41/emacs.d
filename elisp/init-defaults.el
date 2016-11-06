@@ -25,6 +25,10 @@
 ;;make mouse scrolling smooth
 (setq  mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
 
+(setq recenter-positions '(top middle bottom))
+
+(setq use-dialog-box nil)
+
 ;;Suppress symbolic link warnings
 (setq find-file-visit-truename t)
 
