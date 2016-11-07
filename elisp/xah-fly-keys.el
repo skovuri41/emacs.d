@@ -99,7 +99,11 @@ version 2016-06-15"
       (progn (xah-forward-block n)))))
 
 (defvar xah-brackets nil "string of left/right brackets pairs.")
-(setq xah-brackets "()[]{}<>（）［］｛｝⦅⦆〚〛⦃⦄“”‘’‹›«»「」〈〉《》【】〔〕⦗⦘『』〖〗〘〙｢｣⟦⟧⟨⟩⟪⟫⟮⟯⟬⟭⌈⌉⌊⌋⦇⦈⦉⦊❛❜❝❞❨❩❪❫❴❵❬❭❮❯❰❱❲❳〈〉⦑⦒⧼⧽﹙﹚﹛﹜﹝﹞⁽⁾₍₎⦋⦌⦍⦎⦏⦐⁅⁆⸢⸣⸤⸥⟅⟆⦓⦔⦕⦖⸦⸧⸨⸩｟｠⧘⧙⧚⧛⸜⸝⸌⸍⸂⸃⸄⸅⸉⸊᚛᚜༺༻༼༽⏜⏝⎴⎵⏞⏟⏠⏡﹁﹂﹃﹄︹︺︻︼︗︘︿﹀︽︾﹇﹈︷︸")
+(setq xah-brackets "()[]{}<>（）［］｛｝⦅⦆〚〛⦃⦄“”‘’‹›«»「」〈〉
+《》【】〔〕⦗⦘『』〖〗〘〙｢｣
+⟦⟧⟨⟩⟪⟫⟮⟯⟬⟭⌈⌉⌊⌋⦇⦈⦉⦊❛❜❝❞❨❩❪❫❴❵❬❭❮❯❰❱❲❳〈〉⦑⦒⧼⧽﹙﹚﹛﹜﹝﹞⁽⁾₍₎⦋⦌⦍⦎⦏⦐⁅⁆⸢⸣⸤⸥⟅⟆⦓⦔⦕⦖⸦⸧⸨⸩
+｟｠
+⧘⧙⧚⧛⸜⸝⸌⸍⸂⸃⸄⸅⸉⸊᚛᚜༺༻༼༽⏜⏝⎴⎵⏞⏟⏠⏡﹁﹂﹃﹄︹︺︻︼︗︘︿﹀︽︾﹇﹈︷︸")
 
 (defvar xah-left-brackets '("(" "{" "[" "<" "〔" "【" "〖" "〈" "《" "「" "『" "“" "‘" "‹" "«" )
   "List of left bracket chars.")
@@ -485,13 +489,19 @@ Version 2016-07-13"
   "Reformat current text block into 1 long line or multiple short lines.
 When there is a text selection, act on the the selection, else, act on a text block separated by blank lines.
 
-When the command is called for the first time, it checks the current line's length to decide to go into 1 line or multiple lines. If current line is short, it'll reformat to 1 long lines. And vice versa.
+When the command is called for the first time, it checks the
+current line's length to decide to go into 1 line or multiple
+lines. If current line is short, it'll reformat to 1 long lines.
+And vice versa.
 
 Repeated call toggles between formatting to 1 long line and multiple lines.
 URL `http://ergoemacs.org/emacs/emacs_reformat_lines.html'
 Version 2016-07-13"
   (interactive)
-  ;; This command symbol has a property “'compact-p”, the possible values are t and nil. This property is used to easily determine whether to compact or uncompact, when this command is called again
+  ;; This command symbol has a property “'compact-p”, the possible
+  ;; values are t and nil. This property is used to easily determine
+  ;; whether to compact or uncompact, when this command is called
+  ;; again
   (let (
         (-compact-p
          (if (eq last-command this-command)
@@ -1705,15 +1715,6 @@ If `universal-argument' is called first, do switch frame."
 (xah-fly-map-keys
  (define-prefix-command 'xah-help-keymap)
  '(
-   ;;    `C-h B'      `describe-buffer'
-   ;;    `C-h c'      `describe-command'
-   ;;    `C-h o'      `describe-option'
-   ;;    `C-h C-c'    `describe-key-briefly'
-   ;;    `C-h C-o'    `describe-option-of-type'
-   ;;    `C-h M-c'    `describe-copying'
-   ;;    `C-h M-f'    `describe-file'
-   ;;    `C-h M-k'    `describe-keymap'
-   ;;    `C-h M-l'    `find-function-on-key'
    (";" . Info-goto-emacs-command-node)
    ("." . find-function-on-key)
    ("a" . apropos-command)
@@ -1977,7 +1978,9 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<menu>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<f8>") 'xah-fly-command-mode-activate)
-  (define-key xah-fly-key-map (kbd "<f9>") xah-fly-leader-key-map)
+  ;; (define-key xah-fly-key-map (kbd "<f9>") xah-fly-leader-key-map)
+  (define-key xah-fly-key-map (kbd "<f9>") 'xah-copy-to-register-1)
+  (define-key xah-fly-key-map (kbd "<f10>") 'xah-paste-from-register-1)
   (define-key xah-fly-key-map (kbd "<f11>") 'xah-previous-user-buffer)
   (define-key xah-fly-key-map (kbd "<f12>") 'xah-next-user-buffer)
   (define-key xah-fly-key-map (kbd "<C-f11>") 'xah-previous-emacs-buffer)

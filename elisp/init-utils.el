@@ -133,4 +133,12 @@
           sublimity-scroll-drift-length 10))
   (sublimity-mode 1))
 
+(use-package centered-cursor-mode
+  :ensure t
+  :disabled t
+  :config (progn
+            (global-centered-cursor-mode t)
+            (setq ccm-recenter-at-end-of-file t)))
+
+
 (provide 'init-utils)
