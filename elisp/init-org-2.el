@@ -1034,11 +1034,21 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
 (use-package org-protocol)
 
 (use-package toc-org
+  :ensure t
   :defer t
   :init
   (progn
     (setq toc-org-max-depth 10)
     ;; (add-hook 'org-mode-hook 'toc-org-enable)
     ))
+
+(use-package org-download
+  :ensure t
+  :commands (org-download-enable
+             org-download-yank
+             org-download-screenshot)
+  :init
+  (progn
+    (add-hook 'org-mode-hook 'org-download-enable)))
 
 (provide 'init-org-2)

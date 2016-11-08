@@ -593,7 +593,9 @@ Version 2016-07-17"
           (setq -p1 (region-beginning))
           (setq -p2 (region-end)))
       (save-excursion
-        ;; 2016-01-14 not use (bounds-of-thing-at-point 'symbol), because if at end of buffer, it returns nil. also, it's syntax table dependent
+        ;; 2016-01-14 not use (bounds-of-thing-at-point 'symbol),
+        ;; because if at end of buffer, it returns nil. also, it's
+        ;; syntax table dependent
         (skip-chars-backward "-_[:alnum:]")
         (setq -p1 (point))
         (skip-chars-forward "-_[:alnum:]")
@@ -795,7 +797,9 @@ Version 2016-07-17"
 
 (defun xah-title-case-region-or-line (*begin *end)
   "Title case text between nearest brackets, or current line, or text selection.
-Capitalize first letter of each word, except words like {to, of, the, a, in, or, and, …}. If a word already contains cap letters such as HTTP, URL, they are left as is.
+Capitalize first letter of each word, except words like {to, of,
+the, a, in, or, and, …}. If a word already contains cap letters
+such as HTTP, URL, they are left as is.
 
 When called in a elisp program, *begin *end are region boundaries.
 URL `http://ergoemacs.org/emacs/elisp_title_case_text.html'
@@ -874,7 +878,9 @@ version 2016-04-12"
   "Returns current date-time string in full ISO 8601 format.
 Example: 「2012-04-05T21:08:24-07:00」.
 
-Note, for the time zone offset, both the formats 「hhmm」 and 「hh:mm」 are valid ISO 8601. However, Atom Webfeed spec seems to require 「hh:mm」."
+Note, for the time zone offset, both the formats 「hhmm」 and
+「hh:mm」 are valid ISO 8601. However, Atom Webfeed spec seems to
+require 「hh:mm」."
   (concat
    (format-time-string "%Y-%m-%dT%T")
    ((lambda (-x) (format "%s:%s" (substring -x 0 3) (substring -x 3 5))) (format-time-string "%z"))))
@@ -882,7 +888,9 @@ Note, for the time zone offset, both the formats 「hhmm」 and 「hh:mm」 are 
 (defun xah-insert-bracket-pair (*left-bracket *right-bracket)
   "Wrap or Insert a matching bracket and place cursor in between.
 
-If there's a text selection, wrap brackets around it. Else, smartly decide wrap or insert. (basically, if there's no char after cursor, just insert bracket pair.)
+If there's a text selection, wrap brackets around it. Else,
+smartly decide wrap or insert. (basically, if there's no char
+after cursor, just insert bracket pair.)
 
 *left-bracket ＆ *right-bracket are strings.
 
@@ -1245,7 +1253,10 @@ Version 2016-06-19"
     (while (and (not (string-equal "*" (substring (buffer-name) 0 1))) (< i 20))
       (setq i (1+ i)) (previous-buffer))))
 
-(defvar xah-recently-closed-buffers nil "alist of recently closed buffers. Each element is (buffer name, file path). The max number to track is controlled by the variable `xah-recently-closed-buffers-max'.")
+(defvar xah-recently-closed-buffers nil "alist of recently closed
+buffers. Each element is (buffer name, file path). The max number
+to track is controlled by the variable
+`xah-recently-closed-buffers-max'.")
 
 (defvar xah-recently-closed-buffers-max 40 "The maximum length for `xah-recently-closed-buffers'.")
 
@@ -2038,6 +2049,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "|") nil)
     (define-key xah-fly-key-map (kbd "a") 'xah-beginning-of-line-or-block)
     (define-key xah-fly-key-map (kbd "bb") 'ivy-switch-buffer)
+    (define-key xah-fly-key-map (kbd "bp") 'counsel-projectile-switch-to-buffer)
     (define-key xah-fly-key-map (kbd "bi") 'modi/imenu-list-display-toggle)
     (define-key xah-fly-key-map (kbd "bk") 'xah-close-current-buffer)
     (define-key xah-fly-key-map (kbd "bn") 'xah-new-empty-buffer)

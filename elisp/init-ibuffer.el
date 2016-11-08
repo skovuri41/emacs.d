@@ -78,7 +78,7 @@
                            (mode . perl-mode)))
                ("Twitter" (mode . twittering-mode))
                ("Ibuffer" (mode . ibuffer-mode))
-               ("Cider" (mode . cider-mode))
+               ("Cider Repl" (mode . cider-mode))
                ("Pdf" (mode . pdf-view-mode))
                ("Magit" (or (name . "*magit*")
                             (mode . magit-mode)))
