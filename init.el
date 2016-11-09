@@ -71,9 +71,9 @@
 (require 'init-docker)
 (require 'init-local)
 (require 'init-ivy)
-(require 'init-composable)
 (require 'init-utils)
 (require 'init-xah-fly-keys)
+(require 'init-composable)
 (require 'init-keybindings)
 (require 'startscreen)
 

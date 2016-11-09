@@ -4,14 +4,17 @@
   (progn
     (setq neo-create-file-auto-open t
           neo-dont-be-alone t
+          neo-auto-indent-point t
           neo-banner-message "File Tree browser"
           neo-smart-open t
           neo-persist-show nil)
     (setq neo-theme 'nerd)           ; 'classic, 'nerd, 'ascii, 'arrow
+    
     (defun neo-buffer--insert-header ()
       (let ((start (point)))
         (set-text-properties start (point) '(face neo-header-face)))
       (neo-buffer--newline-and-begin))
+    
     ;; http://emacs.stackexchange.com/a/12156/115
     (defun find-file-next-in-dir (&optional prev)
       "Open the next file in the directory.
@@ -61,7 +64,8 @@
       "enter"
       (interactive)
       (progn
-        (neotree-enter)
+        ;; (neotree-enter)
+        (neotree-enter-ace-window)
         (xah-fly-command-mode-activate)))
     
     (defun my/neotree-toggle ()
@@ -79,6 +83,7 @@
       (progn
         (neotree-show)
         (neo-global--select-window)
+        (neo-point-auto-indent)
         (xah-fly-insert-mode-activate)))
 
     (defun my/neotree-hide ()
@@ -103,8 +108,8 @@
       (local-set-key (kbd "+") 'neotree-create-node)
       (local-set-key (kbd "r") 'neotree-rename-node)
       (local-set-key (kbd "d") 'neotree-delete-node)
-      (local-set-key (kbd "j") 'neotree-next-line)
-      (local-set-key (kbd "k") 'neotree-previous-line)
+      (local-set-key (kbd "j") 'next-line)
+      (local-set-key (kbd "k") 'previous-line)
       (local-set-key (kbd "q") 'my/neotree-hide)
       (local-set-key (kbd ".") 'neotree-hidden-file-toggle)
       (local-set-key (kbd "TAB") 'neotree-stretch-toggle)

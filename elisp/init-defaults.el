@@ -119,7 +119,7 @@
   (setq delete-old-versions t)
   (setq delete-auto-save-files t)
   (setq backup-directory-alist
-        '(("." . "~/.emacs_backups")))
+        '(("." . "~/backups")))
   (setq recentf-exclude
         '("/TAGS$" "/var/tmp/" "~/.emacs.d/.recentf"  ".recentf" "/auto-install/" "/elpa/"
           "\\.mime-example" "\\.ido.last" "COMMIT_EDITMSG"

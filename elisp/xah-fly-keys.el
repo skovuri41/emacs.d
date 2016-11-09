@@ -1939,7 +1939,7 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-leader-key-map (kbd "p") 'xah-projectile-keymap)
   ;; (define-key xah-fly-leader-key-map (kbd "n") 'xah-harmless-keymap)
   (define-key xah-fly-leader-key-map (kbd "nt") 'my/neotree-toggle)
-  (define-key xah-fly-leader-key-map (kbd "ne") 'neotree-find)
+  (define-key xah-fly-leader-key-map (kbd "nf") 'neotree-find)
   (define-key xah-fly-leader-key-map (kbd "ns") 'my/neotree-show)
   (define-key xah-fly-leader-key-map (kbd "o") 'my-org-prefix-map)
   (define-key xah-fly-leader-key-map (kbd "r") 'xah-edit-cmds-keymap)
