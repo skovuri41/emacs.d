@@ -56,16 +56,56 @@
           (message "Could not find git project root."))))
     
     ;; (setq projectile-switch-project-action 'neotree-projectile-action)
+
+    (defun my/neotree-goto-entry ()
+      "enter"
+      (interactive)
+      (progn
+        (neotree-enter)
+        (xah-fly-command-mode-activate)))
+    
+    (defun my/neotree-toggle ()
+      "insert mode activate for mode"
+      (interactive)
+      (progn
+        (neotree-toggle)
+        (if (neo-global--window-exists-p)
+            (progn (neo-global--select-window)
+                   (xah-fly-insert-mode-activate)))))
+    
+    (defun my/neotree-show ()
+      "insert mode activate for mode"
+      (interactive)
+      (progn
+        (neotree-show)
+        (neo-global--select-window)
+        (xah-fly-insert-mode-activate)))
+
+    (defun my/neotree-hide ()
+      "insert mode activate for mode"
+      (interactive)
+      (progn
+        (neotree-hide)
+        (xah-fly-command-mode-activate)))
+
+    (defun my/neotree-switch-window ()
+      "insert mode activate for mode"
+      (interactive)
+      (progn
+        (call-interactively 'ace-window)
+        (xah-fly-command-mode-activate)))
     
     (defun nt-mode-keys-setup ()
       "for 'neo tree mode'"
       (local-set-key (kbd "RET") 'neotree-enter)
+      (local-set-key (kbd "i") 'neotree-enter)
+      (local-set-key (kbd "l") 'my/neotree-goto-entry)
       (local-set-key (kbd "+") 'neotree-create-node)
       (local-set-key (kbd "r") 'neotree-rename-node)
       (local-set-key (kbd "d") 'neotree-delete-node)
       (local-set-key (kbd "j") 'neotree-next-line)
       (local-set-key (kbd "k") 'neotree-previous-line)
-      (local-set-key (kbd "q") 'neotree-hide)
+      (local-set-key (kbd "q") 'my/neotree-hide)
       (local-set-key (kbd ".") 'neotree-hidden-file-toggle)
       (local-set-key (kbd "TAB") 'neotree-stretch-toggle)
       (local-set-key (kbd "|") 'neotree-enter-vertical-split)
@@ -75,9 +115,11 @@
       (local-set-key (kbd "h") 'neotree-select-up-node)
       (local-set-key (kbd "o") 'find-file-next-in-dir)
       (local-set-key (kbd "O") 'find-file-prev-in-dir)
-      (local-set-key (kbd "l") '(lambda () (interactive)
-                                  (save-selected-window (neotree-enter)))))
+      (local-set-key (kbd "ww") 'my/neotree-switch-window)
+      (local-set-key (kbd "SPC") '(lambda () (interactive)
+                                    (save-selected-window (neotree-enter)))))
     (add-hook 'neotree-mode-hook #'nt-mode-keys-setup)
+
 
     (defun neotree-project-root (&optional directory)
       "Open a NeoTree browser for a project DIRECTORY."
@@ -86,8 +128,6 @@
         (if (and (fboundp 'neo-global--window-exists-p)
                  (neo-global--window-exists-p))
             (neotree-hide)
-          (neotree-find (projectile-project-root)))))
-
-    ))
+          (neotree-find (projectile-project-root)))))))
 
 (provide 'init-neotree)

@@ -3,7 +3,7 @@
   :config
   (progn
     (validate-setq aw-ignore-on t)
-    (add-to-list 'aw-ignored-buffers " *NeoTree*")
+    ;; (add-to-list 'aw-ignored-buffers " *NeoTree*")
     (validate-setq aw-swap-invert t)
     (validate-setq aw-dispatch-always nil)
     (validate-setq aw-scope 'frame)
