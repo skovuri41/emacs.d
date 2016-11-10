@@ -9,6 +9,8 @@
           neo-smart-open t
           neo-persist-show nil)
     (setq neo-theme 'nerd)           ; 'classic, 'nerd, 'ascii, 'arrow
+    (validate-setq neo-vc-integration '(face char))
+    (validate-setq neo-toggle-window-keep-p t)
     
     (defun neo-buffer--insert-header ()
       (let ((start (point)))
@@ -66,7 +68,10 @@
       (progn
         ;; (neotree-enter)
         (neotree-enter-ace-window)
-        (xah-fly-command-mode-activate)))
+        (if (equal (buffer-name (current-buffer))
+                   neo-buffer-name)
+            (xah-fly-insert-mode-activate)
+          (xah-fly-command-mode-activate))))
     
     (defun my/neotree-toggle ()
       "insert mode activate for mode"
@@ -113,6 +118,7 @@
       (local-set-key (kbd "q") 'my/neotree-hide)
       (local-set-key (kbd ".") 'neotree-hidden-file-toggle)
       (local-set-key (kbd "TAB") 'neotree-stretch-toggle)
+      (local-set-key (kbd "t") 'neotree-stretch-toggle)
       (local-set-key (kbd "|") 'neotree-enter-vertical-split)
       (local-set-key (kbd "-") 'neotree-enter-horizontal-split)
       (local-set-key (kbd "<") 'neotree-select-previous-sibling-node)
