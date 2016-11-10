@@ -36,16 +36,6 @@
         :skip-alternate t
         :tight t)
 
-      (defface xah-fly-keys-face1
-        '((t (:foreground "#FC5C94" :distant-foreground "#A20C41")))
-        "Face for xah keys in the modeline."
-        :group 'spaceline)
-
-      (defface xah-fly-keys-face2
-        '((t (:foreground "chartreuse3" :distant-foreground "darkgreen")))
-        "Face for xah keys the modeline."
-        :group 'spaceline)
-
       (defun xah-fly-keys-state ()
         (if xah-fly-insert-state-q
             " I "
@@ -54,8 +44,8 @@
 
       (defun xah-fly-keys-state-face ()
         (if xah-fly-insert-state-q
-            'xah-fly-keys-face2
-          'xah-fly-keys-face1
+            'all-the-icons-green
+          'all-the-icons-lred
           ))
 
       (spaceline-define-segment *xah-fly-keys-state
@@ -63,8 +53,34 @@
                     'face (xah-fly-keys-state-face)
                     'help-echo (format "Xah Fly keys: %s"
                                        "xah-fly-keys" )))
+
+      (spaceline-define-segment config-modeline-version-control
+        "Version control information."
+        (when (bound-and-true-p vc-mode)
+          (let ((sym (when (buffer-file-name)
+                       (pcase (vc-state (buffer-file-name))
+                         ((\` up-to-date) " ")
+                         ((\` edited) " *")
+                         ((\` added) " +")
+                         ((\` unregistered) " ??")
+                         ((\` removed) " -")
+                         ((\` needs-merge) " M")
+                         ((\` needs-update) " X")
+                         ((\` ignored) " ")
+                         (_ " Unk"))))
+                (desc (replace-regexp-in-string "Git[.?:-]" "" vc-mode)))
+            (powerline-raw (concat sym desc " ")))))
+
+      (spaceline-define-segment config-modeline-ace-window-number
+        (when (and (featurep 'ace-window)
+                   (> (length (aw-window-list)) 1))
+          (when-let ((pos (cl-position (selected-window) (aw-window-list)))
+                     (key (nth pos aw-keys)))
+            (propertize (char-to-string key) 'face 'all-the-icons-lred))))
+
       (spaceline-install
        '(*macro-recording
+         config-modeline-ace-window-number
          ((workspace-number window-number) :separator " | ")
          (*xah-fly-keys-state :separator " | ")
          (buffer-modified buffer-size buffer-id remote-host)
@@ -72,7 +88,7 @@
          ((flycheck-error flycheck-warning flycheck-info) :when active)
          (((minor-modes :separator " ") process) :when active)
          *buffer-modified
-         (version-control :when active)
+         (config-modeline-version-control :when active)
          (org-pomodoro :when active)
          (org-clock :when active)
          (battery :when active))
@@ -82,17 +98,6 @@
          buffeir-position
          hud))
 
-      ;; (setq mode-line-format (default-value 'mode-line-format))
-
       )))
-
-(defadvice vc-mode-line (after strip-backend () activate)
-  "Remove the Git string from the 'vc-mode-line'."
-  (when (stringp vc-mode)
-    (let ((noback (replace-regexp-in-string
-                   (format "^ %s\\(:\\|-\\)?" (vc-backend buffer-file-name))
-                   " " vc-mode)))
-      (setq vc-mode noback))))
-
 
 (provide 'init-spaceline)

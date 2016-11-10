@@ -1988,6 +1988,9 @@ If `universal-argument' is called first, do switch frame."
   ;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<menu>") 'xah-fly-command-mode-activate)
+  (define-key xah-fly-key-map (kbd "<f5>") 'my/neotree-toggle)
+  (define-key xah-fly-key-map (kbd "<f6>") 'modi/imenu-list-display-toggle)
+
   (define-key xah-fly-key-map (kbd "<f8>") 'xah-fly-command-mode-activate)
   ;; (define-key xah-fly-key-map (kbd "<f9>") xah-fly-leader-key-map)
   (define-key xah-fly-key-map (kbd "<f9>") 'xah-copy-to-register-1)

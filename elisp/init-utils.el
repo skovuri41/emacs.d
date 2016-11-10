@@ -140,5 +140,12 @@
             (global-centered-cursor-mode t)
             (setq ccm-recenter-at-end-of-file t)))
 
+;; Once icons are installed, their fonts:
+;; (https://github.com/domtronn/all-the-icons.el/tree/master/fonts)
+;; must be installed to system fonts and then:
+;; $ sudo fc-cache -f -v
+(use-package all-the-icons
+  :ensure t
+  :commands (all-the-icons-for-buffer all-the-icons-alltheicon))
 
 (provide 'init-utils)

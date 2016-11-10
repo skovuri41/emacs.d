@@ -78,9 +78,10 @@
       (interactive)
       (progn
         (neotree-toggle)
-        (if (neo-global--window-exists-p)
-            (progn (neo-global--select-window)
-                   (xah-fly-insert-mode-activate)))))
+        (if (equal (buffer-name (current-buffer))
+                   neo-buffer-name)
+            (xah-fly-insert-mode-activate)
+          (xah-fly-command-mode-activate))))
     
     (defun my/neotree-show ()
       "insert mode activate for mode"
