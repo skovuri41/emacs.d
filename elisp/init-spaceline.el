@@ -42,6 +42,7 @@
           " C "
           ))
 
+      (require 'all-the-icons)
       (defun xah-fly-keys-state-face ()
         (if xah-fly-insert-state-q
             'all-the-icons-green
