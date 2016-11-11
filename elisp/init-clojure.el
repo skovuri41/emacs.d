@@ -199,4 +199,10 @@
 (use-package cljsbuild-mode
   :diminish cljsbuild-mode)
 
+(use-package html-to-hiccup
+  :ensure t
+  :config
+  ;; (define-key clojure-mode-map (kbd "H-h") 'html-to-hiccup-convert-region)
+  )
+
 (provide 'init-clojure)

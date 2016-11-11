@@ -216,7 +216,7 @@
 (depends-on "eyebrowse")
 (depends-on "log4j-mode")
 (depends-on "logview")
-
+(depends-on "all-the-icons")
 
 
 
