@@ -2064,9 +2064,9 @@ If `universal-argument' is called first, do switch frame."
                                                 (xah-fly-insert-mode-activate)
                                                 (hydra-ibuffer-main/body))))
     (define-key xah-fly-key-map (kbd "bm") 'hydra-bm/body)
-    (define-key xah-fly-key-map (kbd "cm") 'smex-major-mode-commands)
-    (define-key xah-fly-key-map (kbd "cc") 'local-clojure-mode-keymap)
-    (define-key xah-fly-key-map (kbd "cj") 'hydra-eclim/body)
+    ;; (define-key xah-fly-key-map (kbd "cm") 'smex-major-mode-commands)
+    ;; (define-key xah-fly-key-map (kbd "cc") 'hydra-cider-buddy-main/body)
+    ;; (define-key xah-fly-key-map (kbd "cj") 'hydra-eclim/body)
     (define-key xah-fly-key-map (kbd "e") 'xah-end-of-line-or-block)
     (define-key xah-fly-key-map (kbd "dd") 'xah-delete-current-line)
     (define-key xah-fly-key-map (kbd "dr") 'xah-cut-all-or-region)
@@ -2297,8 +2297,24 @@ If `universal-argument' is called first, do switch frame."
     (when (or (equal "emacs-lisp-mode" buffer-major-mode)
               (equal "clojure-mode" buffer-major-mode)
               (equal "clojurescript-mode" buffer-major-mode)
+              (equal "cider-repl-mode" buffer-major-mode)
               (equal "cider-repl-mode-hook" buffer-major-mode))
       (lispy-mode 1))))
+
+(defun hydra-commands-activate ()
+  "Enable lispy mode for selected major modes only"
+  (let ((buffer-major-mode
+         (format "%s" (get-buffer-mode))))
+    (when (or (equal "clojure-mode" buffer-major-mode)
+              (equal "clojurescript-mode" buffer-major-mode)
+              (equal "cider-repl-mode" buffer-major-mode)
+              (equal "cider-docview-mode" buffer-major-mode)
+              (equal "cider-stacktrace-mode" buffer-major-mode))
+      (define-key xah-fly-key-map (kbd "c") 'hydra-cider-buddy-main/body))
+    (when (or (equal "emacs-lisp-mode" buffer-major-mode))
+      (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))
+    (when (or (equal "java-mode" buffer-major-mode))
+      (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))))
 
 (eval-after-load "lispy"
   `(progn
@@ -2330,6 +2346,7 @@ If `universal-argument' is called first, do switch frame."
 ;; when in shell mode, switch to insertion mode.
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
+(add-hook 'xah-fly-command-mode-activate-hook 'hydra-commands-activate)
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)
 
 (define-minor-mode xah-fly-keys

@@ -98,7 +98,7 @@
 
       (bind-keys :map clojure-mode-map
                  ("C-x C-e" . cider-eval-last-sexp)
-                 ("C-c r" . cider-repl-reset)
+                 ("C-c C-r" . cider-repl-reset)
                  ("C-c C-v" . cider-send-and-evaluate-sexp))
 
       (bind-keys :prefix-map local-clojure-mode-keymap
@@ -131,8 +131,7 @@
                  ;; ("rcp" . cljr-cycle-privacy)
                  ;; ("rcs" . clojure-toggle-keyword-string)
                  ;; ("rfe" . cljr-create-fn-from-example)
-                 )
-      (define-key clojure-mode-map (kbd "C-m") 'local-clojure-mode-keymap))
+                 ))
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
 
 (use-package cider

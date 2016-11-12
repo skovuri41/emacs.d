@@ -350,4 +350,9 @@
   :config
   (setq logview-auto-revert-mode 'auto-revert-tail-mode))
 
+(use-package evil-matchit
+  :ensure t
+  :init
+  (global-evil-matchit-mode 1))
+
 (provide 'init-minor-modes)

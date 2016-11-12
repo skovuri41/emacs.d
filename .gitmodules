@@ -1,3 +1,0 @@
-[submodule "git/cider-buddy"]
-	path = git/cider-buddy
-	url = https://github.com/seanirby/cider-buddy.git
