@@ -37,8 +37,8 @@
  _e_:     eval            _l_:     repl 2
  _f_:     format          _s_:     stacktrace
  _h_:     help            _t_:     test
- _q_:     quit            _T_:     tracing
- _m_:     miscellanea
+ _m_:     miscellanea     _T_:     tracing
+ _q_:     quit
 "
   ("b" hydra-cider-buddy-buffers/body)
   ("c" hydra-cider-buddy-connections/body)
@@ -106,41 +106,41 @@ CIDER Buddy Connections Menu
 
  _q_:     cider-buddy-main
 
- _a_:     cider-assoc-buffer-with-connection       _j_:     cider-connections-make-default
- _b_:     cider-assoc-project-with-connection      _k_:     cider-create-sibling-cljs-repl
- _c_:     cider-clear-buffer-local-connection      _l_:     cider-describe-nrepl-session
- _d_:     cider-close-nrepl-session                _m_:     cider-display-connection-info
- _e_:     cider-connect                            _n_:     cider-jack-in
- _f_:     cider-connection-browser                 _o_:     cider-jack-in-clojurescript
+ _b_:     cider-assoc-buffer-with-connection       _D_:     cider-connections-make-default
+ _p_:     cider-assoc-project-with-connection      _S_:     cider-create-sibling-cljs-repl
+ _l_:     cider-clear-buffer-local-connection      _N_:     cider-describe-nrepl-session
+ _x_:     cider-close-nrepl-session                _i_:     cider-display-connection-info
+ _c_:     cider-connect                            _j_:     cider-jack-in
+ _f_:     cider-connection-browser                 _J_:     cider-jack-in-clojurescript
  _g_:     cider-connections-buffer-mode            _p_:     cider-make-connection-default
  _h_:     cider-connections-close-connection       _P_:     cider-ping
- _i_:     cider-connections-goto-connection        _r_:     cider-quit
- _s_:     cider-replicate-connection
- _t_:     cider-restart
+ _o_:     cider-connections-goto-connection        _Q_:     cider-quit
+ _n_:     cider-replicate-connection
+ _r_:     cider-restart
  _u_:     cider-rotate-default-connection
 "
 
   ("q" hydra-cider-buddy-main/body)
-  ("a" cider-assoc-buffer-with-connection)
-  ("b" cider-assoc-project-with-connection)
-  ("c" cider-clear-buffer-local-connection)
-  ("d" cider-close-nrepl-session)
-  ("e" cider-connect)
+  ("b" cider-assoc-buffer-with-connection)
+  ("p" cider-assoc-project-with-connection)
+  ("l" cider-clear-buffer-local-connection)
+  ("x" cider-close-nrepl-session)
+  ("c" cider-connect)
   ("f" cider-connection-browser)
   ("g" cider-connections-buffer-mode)
   ("h" cider-connections-close-connection)
-  ("i" cider-connections-goto-connection)
-  ("j" cider-connections-make-default)
-  ("k" cider-create-sibling-cljs-repl)
-  ("l" cider-describe-nrepl-session)
-  ("m" cider-display-connection-info)
-  ("n" cider-jack-in)
-  ("o" cider-jack-in-clojurescript)
+  ("o" cider-connections-goto-connection)
+  ("D" cider-connections-make-default)
+  ("S" cider-create-sibling-cljs-repl)
+  ("N" cider-describe-nrepl-session)
+  ("i" cider-display-connection-info)
+  ("j" cider-jack-in)
+  ("J" cider-jack-in-clojurescript)
   ("p" cider-make-connection-default)
   ("P" cider-ping)
-  ("r" cider-quit)
-  ("s" cider-replicate-connection)
-  ("t" cider-restart)
+  ("Q" cider-quit)
+  ("n" cider-replicate-connection)
+  ("r" cider-restart)
   ("u" cider-rotate-default-connection)
   )
 
@@ -377,12 +377,14 @@ CIDER Buddy Insert Menu
  _e_:     cider-insert-last-sexp-in-repl
  _n_:     cider-insert-ns-form-in-repl
  _m_:     cider-insert-region-in-repl
+ _s_:     cider-send-and-evaluate-sexp
 "
   ("q" hydra-cider-buddy-main/body)
   ("d" cider-insert-defun-in-repl)
   ("e" cider-insert-last-sexp-in-repl)
   ("n" cider-insert-ns-form-in-repl)
   ("m" cider-insert-region-in-repl)
+  ("s" cider-send-and-evaluate-sexp)
   )
 
 ;;; *** popup buffer
@@ -421,7 +423,7 @@ CIDER Buddy Repl Menu
  _l_:     cider-repl-clear-buffer             _hl_:    cider-repl-history-load
  _n_:     cider-repl-clear-help-banner        _hs_:    cider-repl-history-save
  _o_:     cider-repl-clear-output             _i_:     cider-repl-indent-and-complete-symbol
- _t_:     cider-repl-kill-input
+ _y_:     cider-repl-kill-input               _t_:     toggle-repl-buffer
 "
   ("q" hydra-cider-buddy-main/body)
   (">" hydra-cider-buddy-repl-menu-2/body)
@@ -439,7 +441,8 @@ CIDER Buddy Repl Menu
   ("hl" cider-repl-history-load)
   ("hs" cider-repl-history-save)
   ("i" cider-repl-indent-and-complete-symbol)
-  ("t" cider-repl-kill-input)
+  ("y" cider-repl-kill-input)
+  ("t" toggle-nrepl-buffer)
   )
 
 ;;; *** repl-2

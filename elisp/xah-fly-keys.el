@@ -1919,7 +1919,7 @@ If `universal-argument' is called first, do switch frame."
    ("ad" . counsel-ag)
    ("ag" . ag)
    ("ap" . counsel-ag-projectile)
-   ("at" . counsel-ag-project-ymbol)
+   ("as" . counsel-ag-project-symbol)
    ("qr" . anzu-query-replace)
    ("qx" . anzu-query-replace-regexp)
    ("qt" . anzu-query-replace-at-cursor-thing)
@@ -2297,8 +2297,7 @@ If `universal-argument' is called first, do switch frame."
     (when (or (equal "emacs-lisp-mode" buffer-major-mode)
               (equal "clojure-mode" buffer-major-mode)
               (equal "clojurescript-mode" buffer-major-mode)
-              (equal "cider-repl-mode" buffer-major-mode)
-              (equal "cider-repl-mode-hook" buffer-major-mode))
+              (equal "cider-repl-mode" buffer-major-mode))
       (lispy-mode 1))))
 
 (defun hydra-commands-activate ()
@@ -2320,6 +2319,9 @@ If `universal-argument' is called first, do switch frame."
   `(progn
      ;; replace a global binding with major-mode's default
      ;; (define-key lispy-mode-map (kbd "C-j") nil)
+     (define-key lispy-mode-map (kbd "M-n") nil)
+     (define-key lispy-mode-map (kbd "M-h") 'lispy-left)
+
 
      ;; replace a local binding
      (lispy-define-key lispy-mode-map "t" 'lispy-different)

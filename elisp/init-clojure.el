@@ -64,7 +64,7 @@
       (interactive)
       (if (string-match "cider-repl" (buffer-name (current-buffer)))
           (delete-window)
-        (cider-switch-to-relevant-repl-buffer)))
+        (cider-switch-to-repl-buffer)))
 
     (defun cider-save-and-refresh ()
       (interactive)
@@ -85,13 +85,6 @@
       (cider-switch-to-last-clojure-buffer)
       (message ""))
 
-    (defhydra hydra-clojure-docs (clojure-mode-map "C-c d")
-      "Clojure Documentation"
-      ("f" cider-code "functional")
-      ("g" cider-grimoire "grimoire")
-      ("w" cider-grimoire-web "web examples")
-      ("c" clojure-cheatsheet "cheatsheet")
-      ("d" dash-at-point "dash"))
 
     (defun clj-mode-keys-setup ()
       "for 'clojure mode'"
@@ -112,7 +105,7 @@
                  ;; ("c d"  . cider-doc)
                  ("e" . cider-eval-commands-map)
                  ("t" . cider-test-commands-map)
-                 ("d" . hydra-clojure-docs/body)
+                 ;; ("d" . hydra-clojure-docs/body)
                  ;; ("d" . cider-doc-map)
                  ("c c" . cider-connect)
                  ("c j" . cider-jack-in)
