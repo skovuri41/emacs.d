@@ -41,13 +41,13 @@
 CIDER  Buffers Menu
  Key^^    Command
  _q_:     cider-main
- _a_:     cider-change-buffers-designation              _h_:     cider-load-buffer-and-switch-to-repl-buffer
+ _a_:     cider-change-buffers-designation              _ls_:     cider-load-buffer-and-switch-to-repl-buffer
  _x_:     cider-clear-compilation-highlights            _p_:     cider-pop-back
  _c_:     cider-close-ancillary-buffers                 _j_:     cider-refresh-dynamic-font-lock
  _d_:     cider-disable-on-existing-clojure-buffers     _s_:     cider-scratch
  _i_:     cider-enable-on-existing-clojure-buffers      _l_:     cider-selector
  _f_:     cider-enlighten-mode                          _b_:     cider-switch-to-last-clojure-buffer
- _l_:     cider-load-buffer                             _r_:     cider-switch-to-repl-buffer
+ _lb_:    cider-load-buffer                             _r_:     cider-switch-to-repl-buffer
  _o_:     cider-turn-on-eldoc-mode                      _e_:     cider-visit-error-buffer
 "
   ("q" hydra-cider-main/body)
@@ -57,8 +57,8 @@ CIDER  Buffers Menu
   ("d" cider-disable-on-existing-clojure-buffers)
   ("i" cider-enable-on-existing-clojure-buffers)
   ("f" cider-enlighten-mode)
-  ("l" cider-load-buffer)
-  ("h" cider-load-buffer-and-switch-to-repl-buffer)
+  ("lb" cider-load-buffer)
+  ("ls" cider-load-buffer-and-switch-to-repl-buffer)
   ("p" cider-pop-back)
   ("j" cider-refresh-dynamic-font-lock)
   ("s" cider-scratch)
@@ -80,9 +80,9 @@ CIDER  Connections Menu
  _l_:     cider-clear-buffer-local-connection      _N_:     cider-describe-nrepl-session
  _x_:     cider-close-nrepl-session                _i_:     cider-display-connection-info
  _c_:     cider-connect                            _j_:     cider-jack-in
- _f_:     cider-connection-browser                 _J_:     cider-jack-in-clojurescript
- _g_:     cider-connections-buffer-mode            _p_:     cider-make-connection-default
- _h_:     cider-connections-close-connection       _P_:     cider-ping
+ _w_:     cider-connection-browser                 _J_:     cider-jack-in-clojurescript
+ _g_:     cider-connections-buffer-mode            _P_:     cider-make-connection-default
+ _h_:     cider-connections-close-connection       _p_:     cider-ping
  _o_:     cider-connections-goto-connection        _Q_:     cider-quit
  _n_:     cider-replicate-connection
  _r_:     cider-restart
@@ -95,7 +95,7 @@ CIDER  Connections Menu
   ("l" cider-clear-buffer-local-connection)
   ("x" cider-close-nrepl-session)
   ("c" cider-connect)
-  ("f" cider-connection-browser)
+  ("w" cider-connection-browser)
   ("g" cider-connections-buffer-mode)
   ("h" cider-connections-close-connection)
   ("o" cider-connections-goto-connection)
@@ -105,8 +105,8 @@ CIDER  Connections Menu
   ("i" cider-display-connection-info)
   ("j" cider-jack-in)
   ("J" cider-jack-in-clojurescript)
-  ("p" cider-make-connection-default)
-  ("P" cider-ping)
+  ("P" cider-make-connection-default)
+  ("p" cider-ping)
   ("Q" cider-quit)
   ("n" cider-replicate-connection)
   ("r" cider-restart)
@@ -139,22 +139,20 @@ CIDER  Debug Menu
 CIDER : Documentation Commands Menu
  Key^^    Command
  _q_:     cider-main
- _a_:     cider-doc              _s_:  cheet-sheet
- _b_:     cider-doc-map          _k_:  cider-code
- _c_:     cider-docview-source
- _d_:     cider-grimoire
- _e_:     cider-grimoire-web
- _f_:     cider-javadoc
+ _c_:     cheet-sheet
+ _d_:     cider-doc          
+ _s_:     cider-docview-source
+ _g_:     cider-grimoire
+ _w_:     cider-grimoire-web
+ _j_:     cider-javadoc
 "
   ("q" hydra-cider-main/body)
-  ("a"  cider-doc)
-  ("b"  cider-doc-map)
-  ("c"  cider-docview-source)
-  ("d"  cider-grimoire)
-  ("e"  cider-grimoire-web)
-  ("f"  cider-javadoc)
-  ("k"  cider-code)
-  ("s"  clojure-cheatsheet)
+  ("d"  cider-doc)
+  ("s"  cider-docview-source)
+  ("g"  cider-grimoire)
+  ("w"  cider-grimoire-web)
+  ("j"  cider-javadoc)
+  ("c"  clojure-cheatsheet)
   )
 
 ;;; *** environment
@@ -203,16 +201,14 @@ CIDER : Evaluation Commands Menu
  _q_:     cider-main
  _b_:     cider-eval-buffer                    _n_:     cider-eval-ns-form
  _d_:     cider-eval-defun-at-point            _m_:     cider-eval-region
- _c_:     cider-eval-defun-to-comment          _x_:     cider-interrupt-eval
- _f_:     cider-eval-file                      _k_:     cider-pprint-eval-defun-at-point
- _e_:     cider-eval-last-sexp                 _l_:     cider-pprint-eval-last-sexp
- _f_:     cider-eval-last-sexp-and-replace     _v_:     cider-read-and-eval
- _g_:     cider-eval-last-sexp-to-repl         _p_:     cider-load-all-project-ns
+ _c_:     cider-eval-defun-to-comment          _u_:     cider-undef
+ _f_:     cider-eval-file                      _pd_:     cider-pprint-eval-defun-at-point
+ _e_:     cider-eval-last-sexp                 _pe_:     cider-pprint-eval-last-sexp
+ _y_:     cider-eval-last-sexp-and-replace     _v_:     cider-read-and-eval
+ _s_:     cider-eval-last-sexp-to-repl         _ln_:     cider-load-all-project-ns
  _i_:     cider-interrupt                      _r_:     cider-refresh
- _s_:     cider-macroexpand-1                  _t_:     cider-macroexpand-all
- _o_:     cider-load-file                      _w_:     cider-run
- _U_:     cider-undef
-
+ _xo_:     cider-macroexpand-1                 _xa_:     cider-macroexpand-all
+ _lf_:     cider-load-file                     _R_:     cider-run
 "
   ("q" hydra-cider-main/body)
   ("b" cider-eval-buffer)
@@ -220,22 +216,21 @@ CIDER : Evaluation Commands Menu
   ("c" cider-eval-defun-to-comment)
   ("f" cider-eval-file)
   ("e" cider-eval-last-sexp)
-  ("f" cider-eval-last-sexp-and-replace)
-  ("g" cider-eval-last-sexp-to-repl)
+  ("y" cider-eval-last-sexp-and-replace)
+  ("s" cider-eval-last-sexp-to-repl)
   ("n" cider-eval-ns-form)
   ("m" cider-eval-region)
-  ("x" cider-interrupt-eval)
-  ("k" cider-pprint-eval-defun-at-point)
-  ("l" cider-pprint-eval-last-sexp)
+  ("pd" cider-pprint-eval-defun-at-point)
+  ("pe" cider-pprint-eval-last-sexp)
   ("v" cider-read-and-eval)
-  ("w" cider-run)
-  ("o" cider-load-file)
-  ("U" cider-undef)
-  ("p" cider-load-all-project-ns)
+  ("R" cider-run)
+  ("lf" cider-load-file)
+  ("u" cider-undef)
+  ("ln" cider-load-all-project-ns)
   ("i" cider-interrupt)
   ("r" cider-refresh)
-  ("s" cider-macroexpand-1)
-  ("t" cider-macroexpand-all)
+  ("xo" cider-macroexpand-1)
+  ("xa" cider-macroexpand-all)
   )
 
 ;;; *** format
