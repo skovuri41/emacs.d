@@ -160,7 +160,7 @@
     (setq cider-interactive-eval-result-prefix ";; => ")
     (setq cider-stacktrace-fill-column 80)
     (setq cider-test-show-report-on-success t)
-    (require 'cider-buddy)
+    (require 'cider-hydra)
     ))
 
 (use-package typed-clojure-mode

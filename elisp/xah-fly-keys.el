@@ -2309,7 +2309,7 @@ If `universal-argument' is called first, do switch frame."
               (equal "cider-repl-mode" buffer-major-mode)
               (equal "cider-docview-mode" buffer-major-mode)
               (equal "cider-stacktrace-mode" buffer-major-mode))
-      (define-key xah-fly-key-map (kbd "c") 'hydra-cider-buddy-main/body))
+      (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
     (when (or (equal "emacs-lisp-mode" buffer-major-mode))
       (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))
     (when (or (equal "java-mode" buffer-major-mode))
@@ -2321,7 +2321,6 @@ If `universal-argument' is called first, do switch frame."
      ;; (define-key lispy-mode-map (kbd "C-j") nil)
      (define-key lispy-mode-map (kbd "M-n") nil)
      (define-key lispy-mode-map (kbd "M-h") 'lispy-left)
-
 
      ;; replace a local binding
      (lispy-define-key lispy-mode-map "t" 'lispy-different)

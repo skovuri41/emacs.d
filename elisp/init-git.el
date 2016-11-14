@@ -87,4 +87,22 @@
   :ensure t
   :mode "/\\.gitattributes\\'")
 
+(use-package git-link
+  :ensure t
+  ;; :defer t
+  :init
+  (progn
+    (defun my/git-link-copy-url-only ()
+      "Only copy the generated link to the kill ring."
+      (interactive)
+      (let (git-link-open-in-browser)
+        (call-interactively 'git-link)))
+    (defun my/git-link-commit-copy-url-only ()
+      "Only copy the generated link to the kill ring."
+      (interactive)
+      (let (git-link-open-in-browser)
+        (call-interactively 'git-link-commit)))
+    ;; default is to open the generated link
+    (setq git-link-open-in-browser t)))
+
 (provide 'init-git)
