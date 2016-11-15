@@ -426,4 +426,11 @@
 
 (eval-when-compile (require 'use-package))
 
+(use-package compile
+  :diminish compilation-in-progress
+  :config
+  (setq compilation-ask-about-save nil)
+  (setq compilation-scroll-output 'next-error)
+  (setq compilation-skip-threshold 2))
+
 (provide 'init-defaults)

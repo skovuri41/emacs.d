@@ -107,6 +107,7 @@ version 2016-06-15"
 
 (defvar xah-left-brackets '("(" "{" "[" "<" "〔" "【" "〖" "〈" "《" "「" "『" "“" "‘" "‹" "«" )
   "List of left bracket chars.")
+
 (progn
   ;; make xah-left-brackets based on xah-brackets
   (setq xah-left-brackets '())
@@ -2064,7 +2065,7 @@ If `universal-argument' is called first, do switch frame."
                                                 (xah-fly-insert-mode-activate)
                                                 (hydra-ibuffer-main/body))))
     (define-key xah-fly-key-map (kbd "bm") 'hydra-bm/body)
-    ;; (define-key xah-fly-key-map (kbd "cm") 'smex-major-mode-commands)
+    (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands)
     ;; (define-key xah-fly-key-map (kbd "cc") 'hydra-cider-buddy-main/body)
     ;; (define-key xah-fly-key-map (kbd "cj") 'hydra-eclim/body)
     (define-key xah-fly-key-map (kbd "e") 'xah-end-of-line-or-block)
@@ -2314,6 +2315,16 @@ If `universal-argument' is called first, do switch frame."
       (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))
     (when (or (equal "java-mode" buffer-major-mode))
       (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))))
+
+(defvar hydra-command-activate-buffers
+  (make-ring 20))
+(ring-insert hydra-command-activate-buffers "dummy")
+
+(defadvice select-window (after hydra-command-activate-mode activate)
+  (unless (equal (buffer-name) (ring-ref hydra-command-activate-buffers 0))
+    (ring-insert hydra-command-activate-buffers (buffer-name))
+    (unless xah-fly-insert-state-q
+      (hydra-commands-activate))))
 
 (eval-after-load "lispy"
   `(progn

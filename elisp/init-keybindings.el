@@ -102,6 +102,12 @@
 (define-key Info-mode-map "u" 'Info-history-back)
 (define-key Info-mode-map "c" 'counsel-ace-link)
 
+(require 'tar-mode)
+
+(define-key tar-mode-map "j" 'tar-next-line)
+(define-key tar-mode-map "k" 'tar-previous-line)
+
+
 (defun ora-open-info (topic bname)
   "Open info on TOPIC in BNAME."
   (if (get-buffer bname)

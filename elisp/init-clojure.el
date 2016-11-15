@@ -94,37 +94,15 @@
                  ("C-c C-r" . cider-repl-reset)
                  ("C-c C-v" . cider-send-and-evaluate-sexp))
 
-      (bind-keys :prefix-map local-clojure-mode-keymap
-                 :prefix "C-c j"
-                 ;; ("e b"  . cider-eval-buffer)
-                 ;; ("e e"  . cider-eval-last-sexp)
-                 ;; ("e r"  . cider-eval-region)
-                 ;; ("e f"  . cider-eval-defun-at-point)
-                 ;; ("e s"  . cider-send-and-evaluate-sexp)
-                 ;; ("c t"  . cider-test-run-tests)
-                 ;; ("c d"  . cider-doc)
-                 ("e" . cider-eval-commands-map)
-                 ("t" . cider-test-commands-map)
-                 ;; ("d" . hydra-clojure-docs/body)
-                 ;; ("d" . cider-doc-map)
-                 ("c c" . cider-connect)
-                 ("c j" . cider-jack-in)
-                 ("c l" . cider-jack-in-clojurescript)
-                 ("c f" . cider-save-and-refresh)
-                 ("c r" . toggle-nrepl-buffer)
-                 ("r" . hydra-cljr-help-menu/body)
-                 ;; ("rai" . cljr-add-import-to-ns)
-                 ;; ("rar" . cljr-add-require-to-ns)
-                 ;; ("rau" . cljr-add-use-to-ns)
-                 ;; ("rrr" . cljr-remove-unused-requires)
-                 ;; ("rsn" . cljr-sort-ns)
-                 ;; ("rtf" . cljr-thread-first-all)
-                 ;; ("rtl" . cljr-thread-last-all)
-                 ;; ("rcc" . cljr-cycle-coll)
-                 ;; ("rcp" . cljr-cycle-privacy)
-                 ;; ("rcs" . clojure-toggle-keyword-string)
-                 ;; ("rfe" . cljr-create-fn-from-example)
-                 ))
+      (unbind-key (kbd "/") clj-refactor-map)
+
+      (define-key cider-mode-map (kbd "C-:") nil)
+
+      (define-key cider-repl-mode-map (kbd "C-x C-l") 'cider-repl-clear-buffer)
+      (define-key cider-repl-mode-map (kbd "C-:") nil)
+
+      )
+
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
 
 (use-package cider

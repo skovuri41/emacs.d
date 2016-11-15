@@ -9,6 +9,10 @@
       ("t" avy-goto-char-timer "timer")
       ("f" counsel-find-file "find-file")
       ("q" nil))
+    ;;* Lispy
+    (csetq avy-keys-alist
+           `((lispy-ace-symbol . ,aw-keys)))
+
     (setq avy-background t)))
 
 (provide 'init-avy)
