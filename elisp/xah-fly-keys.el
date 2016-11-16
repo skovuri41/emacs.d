@@ -2293,28 +2293,25 @@ If `universal-argument' is called first, do switch frame."
 
 (defun lispy-mode-activate ()
   "Enable lispy mode for selected major modes only"
-  (let ((buffer-major-mode
-         (format "%s" (get-buffer-mode))))
-    (when (or (equal "emacs-lisp-mode" buffer-major-mode)
-              (equal "clojure-mode" buffer-major-mode)
-              (equal "clojurescript-mode" buffer-major-mode)
-              (equal "cider-repl-mode" buffer-major-mode))
-      (lispy-mode 1))))
+  (when (memq major-mode '(emacs-lisp-mode clojure-mode
+                                           clojurescript-mode
+                                           cider-repl-mode
+                                           cider-docview-mode
+                                           cider-stacktrace-mode))
+    (lispy-mode 1)))
 
 (defun hydra-commands-activate ()
   "Enable lispy mode for selected major modes only"
-  (let ((buffer-major-mode
-         (format "%s" (get-buffer-mode))))
-    (when (or (equal "clojure-mode" buffer-major-mode)
-              (equal "clojurescript-mode" buffer-major-mode)
-              (equal "cider-repl-mode" buffer-major-mode)
-              (equal "cider-docview-mode" buffer-major-mode)
-              (equal "cider-stacktrace-mode" buffer-major-mode))
-      (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
-    (when (or (equal "emacs-lisp-mode" buffer-major-mode))
-      (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))
-    (when (or (equal "java-mode" buffer-major-mode))
-      (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))))
+  (cond
+   ((memq major-mode '(clojure-mode clojurescript-mode
+                                    cider-repl-mode
+                                    cider-docview-mode
+                                    cider-stacktrace-mode))
+    (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
+   ((memq major-mode '(emacs-lisp-mode))
+    (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))
+   ((memq major-mode '(java-mode))
+    (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))))
 
 (defvar hydra-command-activate-buffers
   (make-ring 20))
