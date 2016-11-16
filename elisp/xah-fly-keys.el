@@ -2308,10 +2308,9 @@ If `universal-argument' is called first, do switch frame."
                                     cider-docview-mode
                                     cider-stacktrace-mode))
     (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
-   ((memq major-mode '(emacs-lisp-mode))
-    (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))
    ((memq major-mode '(java-mode))
-    (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))))
+    (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))
+   (t (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))))
 
 (defvar hydra-command-activate-buffers
   (make-ring 20))
