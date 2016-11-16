@@ -2322,8 +2322,8 @@ If `universal-argument' is called first, do switch frame."
 
 (defadvice select-window (after hydra-command-activate-mode activate)
   (unless (equal (buffer-name) (ring-ref hydra-command-activate-buffers 0))
-    (ring-insert hydra-command-activate-buffers (buffer-name))
     (unless xah-fly-insert-state-q
+      (ring-insert hydra-command-activate-buffers (buffer-name))
       (hydra-commands-activate))))
 
 (eval-after-load "lispy"

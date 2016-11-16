@@ -42,10 +42,10 @@ CIDER Buffers Menu
  _q_:  cider-main
  _a_:  cider-change-buffers-designation              _ls_: cider-load-buffer-and-switch-to-repl-buffer
  _x_:  cider-clear-compilation-highlights            _p_:  cider-pop-back
- _c_:  cider-close-ancillary-buffers                 _j_:  cider-refresh-dynamic-font-lock
+ _c_:  cider-close-ancillary-buffers                 _f_:  cider-refresh-dynamic-font-lock
  _d_:  cider-disable-on-existing-clojure-buffers     _s_:  cider-scratch
  _i_:  cider-enable-on-existing-clojure-buffers      _t_:  cider-selector
- _f_:  cider-enlighten-mode                          _b_:  cider-switch-to-last-clojure-buffer
+ _g_:  cider-enlighten-mode                          _b_:  cider-switch-to-last-clojure-buffer
  _lb_: cider-load-buffer                             _r_:  cider-switch-to-repl-buffer
  _o_:  cider-turn-on-eldoc-mode                      _e_:  cider-visit-error-buffer
 "
@@ -55,11 +55,11 @@ CIDER Buffers Menu
   ("c" cider-close-ancillary-buffers)
   ("d" cider-disable-on-existing-clojure-buffers)
   ("i" cider-enable-on-existing-clojure-buffers)
-  ("f" cider-enlighten-mode)
+  ("g" cider-enlighten-mode)
   ("lb" cider-load-buffer)
   ("ls" cider-load-buffer-and-switch-to-repl-buffer)
   ("p" cider-pop-back)
-  ("j" cider-refresh-dynamic-font-lock)
+  ("f" cider-refresh-dynamic-font-lock)
   ("s" cider-scratch)
   ("t" cider-selector)
   ("b" cider-switch-to-last-clojure-buffer)
