@@ -2310,7 +2310,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
    ((memq major-mode '(java-mode))
     (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))
-   (t (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands))))
+   (t (define-key xah-fly-key-map (kbd "c") 'counsel-M-x))))
 
 (defvar hydra-command-activate-buffers
   (make-ring 20))

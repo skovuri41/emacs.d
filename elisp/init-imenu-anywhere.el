@@ -23,7 +23,14 @@
    'imenu-generic-expression
    '("Packages" "^\\s-*(\\(use-package\\)\\s-+\\(\\(\\sw\\|\\s_\\)+\\)" 2)))
 
+(defun my:setup-imenu-for-defhydra ()
+  "Recognize `defhydra` in imenu"
+  (add-to-list
+   'imenu-generic-expression
+   '("Hydras" "^\\s-*(\\(defhydra\\)\\s-+\\(\\(\\sw\\|\\s_\\)+\\)" 2)))
+
 (add-hook 'emacs-lisp-mode-hook #'my:setup-imenu-for-use-package)
+(add-hook 'emacs-lisp-mode-hook #'my:setup-imenu-for-defhydra)
 
 (use-package imenu-anywhere
   :ensure t
