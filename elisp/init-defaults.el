@@ -433,4 +433,6 @@
   (setq compilation-scroll-output 'next-error)
   (setq compilation-skip-threshold 2))
 
+(setq package-enable-at-startup nil)
+
 (provide 'init-defaults)

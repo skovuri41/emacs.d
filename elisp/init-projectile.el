@@ -11,7 +11,8 @@
                                            project-name)))
             (format " P[%s] " project-name-mode-line))
         ""))
-    (setq-default projectile-mode-line '(:eval (projectile-custom-mode-line)))
+    ;; (setq-default projectile-mode-line '(:eval (projectile-custom-mode-line)))
+    (setq-default projectile-mode-line nil)
     (setq projectile-known-projects-file
           (expand-file-name "cache/projectile-bookmarks.eld" user-emacs-directory))
     (setq projectile-cache-file

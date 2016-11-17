@@ -5,6 +5,7 @@
     (eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
     (eval-after-load "simple" '(diminish 'auto-fill-function))
     (eval-after-load "eldoc" '(diminish 'eldoc-mode))
+    (eval-after-load "subword" '(diminish 'subword-mode))
     (eval-after-load "guide-key" '(diminish 'guide-key-mode))
     (eval-after-load "highlight-parentheses" '(diminish 'highlight-parentheses-mode))
     (eval-after-load "elisp-slime-nav" '(diminish 'elisp-slime-nav-mode " sln"))
