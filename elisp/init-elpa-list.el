@@ -11,7 +11,6 @@
 		    flyspell
                     flycheck
                     fancy-narrow
-		    git-blame
 		    gitconfig-mode
 		    gitignore-mode
 		    grizzl

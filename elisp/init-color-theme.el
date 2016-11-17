@@ -46,7 +46,7 @@
                                           ample-theme material-theme zerodark-theme
                                           color-theme-modern leuven-theme spacemacs-theme
                                           gruvbox-theme forest-blue-theme flatland-theme
-                                          afternoon-theme birds-of-paradise-plus-theme))
+                                          afternoon-theme birds-of-paradise-plus-theme apropospriate-theme noctilux-theme))
 
 (ensure-packages-installed packages-appearance)
 
