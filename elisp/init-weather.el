@@ -42,12 +42,24 @@
 
 (use-package wttrin
   :ensure t
-  :commands (wttrin)
+  :commands (wttrin wttrin-query)
   :init
   (setq wttrin-default-cities '("hyd"
                                 "07751"
                                 "newyork"
                                 "london")))
+
+(use-package yahoo-weather
+  :if *is-a-mac*
+  :ensure t
+  :defer 5
+  :config
+  (validate-setq yahoo-weather-location "07751")
+  ;; (validate-setq yahoo-weather-location "Hyderabad,India")
+  (validate-setq yahoo-weather-use-F t)
+  (validate-setq yahoo-weather-format "")
+  (validate-setq yahoo-weather-mode-line nil)
+  (yahoo-weather-mode))
 
 
 (provide 'init-weather)

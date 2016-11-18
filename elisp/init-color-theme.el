@@ -39,15 +39,15 @@
 ;; (set-face-background 'powerline-active2 "#5d4d7a")
 ;; (set-face-foreground 'powerline-active1 "#eee8d5")
 ;; (set-face-foreground 'powerline-active2 "#eee8d5")
-
-(setq packages-appearance '(monokai-theme solarized-theme
-                                          zenburn-theme base16-theme molokai-theme tango-2-theme
-                                          gotham-theme sublime-themes rainbow-delimiters waher-theme
-                                          ample-theme material-theme zerodark-theme
-                                          color-theme-modern leuven-theme spacemacs-theme
-                                          gruvbox-theme forest-blue-theme flatland-theme
-                                          afternoon-theme birds-of-paradise-plus-theme apropospriate-theme noctilux-theme))
-
-(ensure-packages-installed packages-appearance)
+(use-package color-themes
+  :init
+  (setq packages-appearance '(monokai-theme solarized-theme
+                                            zenburn-theme base16-theme molokai-theme tango-2-theme
+                                            gotham-theme sublime-themes rainbow-delimiters waher-theme
+                                            ample-theme material-theme zerodark-theme
+                                            color-theme-modern leuven-theme spacemacs-theme
+                                            gruvbox-theme forest-blue-theme flatland-theme
+                                            afternoon-theme birds-of-paradise-plus-theme apropospriate-theme noctilux-theme))
+  (ensure-packages-installed packages-appearance))
 
 (provide 'init-color-theme)

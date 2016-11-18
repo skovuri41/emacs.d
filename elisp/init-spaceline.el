@@ -104,7 +104,7 @@
       (defun spaceline--get-temp ()
         "Function to return the Temperature formatted for ATI Spacline."
         (let ((temp (yahoo-weather-info-format yahoo-weather-info "%(temperature)")))
-          (unless (string= "" temp) (format "%s°C" (round (string-to-number temp))))))
+          (unless (string= "" temp) (format "%s°F" (round (string-to-number temp))))))
 
       (spaceline-define-segment
           *weather "Weather"
@@ -112,15 +112,20 @@
                  (temp (spaceline--get-temp))
                  (help (concat "Weather is '" weather "' and the temperature is " temp))
                  (icon (all-the-icons-icon-for-weather (downcase weather))))
-            (concat
-             (if (> (length icon) 1)
-                 (propertize icon 'help-echo help 'face `(:height 0.9 :inherit) 'display '(raise 0.1))
-               (propertize icon
-                           'help-echo help
-                           'face `(:height 0.9 :family ,(all-the-icons-wicon-family) :inherit)
-                           'display '(raise 0.0)))
-             (propertize " " 'help-echo help)
-             (propertize (spaceline--get-temp) 'face '(:height 0.9 :inherit) 'help-echo help)))
+            (propertize
+             (concat
+              (if (> (length icon) 1)
+                  (propertize icon 'help-echo help 'face `(:height 0.9 :inherit) 'display '(raise 0.1))
+                (propertize icon
+                            'help-echo help
+                            'face `(:height 0.9 :family ,(all-the-icons-wicon-family) :inherit)
+                            'display '(raise 0.0)))
+              (propertize " " 'help-echo help)
+              (propertize (spaceline--get-temp) 'face '(:height 0.9 :inherit) 'help-echo help))
+             'mouse-face '(:box 1)
+             'local-map (make-mode-line-mouse-map
+                         'mouse-1 (lambda () (interactive) (wttrin-query yahoo-weather-location))))
+            )
           :when (and active (boundp 'yahoo-weather-info) yahoo-weather-mode)
           :tight nil)
 
@@ -155,21 +160,22 @@
          ((workspace-number window-number) :separator " | ")
          (*xah-fly-keys-state :separator " | ")
          *projectile
-         (buffer-modified buffer-size buffer-id remote-host)
+         (*buffer-modified buffer-size buffer-id remote-host)
          major-mode
          ((flycheck-error flycheck-warning flycheck-info) :when active)
          (((minor-modes :separator " ") process) :when active)
-         *buffer-modified
          *vc-icon
          (*package-updates :when active)
          (org-pomodoro :when active)
          (org-clock :when active)
-         (battery :when active)
-         *weather)
+         battery)
        `(selection-info
          ((*selection-info buffer-encoding-abbrev point-position line-column) :separator " | ")
          (global :when active)
+         *weather
          buffer-position
-         hud)))))
+         hud))
+
+      )))
 
 (provide 'init-spaceline)
