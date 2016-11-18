@@ -74,7 +74,7 @@
           *buffer-id "An `all-the-icons' segment for the current buffer id"
           (if (fboundp 'projectile-project-root)
               (let* ((buf (or (buffer-file-name) (buffer-name)))
-                     (proj (ignore-errors (projectile-project-root)) )
+                     (proj (ignore-errors (projectile-project-root)))
                      (name (if (buffer-file-name)
                                (or (cadr (split-string buf proj))
                                    (format-mode-line "%b"))
@@ -83,20 +83,17 @@
                             'face `(:height 0.8 :inherit)
                             'display '(raise 0.2)
                             'help-echo (format "Major-mode: `%s`" major-mode)))
-            (propertize (format-mode-line "%b ") 'face '(:height 0.8 :inherit) 'display '(raise 0.1)))
-          )
+            (propertize (format-mode-line "%b ") 'face '(:height 0.8 :inherit) 'display '(raise 0.1))))
 
       (defun xah-fly-keys-state ()
         (if xah-fly-insert-state-q
             " I "
-          " C "
-          ))
+          " C "))
 
       (defun xah-fly-keys-state-face ()
         (if xah-fly-insert-state-q
             'all-the-icons-green
-          'all-the-icons-lred
-          ))
+          'all-the-icons-lred))
 
       (spaceline-define-segment *xah-fly-keys-state
         (propertize (xah-fly-keys-state)
@@ -270,7 +267,7 @@
          ((buffer-encoding-abbrev *position) :separator " | ")
          ;; (global :when active)
          (*package-updates :when active)
-         (*battery :when active)
+         *battery
          *time
          *weather
          buffer-position
