@@ -25,6 +25,30 @@
       (defface mode-line-is-modified nil "Face for mode-line modified symbol")
       (defface mode-line-buffer-file nil "Face for mode-line buffer file path")
 
+      (spaceline-define-segment
+          *process "An `all-the-icons' segment for the current process"
+          (let ((icon (all-the-icons-icon-for-buffer)))
+            (concat
+             (when (or (symbolp icon) mode-line-process)
+               (propertize (format-mode-line "%m") 'face `(:height 0.8 :inherit) 'display '(raise 0.2)))
+             (when mode-line-process
+               (propertize (format-mode-line mode-line-process) 'face '(:height 0.7 :inherit) 'display '(raise 0.2))))))
+
+      (spaceline-define-segment
+          *position "An `all-the-icons' segment for the Row and Column of the current point"
+          (propertize (format-mode-line "%l:%c") 'face `(:height 0.9 :inherit) 'display '(raise 0.1)))
+
+      (spaceline-define-segment
+          *region-info "An `all-the-icons' segment for the currently marked region"
+          (when mark-active
+            (let ((words (count-lines (region-beginning) (region-end)))
+                  (chars (count-words (region-end) (region-beginning))))
+              (concat
+               (propertize (format "%s " (all-the-icons-octicon "pencil") words chars)
+                           'face `(:family ,(all-the-icons-octicon-family) :inherit) 'display '(raise 0.1))
+               (propertize (format "(%s, %s)" words chars)
+                           'face `(:height 0.9 :inherit))))))
+
       (spaceline-define-segment *buffer-modified
         (concat
          (when buffer-file-name
@@ -36,6 +60,31 @@
         :when (not (string-prefix-p "*" (buffer-name)))
         :skip-alternate t
         :tight nil)
+
+      (spaceline-define-segment
+          *major-mode "An `all-the-icons' segment for the current buffer mode"
+          (let ((icon (all-the-icons-icon-for-buffer)))
+            (unless (symbolp icon) ;; This implies it's the major mode
+              (propertize icon
+                          'help-echo (format "Major-mode: `%s`" major-mode)
+                          'display '(raise 0.0)
+                          'face `(:height 1.0 :family ,(all-the-icons-icon-family-for-buffer) :inherit)))))
+
+      (spaceline-define-segment
+          *buffer-id "An `all-the-icons' segment for the current buffer id"
+          (if (fboundp 'projectile-project-root)
+              (let* ((buf (or (buffer-file-name) (buffer-name)))
+                     (proj (ignore-errors (projectile-project-root)) )
+                     (name (if (buffer-file-name)
+                               (or (cadr (split-string buf proj))
+                                   (format-mode-line "%b"))
+                             (format-mode-line "%b"))))
+                (propertize (format "%s" name)
+                            'face `(:height 0.8 :inherit)
+                            'display '(raise 0.2)
+                            'help-echo (format "Major-mode: `%s`" major-mode)))
+            (propertize (format-mode-line "%b ") 'face '(:height 0.8 :inherit) 'display '(raise 0.1)))
+          )
 
       (defun xah-fly-keys-state ()
         (if xah-fly-insert-state-q
@@ -53,9 +102,10 @@
         (propertize (xah-fly-keys-state)
                     'face (xah-fly-keys-state-face)
                     'help-echo (format "Xah Fly Mode: %s"
-                                       (xah-fly-keys-state))))
+                                       (xah-fly-keys-state)))
+        :tight t)
 
-      (spaceline-define-segment config-modeline-ace-window-number
+      (spaceline-define-segment *ace
         (when (and (featurep 'ace-window)
                    (> (length (aw-window-list)) 1))
           (when-let ((pos (cl-position (selected-window) (aw-window-list)))
@@ -154,24 +204,74 @@
                          'mouse-1 (lambda () (interactive) (package-list-packages)))))
           :when (and active (> (or spaceline--upgrades (spaceline--count-upgrades)) 0)))
 
+      (spaceline-define-segment
+          *battery "Show battery information"
+          (let* ((charging? (equal "AC" (cdr (assoc ?L fancy-battery-last-status))))
+                 (percentage (string-to-int (cdr (assoc ?p fancy-battery-last-status))))
+                 (time (format "%s" (cdr (assoc ?t fancy-battery-last-status))))
+                 (icon-set (if charging? 'alltheicon 'faicon))
+                 (icon-alist
+                  (cond
+                   (charging? '((icon . "charging") (inherit . success) (height . 1.2) (raise . -0.1)))
+                   ((> percentage 95) '((icon . "full") (inherit . success)))
+                   ((> percentage 70) '((icon . "three-quarters")))
+                   ((> percentage 35) '((icon . "half")))
+                   ((> percentage 15) '((icon . "quarter") (inherit . warning)))
+                   (t '((icon . "empty") (inherit . error)))))
+                 (icon-f (all-the-icons--function-name icon-set))
+                 (family (funcall (all-the-icons--family-name icon-set))))
+            (let-alist icon-alist
+              (concat
+               (if .inherit
+                   (let ((fg (face-attribute .inherit :foreground)))
+                     (propertize (funcall icon-f (format "battery-%s" .icon))
+                                 'face `(:height ,(or .height 1.0) :family ,family :foreground ,fg)
+                                 'display `(raise ,(or .raise 0.0))))
+                 (propertize (funcall icon-f (format "battery-%s" .icon))
+                             'face `(:family ,family :inherit)
+                             'display '(raise 0.0)))
+               " "
+               (if .inherit
+                   (let ((fg (face-attribute .inherit :foreground)))
+                     (propertize (if charging? (format "%s%%%%" percentage) time) 'face `(:height 0.9 :foreground ,fg)))
+                 (propertize time 'face '(:height 0.9 :inherit)))
+               )))
+          :global-override fancy-battery-mode-line :when (and active (fboundp 'fancy-battery-mode) fancy-battery-mode))
+
+      (spaceline-define-segment
+          *time "Time"
+          (let* ((hour (string-to-number (format-time-string "%I")))
+                 (icon (all-the-icons-wicon (format "time-%s" hour) :v-adjust 0.0)))
+            (propertize
+             (concat
+              (propertize (format-time-string "%H:%M ") 'face `(:height 0.9 :inherit) 'display '(raise 0.1))
+              (propertize (format "%s" icon)
+                          'face `(:height 0.8 :family ,(all-the-icons-wicon-family) :inherit)
+                          'display '(raise 0.1)))
+             'help-echo "world time"
+             'mouse-face '(:box 1)
+             'local-map (make-mode-line-mouse-map
+                         'mouse-1 (lambda () (interactive) (display-time-world))))))
+
       (spaceline-install
        '(*macro-recording
-         config-modeline-ace-window-number
+         *ace
          ((workspace-number window-number) :separator " | ")
-         (*xah-fly-keys-state :separator " | ")
+         *xah-fly-keys-state
          *projectile
-         (*buffer-modified buffer-size buffer-id remote-host)
-         major-mode
+         (*process *buffer-modified *buffer-id remote-host)
+         *major-mode
          ((flycheck-error flycheck-warning flycheck-info) :when active)
          (((minor-modes :separator " ") process) :when active)
          *vc-icon
-         (*package-updates :when active)
          (org-pomodoro :when active)
-         (org-clock :when active)
-         battery)
-       `(selection-info
-         ((*selection-info buffer-encoding-abbrev point-position line-column) :separator " | ")
-         (global :when active)
+         (org-clock :when active))
+       `(*region-info
+         ((buffer-encoding-abbrev *position) :separator " | ")
+         ;; (global :when active)
+         (*package-updates :when active)
+         (*battery :when active)
+         *time
          *weather
          buffer-position
          hud))
