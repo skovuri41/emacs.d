@@ -262,9 +262,11 @@
     (exec-path-from-shell-initialize)))
 
 (use-package hungry-delete
+  :ensure t
   :config
   (progn
     (setq hungry-delete-chars-to-skip " \t\r\f\v")
+    (setq hungry-delete-delete-backslash-eol t)
     (global-hungry-delete-mode nil)
     (add-hook 'prog-mode-hook 'hungry-delete-mode)))
 

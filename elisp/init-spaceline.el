@@ -36,7 +36,9 @@
 
       (spaceline-define-segment
           *position "An `all-the-icons' segment for the Row and Column of the current point"
-          (propertize (format-mode-line "%l:%c") 'face `(:height 0.9 :inherit) 'display '(raise 0.1)))
+          (propertize (if (eq 'pdf-view-mode major-mode)
+                          (spaceline--pdfview-page-number)
+                        "%l:%2c") 'face `(:height 0.9 :inherit) 'display '(raise 0.1)))
 
       (spaceline-define-segment
           *region-info "An `all-the-icons' segment for the currently marked region"
@@ -185,7 +187,7 @@
             (setq spaceline--upgrades (length (package-menu--find-upgrades))))
           (switch-to-buffer buf)))
       (advice-add 'package-menu-execute :after 'spaceline--count-upgrades)
-
+      (add-hook 'after-init-hook 'spaceline--count-upgrades)
       (spaceline-define-segment
           *package-updates "An `all-the-icons' spaceline segment to indicate number of package updates needed"
           (let ((num (or spaceline--upgrades (spaceline--count-upgrades))))

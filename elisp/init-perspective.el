@@ -113,8 +113,8 @@
     (use-package nameframe-projectile
       :ensure t)
     (use-package nameframe-eyebrowse
+      ;; :ensure t
       :load-path "elisp/"
-      ;; :load-path ".cask/25.1/elpa/nameframe-eyebrowse"
       )
     (nameframe-projectile-mode t)
     (nameframe-eyebrowse-mode t)))
