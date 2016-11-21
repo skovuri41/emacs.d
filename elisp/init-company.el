@@ -39,7 +39,8 @@
     (define-key company-active-map (kbd "C-.") #'company-try-hard)
 
     (use-package company-statistics
-      :commands (company-statistics-mode))
+      :commands (company-statistics-mode)
+      :disabled t)
     (use-package company-elisp
       :commands (company-elisp))
     (use-package company-capf
@@ -95,7 +96,7 @@
       "turn-on company-mode, then make variable company-backends to buffer local, and set it to BACKENDS.
      Example: for elisp, (setup-company-mode '(company-elisp))"
       (company-mode 1)
-      (company-statistics-mode)
+      ;; (company-statistics-mode)
       (make-local-variable 'company-backends)
       (validate-setq company-backends backends))
 

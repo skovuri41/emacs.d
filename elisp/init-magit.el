@@ -31,17 +31,6 @@
     (define-key magit-refs-mode-map "k" 'magit-section-backward)
     (define-key magit-refs-mode-map "i" 'magit-section-toggle)
 
-    (defun ora-move-key (key-from key-to keymap)
-      "Move the command bound to KEY-FROM to KEY-TO in KEYMAP."
-      (if (null key-to)
-          (define-key keymap (kbd key-from) nil)
-        (let* ((key-from (kbd key-from))
-               (key-to (kbd key-to))
-               (cmd (lookup-key keymap key-from)))
-          (when cmd
-            (define-key keymap key-to cmd)
-            (define-key keymap key-from nil)))))
-
     (ora-move-key "k" "C-k" magit-file-section-map)
     (ora-move-key "k" "C-k" magit-untracked-section-map)
     (ora-move-key "k" "C-k" magit-tag-section-map)

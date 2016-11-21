@@ -116,6 +116,7 @@
 
 (use-package sublimity
   :ensure t
+  :disabled t
   :init
   (setq sublimity-auto-hscroll-mode nil
         auto-hscroll-mode t)
@@ -147,5 +148,9 @@
 (use-package all-the-icons
   :ensure t
   :commands (all-the-icons-for-buffer all-the-icons-alltheicon))
+
+(use-package startscreen
+  :config
+  (setup-startscreen-hook))
 
 (provide 'init-utils)

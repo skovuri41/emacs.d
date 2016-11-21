@@ -73,8 +73,13 @@
   (setq paradox-column-width-package 30)
   :config
   (progn
+    (define-key paradox-menu-mode-map "." 'hydra-paradox-filter/body)
     (define-key package-menu-mode-map "j" 'next-line)
     (define-key package-menu-mode-map "k" 'previous-line)
+    (ora-move-key "k" "K" paradox-menu-mode-map)
+    (ora-move-key "j" "J" paradox-menu-mode-map)
+    (define-key paradox-menu-mode-map "j" 'next-line)
+    (define-key paradox-menu-mode-map "k" 'previous-line)
 
 ;;;###autoload
     (defun ora-package-menu-hook ()
@@ -313,6 +318,7 @@
   :ensure t
   :diminish page-break-lines-mode
   :init
+  (page-break-lines-mode)
   (global-page-break-lines-mode))
 
 (use-package log4j-mode

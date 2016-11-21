@@ -31,15 +31,15 @@
     (package-install 'use-package))
 
   ;; ;; Install all packages required
-  ;; (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
+   (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
 
-  ;; (package-initialize)
+   (package-initialize)
   ;; ;; Fetch packages the first time
-  ;; (unless (file-exists-p package-user-dir)
-  ;;   (package-refresh-contents))
-  ;; (dolist (p my-packages)
-  ;;   (when (not (package-installed-p p))
-  ;;     (package-install p)))
+   (unless (file-exists-p package-user-dir)
+     (package-refresh-contents))
+   (dolist (p my-packages)
+     (when (not (package-installed-p p))
+       (package-install p)))
   (setq frame-resize-pixelwise t)
   (set-frame-position (selected-frame) 0 0)
   (set-frame-size (selected-frame) 1920 1080 t)

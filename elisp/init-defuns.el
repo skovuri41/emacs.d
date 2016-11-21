@@ -670,4 +670,15 @@ returning the path where FILE-NAME can be found."
               (package-install package))))
    packages))
 
+(defun ora-move-key (key-from key-to keymap)
+  "Move the command bound to KEY-FROM to KEY-TO in KEYMAP."
+  (if (null key-to)
+      (define-key keymap (kbd key-from) nil)
+    (let* ((key-from (kbd key-from))
+           (key-to (kbd key-to))
+           (cmd (lookup-key keymap key-from)))
+      (when cmd
+        (define-key keymap key-to cmd)
+        (define-key keymap key-from nil)))))
+
 (provide 'init-defuns)

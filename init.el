@@ -48,6 +48,7 @@
 (require 'init-ace-window)
 (require 'init-avy)
 (require 'init-kurecolor)
+(require 'init-color-theme)
 (require 'init-transpose)
 (require 'init-rainbow-mode)
 (require 'init-help)
@@ -85,9 +86,4 @@
                 (setq ns-use-srgb-colorspace nil)
                 (load-theme 'spacemacs-dark t)))
   ;; (load-theme 'spacemacs-dark t)
-  (load-theme 'apropospriate-dark t)
-  )
-(setup-startscreen-hook)
-
-(require 'server)
-(or (server-running-p) (server-start))
+  (load-theme 'apropospriate-dark t))

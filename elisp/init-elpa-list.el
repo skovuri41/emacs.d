@@ -2,6 +2,7 @@
                     company-quickhelp
 		    direx
 		    drag-stuff
+                    all-the-icons
 		    expand-region
                     evil-leader
                     evil-nerd-commenter

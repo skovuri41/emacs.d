@@ -3,6 +3,10 @@
 ;;  startup screen
 
 ;;; Code:
+(require 'bookmark)
+(require 'page-break-lines)
+(require 'recentf)
+
 ;; Custom splash screen
 (defvar startscreen-mode-map
   (let ((map (make-sparse-keymap)))
@@ -23,7 +27,7 @@
   :abbrev-table nil
   (setq truncate-lines t))
 
-(defun jethro/insert-startupify-lists ()
+(defun dashboard/insert-startupify-lists ()
   (interactive)
   (with-current-buffer (get-buffer-create "*startscreen*")
     (let ((buffer-read-only nil)
@@ -33,23 +37,23 @@
       (page-break-lines-mode)
 
       (recentf-mode)
-      (when (jethro//insert-file-list "Recent Files:" (recentf-elements 15))
-        (jethro//insert--shortcut "r" "Recent Files:")
-        (insert list-separator))
+      (when (dashboard//insert-file-list "Recent Files:" (recentf-elements 15))
+        (dashboard//insert--shortcut "r" "Recent Files:")
+        (dashboard/insert-page-break))
 
       (ivy-mode)
       (require 'bookmark)
-      (when (jethro//insert-bookmark-list "Bookmarks:" (bookmark-all-names))
-        (jethro//insert--shortcut "m" "Bookmarks:")
-        (insert list-separator))
+      (when (dashboard//insert-bookmark-list "Bookmarks:" (bookmark-all-names))
+        (dashboard//insert--shortcut "m" "Bookmarks:")
+        (dashboard/insert-page-break))
 
       (projectile-mode)
-      (when (jethro//insert-project-list "Projects:" (projectile-relevant-known-projects))
-        (jethro//insert--shortcut "p" "Projects:")
-        (insert list-separator)))
+      (when (dashboard//insert-project-list "Projects:" (projectile-relevant-known-projects))
+        (dashboard//insert--shortcut "p" "Projects:")
+        (dashboard/insert-page-break)))
     (startscreen-mode)))
 
-(defun jethro//insert-file-list (list-display-name list)
+(defun dashboard//insert-file-list (list-display-name list)
   (when (car list)
     (insert list-display-name)
     (mapc (lambda (el)
@@ -64,7 +68,7 @@
                            (abbreviate-file-name el)))
           list)))
 
-(defun jethro//insert-project-list (list-display-name list)
+(defun dashboard//insert-project-list (list-display-name list)
   (when (car list)
     (insert list-display-name)
     (mapc (lambda (el)
@@ -79,7 +83,7 @@
                            (abbreviate-file-name el)))
           list)))
 
-(defun jethro//insert-bookmark-list (list-display-name list)
+(defun dashboard//insert-bookmark-list (list-display-name list)
   (when (car list)
     (insert list-display-name)
     (mapc (lambda (el)
@@ -95,11 +99,11 @@
                                                  (bookmark-get-filename el)))))
           list)))
 
-(defun jethro/insert-page-break ()
+(defun dashboard/insert-page-break ()
   "Insert a page break line in startscreen buffer."
-  (jethro/append "\n\n\n"))
+  (dashboard/append "\n\f\n"))
 
-(defun jethro/append (msg &optional messagebuf)
+(defun dashboard/append (msg &optional messagebuf)
   "Append MSG to startscreen buffer. If MESSAGEBUF is not nil then MSG is also written in message buffer."
   (with-current-buffer (get-buffer-create "*startscreen*")
     (goto-char (point-max))
@@ -107,7 +111,7 @@
       (insert msg)
       (if messagebuf (message "(My Emacs) %s" msg)))))
 
-(defmacro jethro//insert--shortcut (shortcut-char search-label &optional no-next-line)
+(defmacro dashboard//insert--shortcut (shortcut-char search-label &optional no-next-line)
   `(define-key startscreen-mode-map ,shortcut-char (lambda ()
                                                      (interactive)
                                                      (unless (search-forward ,search-label (point-max) t)
@@ -116,7 +120,7 @@
                                                          '((forward-line 1)))
                                                      (back-to-indentation))))
 
-(defun jethro/goto-link-line ()
+(defun dashboard/goto-link-line ()
   "Move the point to the beginning of the link line."
   (interactive)
   (with-current-buffer "*startscreen*"
@@ -127,11 +131,13 @@
 
 (defun setup-startscreen-hook ()
   "Add post init processing."
-  (add-hook 'emacs-startup-hook (lambda ()
-                                  ;; Display useful lists of items
-                                  (jethro/insert-startupify-lists))
-            (redisplay))
-  (add-hook 'after-init-hook '(lambda () (switch-to-buffer "*startscreen*"))))
+  (add-hook 'after-init-hook '(lambda () (dashboard/insert-startupify-lists)))
+  (add-hook 'emacs-startup-hook '(lambda ()
+                                   (switch-to-buffer "*startscreen*")
+                                   (page-break-lines-mode 1)
+                                   (goto-char (point-min))
+                                   (redisplay)
+                                   )))
 
 (provide 'startscreen)
 ;;; startscreen ends here

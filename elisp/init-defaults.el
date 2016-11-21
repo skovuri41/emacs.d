@@ -435,6 +435,11 @@
   (setq compilation-scroll-output 'next-error)
   (setq compilation-skip-threshold 2))
 
+(use-package server
+  :config
+  (unless (server-running-p)
+    (server-start)))
+
 (setq package-enable-at-startup nil)
 
 (provide 'init-defaults)

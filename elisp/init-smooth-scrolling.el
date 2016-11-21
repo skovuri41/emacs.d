@@ -1,7 +1,6 @@
 (use-package smooth-scrolling
   :defer t
   :ensure t
-  :disabled t
   :init
   (smooth-scrolling-mode)
   :config
