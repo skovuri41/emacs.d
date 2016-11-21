@@ -84,7 +84,9 @@
                 (select-frame frame)
                 (setq ns-use-srgb-colorspace nil)
                 (load-theme 'spacemacs-dark t)))
-  (load-theme 'spacemacs-dark t))
+  ;; (load-theme 'spacemacs-dark t)
+  (load-theme 'apropospriate-dark t)
+  )
 (setup-startscreen-hook)
 
 (require 'server)

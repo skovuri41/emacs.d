@@ -50,4 +50,10 @@
                                             afternoon-theme birds-of-paradise-plus-theme apropospriate-theme noctilux-theme))
   (ensure-packages-installed packages-appearance))
 
+(use-package cycle-themes
+  :ensure t
+  :init (setq cycle-themes-theme-list
+              '(spacemacs-dark apropospriate-dark zenburn afternoon material))
+  :config (cycle-themes-mode))
+
 (provide 'init-color-theme)
