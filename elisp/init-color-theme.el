@@ -48,12 +48,13 @@
                                             color-theme-modern leuven-theme spacemacs-theme
                                             gruvbox-theme zenburn-theme forest-blue-theme flatland-theme
                                             afternoon-theme birds-of-paradise-plus-theme apropospriate-theme noctilux-theme))
-  (ensure-packages-installed packages-appearance))
+  (ensure-packages-installed appearance-packages))
 
 (use-package cycle-themes
   :ensure t
+  :disabled t
   :init (setq cycle-themes-theme-list
-              '(spacemacs-dark apropospriate-dark zenburn afternoon material))
+              '(apropospriate-dark spacemacs-dark  zenburn afternoon material))
   :config (cycle-themes-mode))
 
 (provide 'init-color-theme)
