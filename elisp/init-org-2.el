@@ -1051,4 +1051,13 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   (progn
     (add-hook 'org-mode-hook 'org-download-enable)))
 
+(use-package org-bullets
+  :ensure t
+  :init
+  ;; (setq org-bullets-bullet-list
+  ;;       '("►" "◉" "★" "○" "◇" "◉" "○" ))
+  (setq org-bullets-bullet-list '("■" "►" "◆" "▶"))
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (provide 'init-org-2)
