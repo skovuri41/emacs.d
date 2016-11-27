@@ -21,7 +21,7 @@
   :config
   (progn
     (setq ivy-display-function nil)
-    (setq ivy-use-virtual-buffers t
+    (setq ivy-use-virtual-buffers nil
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-initial-inputs-alist nil)

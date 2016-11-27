@@ -153,4 +153,29 @@
   :config
   (setup-startscreen-hook))
 
+(use-package spray
+  :commands spray-mode
+  :ensure t
+  :init
+  (progn
+    (defun speed-reading/start-spray ()
+      "Start spray speed reading on current buffer at current point."
+      (interactive)
+      (spray-mode t)
+      (internal-show-cursor (selected-window) nil))
+
+    (defadvice spray-quit (after speed-reading//quit-spray activate)
+      "Correctly quit spray."
+      (internal-show-cursor (selected-window) t)))
+  :config
+  (progn
+    (validate-setq spray-margin-left 20)
+    (validate-setq spray-margin-top 10)
+
+    (define-key spray-mode-map (kbd "h") 'spray-backward-word)
+    (define-key spray-mode-map (kbd "l") 'spray-forward-word)
+    (define-key spray-mode-map (kbd "q") 'spray-quit)))
+
+
+
 (provide 'init-utils)
