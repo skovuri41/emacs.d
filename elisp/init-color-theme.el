@@ -42,19 +42,38 @@
 (use-package color-themes
   :config
   (setq packages-appearance '(monokai-theme solarized-theme
-                                            zenburn-theme base16-theme molokai-theme tango-2-theme
-                                            gotham-theme sublime-themes rainbow-delimiters waher-theme
-                                            ample-theme material-theme zerodark-theme
-                                            color-theme-modern leuven-theme spacemacs-theme
-                                            gruvbox-theme zenburn-theme forest-blue-theme flatland-theme
-                                            afternoon-theme birds-of-paradise-plus-theme apropospriate-theme noctilux-theme))
-  (ensure-packages-installed appearance-packages))
+                                            zenburn-theme
+                                            base16-theme
+                                            molokai-theme
+                                            tango-2-theme
+                                            gotham-theme
+                                            sublime-themes
+                                            rainbow-delimiters
+                                            waher-theme
+                                            ample-theme
+                                            material-theme
+                                            zerodark-theme
+                                            color-theme-modern
+                                            leuven-theme
+                                            spacemacs-theme
+                                            gruvbox-theme
+                                            zenburn-theme
+                                            forest-blue-theme
+                                            flatland-theme
+                                            afternoon-theme
+                                            birds-of-paradise-plus-theme
+                                            apropospriate-theme
+
+                                            noctilux-theme
+                                            zerodark-theme))
+  (ensure-packages-installed packages-appearance))
 
 (use-package cycle-themes
   :ensure t
   :disabled t
-  :init (setq cycle-themes-theme-list
-              '(apropospriate-dark spacemacs-dark  zenburn afternoon material))
+  :init (setq cycle-themes-theme-list '(apropospriate-dark
+                                        spacemacs-dark zenburn afternoon material
+                                        zerodark-theme))
   :config (cycle-themes-mode))
 
 (provide 'init-color-theme)
