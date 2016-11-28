@@ -1,5 +1,4 @@
 (use-package eval-sexp-fu
-  :disabled t
   :config
   (progn
     (setq eval-sexp-fu-flash-duration 0.4)

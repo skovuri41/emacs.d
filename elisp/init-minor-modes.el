@@ -5,6 +5,9 @@
 (add-hook 'emacs-lisp-mode-hook 'prettify-symbols-mode)
 (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+;; go-to-address-mode
+(add-hook 'prog-mode-hook 'goto-address-mode)
+(add-hook 'text-mode-hook 'goto-address-mode)
 
 (use-package with-editor
   :ensure t
@@ -360,5 +363,6 @@
   :ensure t
   :init
   (global-evil-matchit-mode 1))
+
 
 (provide 'init-minor-modes)

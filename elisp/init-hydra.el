@@ -2,39 +2,6 @@
   :ensure t
   :config
   (progn
-
-    (defhydra hydra-calendar
-      (:color pink
-              :hint nil
-              :columns 4
-              :body-pre (calendar)
-              )
-      "
- ^Calendar^     ^Journal^   ^ ^           ^Quit^
-  _._: today    _n_ext      _e_: edit     _b_: journal
-  _?_: date     _p_revious  _C-e_: view   _q_: quit
-  ^ ^           _N_ew
-"
-      ("." calendar-goto-today)
-      ("?" calendar-goto-date)
-      ("n" org-journal-next-entry)
-      ("p" org-journal-previous-entry)
-      ("e" org-journal-read-entry :color blue)
-      ("C-e" org-journal-display-entry)
-      ("N" org-journal-new-date-entry)
-      ("b" hydra-journal/body :color blue :exit-function (calendar-exit))
-      ("q" nil "quit" :color blue :exit-function (calendar-exit)))
-
-
-    (defhydra hydra-journal (:color pink :hint nil :columns 4)
-      "
-Journal
-"
-      ("n" org-journal-new-entry "new" :color blue)
-      ("/" org-journal-search-forever "search" :color blue)
-      ("c" hydra-calendar/body "calendar" :color blue)
-      ("q" nil "quit" :color blue))
-
     ;; hydra zoom
     (defhydra hydra-zoom (global-map "<f5>")
       "zoom"
