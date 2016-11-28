@@ -8,8 +8,9 @@
           neo-banner-message "File Tree browser"
           neo-smart-open t
           neo-persist-show nil)
-    (setq neo-theme 'nerd)           ; 'classic, 'nerd, 'ascii, 'arrow
-    (validate-setq neo-vc-integration '(face char))
+    (validate-setq neo-theme 'nerd)           ; 'classic, 'nerd, 'ascii, 'arrow
+    (validate-setq neo-vc-integration nil)
+    ;; (validate-setq neo-vc-integration '(face char))
     (validate-setq neo-toggle-window-keep-p t)
     
     (defun neo-buffer--insert-header ()

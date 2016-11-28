@@ -11,6 +11,21 @@
                   ace-swap-window
                   aw-flip-window
                   ace-window
+                  ace-delete-window
+                  ace-select-window
+                  ace-maximize-window
+                  avy-pop-mark
+                  quit-window
+                  select-window-0
+                  select-window-1
+                  select-window-2
+                  select-window-3
+                  select-window-4
+                  select-window-5
+                  select-window-6
+                  select-window-7
+                  select-window-8
+                  select-window-9
                   pdf-outline-follow-link
                   pdf-outline-select-pdf-window)))
   (add-to-list 'golden-ratio-exclude-buffer-regexp "^\\*Ilist\\*")
