@@ -41,6 +41,7 @@
 ;; (set-face-foreground 'powerline-active2 "#eee8d5")
 (use-package color-themes
   :config
+  (defvar packages-appearance nil)
   (setq packages-appearance '(monokai-theme solarized-theme
                                             zenburn-theme
                                             base16-theme

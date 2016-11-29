@@ -176,6 +176,4 @@
     (define-key spray-mode-map (kbd "l") 'spray-forward-word)
     (define-key spray-mode-map (kbd "q") 'spray-quit)))
 
-
-
 (provide 'init-utils)

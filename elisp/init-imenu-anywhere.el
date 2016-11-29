@@ -6,8 +6,8 @@
   (setq semantic-default-submodes
         '(global-semantic-idle-scheduler-mode
           global-semanticdb-minor-mode
-          global-semantic-idle-summary-mode
-          global-semantic-stickyfunc-mode))
+          global-semantic-idle-summary-mode))
+  ;; global-semantic-stickyfunc-mode
   (semantic-mode t)
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)

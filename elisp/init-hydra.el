@@ -480,7 +480,16 @@ _f_: fwd
       ("M-t" outline-move-subtree-down)
       ("M-s" outline-move-subtree-up)
       ("i" outline-insert-heading "insert heading" :color blue)
-      ("q" nil "quit" :color blue))))
+      ("q" nil "quit" :color blue))
 
+    (defhydra hydra-switch-tab (:color red :columns 2)
+      "switch tabbars"
+      ("h" tabbar-backward "previous" :color red)
+      ("l" tabbar-forward "next" :color red)
+      ("k" tabbar-backward-tab "backward tab" :color red)
+      ("j" tabbar-forward-tab "forward tab" :color red)
+      ("q" nil "quit" :exit t))
+
+    ))
 
 (provide 'init-hydra)
