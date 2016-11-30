@@ -40,34 +40,35 @@
 ;; (set-face-foreground 'powerline-active1 "#eee8d5")
 ;; (set-face-foreground 'powerline-active2 "#eee8d5")
 (use-package color-themes
+  :defer 5
   :config
-  (defvar packages-appearance nil)
-  (setq packages-appearance '(monokai-theme solarized-theme
-                                            zenburn-theme
-                                            base16-theme
-                                            molokai-theme
-                                            tango-2-theme
-                                            gotham-theme
-                                            sublime-themes
-                                            rainbow-delimiters
-                                            waher-theme
-                                            ample-theme
-                                            material-theme
-                                            zerodark-theme
-                                            color-theme-modern
-                                            leuven-theme
-                                            spacemacs-theme
-                                            gruvbox-theme
-                                            zenburn-theme
-                                            forest-blue-theme
-                                            flatland-theme
-                                            afternoon-theme
-                                            birds-of-paradise-plus-theme
-                                            apropospriate-theme
-
-                                            noctilux-theme
-                                            zerodark-theme))
-  (ensure-packages-installed packages-appearance))
+  (progn
+    (defvar packages-appearance)
+    (setq packages-appearance '(monokai-theme solarized-theme
+                                              zenburn-theme
+                                              base16-theme
+                                              molokai-theme
+                                              tango-2-theme
+                                              gotham-theme
+                                              sublime-themes
+                                              rainbow-delimiters
+                                              waher-theme
+                                              ample-theme
+                                              material-theme
+                                              zerodark-theme
+                                              color-theme-modern
+                                              leuven-theme
+                                              spacemacs-theme
+                                              gruvbox-theme
+                                              zenburn-theme
+                                              forest-blue-theme
+                                              flatland-theme
+                                              afternoon-theme
+                                              birds-of-paradise-plus-theme
+                                              apropospriate-theme
+                                              noctilux-theme
+                                              zerodark-theme))
+    (ensure-packages-installed packages-appearance)))
 
 (use-package cycle-themes
   :ensure t

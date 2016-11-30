@@ -186,8 +186,8 @@
           (with-current-buffer "*Packages*"
             (setq spaceline--upgrades (length (package-menu--find-upgrades))))
           (switch-to-buffer buf)))
-      (advice-add 'package-menu-execute :after 'spaceline--count-upgrades)
-      (add-hook 'after-init-hook 'spaceline--count-upgrades)
+      ;; (spaceline--count-upgrades)
+      (add-hook 'after-init-hook #'spaceline--count-upgrades)
       (spaceline-define-segment
           *package-updates "An `all-the-icons' spaceline segment to indicate number of package updates needed"
           (let ((num (or spaceline--upgrades (spaceline--count-upgrades))))
