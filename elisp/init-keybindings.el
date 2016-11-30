@@ -143,7 +143,8 @@ _o_rg e_l_isp _e_macs _h_yperspec"
   ("h" (ora-open-info "gcl" "*hyperspec*")))
 
 ;; swith meta and mac command key for mac port emacs build
-(setq mac-option-modifier 'meta)
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier 'meta))
 ;; mac switch meta key
 (defun mac-switch-meta ()
   "switch meta between Option and Command"
@@ -157,10 +158,6 @@ _o_rg e_l_isp _e_macs _h_yperspec"
       (setq mac-option-modifier nil)
       (setq mac-command-modifier 'meta))))
 
-;; (setq mac-option-key-is-meta nil)
-;; (setq mac-command-key-is-meta t)
-;; (setq mac-command-modifier 'meta)
-;; (setq mac-option-modifier 'alt)
 
 ;;;;; aliases
 

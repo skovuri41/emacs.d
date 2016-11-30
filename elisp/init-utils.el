@@ -176,4 +176,9 @@
     (define-key spray-mode-map (kbd "l") 'spray-forward-word)
     (define-key spray-mode-map (kbd "q") 'spray-quit)))
 
+(use-package restart-emacs
+  :ensure t
+  :bind* (("C-x M-c" . restart-emacs)))
+
+
 (provide 'init-utils)
