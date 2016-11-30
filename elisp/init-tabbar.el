@@ -203,4 +203,15 @@ added at the end."
     (tabbar-mode 1))
   )
 
+(use-package tabbar-ruler
+  :ensure t
+  :disabled t
+  :init (progn
+          (setq tabbar-use-images nil)
+          (setq tabbar-ruler-global-tabbar t)
+          (setq tabbar-ruler-movement-timer-delay 1000000))
+  :config
+  (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
+  (tabbar-ruler-group-by-projectile-project))
+
 (provide 'init-tabbar)
