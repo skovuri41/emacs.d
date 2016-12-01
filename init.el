@@ -75,6 +75,7 @@
 (require 'init-utils)
 (require 'init-xah-fly-keys)
 (require 'init-composable)
+(require 'init-tabbar)
 (require 'init-keybindings)
 (require 'startscreen)
 

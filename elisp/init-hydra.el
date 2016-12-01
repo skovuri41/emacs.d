@@ -484,8 +484,8 @@ _f_: fwd
 
     (defhydra hydra-switch-tab (:color red :columns 2)
       "switch tabbars"
-      ("h" tabbar-backward "previous" :color red)
-      ("l" tabbar-forward "next" :color red)
+      ("h" tabbar-backward "prev grp" :color red)
+      ("l" tabbar-forward "next grp" :color red)
       ("k" tabbar-backward-tab "backward tab" :color red)
       ("j" tabbar-forward-tab "forward tab" :color red)
       ("q" nil "quit" :exit t))

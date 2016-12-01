@@ -2183,6 +2183,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "?") nil)
     (define-key xah-fly-key-map (kbd "$") nil)
     (define-key xah-fly-key-map (kbd ";") nil)
+    (define-key xah-fly-key-map (kbd ":") nil)
     (define-key xah-fly-key-map (kbd "=") nil)
     (define-key xah-fly-key-map (kbd "[") nil)
     (define-key xah-fly-key-map (kbd "\\") nil)

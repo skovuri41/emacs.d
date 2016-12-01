@@ -2,41 +2,19 @@
   :ensure t
   :init
   ;; (setq tabbar-background-color nil)
-  ;; (setq tabbar-use-images nil)
+  (setq tabbar-use-images nil)
+  (setq tabbar-cycle-scope 'groups)
   (setq tabbar-separator (quote (1.0)))
-  (set-face-attribute
-   'tabbar-default nil
-   :background "gray20"
-   :foreground "gray20"
-   :box '(:line-width 1 :color "gray20" :style nil))
-  (set-face-attribute
-   'tabbar-unselected nil
-   :background "gray75"
-   :foreground "gray20"
-   :box '(:line-width 5 :color "gray20" :style nil))
-  (set-face-attribute
-   'tabbar-selected nil
-   :background "gray75"
-   :foreground "black"
-   :box '(:line-width 5 :color "black" :style nil))
-  (set-face-attribute
-   'tabbar-modified nil
-   :background "gray75"
-   :foreground "gray30"
-   :box '(:line-width 5 :color "gray30" :style nil))
-  (set-face-attribute
-   'tabbar-highlight nil
-   :background "gray75"
-   :foreground "black"
-   :underline nil
-   :box '(:line-width 5 :color "black" :style nil))
-  (set-face-attribute
-   'tabbar-button nil
-   :box '(:line-width 1 :color "gray20" :style nil))
-  (set-face-attribute
-   'tabbar-separator nil
-   :background "gray20"
-   :height 0.6)
+  (when *is-gnu-linux*
+    (setq tabbar-background-color "#22252c") ;; the color of the tabbar background
+    (custom-set-faces
+     '(tabbar-default ((t (:inherit variable-pitch :background "#22252c" :foreground "#959A79" :height 0.75))))
+     '(tabbar-button ((t (:inherit tabbar-default ))))
+     '(tabbar-button-highlight ((t (:inherit tabbar-default))))
+     '(tabbar-highlight ((t (:underline t))))
+     '(tabbar-selected ((t (:inherit tabbar-default :foreground "gold" :background "#282c34" :weight bold))))
+     '(tabbar-separator ((t (:inherit tabbar-default :background "#22252c"))))
+     '(tabbar-unselected ((t (:inherit tabbar-default :slant italic :weight semi-bold))))))
   :config
   (progn
     (defun my-tabbar-buffer-groups-by-project ()
@@ -114,7 +92,6 @@ added at the end."
       (with-current-buffer (car tab)
         (derived-mode-p mode)))
 
-
     ;; group buffers if any *s are left
     (defun my-tabbar-groups-project ()
       "Returns the list of group names the current buffer belongs to."
@@ -164,6 +141,7 @@ added at the end."
                   (string-starts (buffer-name buffer) "*eww")
                   (string-starts (buffer-name buffer) "*xkcd")
                   (string-starts (buffer-name buffer) "*startscreen")
+                  (string-starts (buffer-name buffer) "*scratch*")
                   (string-starts (buffer-name buffer) "*Messages")
                   (string-starts (buffer-name buffer) "*Slack")
                   (string-starts (buffer-name buffer) "*slime-repl")))
@@ -200,8 +178,7 @@ added at the end."
 
     ;; Use tabbar
     (setq erc-header-line-uses-tabbar-p t)
-    (tabbar-mode 1))
-  )
+    (tabbar-mode 1)))
 
 (use-package tabbar-ruler
   :ensure t
