@@ -2,7 +2,7 @@
   :ensure t
   :init
   ;; (setq tabbar-background-color nil)
-  (setq tabbar-use-images nil)
+  (setq tabbar-use-images t)
   (setq tabbar-cycle-scope 'groups)
   (setq tabbar-separator (quote (1.0)))
   (when *is-gnu-linux*
@@ -55,9 +55,9 @@
     ;; Sort tabs by dir structure
     (defun tabbar-add-tab (tabset object &optional append)
       "Add to TABSET a tab with value OBJECT if there isn't one there yet.
-If the tab is added, it is added at the beginning of the tab list,
-unless the optional argument APPEND is non-nil, in which case it is
-added at the end."
+       If the tab is added, it is added at the beginning of the tab list,
+       unless the optional argument APPEND is non-nil, in which case it is
+       added at the end."
       (let ((tabs (tabbar-tabs tabset)))
         (if (tabbar-get-tab object tabset)
             tabs

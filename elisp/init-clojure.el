@@ -138,6 +138,12 @@
     (setq cider-interactive-eval-result-prefix ";; => ")
     (setq cider-stacktrace-fill-column 80)
     (setq cider-test-show-report-on-success t)
+    ;; Specify the print length to be 100 to stop infinite sequences killing
+    ;; things. This might be dangerous for some people relying on
+    ;; *print-length* being larger. Consider a work around
+    (defun nrepl-set-print-length ()
+      (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
+    (add-hook 'nrepl-connected-hook 'nrepl-set-print-length)
     (require 'cider-hydra)
     ))
 
