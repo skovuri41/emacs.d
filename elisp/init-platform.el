@@ -10,6 +10,28 @@
  *cygwin* (eq system-type 'cygwin)
  *is-gnu-linux* (eq system-type 'gnu/linux))
 
+;; Bootstrap quelpa
+(if (require 'quelpa nil t)
+    (quelpa-self-upgrade)
+  (with-temp-buffer
+    (url-insert-file-contents
+     "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+
+;; Make Quelpa prefer MELPA-stable over melpa. This is optional but
+;; highly recommended.
+;;
+;; (setq quelpa-stable-p t)
+
+;; Install quelpa-use-package, which will install use-package as well
+(quelpa
+ '(quelpa-use-package
+   :fetcher github
+   :repo "quelpa/quelpa-use-package"
+   :stable nil))
+
+(require 'quelpa-use-package)
+
 (when *is-gnu-linux*
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -31,15 +53,15 @@
     (package-install 'use-package))
 
   ;; ;; Install all packages required
-   (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
+  (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
 
-   (package-initialize)
+  (package-initialize)
   ;; ;; Fetch packages the first time
-   (unless (file-exists-p package-user-dir)
-     (package-refresh-contents))
-   (dolist (p my-packages)
-     (when (not (package-installed-p p))
-       (package-install p)))
+  (unless (file-exists-p package-user-dir)
+    (package-refresh-contents))
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (package-install p)))
   (setq frame-resize-pixelwise t)
   (set-frame-position (selected-frame) 0 0)
   (set-frame-size (selected-frame) 1920 1080 t)

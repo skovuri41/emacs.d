@@ -180,5 +180,4 @@
   :ensure t
   :bind* (("C-x M-c" . restart-emacs)))
 
-
 (provide 'init-utils)
