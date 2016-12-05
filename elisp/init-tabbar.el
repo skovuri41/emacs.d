@@ -5,16 +5,6 @@
   (setq tabbar-use-images t)
   (setq tabbar-cycle-scope 'groups)
   (setq tabbar-separator (quote (1.0)))
-  (when *is-gnu-linux*
-    (setq tabbar-background-color "#22252c") ;; the color of the tabbar background
-    (custom-set-faces
-     '(tabbar-default ((t (:inherit variable-pitch :background "#22252c" :foreground "#959A79" :height 0.75))))
-     '(tabbar-button ((t (:inherit tabbar-default ))))
-     '(tabbar-button-highlight ((t (:inherit tabbar-default))))
-     '(tabbar-highlight ((t (:underline t))))
-     '(tabbar-selected ((t (:inherit tabbar-default :foreground "gold" :background "#282c34" :weight bold))))
-     '(tabbar-separator ((t (:inherit tabbar-default :background "#22252c"))))
-     '(tabbar-unselected ((t (:inherit tabbar-default :slant italic :weight semi-bold))))))
   :config
   (progn
     (defun my-tabbar-buffer-groups-by-project ()
@@ -176,19 +166,8 @@
 
     (setq tabbar-buffer-groups-function 'my-tabbar-groups-by-project)
 
-    ;; Use tabbar
-    (setq erc-header-line-uses-tabbar-p t)
-    (tabbar-mode 1)))
+    ;; (tabbar-mode 1)
 
-(use-package tabbar-ruler
-  :ensure t
-  :disabled t
-  :init (progn
-          (setq tabbar-use-images nil)
-          (setq tabbar-ruler-global-tabbar t)
-          (setq tabbar-ruler-movement-timer-delay 1000000))
-  :config
-  (setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
-  (tabbar-ruler-group-by-projectile-project))
+    ))
 
 (provide 'init-tabbar)

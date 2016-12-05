@@ -482,7 +482,7 @@ _f_: fwd
       ("i" outline-insert-heading "insert heading" :color blue)
       ("q" nil "quit" :color blue))
 
-    (defhydra hydra-switch-tab (:color red :columns 2)
+    (defhydra hydra-switch-tab (:pre (tabbar-mode 1) :post (tabbar-mode -1) :color red :columns 2)
       "switch tabbars"
       ("h" tabbar-backward "prev grp" :color red)
       ("l" tabbar-forward "next grp" :color red)

@@ -2166,8 +2166,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "z") 'zop-to-char)
     (define-key xah-fly-key-map (kbd ":r") 'restart-emacs)
     (define-key xah-fly-key-map (kbd ":q") 'save-buffers-kill-terminal)
-    (define-key xah-fly-key-map (kbd ":t") 'emacs-init-time)
-    ))
+    (define-key xah-fly-key-map (kbd ":t") 'emacs-init-time)))
 
 ;;;;; insert mode keys
 (defun xah-fly-insert-mode-init ()

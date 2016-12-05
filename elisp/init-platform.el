@@ -10,28 +10,6 @@
  *cygwin* (eq system-type 'cygwin)
  *is-gnu-linux* (eq system-type 'gnu/linux))
 
-;; Bootstrap quelpa
-(if (require 'quelpa nil t)
-    (quelpa-self-upgrade)
-  (with-temp-buffer
-    (url-insert-file-contents
-     "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
-
-;; Make Quelpa prefer MELPA-stable over melpa. This is optional but
-;; highly recommended.
-;;
-;; (setq quelpa-stable-p t)
-
-;; Install quelpa-use-package, which will install use-package as well
-(quelpa
- '(quelpa-use-package
-   :fetcher github
-   :repo "quelpa/quelpa-use-package"
-   :stable nil))
-
-(require 'quelpa-use-package)
-
 (when *is-gnu-linux*
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -52,6 +30,17 @@
     (package-refresh-contents)
     (package-install 'use-package))
 
+  (use-package quelpa
+    :ensure t
+    :init
+    (setq quelpa-update-melpa-p nil))
+
+  ;; Enable the use of Quelpa with use-package.
+  (use-package quelpa-use-package
+    :ensure t
+    :config
+    (quelpa-use-package-activate-advice))
+
   ;; ;; Install all packages required
   (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
 
@@ -63,6 +52,7 @@
     (when (not (package-installed-p p))
       (package-install p)))
   (setq frame-resize-pixelwise t)
+  ;; (set-face-italic 'tabbar-unselected nil)
   (set-frame-position (selected-frame) 0 0)
   (set-frame-size (selected-frame) 1920 1080 t)
   (setq
@@ -79,6 +69,30 @@
 
 (when *is-a-mac*
   (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
+  ;; Bootstrap quelpa
+  (if (require 'quelpa nil t)
+      (quelpa-self-upgrade)
+    (with-temp-buffer
+      (url-insert-file-contents
+       "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+      (eval-buffer)))
+
+  ;; Make Quelpa prefer MELPA-stable over melpa. This is optional but
+  ;; highly recommended.
+  ;;
+  ;; (setq quelpa-stable-p t)
+
+  ;; Install quelpa-use-package, which will install use-package as well
+  ;; Enable the use of Quelpa with use-package.
+  (use-package quelpa-use-package
+    :quelpa
+    (quelpa-use-package
+     :fetcher github
+     :repo "quelpa/quelpa-use-package"
+     :stable nil)
+    :config
+    (quelpa-use-package-activate-advice))
+
   (setq
    ;; for multilingual environments
    default-input-method "MacOSX"

@@ -31,8 +31,10 @@
   :quelpa (spacemacs-theme :fetcher github :repo "surya46584/spacemacs-theme"))
 
 (use-package zerodark-theme
-  :disabled t
-  :quelpa (zerodark-theme :fetcher github :repo "surya46584/zerodark-theme"))
+  :if *is-gnu-linux*
+  :quelpa (zerodark-theme :fetcher github :repo "surya46584/zerodark-theme")
+  :config
+  (setq zerodark-use-paddings-in-mode-line nil))
 
 (use-package color-themes
   :defer 5

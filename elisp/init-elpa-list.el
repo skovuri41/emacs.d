@@ -83,7 +83,6 @@
                     git-gutter+
 		    hydra
                     spaceline
-                    spacemacs-theme
                     restclient
                     restclient-helm
                     htmlize
