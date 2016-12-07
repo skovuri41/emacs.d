@@ -681,4 +681,9 @@ returning the path where FILE-NAME can be found."
         (define-key keymap key-to cmd)
         (define-key keymap key-from nil)))))
 
+(defmacro shut-up! (&rest body)
+  "Silence message output from code."
+  (declare (indent defun))
+  `(let (message-log-max) ,@body (message "")))
+
 (provide 'init-defuns)
