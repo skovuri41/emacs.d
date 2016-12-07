@@ -252,8 +252,28 @@
              'local-map (make-mode-line-mouse-map
                          'mouse-1 (lambda () (interactive) (display-time-world))))))
 
+      (spaceline-define-segment *iedit
+        "Show the number of iedit regions matches + what match you're on."
+        (propertize
+         (let ((this-oc (let (message-log-max) (iedit-find-current-occurrence-overlay)))
+               (length (or (ignore-errors (length iedit-occurrences-overlays)) 0)))
+           (format
+            " %s/%s "
+            (save-excursion
+              (unless this-oc
+                (iedit-prev-occurrence)
+                (setq this-oc (iedit-find-current-occurrence-overlay)))
+              (if this-oc
+                  ;; NOTE: Not terribly reliable
+                  (- length (-elem-index this-oc iedit-occurrences-overlays))
+                "-"))
+            length))
+         'face `(:foreground "green") ) :when (and (boundp 'iedit-mode) iedit-mode))
+
+
       (spaceline-install
        '(*macro-recording
+         *iedit
          *ace
          ((workspace-number window-number) :separator " | ")
          *xah-fly-keys-state
