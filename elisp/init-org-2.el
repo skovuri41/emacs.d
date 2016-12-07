@@ -88,7 +88,7 @@ FUN function callback"
     (defun org-self-insert-or-less ()
       (interactive)
       (if (looking-back "^")
-          (hydra-org-template/body)
+          (sk/hydra-org-template/body)
         (self-insert-command 1))))
 
   (bind-keys :map orgstruct-mode-map

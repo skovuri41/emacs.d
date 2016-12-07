@@ -82,7 +82,7 @@
          (buffer-substring (region-beginning) (region-end)) nil))
       (cider-switch-to-repl-buffer)
       (cider-repl-closing-return)
-      (cider-switch-to-last-clojure-buffer)
+      (switch-to-last-clojure-buffer)
       (message ""))
 
 
@@ -117,6 +117,9 @@
     (add-hook 'cider-repl-mode-hook 'subword-mode))
   :config
   (progn
+    (setq cider-prompt-for-symbol nil)
+    (setq cider-overlays-use-font-lock t)
+    (setq cider-pprint-fn 'puget)
     (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
     (setq cider-repl-pop-to-buffer-on-connect nil)
     ;; (setq cider-repl-use-clojure-font-lock nil)
@@ -130,6 +133,7 @@
     (setq cider-show-error-buffer t)
     (setq nrepl-popup-stacktraces nil)
     (setq nrepl-hide-special-buffers t)
+    (setq nrepl-log-messages t)
     (setq nrepl-buffer-name-show-port t)
     (setq nrepl-buffer-name-separator "-")
     (setq cider-prompt-save-file-on-load nil)
@@ -138,12 +142,6 @@
     (setq cider-interactive-eval-result-prefix ";; => ")
     (setq cider-stacktrace-fill-column 80)
     (setq cider-test-show-report-on-success t)
-    ;; Specify the print length to be 100 to stop infinite sequences killing
-    ;; things. This might be dangerous for some people relying on
-    ;; *print-length* being larger. Consider a work around
-    (defun nrepl-set-print-length ()
-      (nrepl-send-string-sync "(set! *print-length* 100)" "clojure.core"))
-    (add-hook 'nrepl-connected-hook 'nrepl-set-print-length)
     (require 'cider-hydra)
     ))
 
