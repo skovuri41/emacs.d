@@ -21,6 +21,7 @@
 (depends-on "use-package")
 (depends-on "better-defaults")
 (depends-on "dash")
+(depends-on "quelpa")
 
 ;;git
 (depends-on "magit")

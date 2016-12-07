@@ -82,16 +82,14 @@
   ;;
   ;; (setq quelpa-stable-p t)
 
-  ;; Install quelpa-use-package, which will install use-package as well
-  ;; Enable the use of Quelpa with use-package.
-  (use-package quelpa-use-package
-    :quelpa
-    (quelpa-use-package
-     :fetcher github
-     :repo "quelpa/quelpa-use-package"
-     :stable nil)
-    :config
-    (quelpa-use-package-activate-advice))
+(quelpa        
+  '(quelpa-use-package        
+    :fetcher github        
+    :repo "quelpa/quelpa-use-package"        
+    :stable nil))        
+         
+ (require 'quelpa-use-package)
+
 
   (setq
    ;; for multilingual environments

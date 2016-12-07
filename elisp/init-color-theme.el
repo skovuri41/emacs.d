@@ -28,6 +28,7 @@
   :init (load-theme 'material-light t))
 
 (use-package spacemacs-theme
+  :disabled t
   :quelpa (spacemacs-theme :fetcher github :repo "surya46584/spacemacs-theme"))
 
 (use-package zerodark-theme
@@ -56,9 +57,9 @@
                                               leuven-theme
                                               gruvbox-theme
                                               zenburn-theme
-                                              forest-blue-theme
                                               flatland-theme
                                               afternoon-theme
+                                              spacemacs-theme
                                               apropospriate-theme
                                               birds-of-paradise-plus-theme
                                               noctilux-theme))
