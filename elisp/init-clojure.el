@@ -82,7 +82,7 @@
          (buffer-substring (region-beginning) (region-end)) nil))
       (cider-switch-to-repl-buffer)
       (cider-repl-closing-return)
-      (switch-to-last-clojure-buffer)
+      (cider-switch-to-last-clojure-buffer)
       (message ""))
 
 

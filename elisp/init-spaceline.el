@@ -288,7 +288,7 @@
        `(*region-info
          ((buffer-encoding-abbrev *position) :separator " | ")
          ;; (global :when active)
-         (*package-updates :when active)
+         ;; (*package-updates :when active)
          *battery
          *time
          *weather

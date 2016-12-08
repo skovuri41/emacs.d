@@ -44,25 +44,15 @@
     (defvar packages-appearance)
     (setq packages-appearance '(monokai-theme solarized-theme
                                               zenburn-theme
-                                              base16-theme
                                               molokai-theme
                                               tango-2-theme
-                                              gotham-theme
-                                              sublime-themes
                                               rainbow-delimiters
-                                              waher-theme
-                                              ample-theme
                                               material-theme
-                                              color-theme-modern
                                               leuven-theme
-                                              gruvbox-theme
                                               zenburn-theme
-                                              flatland-theme
-                                              afternoon-theme
                                               spacemacs-theme
                                               apropospriate-theme
-                                              birds-of-paradise-plus-theme
-                                              noctilux-theme))
+                                              birds-of-paradise-plus-theme))
     (ensure-packages-installed packages-appearance)))
 
 (provide 'init-color-theme)

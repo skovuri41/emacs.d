@@ -68,7 +68,6 @@
    x-select-enable-clipboard t))
 
 (when *is-a-mac*
-  (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
   ;; Bootstrap quelpa
   (if (require 'quelpa nil t)
       (quelpa-self-upgrade)
