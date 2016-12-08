@@ -1,5 +1,3 @@
-(require 'worf)
-
 (defun my/org-mode-hook ()
   (interactive)
   (turn-on-auto-fill)
@@ -81,8 +79,7 @@ FUN function callback"
                                '(lambda()
                                   (org-insert-todo-heading nil)
                                   (org-metaright))))))
-  (bind-keys :map worf-mode-map
-             ("M-j" . nil))
+
 
   (define-key org-mode-map "<"
     (defun org-self-insert-or-less ()
@@ -984,5 +981,12 @@ FUN function callback"
   (setq org-bullets-bullet-list '("■" "►" "◆" "▶"))
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package worf
+  :ensure t
+  :config
+  (bind-keys :map worf-mode-map
+             ("M-j" . nil)))
+
 
 (provide 'init-org-2)

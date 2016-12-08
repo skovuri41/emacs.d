@@ -140,13 +140,13 @@ _d_: defun   _u_: url       | _F_: full path
       "
 Git Timemachine
     _e_: enter
-    _k_: previous     _j_: next    _g_: go to nth
+    _p_: previous     _n_: next    _g_: go to nth
     _w_: copy abbr    _W_: copy full
 _q_: Quit
 "
       ("e" git-timemachine)
-      ("k" git-timemachine-show-previous-revision)
-      ("j" git-timemachine-show-next-revision)
+      ("p" git-timemachine-show-previous-revision)
+      ("n" git-timemachine-show-next-revision)
       ("g" git-timemachine-show-nth-revision)
       ("w" git-timemachine-kill-abbreviated-revision)
       ("W" git-timemachine-kill-revision)

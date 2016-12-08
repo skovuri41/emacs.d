@@ -51,6 +51,7 @@
 
 (use-package yahoo-weather
   :ensure t
+  :disabled t
   :defer 5
   :if *is-a-mac*
   :config

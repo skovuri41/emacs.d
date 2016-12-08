@@ -443,7 +443,7 @@
 (setq package-enable-at-startup nil)
 
 ;; note: cpu expensive, disable later if find any issues
-(setq auto-revert-check-vc-info t)
+;; (setq auto-revert-check-vc-info t)
 
 
 (provide 'init-defaults)

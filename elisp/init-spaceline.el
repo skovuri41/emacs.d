@@ -270,7 +270,6 @@
             length))
          'face `(:foreground "green") ) :when (and (boundp 'iedit-mode) iedit-mode))
 
-
       (spaceline-install
        '(*macro-recording
          *iedit
@@ -287,13 +286,13 @@
          (org-clock :when active))
        `(*region-info
          ((buffer-encoding-abbrev *position) :separator " | ")
-         ;; (global :when active)
-         ;; (*package-updates :when active)
          *battery
          *time
-         *weather
          buffer-position
          hud))
+      ;; *weather
+      ;; (global :when active)
+      ;; (*package-updates :when active)
 
       )))
 
