@@ -412,7 +412,7 @@
 
 
 (setq custom-file "~/.emacs.d/emacs-customizations.el")
-(load custom-file 'noerror)
+(shut-up (load custom-file 'noerror))
 
 (validate-setq display-time-world-list '(
                                          ("America/New_York"      "New York")

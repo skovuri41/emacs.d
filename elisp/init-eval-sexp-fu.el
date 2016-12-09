@@ -1,4 +1,6 @@
 (use-package eval-sexp-fu
+  :ensure t
+  :commands eval-sexp-fu-flash-mode
   :config
   (progn
     (setq eval-sexp-fu-flash-duration 0.4)

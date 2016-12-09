@@ -80,7 +80,7 @@
                                                            (match-end 1) "∈")))))))
 
     (dolist (m '(clojure-mode clojurescript-mode clojurec-mode clojurex-mode cider-mode cider-repl-mode))
-      (clojure-fancify-symbols m)))
+      (clojure-fancify-symbols m))
 
   (defun toggle-nrepl-buffer ()
     "Toggle the nREPL REPL on and off"

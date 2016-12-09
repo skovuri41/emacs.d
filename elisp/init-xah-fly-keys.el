@@ -2,7 +2,7 @@
   :ensure t
   :init
   (progn
-    (key-chord-mode 1)
+    (shut-up (key-chord-mode 1))
     (setq key-chord-two-keys-delay 0.3)))
 
 (use-package xah-fly-keys

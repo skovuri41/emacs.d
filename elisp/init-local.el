@@ -5,7 +5,7 @@
 
 (let ((local-config (expand-file-name "local.el" user-emacs-directory)))
   (when (file-exists-p local-config)
-    (load local-config)))
+    (shut-up (load local-config))))
 
 (provide 'init-local)
 

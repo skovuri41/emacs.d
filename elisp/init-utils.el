@@ -189,6 +189,7 @@
     (auto-compile-on-save-mode)))
 
 (use-package shut-up
+  :ensure t
   :config
   (defun shut-up-around (function &rest args)
     (shut-up (apply function args))))
