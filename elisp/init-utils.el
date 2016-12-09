@@ -180,4 +180,20 @@
   :ensure t
   :bind* (("C-x M-c" . restart-emacs)))
 
+(use-package auto-compile
+  :demand t
+  :ensure t
+  :config
+  (progn
+    (auto-compile-on-load-mode)
+    (auto-compile-on-save-mode)))
+
+(use-package shut-up
+  :config
+  (defun shut-up-around (function &rest args)
+    (shut-up (apply function args))))
+
+;; (advice-add 'recentf-cleanup :around 'imalison:shut-up-around)
+;; (shut-up (helm-projectile-on))
+
 (provide 'init-utils)

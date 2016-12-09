@@ -445,5 +445,6 @@
 ;; note: cpu expensive, disable later if find any issues
 ;; (setq auto-revert-check-vc-info t)
 
+(setq load-prefer-newer t)
 
 (provide 'init-defaults)
