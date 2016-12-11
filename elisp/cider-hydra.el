@@ -45,9 +45,9 @@ CIDER Buffers Menu
  _c_:  cider-close-ancillary-buffers                 _f_:  cider-refresh-dynamic-font-lock
  _d_:  cider-disable-on-existing-clojure-buffers     _s_:  cider-scratch
  _i_:  cider-enable-on-existing-clojure-buffers      _t_:  cider-selector
- _g_:  cider-enlighten-mode                          _b_:  cider-switch-to-last-clojure-buffer
- _lb_: cider-load-buffer                             _r_:  cider-switch-to-repl-buffer
- _o_:  cider-turn-on-eldoc-mode                      _e_:  cider-visit-error-buffer
+ _g_:  cider-enlighten-mode                          _b_:  cider-switch-buffer/repl
+ _lb_: cider-load-buffer                             _e_:  cider-visit-error-buffer
+ _o_:  cider-turn-on-eldoc-mode                      
 "
   ("q" hydra-cider-main/body)
   ("a" cider-change-buffers-designation)
@@ -62,8 +62,12 @@ CIDER Buffers Menu
   ("f" cider-refresh-dynamic-font-lock)
   ("s" cider-scratch)
   ("t" cider-selector)
-  ("b" cider-switch-to-last-clojure-buffer)
-  ("r" cider-switch-to-repl-buffer)
+  ;; ("b" cider-switch-to-last-clojure-buffer)
+  ("b" (if (memq major-mode '(cider-repl-mode
+                              cider-stacktrace-mode))
+           (cider-switch-to-last-clojure-buffer)
+         (cider-switch-to-repl-buffer)))
+  ;; ("r" cider-switch-to-repl-buffer)
   ("o" cider-turn-on-eldoc-mode)
   ("e" cider-visit-error-buffer)
   )
@@ -343,8 +347,7 @@ CIDER Insert Menu
  _l_:   cider-repl-clear-buffer             _hl_:  cider-repl-history-load
  _n_:   cider-repl-clear-help-banner        _hs_:  cider-repl-history-save
  _o_:   cider-repl-clear-output             _i_:   cider-repl-indent-and-complete-symbol
- _y_:   cider-repl-kill-input               _t_:   toggle-repl-buffer
- _x_:   cider-find-and-clear-repl-output
+ _x_:   cider-repl-kill-input               _t_:   toggle-repl-buffer
 "
   ("q" hydra-cider-main/body)
   (">" hydra-cider-repl-menu-2/body)
@@ -352,7 +355,9 @@ CIDER Insert Menu
   ("a" cider-repl-beginning-of-defun)
   ("c" cider-repl-bol-mark)
   ("d" cider-repl-clear-banners)
-  ("l" cider-repl-clear-buffer)
+  ("l" (if (memq major-mode '(cider-repl-mode))
+           (cider-repl-clear-buffer)
+         (cider-find-and-clear-repl-output '(4))))
   ("n" cider-repl-clear-help-banner)
   ("o" cider-repl-clear-output)
   ("m" cider-repl-closing-return)
@@ -362,9 +367,9 @@ CIDER Insert Menu
   ("hl" cider-repl-history-load)
   ("hs" cider-repl-history-save)
   ("i" cider-repl-indent-and-complete-symbol)
-  ("y" cider-repl-kill-input)
+  ("x" cider-repl-kill-input)
   ("t" toggle-nrepl-buffer)
-  ("x" (cider-find-and-clear-repl-output '(4)))
+  ;; ("x" (cider-find-and-clear-repl-output '(4)))
   )
 
 ;;; *** repl-2
