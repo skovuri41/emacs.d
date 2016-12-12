@@ -82,51 +82,50 @@
     (dolist (m '(clojure-mode clojurescript-mode clojurec-mode clojurex-mode cider-mode cider-repl-mode))
       (clojure-fancify-symbols m))
 
-  (defun toggle-nrepl-buffer ()
-    "Toggle the nREPL REPL on and off"
-    (interactive)
-    (if (string-match "cider-repl" (buffer-name (current-buffer)))
-        (delete-window)
-      (cider-switch-to-repl-buffer)))
+    (defun toggle-nrepl-buffer ()
+      "Toggle the nREPL REPL on and off"
+      (interactive)
+      (if (string-match "cider-repl" (buffer-name (current-buffer)))
+          (delete-window)
+        (cider-switch-to-repl-buffer)))
 
-  (defun cider-save-and-refresh ()
-    (interactive)
-    (save-buffer)
-    (call-interactively 'cider-refresh))
+    (defun cider-save-and-refresh ()
+      (interactive)
+      (save-buffer)
+      (call-interactively 'cider-refresh))
 
-  (defun cider-send-and-evaluate-sexp ()
-    "Sends the s-expression located before the point or the active
+    (defun cider-send-and-evaluate-sexp ()
+      "Sends the s-expression located before the point or the active
        region to the REPL and evaluates it. Then the Clojure buffer is
        activated as if nothing happened."
-    (interactive)
-    (if (not (region-active-p))
-        (cider-insert-last-sexp-in-repl)
-      (cider-insert-in-repl
-       (buffer-substring (region-beginning) (region-end)) nil))
-    (cider-switch-to-repl-buffer)
-    (cider-repl-closing-return)
-    (cider-switch-to-last-clojure-buffer)
-    (message ""))
+      (interactive)
+      (if (not (region-active-p))
+          (cider-insert-last-sexp-in-repl)
+        (cider-insert-in-repl
+         (buffer-substring (region-beginning) (region-end)) nil))
+      (cider-switch-to-repl-buffer)
+      (cider-repl-closing-return)
+      (cider-switch-to-last-clojure-buffer)
+      (message ""))
 
 
-  (defun clj-mode-keys-setup ()
-    "for 'clojure mode'"
+    (defun clj-mode-keys-setup ()
+      "for 'clojure mode'"
+      (bind-keys :map clojure-mode-map
+                 ("C-x C-e" . cider-eval-last-sexp)
+                 ("C-c C-r" . cider-repl-reset)
+                 ("C-c C-v" . cider-send-and-evaluate-sexp))
+      (bind-keys :map cider-browse-ns-mode-map
+                 ("j" . next-line)
+                 ("k" . previous-line))
+      (unbind-key (kbd "/") clj-refactor-map)
+      (define-key cider-mode-map (kbd "C-:") nil)
+      (define-key cider-repl-mode-map (kbd "C-x C-l") 'cider-repl-clear-buffer)
+      (define-key cider-repl-mode-map (kbd "C-:") nil)
 
-    (bind-keys :map clojure-mode-map
-               ("C-x C-e" . cider-eval-last-sexp)
-               ("C-c C-r" . cider-repl-reset)
-               ("C-c C-v" . cider-send-and-evaluate-sexp))
+      )
 
-    (unbind-key (kbd "/") clj-refactor-map)
-
-    (define-key cider-mode-map (kbd "C-:") nil)
-
-    (define-key cider-repl-mode-map (kbd "C-x C-l") 'cider-repl-clear-buffer)
-    (define-key cider-repl-mode-map (kbd "C-:") nil)
-
-    )
-
-  (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
+    (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
 
 (use-package cider
   :commands (cider cider-connect cider-jack-in)
