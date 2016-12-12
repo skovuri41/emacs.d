@@ -81,14 +81,12 @@
   ;;
   ;; (setq quelpa-stable-p t)
 
-(quelpa        
-  '(quelpa-use-package        
-    :fetcher github        
-    :repo "quelpa/quelpa-use-package"        
-    :stable nil))        
-         
- (require 'quelpa-use-package)
-
+  (quelpa
+   '(quelpa-use-package
+     :fetcher github
+     :repo "quelpa/quelpa-use-package"))
+  
+  (require 'quelpa-use-package)
 
   (setq
    ;; for multilingual environments

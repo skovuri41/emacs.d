@@ -25,6 +25,7 @@
                ("B" . mark-whole-buffer)
                ("b" . backward-word)
                ("=" . er/expand-region)
+               ("L" . link-hint-copy-multiple-links)
                ("k" . previous-line))
 
     (composable-def '(delete-region))

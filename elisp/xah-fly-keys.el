@@ -2113,6 +2113,8 @@ If `universal-argument' is called first, do switch frame."
                                                 )))
     (define-key xah-fly-key-map (kbd "gd") 'my-jump-to-elisp-docs)
     (define-key xah-fly-key-map (kbd "gx") 'counsel-osx-app)
+    (define-key xah-fly-key-map (kbd "gl") 'link-hint-open-link)
+    (define-key xah-fly-key-map (kbd "gL") 'link-hint-open-multiple-links)
     (define-key xah-fly-key-map (kbd "j") 'next-line)
     (define-key xah-fly-key-map (kbd "h") 'backward-char)
     (define-key xah-fly-key-map (kbd "i") 'xah-fly-insert-mode-activate)
@@ -2308,9 +2310,7 @@ If `universal-argument' is called first, do switch frame."
   "Enable lispy mode for selected major modes only"
   (when (memq major-mode '(emacs-lisp-mode clojure-mode
                                            clojurescript-mode
-                                           cider-repl-mode
-                                           cider-docview-mode
-                                           cider-stacktrace-mode))
+                                           cider-repl-mode))
     (lispy-mode 1)))
 
 (defun hydra-commands-activate ()

@@ -78,12 +78,12 @@ CIDER Buffers Menu
 CIDER Connections Menu
  _q_:  cider-main
  _b_:  cider-assoc-buffer-with-connection       _D_:  cider-connections-make-default
- _p_:  cider-assoc-project-with-connection      _S_:  cider-create-sibling-cljs-repl
+ _P_:  cider-assoc-project-with-connection      _S_:  cider-create-sibling-cljs-repl
  _l_:  cider-clear-buffer-local-connection      _N_:  cider-describe-nrepl-session
  _x_:  cider-close-nrepl-session                _i_:  cider-display-connection-info
  _c_:  cider-connect                            _j_:  cider-jack-in
  _w_:  cider-connection-browser                 _J_:  cider-jack-in-clojurescript
- _g_:  cider-connections-buffer-mode            _P_:  cider-make-connection-default
+ _g_:  cider-connections-buffer-mode            _d_:  cider-make-connection-default
  _h_:  cider-connections-close-connection       _p_:  cider-ping
  _o_:  cider-connections-goto-connection        _Q_:  cider-quit
  _n_:  cider-replicate-connection
@@ -92,7 +92,7 @@ CIDER Connections Menu
 "
   ("q" hydra-cider-main/body)
   ("b" cider-assoc-buffer-with-connection)
-  ("p" cider-assoc-project-with-connection)
+  ("P" cider-assoc-project-with-connection)
   ("l" cider-clear-buffer-local-connection)
   ("x" cider-close-nrepl-session)
   ("c" cider-connect)
@@ -106,7 +106,7 @@ CIDER Connections Menu
   ("i" cider-display-connection-info)
   ("j" cider-jack-in)
   ("J" cider-jack-in-clojurescript)
-  ("P" cider-make-connection-default)
+  ("d" cider-make-connection-default)
   ("p" cider-ping)
   ("Q" cider-quit)
   ("n" cider-replicate-connection)

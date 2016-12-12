@@ -50,10 +50,10 @@
                                 "london")))
 
 (use-package yahoo-weather
-  :ensure t
+  ;; :ensure t
   :disabled t
-  :defer 5
-  :if *is-a-mac*
+  ;; :defer 5
+  ;; :if *is-a-mac*
   :config
   (validate-setq yahoo-weather-location "07751")
   (validate-setq yahoo-weather-use-F t)

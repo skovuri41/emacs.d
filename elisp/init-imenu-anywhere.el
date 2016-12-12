@@ -106,7 +106,7 @@
               imenu-list-major-mode-map)
 
     (defun my/imenu-ace-window ()
-      "Enable lispy mode for selected major modes only"
+      "Enable insert/activate mode for selected major modes only"
       (interactive)
       (call-interactively 'ace-window)
       (let ((buffer-major-mode
