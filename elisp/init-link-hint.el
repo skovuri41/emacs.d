@@ -1,5 +1,4 @@
 (use-package link-hint
-  :ensure t
-  )
+  :ensure t)
 
 (provide 'init-link-hint)

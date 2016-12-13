@@ -10,11 +10,11 @@
 (setq ring-bell-function 'ignore)
 
 ;; Buffer settings
-(setq default-indicate-empty-lines t)
+(setq indicate-empty-lines t)
 (setq require-final-newline t)
 
 ;; Allow pasting selection outside of Emacs
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 
 ;; window focus follows the mouse pointer
 (setq  mouse-autoselect-window t)
@@ -174,6 +174,7 @@
 
 ;;keep cursor at same position when scrolling
 (setq scroll-preserve-screen-position 1)
+(setq fast-but-imprecise-scrolling t)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)
