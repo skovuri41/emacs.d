@@ -6,6 +6,7 @@
   :config
   (setq smooth-scroll-margin 6
         scroll-margin 3
+        scroll-step 1
         scroll-conservatively 101
         scroll-preserve-screen-position t
         auto-window-vscroll nil))

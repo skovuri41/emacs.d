@@ -47,7 +47,7 @@ CIDER Buffers Menu
  _i_:  cider-enable-on-existing-clojure-buffers      _t_:  cider-selector
  _g_:  cider-enlighten-mode                          _b_:  cider-switch-buffer/repl
  _lb_: cider-load-buffer                             _e_:  cider-visit-error-buffer
- _o_:  cider-turn-on-eldoc-mode                      
+ _o_:  cider-turn-on-eldoc-mode
 "
   ("q" hydra-cider-main/body)
   ("a" cider-change-buffers-designation)
@@ -467,7 +467,7 @@ CIDER Stacktrace Menu
 CIDER Test Menu
  _q_:   cider-main
  _l_:   cider-test-clear-highlights   _s_:   cider-test-stacktrace
- _e_:   cider-test-ediff              _o_:   cider-test-run-loaded-tests  
+ _e_:   cider-test-ediff              _o_:   cider-test-run-loaded-tests
  _d_:   cider-test-ediff-cleanup      _n_:   cider-test-run-ns-tests      
  _m_:   cider-test-jump               _p_:   cider-test-run-project-tests 
  _j_:   cider-test-next-result        _f_:   cider-test-rerun-failed-tests
