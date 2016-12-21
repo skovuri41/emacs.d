@@ -101,6 +101,9 @@
     (define-sequential-command my-quit-dwim quit-window
       popwin:close-popup-window)))
 
+(use-package smartrep
+  :ensure t)
+
 (use-package bm
   :ensure t
   :commands (bm-buffer-restore bm-buffer-save bm-toggle bm-next bm-previous)

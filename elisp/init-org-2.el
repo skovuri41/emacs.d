@@ -169,6 +169,10 @@ FUN function callback"
     "SPC o z" "org clone indirect buffer"
     "SPC o" "org prefix")
 
+  (smartrep-define-key
+      global-map  "C-c o"
+    '(("-" . org-ctrl-c-minus)))
+
   (bind-keys :prefix-map my-org-prefix-map
              :prefix "C-c o"
              ("." . org-edit-special)

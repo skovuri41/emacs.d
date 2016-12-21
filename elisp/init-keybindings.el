@@ -234,5 +234,8 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'pfd 'projectile-find-dir)
 (defalias 'psp 'projectile-switch-project)
 
+(set-register ?x '(file . "~/.emacs.d/elisp/xah-fly-keys.el"))
+(set-register ?i '(file . "~/.emacs.d/init.el"))
+
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
