@@ -6,6 +6,7 @@
 
 (use-package move-text
   :config
+  :disabled t
   ;; (move-text-default-bindings)
   )
 

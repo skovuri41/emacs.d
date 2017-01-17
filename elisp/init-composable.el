@@ -23,6 +23,7 @@
                ("." . er/mark-text-sentence)
                ("s" . composable-mark-symbol)
                ("B" . mark-whole-buffer)
+               ("n" . xah-copy-file-path)
                ("b" . backward-word)
                ("=" . er/expand-region)
                ("L" . link-hint-copy-multiple-links)
