@@ -74,6 +74,7 @@
 
   (use-package tidy
     :ensure t
+    :disabled t
     :config
     (add-hook 'nxml-mode-hook (lambda () (tidy-build-menu nxml-mode-map)))
     (defun sanityinc/tidy-buffer-xml (beg end)

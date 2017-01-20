@@ -164,4 +164,9 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
   :config
   (setq dumb-jump-selector 'ivy))
 
+(use-package groovy-mode
+  :ensure t
+  :mode (("\\.gvy\\'" . groovy-mode)
+         ("\\.groovy\\'" . groovy-mode)))
+
 (provide 'init-programming)
