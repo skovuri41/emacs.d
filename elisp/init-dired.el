@@ -102,6 +102,26 @@
              (dired-diff))
             (t (error "mark exactly 2 files, at least 1 locally")))))
 
+  (defun ora-ediff-files ()
+    (interactive)
+    (let ((files (dired-get-marked-files))
+          (wnd (current-window-configuration)))
+      (if (<= (length files) 2)
+          (let ((file1 (car files))
+                (file2 (if (cdr files)
+                           (cadr files)
+                         (read-file-name
+                          "file: "
+                          (dired-dwim-target-directory)))))
+            (if (file-newer-than-file-p file1 file2)
+                (ediff-files file2 file1)
+              (ediff-files file1 file2))
+            (add-hook 'ediff-after-quit-hook-internal
+                      (lambda ()
+                        (setq ediff-after-quit-hook-internal nil)
+                        (set-window-configuration wnd))))
+        (error "no more than 2 files should be marked"))))
+
   (defun my/dired-find-file (&optional arg)
     "Open each of the marked files, or the file under the point, or when prefix arg, the next N files "
     (interactive "P")
@@ -231,10 +251,10 @@
     (xah-wrapper-dired-commands))
 
   ;;* bind and hook
-  (define-key dired-mode-map (kbd "e") 'my/dired-diff)
+  ;; (define-key dired-mode-map (kbd "e") 'my/dired-diff)
+  (define-key dired-mode-map (kbd "e") 'ora-ediff-files)
   (define-key dired-mode-map (kbd "E") 'dired-toggle-read-only)
   (define-key dired-mode-map (kbd "C-t") nil)
-
   (define-key dired-mode-map (kbd "h") 'ora-dired-up-directory)
   (define-key dired-mode-map (kbd "i") 'counsel-find-file)
   (define-key dired-mode-map (kbd "j") 'dired-next-line)

@@ -187,6 +187,7 @@
 (depends-on "dockerfile-mode")
 (depends-on "docker")
 (depends-on "xah-fly-keys")
+(depends-on "xah-find")
 (depends-on "key-chord")
 (depends-on "embrace")
 (depends-on "lispy")
@@ -218,6 +219,7 @@
 (depends-on "log4j-mode")
 (depends-on "logview")
 (depends-on "all-the-icons")
+(depends-on "perspeen")
 
 
 

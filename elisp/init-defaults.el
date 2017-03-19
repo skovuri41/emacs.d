@@ -448,4 +448,8 @@
 
 (setq load-prefer-newer t)
 
+;; Prevent annoying "Active processes exist" query when you quit Emacs(require 'cl)
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  (flet ((process-list ())) ad-do-it))
+
 (provide 'init-defaults)

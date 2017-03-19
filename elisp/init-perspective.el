@@ -119,4 +119,42 @@
     (nameframe-projectile-mode t)
     (nameframe-eyebrowse-mode t)))
 
+
+(use-package perspeen
+  ;; :ensure t
+  :disabled t
+  :init
+  (setq perspeen-use-tab t
+        perspeen-modestring-dividers '("[" "]" "/"))
+  :config
+  ;; (custom-set-faces
+  ;;  '(perspeen-selected-face ((t (:foreground "#fcfcfc" :height 150))))
+  ;;  '(perspeen-tab--header-line-active ((t (:background "#cfcfcf" :foreground "#262626" :height 150))))
+  ;;  '(perspeen-tab--header-line-inactive ((t (:background "#404040" :foreground "#bfbfbf" :height 150))))
+  ;;  '(perspeen-tab--powerline-inactive1 ((t (:inherit mode-line :height 150)))))
+  (defun start-perspeen-mode ()
+    "Enable perspeen-mode."
+    (interactive)
+    (perspeen-mode +1)
+    (perspeen-rename-ws "default"))
+  (add-hook 'after-init-hook #'start-perspeen-mode)
+  (unbind-key "t" perspeen-command-map)
+  (unbind-key "n" perspeen-command-map)
+  (unbind-key "p" perspeen-command-map)
+  (unbind-key "k" perspeen-command-map)
+  (unbind-key "c" perspeen-command-map)
+  (bind-keys :map perspeen-command-map
+             ;; tab
+             ("j" . perspeen-tab-next)
+             ("k" . perspeen-tab-prev)
+             ("c" . perspeen-tab-create-tab)
+             ("x" . perspeen-tab-del)
+             ;; workspace
+             ("l" . perspeen-next-ws)
+             ("h" . perspeen-previous-ws)
+             ("w c" . perspeen-create-ws)
+             ("w k" . perspeen-delete-ws)
+             ("w r" . perspeen-rename-ws)
+             ("w /" . perspeen-change-root-dir)))
+
 (provide 'init-perspective)
