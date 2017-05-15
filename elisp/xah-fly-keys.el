@@ -1762,6 +1762,7 @@ If `universal-argument' is called first, do switch frame."
  '(
    ("TAB" . move-to-column)
    ("l" . goto-line-with-feedback)
+   ("c" . go-to-column)
    ("j" . next-error)
    ("k" . previous-error
     )))

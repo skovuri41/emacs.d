@@ -397,6 +397,21 @@ Version 2015-09-14."
     (shell-command-on-region b e
                              "python -mjson.tool" (current-buffer) t)))
 
+(defun jq-format (beg end)
+  (interactive "r")
+  (shell-command-on-region beg end "jq ." nil t))
+
+(defun add-full-stop ()
+  "Terminate each line with a full stop."
+  (interactive "*")
+  (while (re-search-forward "$")
+    (insert ".")
+    (forward-char )))
+
+(defun go-to-column (column)
+  (interactive "nColumn: ")
+  (move-to-column column t))
+
 (defun paste-from-x-clipboard ()
   (interactive)
   (shell-command
