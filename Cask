@@ -188,6 +188,7 @@
 (depends-on "docker")
 (depends-on "xah-fly-keys")
 (depends-on "xah-find")
+(depends-on "xah-lookup")
 (depends-on "key-chord")
 (depends-on "embrace")
 (depends-on "lispy")

@@ -21,6 +21,7 @@
               ("ah" . pdf-annot-add-highlight-markup-annotation)
               ("at" . pdf-annot-add-text-annotation)
               ("y" . pdf-view-kill-ring-save)
+              ("v" . hydra-switch-tab/body)
               ("$" . pdf-misc-display-metadata)
               ("s" . pdf-occur)
               ("b" . pdf-view-set-slice-from-bounding-box)
@@ -42,7 +43,7 @@
                 (pdf-misc-size-indication-minor-mode)
                 (pdf-links-minor-mode)
                 (pdf-isearch-minor-mode)
-                (tabbar-local-mode)
+                ;; (tabbar-mode 1)
                 ))
     (add-hook 'pdf-view-mode-hook 'pdf-view-go-to-last-bookmark)
     (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
@@ -77,6 +78,9 @@
     (define-key pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
     (define-key pdf-view-mode-map "ww" 'ace-window)
     (define-key pdf-view-mode-map (kbd "`") 'nameframe-switch-frame)
+    (define-key pdf-occur-buffer-mode-map "j" 'next-line)
+    (define-key pdf-occur-buffer-mode-map "k" 'previous-line)
+    (define-key pdf-occur-buffer-mode-map "l" 'pdf-occur-view-occurrence)
 
     (bind-key "i"
               #'modi/imenu-list-display-toggle pdf-view-mode-map)
