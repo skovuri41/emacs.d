@@ -701,4 +701,19 @@ returning the path where FILE-NAME can be found."
   (declare (indent defun))
   `(let (message-log-max) ,@body (message "")))
 
+(defun diff-current-buffer-with-file ()
+  (interactive)
+  "Diff the current buffer with the content saved in the file."
+  (diff-buffer-with-file (current-buffer)))
+
+(defun get-buffers-matching-mode (mode)
+  "Returns a list of buffers where their major-mode is equal to MODE"
+  (let ((buffer-mode-matches '()))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (if (eq mode major-mode)
+            (add-to-list 'buffer-mode-matches buf))))
+    buffer-mode-matches))
+
+
 (provide 'init-defuns)

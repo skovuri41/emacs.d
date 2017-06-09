@@ -238,6 +238,22 @@
       (ibuffer-toggle-marks))
     (xah-fly-insert-mode-activate))
 
+  (defun dired-2unix-eol-marked-files ()
+    "Change marked file's newline convention to unix,
+or file under cursor if no file is marked."
+    (interactive)
+    (mapc
+     (lambda (ff) (change-file-newline ff 'unix))
+     (dired-get-marked-files)))
+
+  (defun dired-utf-8-unix-marked-files ()
+    "Change marked file's newline convention to unix,
+or file under cursor if no file is marked."
+    (interactive)
+    (mapc
+     (lambda (ff) (change-file-newline ff 'utf-8-unix))
+     (dired-get-marked-files)))
+
   (defadvice dired-find-file-other-window (after xah-wrapper-dired-commands activate)
     (xah-wrapper-dired-commands))
 

@@ -2055,7 +2055,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "a") 'xah-beginning-of-line-or-block)
     (define-key xah-fly-key-map (kbd "ba") '(lambda () (interactive)
                                               (progn
-                                                (call-interactively '-ibuffer)
+                                                (call-interactively 'ibuffer)
                                                 (xah-fly-insert-mode-activate)
                                                 (hydra-ibuffer-main/body))))
     (define-key xah-fly-key-map (kbd "bb") 'ivy-switch-buffer)
