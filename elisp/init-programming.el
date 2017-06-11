@@ -29,6 +29,9 @@
   (progn
     (add-hook 'js-mode-hook (lambda () (setq js-indent-level 2)))))
 
+(use-package json-navigator
+  :ensure t)
+
 (use-package js2-mode
   :mode (("\\.js$" . js2-mode)
          ("Jakefile$" . js2-mode))

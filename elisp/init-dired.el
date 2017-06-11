@@ -391,6 +391,9 @@ or file under cursor if no file is marked."
   (use-package dired-launch
     :ensure t)
 
+  (use-package dired-du
+    :ensure t)
+
   (defconst media-files-extensions
     '("mp3" "mp4" "avi" "mpg" "flv" "ogg" "mkv" "mpeg" "wmv" "wav" "mov" "flv" "ogm")
     "Media files.")

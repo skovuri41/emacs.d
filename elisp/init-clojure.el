@@ -1,11 +1,17 @@
 (use-package clojure-mode
   :mode (("\\.edn$" . clojure-mode)
-         ("\\.cljc$" . clojure-mode)
-         ("\\.clj$" . clojure-mode))
+         ("\\.boot$" . clojure-mode)
+         ("\\.clj$" . clojure-mode)
+         ("\\.cljs$" . clojurescript-mode)
+         ("\\.cljx\\" . clojurex-mode))
   :config
   (progn
-    (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
-    (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
+    ;;(add-to-list 'auto-mode-alist '("\\.boot\\" . clojure-mode))
+    ;;(add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
+    ;;(add-to-list 'auto-mode-alist '("\\.cljc\\" . clojurec-mode))
+    ;;(add-to-list 'auto-mode-alist '("\\.cljx\\" . clojurex-mode))
+    ;;(add-to-list 'auto-mode-alist '("\\.cljs\\" . clojurescript-mode))
+    ;;(add-to-list 'auto-mode-alist '("\\.clj\\" . clojure-mode))
 
     (use-package clj-refactor
       :init

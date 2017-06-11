@@ -2320,7 +2320,9 @@ If `universal-argument' is called first, do switch frame."
    ((memq major-mode '(clojure-mode clojurescript-mode
                                     cider-repl-mode
                                     cider-docview-mode
-                                    cider-stacktrace-mode))
+                                    cider-stacktrace-mode
+                                    clojurec-mode
+                                    clojurex-mode))
     (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
    ((memq major-mode '(java-mode))
     (define-key xah-fly-key-map (kbd "c") 'hydra-eclim/body))
