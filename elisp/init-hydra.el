@@ -1,3 +1,10 @@
+(defun  ()
+    ("b" (lambda () (interactive)
+           (progn
+             (call-interactively 'projectile-ibuffer)
+             (xah-fly-insert-mode-activate)
+             (hydra-ibuffer-main/body))) "buffer list" :exit t))
+
 (use-package hydra
   :ensure t
   :config
@@ -491,6 +498,13 @@ _f_: fwd
       ("v" nil "quit" :exit t)
       ("q" nil "quit" :exit t))
 
+    (defhydra hydra-helpful (:color blue :columns 2)
+      "helpful commands"
+      ("c" helpful-command "helpful command" )
+      ("f" helpful-function "helpful function" )
+      ("m" helpful-macro "helpful macro" )
+      ("u" helpful-update "helpful update")
+      ("q" nil "quit" :exit t))
     ))
 
 (provide 'init-hydra)

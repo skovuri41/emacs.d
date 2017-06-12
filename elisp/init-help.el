@@ -32,4 +32,7 @@
 
 (use-package know-your-http-well :ensure t :defer t)
 
+(use-package helpful
+  :ensure t)
+
 (provide 'init-help)
