@@ -18,17 +18,29 @@
   (deactivate-mark nil))
 
 (defun save-macro (name)
-   "save a macro. Take a name as argument
+  "save a macro. Take a name as argument
     and save the last defined macro under
     this name at the end of your .emacs"
-    (interactive "SName of the macro :")  ; ask for the name of the macro
-    (kmacro-name-last-macro name)         ; use this name for the macro
-    (find-file user-init-file)            ; open ~/.emacs or other user init file
-    (goto-char (point-max))               ; go to the end of the .emacs
-    (newline)                             ; insert a newline
-    (insert-kbd-macro name)               ; copy the macro
-    (newline)                             ; insert a newline
-    (switch-to-buffer nil))               ; return to the initial buffer
+  (interactive "SName of the macro :")  ; ask for the name of the macro
+  (kmacro-name-last-macro name)         ; use this name for the macro
+  (find-file user-init-file)            ; open ~/.emacs or other user init file
+  (goto-char (point-max))               ; go to the end of the .emacs
+  (newline)                             ; insert a newline
+  (insert-kbd-macro name)               ; copy the macro
+  (newline)                             ; insert a newline
+  (switch-to-buffer nil))               ; return to the initial buffer
+
+(defun user--save-macro (name)
+  "Save a macro. Take a name as an argument and save the last defined macro under this name."
+  (interactive "SName of the macro :")
+  (kmacro-name-last-macro name)
+  (find-file "~/.emacs.d/macros.el")
+  (goto-char (point-max))
+  (newline)
+  (insert-kbd-macro name)
+  (newline)
+  (save-buffer)
+  (switch-to-buffer nil))
 
 (defun reindent-whole-buffer ()
   "Reindent the whole buffer."
@@ -715,5 +727,26 @@ returning the path where FILE-NAME can be found."
             (add-to-list 'buffer-mode-matches buf))))
     buffer-mode-matches))
 
+(defun make-temp-file (name)
+  "Creates a temporary file in the system temp directory, for various purposes."
+  (interactive "sFile name:")
+  (generate-new-buffer name)
+  (switch-to-buffer name)
+  (write-file (concat temporary-file-directory name)))
+
+;;;###autoload
+(defun mark-buffer-after-point (reversep)
+  "Select the part of the buffer after point.
+With a prefix argument, select the part before point."
+  (interactive "P")
+  (push-mark (if reversep (point-min) (point-max)) nil t)
+  (setq deactivate-mark  nil))
+
+;;;###autoload
+(defun mark-buffer-before-point (reversep)
+  "Select the part of the buffer before point.
+With a prefix argument, select the part after point."
+  (interactive "P")
+  (mark-buffer-after-point t))
 
 (provide 'init-defuns)

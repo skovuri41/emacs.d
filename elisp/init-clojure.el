@@ -3,7 +3,7 @@
          ("\\.boot$" . clojure-mode)
          ("\\.clj$" . clojure-mode)
          ("\\.cljs$" . clojurescript-mode)
-         ("\\.cljx\\" . clojurex-mode))
+         ("\\.cljx$" . clojurex-mode))
   :config
   (progn
     ;;(add-to-list 'auto-mode-alist '("\\.boot\\" . clojure-mode))
@@ -100,6 +100,13 @@
       (save-buffer)
       (call-interactively 'cider-refresh))
 
+    (defun cider-benchmark-defun-at-point ()
+      (interactive)
+      (cider-interactive-eval
+       (format "(require 'criterium.core)
+            (criterium.core/quick-benchmark %s)"
+               (cider-eval-defun-at-point))))
+
     (defun cider-send-and-evaluate-sexp ()
       "Sends the s-expression located before the point or the active
        region to the REPL and evaluates it. Then the Clojure buffer is
@@ -114,6 +121,12 @@
       (cider-switch-to-last-clojure-buffer)
       (message ""))
 
+    (defun cider-eval-defun-or-region ()
+      "Eval defun at point or region when it is active"
+      (interactive)
+      (if (use-region-p)
+          (cider-eval-region)
+        (cider-eval-defun-at-point)))
 
     (defun clj-mode-keys-setup ()
       "for 'clojure mode'"

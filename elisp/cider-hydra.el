@@ -205,7 +205,7 @@ CIDER: Evaluation Commands Menu
  _i_:   cider-interrupt                      _r_:   cider-refresh
  _xo_:  cider-macroexpand-1                  _xa_:  cider-macroexpand-all
  _lf_:  cider-load-file                      _R_:   cider-run
- _t_:   cider-eval-sexp-at-point
+ _t_:   cider-eval-sexp-at-point             _k_:   cider-benchmark-defun-at-point
 "
   ("q" hydra-cider-main/body)
   ("b" cider-eval-buffer)
@@ -217,7 +217,7 @@ CIDER: Evaluation Commands Menu
   ("y" cider-eval-last-sexp-and-replace)
   ("s" cider-eval-last-sexp-to-repl)
   ("n" cider-eval-ns-form)
-  ("m" cider-eval-region)
+  ("m" cider-eval-defun-or-region)
   ("pd" cider-pprint-eval-defun-at-point)
   ("pe" cider-pprint-eval-last-sexp)
   ("v" cider-read-and-eval)
@@ -229,6 +229,7 @@ CIDER: Evaluation Commands Menu
   ("r" cider-refresh)
   ("xo" cider-macroexpand-1)
   ("xa" cider-macroexpand-all)
+  ("k"  cider-benchmark-defun-at-point)
   )
 
 ;;; *** format

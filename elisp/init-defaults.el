@@ -275,7 +275,8 @@
 ;; ctags -e -R .
 
 (use-package ctags-update
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :diminish ctags-auto-update-mode
   :config
   (add-hook 'prog-mode-hook 'turn-on-ctags-auto-update-mode)
