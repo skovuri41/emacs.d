@@ -727,7 +727,7 @@ returning the path where FILE-NAME can be found."
             (add-to-list 'buffer-mode-matches buf))))
     buffer-mode-matches))
 
-(defun make-temp-file (name)
+(defun my-make-temp-file (name)
   "Creates a temporary file in the system temp directory, for various purposes."
   (interactive "sFile name:")
   (generate-new-buffer name)
