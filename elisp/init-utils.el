@@ -197,7 +197,5 @@
 ;; (advice-add 'recentf-cleanup :around 'imalison:shut-up-around)
 ;; (shut-up (helm-projectile-on))
 
-(use-package xah-find
-  :ensure t)
 
 (provide 'init-utils)

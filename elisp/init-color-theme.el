@@ -51,6 +51,7 @@
                                               leuven-theme
                                               zenburn-theme
                                               spacemacs-theme
+                                              cyberpunk-theme
                                               apropospriate-theme
                                               birds-of-paradise-plus-theme))
     (ensure-packages-installed packages-appearance)))
