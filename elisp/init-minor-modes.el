@@ -98,8 +98,8 @@
   :ensure t
   :config
   (progn
-    (define-sequential-command my-quit-dwim quit-window
-      popwin:close-popup-window)))
+    (define-sequential-command my-quit-dwim quit-window popwin:close-popup-window)
+    (define-sequential-command my-lispy-hungry-delete lispy-delete-backward-or-splice-or-slurp hungry-delete-backward)))
 
 (use-package smartrep
   :ensure t)

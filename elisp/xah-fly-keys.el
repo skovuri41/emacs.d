@@ -1974,26 +1974,22 @@ If `universal-argument' is called first, do switch frame."
 
   ;; (define-key xah-fly-key-map (kbd "<f2>") 'xah-pop-local-mark-ring)
   ;; (define-key xah-fly-key-map (kbd "<S-f2>") 'pop-global-mark)
-
   ;; (define-key xah-fly-key-map (kbd "M-RET") 'xah-cycle-hyphen-underscore-space)
   (define-key xah-fly-key-map (kbd "M-c") 'xah-toggle-letter-case)
   (define-key xah-fly-key-map (kbd "M-m") 'lispy-mark-symbol)
   (define-key xah-fly-key-map (kbd "M-d") 'lispy-kill-word)
   (define-key xah-fly-key-map (kbd "C-,") 'lispy-kill-at-point)
-
   ;; (define-key xah-fly-key-map (kbd "C-k") 'lispy-kill)
-
   (define-key xah-fly-key-map (kbd "C-y") 'lispy-yank)
-  (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete)
+  ;; (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete)
+  (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete-or-splice-or-slurp)
   ;; (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
-
   (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
-  ;;(define-key xah-fly-key-map (kbd "DEL") 'xah-fly-command-mode-activate)
+  (define-key xah-fly-key-map (kbd "DEL") 'my-lispy-hungry-delete)
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<menu>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<f5>") 'my/neotree-toggle)
   (define-key xah-fly-key-map (kbd "<f6>") 'modi/imenu-list-display-toggle)
-
   (define-key xah-fly-key-map (kbd "<f8>") 'xah-fly-command-mode-activate)
   ;; (define-key xah-fly-key-map (kbd "<f9>") xah-fly-leader-key-map)
   (define-key xah-fly-key-map (kbd "<f9>") 'xah-copy-to-register-1)
@@ -2002,7 +1998,6 @@ If `universal-argument' is called first, do switch frame."
   (define-key xah-fly-key-map (kbd "<f12>") 'xah-next-user-buffer)
   (define-key xah-fly-key-map (kbd "<C-f11>") 'xah-previous-emacs-buffer)
   (define-key xah-fly-key-map (kbd "<C-f12>") 'xah-next-emacs-buffer)
-
   ;; (define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
   ;; (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
   (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
@@ -2195,9 +2190,12 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "~") nil)
     (define-key xah-fly-key-map (kbd "SPC") nil)
     (define-key xah-fly-key-map (kbd "*") nil)
-    (define-key xah-fly-key-map (kbd "(") 'lispy-parens)
-    (define-key xah-fly-key-map (kbd "{") 'lispy-braces)
-    (define-key xah-fly-key-map (kbd "}") 'lispy-brackets)
+    ;; (define-key xah-fly-key-map (kbd "(") 'lispy-parens)
+    ;; (define-key xah-fly-key-map (kbd "{") 'lispy-braces)
+    ;; (define-key xah-fly-key-map (kbd "}") 'lispy-brackets)
+    (define-key xah-fly-key-map (kbd "(") 'lispy-parens-auto-wrap)
+    (define-key xah-fly-key-map (kbd "{") 'lispy-braces-auto-wrap)
+    (define-key xah-fly-key-map (kbd "}") 'lispy-brackets-auto-wrap)
     (define-key xah-fly-key-map (kbd "\"") 'lispy-quotes)
     (define-key xah-fly-key-map (kbd ";") nil)
     (define-key xah-fly-key-map (kbd ")") 'lispy-right-nostring)
@@ -2316,7 +2314,7 @@ If `universal-argument' is called first, do switch frame."
     (lispy-mode 1)))
 
 (defun hydra-commands-activate ()
-  "Enable lispy mode for selected major modes only"
+  "Enable command key according to major mode"
   (cond
    ((memq major-mode '(clojure-mode clojurescript-mode
                                     cider-repl-mode
@@ -2368,7 +2366,7 @@ If `universal-argument' is called first, do switch frame."
 (add-hook 'helm-minibuffer-setup-hook 'xah-fly-insert-mode-activate)
 (add-hook 'helm-minibuffer-exit-hook 'xah-fly-command-mode-activate)
 
-;; when in shell mode, switch to insertion mode.
+;; when in shell mode,switch to insertion mode.
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-command-mode-activate-hook 'hydra-commands-activate)
