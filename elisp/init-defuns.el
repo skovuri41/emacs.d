@@ -18,9 +18,7 @@
   (deactivate-mark nil))
 
 (defun save-macro (name)
-  "save a macro. Take a name as argument
-    and save the last defined macro under
-    this name at the end of your .emacs"
+  "Save a macro. Take a NAME as argument and save the last defined macro under this name at the end of your .emacs."
   (interactive "SName of the macro :")  ; ask for the name of the macro
   (kmacro-name-last-macro name)         ; use this name for the macro
   (find-file user-init-file)            ; open ~/.emacs or other user init file
@@ -31,7 +29,7 @@
   (switch-to-buffer nil))               ; return to the initial buffer
 
 (defun user--save-macro (name)
-  "Save a macro. Take a name as an argument and save the last defined macro under this name."
+  "Save a macro. Take a NAME as an argument and save the last defined macro under this name."
   (interactive "SName of the macro :")
   (kmacro-name-last-macro name)
   (find-file "~/.emacs.d/macros.el")
@@ -95,7 +93,7 @@ Position the cursor at its beginning, according to the current mode."
   (indent-for-tab-command))
 
 (defun goto-line-with-feedback ()
-  "Show line numbers temporarily, while prompting for the line number input"
+  "Show line numbers temporarily, while prompting for the line number input."
   (interactive)
   (unwind-protect
       (progn
@@ -106,9 +104,8 @@ Position the cursor at its beginning, according to the current mode."
 ;;; Join Lines
 (defun join-lines ()
   "If at the end of the line, will join the following line to the
-   end of this one...unless it is blank, in which case, it will
-   keep joining lines until the next line with text is
-   connected."
+end of this one...unless it is blank, in which case, it will keep
+joining lines until the next line with text is connected."
   (interactive)
   ;; Move to the the beginning of the white space before attempting
   ;; this process. This allows us to join lines even if we are in the
@@ -127,7 +124,7 @@ Position the cursor at its beginning, according to the current mode."
 
 ;;; copy-line with variable arugments
 (defun copy-line (&optional arg)
-  "Copy lines (as many as prefix argument) in the kill ring"
+  "Copy lines (as many as prefix argument) in the kill ring."
   (interactive "p")
   (kill-ring-save (line-beginning-position)
                   (line-beginning-position (+ 1 arg)))

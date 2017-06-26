@@ -1963,7 +1963,10 @@ If `universal-argument' is called first, do switch frame."
       ;; (define-key xah-fly-key-map (kbd "C-v") 'yank)
       (define-key xah-fly-key-map (kbd "C-z") 'undo)
       ;; (define-key xah-fly-key-map (kbd "C-o") 'find-file)
-      (define-key xah-fly-key-map (kbd "C-s") 'isearch-forward)
+      ;; (define-key xah-fly-key-map (kbd "C-s") 'isearch-forward)
+      (define-key xah-fly-key-map (kbd "C-s") 'swiper)
+      (define-key xah-fly-key-map (kbd "C-r") 'swiper-the-thing)
+
       (define-key xah-fly-key-map (kbd "C-S-s") 'write-file)
       (define-key xah-fly-key-map (kbd "C-S-t") 'xah-open-last-closed)
       (define-key xah-fly-key-map (kbd "C-S-n") 'make-frame-command)
@@ -2002,13 +2005,24 @@ If `universal-argument' is called first, do switch frame."
   ;; (define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
   (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
   (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "M-i") 'iedit-mode)
   (define-key minibuffer-local-isearch-map (kbd "<left>") 'isearch-reverse-exit-minibuffer)
   (define-key minibuffer-local-isearch-map (kbd "<right>") 'isearch-forward-exit-minibuffer)
-
   (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+  (define-key isearch-mode-map (kbd "C-p")     'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "C-n")     'isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "<up>")    'isearch-ring-retreat)
+  (define-key isearch-mode-map (kbd "<down>")  'isearch-ring-advance)
+  (define-key minibuffer-local-isearch-map (kbd "<left>")  'isearch-reverse-exit-minibuffer)
+  (define-key minibuffer-local-isearch-map (kbd "<right>") 'isearch-forward-exit-minibuffer)
+
+  (defun isearch-enable-key-chord ()
+    (key-chord-mode 1)
+    (key-chord-define isearch-mode-map "jk" 'isearch-cancel))
+  (add-hook 'isearch-mode-hook 'isearch-enable-key-chord)
   ;;
   )
 
@@ -2026,8 +2040,10 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd ".") 'backward-kill-word)
     (define-key xah-fly-key-map (kbd ";") 'lispy-comment)
     ;; (define-key xah-fly-key-map (kbd ":") nil)
-    (define-key xah-fly-key-map (kbd "/") 'swiper)
-    (define-key xah-fly-key-map (kbd "?") 'swiper-the-thing)
+    ;; (define-key xah-fly-key-map (kbd "/") 'swiper)
+    ;; (define-key xah-fly-key-map (kbd "?") 'swiper-the-thing)
+    (define-key xah-fly-key-map (kbd "/") 'isearch-forward)
+    (define-key xah-fly-key-map (kbd "?") 'isearch-backward)
     (define-key xah-fly-key-map (kbd "\\") nil)
     (define-key xah-fly-key-map (kbd "=") #'hydra-expand-region/body)
     (define-key xah-fly-key-map (kbd "[") 'xah-backward-left-bracket)
@@ -2384,7 +2400,7 @@ If `universal-argument' is called first, do switch frame."
 
 (provide 'xah-fly-keys)
 
-;; Local Variables:
+;; Variables Local:
 ;; coding: utf-8
 ;; End:
 

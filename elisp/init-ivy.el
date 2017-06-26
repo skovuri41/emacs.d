@@ -6,9 +6,6 @@
   :diminish ivy-mode
   :config
   (progn
-    (define-key swiper-map (kbd "C-w")
-      (lambda () (interactive) (insert (format "\\<%s\\>" (with-ivy-window
-                                                       (thing-at-point 'symbol))))))
     (defun swiper-the-thing ()
       (interactive)
       (swiper (if (region-active-p)
