@@ -60,6 +60,10 @@
   (interactive)
   (eclim-maven-run "clean install"))
 
+(defun java-maven-skip-test-clean-install ()
+  (interactive)
+  (eclim-maven-run "-DskipTests clean install"))
+
 (defun java-maven-install ()
   (interactive)
   (eclim-maven-run "install"))
