@@ -271,29 +271,57 @@
          'face `(:foreground "green") ) :when (and (boundp 'iedit-mode) iedit-mode))
 
       (spaceline-install
-       '(*macro-recording
-         *iedit
-         *ace
-         ((workspace-number window-number) :separator " | ")
-         *xah-fly-keys-state
-         *projectile
-         (*process *buffer-modified *buffer-id remote-host)
-         *major-mode
-         ((flycheck-error flycheck-warning flycheck-info) :when active)
-         (((minor-modes :separator " ") process) :when active)
-         *vc-icon
-         (org-pomodoro :when active)
-         (org-clock :when active))
-       `(*region-info
-         ((buffer-encoding-abbrev *position) :separator " | ")
-         *battery
-         *time
-         buffer-position
-         hud))
+        '(*macro-recording
+          *iedit
+          *ace
+          ((workspace-number window-number) :separator " | ")
+          *xah-fly-keys-state
+          *projectile
+          (*process *buffer-modified *buffer-id remote-host)
+          *major-mode
+          ((flycheck-error flycheck-warning flycheck-info) :when active)
+          (((minor-modes :separator " ") process) :when active)
+          *vc-icon
+          (org-pomodoro :when active)
+          (org-clock :when active))
+        `(*region-info
+          ((buffer-encoding-abbrev *position) :separator " | ")
+          *battery
+          *time
+          buffer-position
+          hud))
       ;; *weather
       ;; (global :when active)
       ;; (*package-updates :when active)
 
       )))
+
+(use-package spaceline-all-the-icons
+  :after spaceline
+  :disabled t
+  :config
+  (progn
+    (spaceline-all-the-icons--setup-neotree)
+    (spaceline-all-the-icons--setup-anzu)
+    (spaceline-all-the-icons-theme)
+
+    ;; Configuration
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-default
+          spaceline-all-the-icons-icon-set-modified 'chain
+          spaceline-all-the-icons-icon-set-window-numbering 'circle
+          spaceline-all-the-icons-separator-type 'none
+          spaceline-all-the-icons-primary-separator "")
+
+    ;; Toggles
+    (spaceline-toggle-all-the-icons-buffer-size-off)
+    (spaceline-toggle-all-the-icons-buffer-position-off)
+    (spaceline-toggle-all-the-icons-vc-icon-off)
+    (spaceline-toggle-all-the-icons-vc-status-off)
+    ;; (spaceline-toggle-all-the-icons-git-status-off)
+    (spaceline-toggle-all-the-icons-flycheck-status-off)
+    ;; (spaceline-toggle-all-the-icons-time-off)
+    ;; (spaceline-toggle-all-the-icons-battery-status-off)
+    ;; (spaceline-toggle-hud-off)
+    ))
 
 (provide 'init-spaceline)

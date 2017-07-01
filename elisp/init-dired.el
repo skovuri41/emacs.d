@@ -461,4 +461,14 @@ or file under cursor if no file is marked."
   (setq ranger-preview-header-func (lambda () (interactive)
                                      (last (s-split "/" (buffer-file-name) t)))))
 
+(use-package all-the-icons-dired
+  :ensure t
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package all-the-icons-ivy
+  :ensure t
+  :config
+  (all-the-icons-ivy-setup))
+
 (provide 'init-dired)
