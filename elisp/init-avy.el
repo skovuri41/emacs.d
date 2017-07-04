@@ -14,11 +14,13 @@
         (isearch-done)))
 
     (defhydra hydra-avy (:color teal)
+      ("b" avy-pop-mark "char")
       ("c" avy-goto-char "char")
       ("w" avy-goto-word-1 "word")
       ("ll" avy-goto-line "goto line")
       ("ly" avy-copy-line "copy line")
       ("lm" avy-move-line "move line")
+      ("ln" goto-line-with-feedback "goto line number")
       ("t" avy-goto-char-timer "timer")
       ("f" counsel-find-file "find-file")
       ("q" nil))

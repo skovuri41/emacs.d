@@ -198,16 +198,25 @@ Useful if something is watching file modification times."
   (interactive)
   (insert (format-time-string "%a %b %d %H:%M:%S %Y")))
 
+(defun my/mkdir ()
+  "Create directory."
+  (interactive)
+  (if (equal major-mode 'dired-mode)
+      (call-interactively 'dired-create-directory)
+    (if (equal major-mode 'neotree-mode)
+        (call-interactively 'neotree-create-node)
+      (call-interactively 'make-directory))))
+
 (defun delete-this-file ()
-    "Delete the current file, and kill the buffer. The `delete-file'
+  "Delete the current file, and kill the buffer. The `delete-file'
 function does not kill the buffer."
-    (interactive)
-    (or (buffer-file-name) (error "No file is currently being edited"))
-    (when (yes-or-no-p (format "Really delete '%s'?"
-                               (file-name-nondirectory
-                                buffer-file-name)))
-      (delete-file (buffer-file-name))
-      (kill-this-buffer)))
+  (interactive)
+  (or (buffer-file-name) (error "No file is currently being edited"))
+  (when (yes-or-no-p (format "Really delete '%s'?"
+                             (file-name-nondirectory
+                              buffer-file-name)))
+    (delete-file (buffer-file-name))
+    (kill-this-buffer)))
 
 (defun rename-this-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."

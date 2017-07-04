@@ -27,8 +27,8 @@
     (when (find-font (font-spec :name "Quivira"))
       (set-face-attribute 'forecast-moon-phase nil :font "Quivira"))
 
-    (set-face-attribute 'forecast-upcoming-temperature nil
-                        :inherit font-lock-function-name-face)
+    ;; (set-face-attribute 'forecast-upcoming-temperature nil
+    ;;                     :inherit font-lock-function-name-face)
 
     ;; The "forecast-api" file is supposed to contain this line:
     ;;     (setq forecast-api-key "<YOUR_API>")

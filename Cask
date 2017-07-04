@@ -221,18 +221,6 @@
 (depends-on "logview")
 (depends-on "all-the-icons")
 (depends-on "perspeen")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(depends-on "ws-butler")
+(depends-on "all-the-icons-ivy")
+(depends-on "all-the-icons-dired")

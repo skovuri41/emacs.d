@@ -192,9 +192,9 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'of 'other-frame)
 
 ;; Macro
-(defalias 'sm 'start-kbd-macro)
-(defalias 'em 'end-kbd-macro)
-(defalias 'lm 'call-last-kbd-macro)
+(defalias 'ms 'start-kbd-macro)
+(defalias 'me 'end-kbd-macro)
+(defalias 'ml 'call-last-kbd-macro)
 
 ;; ; elisp
 (defalias 'eb 'eval-buffer)
@@ -233,6 +233,10 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'pff 'projectile-find-file)
 (defalias 'pfd 'projectile-find-dir)
 (defalias 'psp 'projectile-switch-project)
+
+;; ;pretty print
+(defalias 'ppx'pretty-print-xml-region)
+(defalias 'ppj 'beautify-json)
 
 (set-register ?x '(file . "~/.emacs.d/elisp/xah-fly-keys.el"))
 (set-register ?i '(file . "~/.emacs.d/init.el"))

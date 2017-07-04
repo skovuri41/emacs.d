@@ -48,6 +48,11 @@
 (use-package shrink-whitespace
   :ensure t)
 
+(use-package ws-butler
+  :ensure t
+  :diminish ws-butler-mode "w"
+  :config (add-hook 'prog-mode-hook 'ws-butler-mode))
+
 (use-package paren-face
   :ensure t
   :config (global-paren-face-mode))

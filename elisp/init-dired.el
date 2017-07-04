@@ -424,7 +424,7 @@ or file under cursor if no file is marked."
   (use-package peep-dired
     :ensure t
     :disabled t
-    :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
+    :defer t ;; don't access `dired-mode-map' until `peep-dired' is loaded
     :bind (:map dired-mode-map
                 ("P" . peep-dired))))
 
@@ -468,7 +468,10 @@ or file under cursor if no file is marked."
 
 (use-package all-the-icons-ivy
   :ensure t
-  :config
-  (all-the-icons-ivy-setup))
+  :init
+  (progn
+    (all-the-icons-ivy-setup)
+    (ivy-set-display-transformer 'counsel-recentf 'all-the-icons-ivy-file-transformer)
+    (ivy-set-display-transformer 'counsel-projectile-switch-to-buffer 'all-the-icons-ivy-file-transformer)))
 
 (provide 'init-dired)

@@ -14,6 +14,8 @@
       (spaceline-toggle-flycheck-error-off)
       (spaceline-toggle-flycheck-info-off)
       (validate-setq powerline-default-separator 'arrow-fade)
+      (setq spaceline-separator-dir-left '(right . right))
+      (setq spaceline-separator-dir-right '(right . right))
 
       (spaceline-define-segment *macro-recording
         "Show when recording macro"

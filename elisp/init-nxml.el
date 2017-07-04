@@ -11,6 +11,14 @@
   (setq nxml-slash-auto-complete-flag t)
   (setq tab-width 2)
 
+  (require 'sgml-mode)
+
+  (defun reformat-xml ()
+    (interactive)
+    (save-excursion
+      (sgml-pretty-print (point-min) (point-max))
+      (indent-region (point-min) (point-max))))
+
   (defun nxml-pretty-print-buffer ()
     "pretty print the XML in a buffer."
     (interactive)
@@ -84,6 +92,16 @@
         (setq beg (point-min)
               end (point-max)))
       (shell-command-on-region beg end "tidy -xml -q -i" (current-buffer) t "*tidy-errors*" t)))
+
+  (use-package tagedit
+    :ensure t
+    :commands tagedit-mode
+    :config
+    ;; (tagedit-add-paredit-like-keybindings)
+    (add-hook 'sgml-mode-hook 'tagedit-mode)
+    (add-hook 'html-mode-hook 'tagedit-mode)
+    ;; (add-hook 'web-mode-hook 'tagedit-mode)
+    )
 
 
   (custom-set-faces
