@@ -2095,7 +2095,9 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "d0") 'lispy-delete-backward)
     (define-key xah-fly-key-map (kbd "da") 'backward-kill-line)
     (define-key xah-fly-key-map (kbd "ds") 'kill-symbol)
-    (define-key xah-fly-key-map (kbd "F") 'nameframe-create-frame)
+    (define-key xah-fly-key-map (kbd "fc") 'nameframe-create-frame)
+    (define-key xah-fly-key-map (kbd "fs") 'toggle-frame-fullscreen)
+    (define-key xah-fly-key-map (kbd "fx") 'delete-frame)
     (define-key xah-fly-key-map (kbd "fr") 'counsel-recentf)
     (define-key xah-fly-key-map (kbd "fD") 'counsel-goto-recent-directory)
     (define-key xah-fly-key-map (kbd "fd") 'counsel-projectile-find-dir)
@@ -2107,7 +2109,6 @@ If `universal-argument' is called first, do switch frame."
                                               (xah-insert-mode-wrapper
                                                'dired-jump)))
     (define-key xah-fly-key-map (kbd "fJ") 'dired-jump-other-window)
-    (define-key xah-fly-key-map (kbd "fs") 'toggle-frame-fullscreen)
     (define-key xah-fly-key-map (kbd "gn") 'hydra-smartscan/body)
     (define-key xah-fly-key-map (kbd "g,") 'goto-last-change-reverse)
     (define-key xah-fly-key-map (kbd "g;") 'goto-last-change)
