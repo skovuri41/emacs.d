@@ -27,6 +27,10 @@
   :disabled t
   :init (load-theme 'material-light t))
 
+(use-package challenger-deep-theme
+  :ensure t
+  :disabled t)
+
 (use-package spacemacs-theme
   :disabled t
   :quelpa (spacemacs-theme :fetcher github :repo "surya46584/spacemacs-theme"))
