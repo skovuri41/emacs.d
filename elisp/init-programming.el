@@ -172,4 +172,29 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
   :mode (("\\.gvy\\'" . groovy-mode)
          ("\\.groovy\\'" . groovy-mode)))
 
+(use-package drools-mode
+  :quelpa (drools-mode :fetcher github :repo "surya46584/rules-editing-mode")
+  :ensure t
+  :config
+  (progn
+    (autoload 'drools-mode "drools-mode")
+
+    (defun set-extension-mode (extension mode)
+      (setq auto-mode-alist
+            (cons (cons (concat "\\" extension "\\'") mode)
+                  auto-mode-alist)))
+
+    (set-extension-mode ".drl" 'drools-mode)
+    (set-extension-mode ".dslr" 'drools-mode)
+
+    (add-hook 'drools-mode-hook 'my-drools-hook)
+
+    (defun drools-return-and-indent ()
+      (interactive)
+      (newline) (indent-for-tab-command))
+
+    (defun my-drools-hook ()
+      (setq indent-tabs-mode nil)
+      (local-set-key [?\C-m] 'drools-return-and-indent))))
+
 (provide 'init-programming)
