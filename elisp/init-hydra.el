@@ -541,8 +541,17 @@ _f_: fwd
       ("a" er/mark-html-attribute "HTML attribute")
       ("." er/expand-region "Expand region" :exit nil)
       ("," er/contract-region "Contract region" :exit nil)
-      ("#" er/mark-clj-set-literal "Clj set")
-      )
+      ("#" er/mark-clj-set-literal "Clj set"))
+
+    (defhydra hydra-change-case (:color blue
+                                        :hint nil)
+      "
+_<SPC>_ →Cap→UP→down→
+"
+      ("<SPC>" xah-toggle-letter-case :color red)
+      ("q" nil "cancel" :color blue))
+
+
 
     ))
 

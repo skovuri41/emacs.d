@@ -175,7 +175,7 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
 (use-package my-drools-mode
   :quelpa (drools-mode :fetcher github :repo "surya46584/rules-editing-mode")
   :ensure t
-  :config
+  :init
   (progn
     (autoload 'drools-mode "drools-mode")
 

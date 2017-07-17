@@ -6,6 +6,9 @@
     (setq ido-default-buffer-method 'selected-window)
     ))
 
+(use-package flx
+  :ensure t)
+
 (use-package flx-ido
   :init (flx-ido-mode 1)
   :config

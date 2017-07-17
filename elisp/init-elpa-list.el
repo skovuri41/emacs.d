@@ -128,4 +128,5 @@
                     fullframe
                     engine-mode
                     dired-subtree
+                    shut-up
                     ))

@@ -2,10 +2,10 @@
   :ensure t
   :ensure calfw-gcal
   :config
-  (require 'calfw-ical)
-  (require 'calfw-org)
+  ;; (require 'calfw-ical)
+  ;; (require 'calfw-org)
   ;; (require 'calfw-gcal)
-  (require 'calfw-cal)
+  ;; (require 'calfw-cal)
   (defun keymaps/calfw ()
     "Keymaps for calfw."
 
