@@ -15,6 +15,8 @@
 (use-package ivy
   :ensure swiper
   :diminish ivy-mode
+  :init
+  (setq ivy-initial-inputs-alist nil)
   :config
   (progn
     (setq ivy-display-function nil)
@@ -25,6 +27,9 @@
     (validate-setq ivy-re-builders-alist
                    '((read-file-name-internal . ivy--regex-fuzzy)
                      (counsel-find-file . ivy--regex-fuzzy)
+                     (counsel-projectile-find-file . ivy--regex-fuzzy)
+                     (counsel-recentf . ivy--regex-fuzzy)
+                     (nameframe-switch-frame . ivy--regex-fuzzy)
                      (ivy-switch-buffer . ivy--regex-fuzzy)
                      (counsel-imenu . ivy--regex-fuzzy)
                      (counsel-M-x . ivy--regex-fuzzy)
