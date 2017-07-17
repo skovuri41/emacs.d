@@ -130,6 +130,7 @@
 
     (defun clj-mode-keys-setup ()
       "for 'clojure mode'"
+      (setq cider-repl-shortcut-dispatch-char ?\;)
       (bind-keys :map clojure-mode-map
                  ("C-x C-e" . cider-eval-last-sexp)
                  ("C-c C-r" . cider-repl-reset)
@@ -140,9 +141,7 @@
       (unbind-key (kbd "/") clj-refactor-map)
       (define-key cider-mode-map (kbd "C-:") nil)
       (define-key cider-repl-mode-map (kbd "C-x C-l") 'cider-repl-clear-buffer)
-      (define-key cider-repl-mode-map (kbd "C-:") nil)
-
-      )
+      (define-key cider-repl-mode-map (kbd "C-:") nil))
 
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
 

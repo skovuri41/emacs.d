@@ -206,6 +206,7 @@ CIDER: Evaluation Commands Menu
  _xo_:  cider-macroexpand-1                  _xa_:  cider-macroexpand-all
  _lf_:  cider-load-file                      _R_:   cider-run
  _t_:   cider-eval-sexp-at-point             _k_:   cider-benchmark-defun-at-point
+ _pr_:  cider-eval-print-last-sexp
 "
   ("q" hydra-cider-main/body)
   ("b" cider-eval-buffer)
@@ -229,8 +230,8 @@ CIDER: Evaluation Commands Menu
   ("r" cider-refresh)
   ("xo" cider-macroexpand-1)
   ("xa" cider-macroexpand-all)
-  ("k"  cider-benchmark-defun-at-point)
-  )
+  ("k" cider-benchmark-defun-at-point)
+  ("pr" cider-eval-print-last-sexp))
 
 ;;; *** format
 (defhydra hydra-cider-format (:hint nil :color teal)

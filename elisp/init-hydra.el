@@ -488,6 +488,8 @@ _f_: fwd
       ("l" tabbar-forward "next grp" :color red)
       ("k" tabbar-backward-tab "backward tab" :color red)
       ("j" tabbar-forward-tab "forward tab" :color red)
+      ("f" other-frame "other frame" :color red)
+      ("p" nameframe-switch-frame "select frame" :exit t)
       ("v" nil "quit" :exit t)
       ("q" nil "quit" :exit t))
 

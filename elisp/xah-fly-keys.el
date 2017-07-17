@@ -2359,6 +2359,7 @@ If `universal-argument' is called first, do switch frame."
   `(progn
      ;; replace a global binding with major-mode's default
      ;; (define-key lispy-mode-map (kbd "C-j") nil)
+     (define-key lispy-mode-map (kbd "[") nil)
      (define-key lispy-mode-map (kbd "M-n") nil)
      (define-key lispy-mode-map (kbd "M-h") 'lispy-left)
 
