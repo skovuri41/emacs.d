@@ -215,6 +215,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'gwsm 'global-whitespace-mode)
 (defalias 'vlm 'visual-line-mode)
 (defalias 'glm 'global-linum-mode)
+(defalias 'setnu 'global-linum-mode)
 (defalias 'fm 'focus-mode)
 (defalias 'xi 'xah-fly-insert-mode-activate)
 (defalias 'xc 'xah-fly-command-mode-activate)
