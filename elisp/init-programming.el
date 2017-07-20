@@ -172,13 +172,13 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
   :mode (("\\.gvy\\'" . groovy-mode)
          ("\\.groovy\\'" . groovy-mode)))
 
-(use-package my-drools-mode
-  :quelpa (drools-mode :fetcher github :repo "surya46584/rules-editing-mode")
-  :ensure t
+(use-package drools-mode
+  ;; :quelpa (drools-mode :fetcher github :repo "suryaaditya/rules-editing-mode")
+  :load-path "elisp/"
+  ;;:ensure t
+  ;; :disabled t
   :init
   (progn
-    (autoload 'drools-mode "drools-mode")
-
     (defun set-extension-mode (extension mode)
       (setq auto-mode-alist
             (cons (cons (concat "\\" extension "\\'") mode)

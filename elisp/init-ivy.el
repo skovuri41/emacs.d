@@ -15,9 +15,9 @@
 (use-package ivy
   :ensure swiper
   :diminish ivy-mode
-  :init
-  (setq ivy-initial-inputs-alist nil)
+  ;; :init
   :config
+  (setq ivy-initial-inputs-alist nil)
   (progn
     (setq ivy-display-function nil)
     (setq ivy-use-virtual-buffers nil
