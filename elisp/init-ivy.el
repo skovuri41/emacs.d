@@ -20,7 +20,7 @@
   (setq ivy-initial-inputs-alist nil)
   (progn
     (setq ivy-display-function nil)
-    (setq ivy-use-virtual-buffers nil
+    (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
     (setq ivy-initial-inputs-alist nil)

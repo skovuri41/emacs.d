@@ -161,6 +161,28 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
 
   (setq vc-handled-backends '(git svn)))
 
+(use-package vimish-fold
+  :ensure t
+  :config
+  (progn
+    (with-eval-after-load 'hydra
+      (defhydra hydra-vimish-fold (:color blue
+                                          :columns 3)
+        "fold"
+        ("a" vimish-fold-avy "avy")
+        ("d" vimish-fold-delete "del")
+        ("D" vimish-fold-delete-all "del-all")
+        ("u" vimish-fold-unfold "undo")
+        ("U" vimish-fold-unfold-all "undo-all")
+        ("f" vimish-fold "fold")
+        ("r" vimish-fold-refold "refold")
+        ("R" vimish-fold-refold-all "refold-all")
+        ("t" vimish-fold-toggle "toggle" :exit nil)
+        ("T" vimish-fold-toggle-all "toggle-all" :exit nil)
+        ("j" vimish-fold-next-fold "down" :exit nil)
+        ("k" vimish-fold-previous-fold "up" :exit nil)
+        ("q" nil "quit")))))
+
 (use-package dumb-jump
   :ensure t
   :init (dumb-jump-mode)

@@ -159,7 +159,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
       (setq mac-command-modifier 'meta))))
 
 
-;;;;; aliases
+;;;;;; aliases
 
 ;; make frequently used commands short
 (defalias 'qrr 'query-replace-regexp)
@@ -188,7 +188,7 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'cal 'calendar)
 (defalias 'wtime 'display-time-world)
 
-(defalias 'fold 'hydra-folding/body)
+(defalias 'fold 'hydra-vimish-fold/body)
 (defalias 'of 'other-frame)
 
 ;; Macro

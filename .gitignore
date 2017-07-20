@@ -18,9 +18,11 @@ cscope.out
 cscope.in.out
 cscope.po.out
 elpa
+elpa/
 el-get
 semanticdb
-.cask
+.cask/
+.cask/25.2
 .ido
 ido
 custom.el

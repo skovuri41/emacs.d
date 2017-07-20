@@ -2148,6 +2148,7 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "nw") 'fancy-widen)
     (define-key xah-fly-key-map (kbd "ne") 'org-fancy-narrow-to-element)
     (define-key xah-fly-key-map (kbd "ns") 'org-fancy-narrow-to-subtree)
+    (define-key xah-fly-key-map (kbd "nf") 'hydra-vimish-fold/body)
     (define-key xah-fly-key-map (kbd "l") 'forward-char)
     (define-key xah-fly-key-map (kbd "o") 'smart-open-line)
     (define-key xah-fly-key-map (kbd "O") 'open-line-above)
