@@ -18,7 +18,7 @@
 (global-set-key '[(shift f1)]  'toggle-kbd-macro-recording-on)
 (global-set-key [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 (global-set-key [remap mark-sexp] 'easy-mark)
-(global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key [remap kill-ring-save] 'composable-save-region)
 (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)

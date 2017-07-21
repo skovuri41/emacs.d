@@ -2366,6 +2366,10 @@ If `universal-argument' is called first, do switch frame."
      (define-key lispy-mode-map (kbd "M-n") nil)
      (define-key lispy-mode-map (kbd "M-h") 'lispy-left)
 
+     (setq lispy-safe-copy t
+           lispy-safe-delete t
+           lispy-safe-paste t)
+
      ;; replace a local binding
      (lispy-define-key lispy-mode-map "t" 'lispy-different)
      (lispy-define-key lispy-mode-map "d" 'lispy-delete)

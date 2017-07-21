@@ -109,6 +109,9 @@
     (add-to-list 'projectile-globally-ignored-directories ".venv")
     (add-to-list 'projectile-globally-ignored-directories ".cask")
     (add-to-list 'projectile-globally-ignored-directories ".cache")
+    (add-to-list 'projectile-globally-ignored-directories "elpa")
+    (add-to-list 'projectile-globally-ignored-directories ".node_modules")
+    (add-to-list 'projectile-globally-ignored-directories ".m2")
     (projectile-global-mode)
     ))
 
