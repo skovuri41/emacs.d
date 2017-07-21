@@ -139,6 +139,8 @@
                  ("j" . next-line)
                  ("k" . previous-line))
       (unbind-key (kbd "/") clj-refactor-map)
+      (unbind-key (kbd ",") cider-repl-mode-map)
+
       (define-key cider-mode-map (kbd "C-:") nil)
       (define-key cider-repl-mode-map (kbd "C-x C-l") 'cider-repl-clear-buffer)
       (define-key cider-repl-mode-map (kbd "C-:") nil))

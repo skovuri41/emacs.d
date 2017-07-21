@@ -372,5 +372,14 @@
   :init
   (global-evil-matchit-mode 1))
 
+(use-package jump-char
+  :disabled t
+  :config
+  (progn
+    (bind-keys :map jump-char-base-map
+               ("C-n" . jump-char-repeat-forward)
+               ("C-p" . jump-char-repeat-backward)
+               ("C-'" . jump-char-switch-to-ace))))
+
 
 (provide 'init-minor-modes)

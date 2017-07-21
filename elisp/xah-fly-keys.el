@@ -2083,6 +2083,7 @@ If `universal-argument' is called first, do switch frame."
                                                 (xah-fly-insert-mode-activate)
                                                 (hydra-ibuffer-main/body))))
     (define-key xah-fly-key-map (kbd "bm") 'hydra-bm/body)
+    (define-key xah-fly-key-map (kbd "bw") 'write-file)
     (define-key xah-fly-key-map (kbd "c") 'smex-major-mode-commands)
     ;; (define-key xah-fly-key-map (kbd "cc") 'hydra-cider-buddy-main/body)
     ;; (define-key xah-fly-key-map (kbd "cj") 'hydra-eclim/body)
