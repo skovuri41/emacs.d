@@ -201,4 +201,12 @@
 (use-package xah-find
   :ensure t)
 
+(use-package stripe-buffer
+  :ensure t
+  :config (progn
+            (add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
+            (add-hook 'org-mode-hook 'turn-on-stripe-table-mode)
+            (set-face-attribute 'stripe-highlight nil :background "#38394c")
+            ))
+
 (provide 'init-utils)
