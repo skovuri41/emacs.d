@@ -12,6 +12,7 @@
   :config (progn
             (require 'vlf-setup)))
 
+;; profile emacs startup time
 (use-package esup
   :ensure t)
 

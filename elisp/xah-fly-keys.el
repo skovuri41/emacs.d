@@ -1927,6 +1927,7 @@ If `universal-argument' is called first, do switch frame."
    ("qx" . anzu-query-replace-regexp)
    ("qt" . anzu-query-replace-at-cursor-thing)
    ("qc" . anzu-replace-at-cursor-thing)
+   ("rg" . counsel-projectile-rg)
    ("e" . hydra-engine/body)))
 
 (progn

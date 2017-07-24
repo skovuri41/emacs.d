@@ -31,12 +31,14 @@
     (package-install 'use-package))
 
   (use-package quelpa
+    :defer 10
     :ensure t
     :init
     (setq quelpa-update-melpa-p nil))
 
   ;; Enable the use of Quelpa with use-package.
   (use-package quelpa-use-package
+    :defer 10
     :ensure t
     :config
     (quelpa-use-package-activate-advice))
@@ -69,11 +71,18 @@
 
 (when *is-a-mac*
   ;; Bootstrap quelpa
-  (if (require 'quelpa nil t)
-      (quelpa-self-upgrade)
+  ;; (if (require 'quelpa nil t)
+  ;;     (quelpa-self-upgrade)
+  ;;   (with-temp-buffer
+  ;;     (url-insert-file-contents
+  ;;      "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+  ;;     (eval-buffer)))
+
+  ;; with no self upgrade
+  (package-initialize)
+  (unless (require 'quelpa nil t)
     (with-temp-buffer
-      (url-insert-file-contents
-       "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+      (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
       (eval-buffer)))
 
   ;; Make Quelpa prefer MELPA-stable over melpa. This is optional but

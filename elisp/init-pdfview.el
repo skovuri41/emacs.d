@@ -1,6 +1,7 @@
 (use-package pdf-tools
   :if (eq system-type 'darwin)
   :ensure t
+  :defer 10
   :init (pdf-tools-install)
   :bind (:map pdf-view-mode-map
               ("." . hydra-pdftools/body)
