@@ -303,7 +303,8 @@ or file under cursor if no file is marked."
     (setq wdired-allow-to-change-permissions t))
 
   (use-package dired-collapse             ; Collapse unique nested paths
-    :ensure t
+    ;; :ensure t
+    :disabled t
     :config (add-hook 'dired-mode-hook #'dired-collapse-mode))
 
   (use-package dired+

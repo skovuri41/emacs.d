@@ -8,7 +8,7 @@
     (unbind-key (kbd "u") composable-object-mode-map)
     (unbind-key (kbd "y") composable-object-mode-map)
     (unbind-key (kbd "l") composable-object-mode-map)
-    (unbind-key (kbd "M-w") composable-mode-map)
+    ;;(unbind-key (kbd "M-w") composable-mode-map)
 
 
     (bind-keys :map composable-object-mode-map

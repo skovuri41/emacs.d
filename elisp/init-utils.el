@@ -206,7 +206,8 @@
   :config (progn
             (add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
             (add-hook 'org-mode-hook 'turn-on-stripe-table-mode)
-            (set-face-attribute 'stripe-highlight nil :background "#38394c")
+            ;; (set-face-attribute 'stripe-highlight nil :background "#38394c")
+            (set-face-attribute 'stripe-highlight nil :background "#22252c")
             ))
 
 (provide 'init-utils)
