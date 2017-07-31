@@ -234,6 +234,16 @@
 (use-package tiny
   :commands tiny-expand)
 
+(use-package ivy-rich
+  :ensure t
+  :disabled t
+  :after swiper
+  :commands ivy-switch-buffer
+  :config (progn
+            (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+            ;; Do not align the virtual buffers, breaks ivy-rich
+            (setq ivy-rich-switch-buffer-align-virtual-buffer nil)))
+
 (use-package flyspell-correct-ivy
   :ensure t
   :after flyspell

@@ -70,7 +70,7 @@
     (advice-add #'pdf-view-enlarge :after (lambda (&rest args) (pdf-view-center-pdf)))
     (advice-add #'interleave--sync-pdf-page-current :after (lambda (&rest args) (pdf-view-center-pdf)))
 
-    (use-package interleave :ensure t)
+    ;; (use-package interleave :ensure t)
 
     (setq auto-revert-interval 0.5)
     (auto-revert-set-timer)
@@ -154,5 +154,12 @@
   :if (eq system-type 'darwin)
   :ensure t
   :after pdf-tools)
+
+(use-package interleave
+  :after pdf-tools
+  :ensure t
+  :config
+  ;; (setq interleave-org-notes-dir-list '("." "~/txt/notes"))
+  )
 
 (provide 'init-pdfview)

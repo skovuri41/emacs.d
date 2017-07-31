@@ -199,7 +199,8 @@
 ;; (shut-up (helm-projectile-on))
 
 (use-package xah-find
-  :ensure t)
+  :ensure t
+  :disabled t)
 
 (use-package stripe-buffer
   :ensure t

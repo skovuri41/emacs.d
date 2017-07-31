@@ -467,12 +467,17 @@ or file under cursor if no file is marked."
                                      (last (s-split "/" (buffer-file-name) t)))))
 
 (use-package all-the-icons-dired
+  :if (display-graphic-p)
   :ensure t
-  :config
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  :diminish all-the-icons-dired-mode
+  :after (dired all-the-icons)
+  :commands all-the-icons-dired-mode
+  :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 (use-package all-the-icons-ivy
+  :if (display-graphic-p)
   :ensure t
+  :after (dired all-the-icons)
   :init
   (progn
     (all-the-icons-ivy-setup)

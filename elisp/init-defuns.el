@@ -576,7 +576,7 @@ the sentence end."
   "Colorize from `compilation-filter-start' to `point'."
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region
-     compilation-filter-start (point))))
+     (point-min) (point-max))))
 
 (add-hook 'compilation-filter-hook
           #'endless/colorize-compilation)
@@ -754,5 +754,36 @@ With a prefix argument, select the part before point."
 With a prefix argument, select the part after point."
   (interactive "P")
   (mark-buffer-after-point t))
+
+
+;; Change form/shape of emacs cursor
+(setq my/read-only-color "green")
+(setq my/read-only-cursor-type 'hbar)
+(setq my/overwrite-color "red")
+(setq my/overwrite-cursor-type 'box)
+(setq my/normal-color "white")
+(setq my/normal-cursor-type 'bar)
+(defun my/set-cursor-according-to-mode ()
+  "change cursor color and type according to some minor modes."
+  (cond
+   (buffer-read-only
+    (set-cursor-color my/read-only-color)
+    ;; (setq cursor-type my/read-only-cursor-type)
+    )
+   (overwrite-mode
+    (set-cursor-color my/overwrite-color)
+    ;; (setq cursor-type my/overwrite-cursor-type)
+    )
+   (t
+    (set-cursor-color my/normal-color)
+    ;; (setq cursor-type my/normal-cursor-type)
+    )))
+(add-hook 'post-command-hook
+          (lambda () (interactive)
+            (unless (member
+                     major-mode '(pdf-docs doc-view-mode))
+              (my/set-cursor-according-to-mode))))
+
+
 
 (provide 'init-defuns)

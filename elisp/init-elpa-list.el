@@ -32,7 +32,7 @@
                     org-pomodoro
 		    projectile
 		    smart-mode-line
-		    smartparens
+		    ;; smartparens
 		    smex
 		    undo-tree
 		    use-package
