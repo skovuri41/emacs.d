@@ -211,4 +211,15 @@
             (set-face-attribute 'stripe-highlight nil :background "#22252c")
             ))
 
+(use-package beginend                   ; Redefine M-< and M-> for some modes
+  :ensure t
+  :config (beginend-global-mode)
+  :diminish (beginend-global-mode
+             beginend-dired-mode
+             beginend-elfeed-search-mode
+             beginend-ibuffer-mode
+             beginend-magit-status-mode
+             beginend-prog-mode
+             beginend-vc-dir-mode))
+
 (provide 'init-utils)
