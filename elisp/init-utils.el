@@ -212,7 +212,8 @@
             ))
 
 (use-package beginend                   ; Redefine M-< and M-> for some modes
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config (beginend-global-mode)
   :diminish (beginend-global-mode
              beginend-dired-mode
