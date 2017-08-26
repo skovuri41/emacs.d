@@ -181,7 +181,7 @@
 (setq minibuffer-auto-raise nil)
 
 ;; Don't be so stingy on the memory, we have lots now. It's the distant future.
-(setq gc-cons-threshold (* 20 1024 1024))
+(setq gc-cons-threshold (* 100 1024 1024))
 (setq large-file-warning-threshold (* 25 1024 1024))
 
 ;; enable erase-buffer command

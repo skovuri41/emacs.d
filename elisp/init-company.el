@@ -38,6 +38,7 @@
     (define-key company-active-map (kbd "<tab>") #'company-other-backend)
     (define-key company-active-map (kbd "C-.") #'company-try-hard)
 
+    (use-package company-projectile-cd)
     (use-package company-statistics
       :commands (company-statistics-mode)
       :disabled t)

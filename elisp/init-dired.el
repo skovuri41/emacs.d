@@ -151,6 +151,19 @@
            (re-search-backward "\\(^[ 0-9.,]+[A-Za-z]+\\).*total$")
            (match-string 1))))))
 
+  (defun my/dired-split-directories (dir-a dir-b)
+    (delete-other-windows)
+    (split-window-right)
+    (find-file dir-a)
+    (find-file-other-window dir-b)
+    (other-window 1))
+
+  (defun my/dired-split-downloads-to-ebooks ()
+    "Split window with downloads to active directory."
+    (interactive)
+    (ar/dired-split-directories "~/Downloads"
+                                "~/Dropbox/ebooks"))
+
   ;;* advice
   (defadvice dired-advertised-find-file (around ora-dired-subst-directory activate)
     "Replace current buffer if file is a directory."

@@ -1,9 +1,10 @@
 (use-package keyfreq
   :ensure t
+  :disabled t
   :config
   (progn
-    (setq keyfreq-file      (locate-user-emacs-file "keyfreq"))
-    (setq keyfreq-file-lock (locate-user-emacs-file "keyfreq.lock"))
+    (setq keyfreq-file      (no-littering-expand-var-file-name "keyfreq"))
+    (setq keyfreq-file-lock (no-littering-expand-var-file-name "keyfreq.lock"))
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1)
     (setq keyfreq-excluded-commands
@@ -34,7 +35,7 @@
       "Save the table of frequently used commands (and their associated bindings
 to an html file in `user-emacs-directory'."
       (interactive)
-      (keyfreq-html (locate-user-emacs-file "keyfreq.html")))
+      (keyfreq-html (no-littering-expand-var-file-name "keyfreq.html")))
 
     ))
 

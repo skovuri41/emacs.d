@@ -104,6 +104,21 @@
     (add-to-list 'projectile-globally-ignored-files "*.pyc")
     (add-to-list 'projectile-globally-ignored-files "*.python-version")
     (add-to-list 'projectile-globally-ignored-files "*.egg-info")
+    (add-to-list 'projectile-globally-ignored-files "*.class")
+    (add-to-list 'projectile-globally-ignored-files "*.jar")
+    (add-to-list 'projectile-globally-ignored-files "*.tar")
+    (add-to-list 'projectile-globally-ignored-files "*.tar.gz")
+    (add-to-list 'projectile-globally-ignored-files "*.zip")
+    (add-to-list 'projectile-globally-ignored-files "*.el~")
+    (add-to-list 'projectile-globally-ignored-files "*.swp")
+    (setq projectile-globally-ignored-files (append '(".ensime"
+                                                      ".gitignore"
+                                                      ".bintray"
+                                                      ".travis.yml"
+                                                      ".mode"
+                                                      ".cask")
+                                                    projectile-globally-ignored-files))
+
     (add-to-list 'projectile-globally-ignored-directories "__pycache__")
     (add-to-list 'projectile-globally-ignored-directories ".env")
     (add-to-list 'projectile-globally-ignored-directories ".venv")
@@ -112,7 +127,9 @@
     (add-to-list 'projectile-globally-ignored-directories "elpa")
     (add-to-list 'projectile-globally-ignored-directories ".node_modules")
     (add-to-list 'projectile-globally-ignored-directories ".m2")
-    (projectile-global-mode)
+    (setq projectile-sort-order 'recently-active)
+
+    (projectile-mode)
     ))
 
 (provide 'init-projectile)

@@ -84,6 +84,12 @@ Position the cursor at its beginning, according to the current mode."
   (move-end-of-line nil)
   (newline-and-indent))
 
+(defun my/open-line ()
+  "Insert an empty line after current line.  Keep existing position."
+  (interactive)
+  (save-mark-and-excursion
+   (end-of-line)
+   (newline)))
 
 (defun open-line-above ()
   (interactive)
@@ -784,6 +790,26 @@ With a prefix argument, select the part after point."
                      major-mode '(pdf-docs doc-view-mode))
               (my/set-cursor-according-to-mode))))
 
+(defmacro my/file-with-current-file (file-path &rest body)
+  "Open file at FILE-PATH and execute BODY."
+  (declare (indent 1))
+  `(with-current-buffer (find-file-noselect (expand-file-name ,file-path))
+     (save-excursion
+       (save-restriction
+         (goto-char 0)
+         (progn ,@body)))))
 
+(defadvice isearch-mode (around isearch-mode-default-string (forward &optional regexp op-fun recursive-edit word-p) activate)
+  "Enable isearch to start with current selection."
+  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
+      (progn
+        (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
+        (deactivate-mark)
+        ad-do-it
+        (if (not forward)
+            (isearch-repeat-backward)
+          (goto-char (mark))
+          (isearch-repeat-forward)))
+    ad-do-it))
 
 (provide 'init-defuns)

@@ -82,7 +82,7 @@
   :ensure t
   :mode ("/\\.gitignore\\'"
          "/\\.gitignore\\.global\\'"))
-
+;;
 (use-package gitattributes-mode
   :ensure t
   :mode "/\\.gitattributes\\'")
@@ -104,5 +104,44 @@
         (call-interactively 'git-link-commit)))
     ;; default is to open the generated link
     (setq git-link-open-in-browser t)))
+
+(defun my/git-pull-repo-at-path (path)
+  "Pull repository at PATH."
+  (my/file-with-current-file path (magit-pull)))
+
+(defun my/git-unpushed-changes-p ()
+  "Check if unpushed changes are present in git master."
+  (not (string-empty-p (shell-command-to-string "git log --oneline origin/master..master"))))
+
+(defun my/git-pending-repo-at-path-p (path)
+  "Check if pending changes in repository at PATH."
+  (or (my/file-with-current-file path (magit-anything-modified-p))
+      (my/git-unpushed-changes-p)))
+
+(defun my/git-check-frequent-repos-pending ()
+  "Check for for uncommited changes in frequent repos."
+  (interactive)
+  (cond
+   ((my/git-pending-repo-at-path-p "~/stuff/active/dots")
+    (magit-status "~/stuff/active/dots"))
+   ((my/git-pending-repo-at-path-p "~/stuff/active/blog")
+    (magit-status "~/stuff/active/blog"))
+   ((my/git-pending-repo-at-path-p "~/stuff/active/non-public")
+    (magit-status "~/stuff/active/non-public"))
+   (t (message "Life is good!"))))
+
+(defun my/git-pull-frequent-repos ()
+  "Pull all frequent repositories."
+  (interactive)
+  (my/git-pull-repo-at-path "~/Projects/gitrepos/memory-hole"))
+
+(defun my/git-current-branch ()
+  "Get the current git branch."
+  (let ((branch-name
+         (nth 0 (split-string (shell-command-to-string
+                               (format "cd %s && git branch | sed -n -e 's/^\\* \\(.*\\)/\\1/p'"
+                                       (file-name-directory (buffer-file-name))))))))
+    (assert (length branch-name) nil "Branch not found")
+    branch-name))
 
 (provide 'init-git)
