@@ -5,13 +5,10 @@
   (setq tabbar-use-images t)
   (setq tabbar-cycle-scope 'groups)
   (setq tabbar-separator (quote (1.0)))
+  (setq tabbar-auto-scroll-flag t
+        table-time-before-update 0.1)
   :config
   (progn
-    (setq tabbar-auto-scroll-flag t
-          tabbar-use-images t
-          tabbar-cycle-scope (quote tabs)
-          table-time-before-update 0.1)
-
     (defun my-tabbar-buffer-groups-by-project ()
       (list
        (cond
