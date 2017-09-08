@@ -219,4 +219,10 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
       (setq indent-tabs-mode nil)
       (local-set-key [?\C-m] 'drools-return-and-indent))))
 
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
 (provide 'init-programming)
