@@ -8,6 +8,7 @@
 ;; go-to-address-mode
 (add-hook 'prog-mode-hook 'goto-address-mode)
 (add-hook 'text-mode-hook 'goto-address-mode)
+(push '("\\.epub\\'" . nov-mode) auto-mode-alist)
 
 (use-package with-editor
   :ensure t

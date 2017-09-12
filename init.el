@@ -55,6 +55,7 @@
 (require 'init-golden-ratio)
 (require 'init-neotree)
 (require 'init-popwin)
+(require 'init-tiling)
 (require 'init-perspective)
 (require 'init-popup)
 (require 'init-keyfreq)

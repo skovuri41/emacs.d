@@ -88,6 +88,10 @@
     (dolist (m '(clojure-mode clojurescript-mode clojurec-mode clojurex-mode cider-mode cider-repl-mode))
       (clojure-fancify-symbols m))
 
+    (defun cider-user-ns ()
+      (interactive)
+      (cider-repl-set-ns "user"))
+
     (defun toggle-nrepl-buffer ()
       "Toggle the nREPL REPL on and off"
       (interactive)
@@ -162,7 +166,7 @@
   (progn
     (setq cider-prompt-for-symbol nil)
     (setq cider-overlays-use-font-lock t)
-    (setq cider-pprint-fn 'puget)
+    ;; (setq cider-pprint-fn 'puget)
     (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
     (setq cider-repl-pop-to-buffer-on-connect nil)
     ;; (setq cider-repl-use-clojure-font-lock nil)

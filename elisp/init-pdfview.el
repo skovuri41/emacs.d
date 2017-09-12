@@ -78,6 +78,7 @@
     (define-key pdf-view-mode-map "j" 'pdf-view-next-line-or-next-page)
     (define-key pdf-view-mode-map "k" 'pdf-view-previous-line-or-previous-page)
     (define-key pdf-view-mode-map "ww" 'ace-window)
+    (define-key pdf-view-mode-map "wo" 'delete-other-windows)
     (define-key pdf-view-mode-map (kbd "`") 'nameframe-switch-frame)
     (define-key pdf-occur-buffer-mode-map "j" 'next-line)
     (define-key pdf-occur-buffer-mode-map "k" 'previous-line)

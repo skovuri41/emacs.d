@@ -31,7 +31,7 @@
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
 (global-set-key (kbd "C-c i") 'counsel-imenu)
-(global-set-key (kbd "C-c I") ' modi/imenu-list-display-toggle)
+(global-set-key (kbd "C-c I") 'modi/imenu-list-display-toggle)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
 (global-set-key (kbd "C-c r") 'ora-occur)
