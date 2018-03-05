@@ -189,6 +189,7 @@
     (setq cider-interactive-eval-result-prefix ";; => ")
     (setq cider-stacktrace-fill-column 80)
     (setq cider-test-show-report-on-success t)
+    (setq cider-repl-use-pretty-printing t)
     (require 'cider-hydra)
     ))
 
