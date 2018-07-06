@@ -30,6 +30,7 @@
 		    org
 		    org-bullets
                     org-pomodoro
+                    org-drill
 		    projectile
 		    smart-mode-line
 		    ;; smartparens

@@ -1,6 +1,7 @@
 ;; which-key
 (use-package which-key
   :diminish which-key-mode
+  :ensure t
   :init
   (progn
     ;; (which-key-setup-minibuffer)

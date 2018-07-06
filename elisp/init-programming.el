@@ -1,9 +1,11 @@
 (use-package rainbow-delimiters
+  :ensure t
   :config
   (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package web-mode
+  :disabled t
   :init (progn
           (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
@@ -76,7 +78,8 @@
   :defer t)
 
 (use-package csv-nav
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (autoload 'csv-nav-mode "csv-nav" "Major mode for navigating comma-separated value files." t)
   (setq csv-separators '("," ";" "|" " ")))
@@ -225,5 +228,9 @@ _c_lose node   _k_: previous fold   toggle _a_ll        _q_: exit
   :config
   (setq highlight-indent-guides-method 'character)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
+(use-package go-mode
+  :ensure t
+  :mode "\\.go$")
 
 (provide 'init-programming)

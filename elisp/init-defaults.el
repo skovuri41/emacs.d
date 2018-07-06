@@ -134,8 +134,8 @@
   ;; (run-with-idle-timer (* 5 60) t 'recentf-save-list)
   (run-with-idle-timer (* 5 60) t '(lambda ()
                                      (with-suppressed-message (recentf-save-list))))
-  (use-package recentf-ext
-    :ensure t))
+
+)
 
 (save-place-mode +1)
 (setq save-place-version-control "never")
@@ -229,7 +229,8 @@
 (setq initial-major-mode 'fundamental-mode)
 (setq  initial-scratch-message nil)
 (use-package scratch-message
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :init
   (scratch-message-mode))
 
@@ -387,7 +388,8 @@
     (set-face-attribute 'default nil :height 105)))
 
 
-(use-package better-defaults)
+(use-package better-defaults
+  :ensure t)
 
 (setq show-paren-style 'parenthesis)
 (setq show-paren-priority -50) ; without this matching parens aren't highlighted in region
@@ -450,7 +452,7 @@
 (setq load-prefer-newer t)
 
 ;; Prevent annoying "Active processes exist" query when you quit Emacs(require 'cl)
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  (flet ((process-list ())) ad-do-it))
+;; (defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+;;   (flet ((process-list ())) ad-do-it))
 
 (provide 'init-defaults)

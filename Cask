@@ -99,6 +99,7 @@
 (depends-on "ox-reveal")
 (depends-on "org-pomodoro")
 (depends-on "org-cliplink")
+(depends-on "org-drill")
 
 ;;mail
 (depends-on "mu4e-maildirs-extension")

@@ -64,7 +64,7 @@
           (yas-abort-snippet)
         (company-abort)))
 
-    (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
+    ;; (setq yas-snippet-dirs '("~/.emacs.d/snippets" yas-installed-snippets-dir))
     (setq tab-always-indent 'complete)
     (yas-global-mode 1)
     (define-key yas-minor-mode-map [tab] nil)

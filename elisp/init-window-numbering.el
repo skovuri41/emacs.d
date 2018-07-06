@@ -1,4 +1,5 @@
 (use-package window-numbering
+  :ensure t
   :commands (window-numbering-mode)
   :config
   (defun window-numbering-install-mode-line (&optional ignored))
