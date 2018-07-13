@@ -5,7 +5,7 @@
 ;;(require 'org-src)
 ;;(require 'org-calendar)
 ;;(require 'org-publish)
-;;(require 'org-extras)
+(require 'org-extras)
 (require 'org-keys)
 
 (provide 'init-org)

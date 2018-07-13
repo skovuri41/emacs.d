@@ -7,7 +7,7 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((shell         . t)
+ '((shell . t)
    (js         . t)
    (emacs-lisp . t)
    (ditaa      . t)

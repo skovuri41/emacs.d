@@ -288,7 +288,7 @@
           (org-clock :when active))
         `(*region-info
           ((buffer-encoding-abbrev *position) :separator " | ")
-          *battery
+          ;; *battery
           *time
           buffer-position
           hud))

@@ -59,17 +59,17 @@
 (setq org-habit-following-days 1)
 
 ;; Notifications
-(appt-activate t)
-(setq appt-display-format 'window)
-(setq appt-disp-window-function #'appt-disp-window)
-(setq appt-display-mode-line t)
-(defun my-org-check-appt ()
-  (org-agenda-to-appt t `(:deadline
-			  :scheduled
-			  (headline ,og-org-agenda-appt-headline))))
+;; (appt-activate t)
+;; (setq appt-display-format 'window)
+;; (setq appt-disp-window-function #'appt-disp-window)
+;; (setq appt-display-mode-line t)
+;; (defun my-org-check-appt ()
+;;   (org-agenda-to-appt t `(:deadline
+;; 			  :scheduled
+;; 			  (headline ,og-org-agenda-appt-headline))))
 
-(my-org-check-appt)
-(run-at-time nil 600 #'my-org-check-appt)
+;; (my-org-check-appt)
+;; (run-at-time nil 600 #'my-org-check-appt)
 
 (use-package org-pomodoro
   :commands (org-pomodoro)
@@ -116,6 +116,6 @@
   (progn
     (add-hook 'org-mode-hook 'org-download-enable)))
 
-(provide 'org-extra)
+(provide 'org-extras)
 ;;; org-extra.el ends here
 

@@ -6,7 +6,7 @@
 ;;(require 'org-gogs-protocol)
 ;;(require 'org-sip-protocol)
 ;;(require 'org-debbugs-protocol)
-(require 'org-bullets)
+;; (require 'org-bullets)
 ;;(require 'ob-js)
 ;;(require 'ox-md)
 (require 'avy)

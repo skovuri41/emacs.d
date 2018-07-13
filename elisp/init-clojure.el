@@ -219,6 +219,7 @@
 ;;; clojurescript (build from emacs, and pop up stacktrack when
 ;;; there's a error):
 (use-package cljsbuild-mode
+  :ensure t
   :diminish cljsbuild-mode)
 
 (use-package html-to-hiccup

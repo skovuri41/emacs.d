@@ -3,6 +3,7 @@
   :commands git-timemachine-toggle)
 
 (use-package git-gutter+
+  :ensure t
   :diminish (git-gutter+-mode . "")
   :commands global-git-gutter+-mode
   :defer 2
@@ -12,6 +13,7 @@
     (add-hook 'magit-pre-refresh-hook 'git-gutter+-refresh)
     (global-git-gutter+-mode)
     (use-package git-gutter-fringe+
+      :ensure t
       ;; :init
       ;; (global-git-gutter+-mode)
       :config
@@ -25,23 +27,23 @@
 
         ;; custom graphics that works nice with half-width fringes
         (fringe-helper-define 'git-gutter-fr+-added nil
-          "..X...."
-          "..X...."
-          "XXXXX.."
-          "..X...."
-          "..X....")
+                              "..X...."
+                              "..X...."
+                              "XXXXX.."
+                              "..X...."
+                              "..X....")
         (fringe-helper-define 'git-gutter-fr+-deleted nil
-          "......."
-          "......."
-          "XXXXX.."
-          "......."
-          ".......")
+                              "......."
+                              "......."
+                              "XXXXX.."
+                              "......."
+                              ".......")
         (fringe-helper-define 'git-gutter-fr+-modified nil
-          "..X...."
-          ".XXX..."
-          "XX.XX.."
-          ".XXX..."
-          "..X....")
+                              "..X...."
+                              ".XXX..."
+                              "XX.XX.."
+                              ".XXX..."
+                              "..X....")
         
         ;; hydra git-gutter
         (defhydra hydra-git-gutter (:body-pre (global-git-gutter+-mode 1)

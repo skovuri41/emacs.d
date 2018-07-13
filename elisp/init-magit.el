@@ -68,7 +68,7 @@
     (validate-setq magit-status-headers-hook
                    '(magit-insert-repo-header
                      magit-insert-remote-header
-                     magit-insert-head-header
+                     ;; magit-insert-head-headers
                      magit-insert-tags-header))
 
     ;; Use Ivy
