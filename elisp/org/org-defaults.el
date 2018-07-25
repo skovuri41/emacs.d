@@ -1,3 +1,7 @@
+(use-package org
+  :mode (("\\.org$" . org-mode))
+  :ensure org-plus-contrib
+  )
 (require 'org)
 (require 'org-element)
 (require 'org-pomodoro)

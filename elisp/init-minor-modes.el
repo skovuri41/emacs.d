@@ -247,6 +247,7 @@
     (fullframe ibuffer ibuffer-quit)
     (fullframe find-file quit-window)
     (fullframe dired-up-directory quit-window)
+    (fullframe projectile-switch-project quit-window)
     (fullframe list-packages quit-window) ))
 
 (use-package osx-trash

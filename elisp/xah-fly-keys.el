@@ -2111,6 +2111,7 @@ If `universal-argument' is called first, do switch frame."
                                               (xah-insert-mode-wrapper
                                                'dired-jump)))
     (define-key xah-fly-key-map (kbd "fJ") 'dired-jump-other-window)
+    (define-key xah-fly-key-map (kbd "ft") 'treemacs)
     (define-key xah-fly-key-map (kbd "gn") 'hydra-smartscan/body)
     (define-key xah-fly-key-map (kbd "g,") 'goto-last-change-reverse)
     (define-key xah-fly-key-map (kbd "g;") 'goto-last-change)

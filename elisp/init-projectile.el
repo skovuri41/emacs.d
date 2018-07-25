@@ -31,6 +31,19 @@
           (expand-file-name "cache/projectile.cache" user-emacs-directory)))
   :config
   (progn
+
+    ;; Use faster search tools: ripgrep or the silver search
+    (let ((command
+           (cond
+            ((executable-find "rg")
+             "rg -0 --files --color=never --hidden --sort-files")
+            ((executable-find "ag")
+             (concat "ag -0 -l --nocolor --hidden"
+                     (mapconcat #'identity
+                                (cons "" projectile-globally-ignored-directories)
+                                " --ignore-dir="))))))
+      (setq projectile-generic-command command))
+
     (defun projectile-custom-mode-line ()
       (if (projectile-project-p)
           (let* ((project-name (projectile-project-name))

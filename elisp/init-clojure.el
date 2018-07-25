@@ -14,9 +14,9 @@
     ;;(add-to-list 'auto-mode-alist '("\\.clj\\" . clojure-mode))
 
     (use-package clj-refactor
+      :ensure t
       :init
-      (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
-      )
+      (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1))))
 
     (define-clojure-indent
       (defroutes 'defun)

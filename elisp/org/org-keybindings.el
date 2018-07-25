@@ -218,4 +218,4 @@
            ;; ("tto" . org-table-toggle-coordinate-overlays)
            ;; ("tw" . org-table-wrap-region)
            )
-(provide 'org-keys)
+(provide 'org-keybindings)

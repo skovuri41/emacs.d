@@ -75,6 +75,7 @@
 
 
 ;; org-capture
+(require 'org-contacts)
 (setq org-capture-templates '())
 (progn
   (add-to-list 'org-capture-templates
@@ -84,7 +85,7 @@
                '("l" "Todo (with link) [inbox]" entry (file+headline org-default-notes-file "Tasks")
                  "* TODO %a"))
   (add-to-list 'org-capture-templates
-               '("p" "Appointment" entry (file+headline nico/org-agenda-file "Appointment")
+               '("p" "Appointment" entry (file+headline my/org-agenda-file "Appointment")
                  "* APPT %i%? \n %^T"))
   (add-to-list 'org-capture-templates
                '("T" "Tickler" entry (file+headline "~/org/tickler.org" "Tickler")
@@ -95,6 +96,26 @@
 :PROPERTIES:
 :EMAIL: %(org-contacts-template-email)
 :END:")))
+
+(add-hook 'org-capture-mode-hook
+          '(lambda ()
+             (xah-fly-insert-mode-activate)))
+
+(defadvice org-capture-finalize
+    (after delete-capture-frame activate)
+  "Advise capture-finalize to close the frame"
+  (xah-fly-command-mode-activate))
+
+(defadvice org-capture-destroy
+    (after delete-capture-frame activate)
+  "Advise capture-destroy to close the frame"
+  (xah-fly-command-mode-activate))
+
+;; make the frame contain a single window. by default org-capture
+;; splits the window.
+(add-hook 'org-capture-mode-hook
+          'delete-other-windows)
+
 
 (provide 'org-capture-config)
 ;;; org-capture-config.el ends here

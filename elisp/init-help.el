@@ -22,13 +22,14 @@
 (define-key help-mode-map "c" 'counsel-ace-link)
 
 (use-package help-fns+
-  :ensure t
+  :disabled t
   :init
   (autoload 'describe-keymap "help-fns+"))
 
-(use-package help+ :ensure t)
+;;(use-package help+ :ensure t)
 
-(use-package help-mode+ :ensure t)
+(use-package help-mode+
+  :disabled t)
 
 (use-package know-your-http-well :ensure t :defer t)
 

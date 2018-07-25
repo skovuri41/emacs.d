@@ -1,5 +1,6 @@
 (use-package neotree
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (progn
     (setq neo-create-file-auto-open t

@@ -6,6 +6,8 @@
 ;;(require 'org-calendar)
 ;;(require 'org-publish)
 (require 'org-extras)
-(require 'org-keys)
+(require 'org-keybindings)
+(require 'org-hydra)
+
 
 (provide 'init-org)

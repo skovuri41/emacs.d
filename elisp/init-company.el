@@ -17,14 +17,29 @@
     (validate-setq company-frontends
                    '(company-pseudo-tooltip-unless-just-one-frontend
                      company-preview-if-just-one-frontend))
+
     (let ((map company-active-map))
-      (mapc (lambda (x) (define-key map (format "%d" x)
-                     `(lambda () (interactive) (company-complete-number ,x))))
-            (number-sequence 0 9))
-      (define-key map " " (lambda () (interactive)
+      (mapc
+       (lambda (x)
+         (define-key map (format "%d" x) 'ora-company-number))
+       (number-sequence 0 9))
+      (define-key map " " (lambda ()
+                            (interactive)
                             (company-abort)
                             (self-insert-command 1)))
       (define-key map (kbd "<return>") nil))
+
+    (defun ora-company-number ()
+      "Forward to `company-complete-number'.
+Unless the number is potentially part of the candidate.
+In that case, insert the number."
+      (interactive)
+      (let* ((k (this-command-keys))
+             (re (concat "^" company-prefix k)))
+        (if (cl-find-if (lambda (s) (string-match re s))
+                        company-candidates)
+            (self-insert-command 1)
+          (company-complete-number (string-to-number k)))))
 
     (define-key company-active-map (kbd "\C-n") 'company-select-next)
     (define-key company-active-map (kbd "\C-p") 'company-select-previous)
@@ -161,8 +176,7 @@
                                            company-capf
                                            company-files
                                            company-emoji
-                                           company-ispell))))
-    ))
+                                           company-ispell))))))
 
 ;;; useful company-backend
 ;;  company-c-headers
