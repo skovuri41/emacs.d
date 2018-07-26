@@ -140,6 +140,11 @@
       (unless (equal buffer (current-buffer))
         (kill-buffer buffer))))
 
+  (defun my-diredp-find-file-reuse-dir-buffer ()
+    (interactive)
+    (diredp-find-file-reuse-dir-buffer)
+    (delete-other-windows))
+
   (defun ora-dired-get-size ()
     (interactive)
     (let ((files (dired-get-marked-files)))
@@ -358,7 +363,8 @@ or file under cursor if no file is marked."
       (define-key dired-mode-map (kbd "b") 'xah-make-backup-and-save)
       (define-key dired-mode-map (kbd "f") 'projectile-find-file-dwim)
       (define-key dired-mode-map (kbd "C-o") 'xah-open-in-external-app)
-      (define-key dired-mode-map (kbd "l") 'diredp-find-file-reuse-dir-buffer)))
+      (define-key dired-mode-map (kbd "l") 'my-diredp-find-file-reuse-dir-buffer)))
+
 
   (use-package dired-narrow
     :ensure t
