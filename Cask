@@ -1,5 +1,6 @@
 (source melpa-stable)
 (source gnu)
+(source org)
 
 (depends-on "clojure-mode")
 (depends-on "clojure-snippets")
@@ -225,3 +226,4 @@
 (depends-on "ws-butler")
 (depends-on "all-the-icons-ivy")
 (depends-on "all-the-icons-dired")
+(depends-on "org-plus-contrib")

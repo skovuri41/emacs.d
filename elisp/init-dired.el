@@ -181,7 +181,6 @@
         (kill-buffer buffer))))
 
 
-  (require 'hydra)
   (defhydra hydra-marked-items (dired-mode-map "")
     "
    Number of marked items: %(length (dired-get-marked-files))
@@ -321,8 +320,8 @@ or file under cursor if no file is marked."
     :config (add-hook 'dired-mode-hook #'dired-collapse-mode))
 
   (use-package dired+
-    :ensure t
     :defer 1
+    :load-path "elisp/"
     :bind ("C-x C-j" . dired-jump)
     :init
     (setq diredp-hide-details-initially-flag nil)

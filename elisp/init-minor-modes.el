@@ -237,6 +237,7 @@
 
 (use-package fullframe
   :ensure t
+  ;; :disabled t
   :config
   (progn
     (after 'magit
@@ -245,10 +246,11 @@
       (fullframe magit-status magit-mode-quit-window))
     (fullframe dired-jump quit-window)
     (fullframe ibuffer ibuffer-quit)
-    (fullframe find-file quit-window)
+    ;; (fullframe find-file quit-window true)
     (fullframe dired-up-directory quit-window)
-    (fullframe projectile-switch-project quit-window)
-    (fullframe list-packages quit-window) ))
+    ;; (fullframe projectile-switch-project quit-window)
+    ;; (fullframe list-packages quit-window)
+    ))
 
 (use-package osx-trash
   :if (eq system-type 'darwin)

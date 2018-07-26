@@ -2100,10 +2100,16 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "fc") 'nameframe-create-frame)
     (define-key xah-fly-key-map (kbd "fs") 'toggle-frame-fullscreen)
     (define-key xah-fly-key-map (kbd "fx") 'delete-frame)
-    (define-key xah-fly-key-map (kbd "fr") 'counsel-recentf)
+    (define-key xah-fly-key-map (kbd "fr") '(lambda () (interactive)
+                                              (progn
+                                                (counsel-recentf)
+                                                (delete-window))))
     (define-key xah-fly-key-map (kbd "fD") 'counsel-goto-recent-directory)
     (define-key xah-fly-key-map (kbd "fd") 'counsel-projectile-find-dir)
-    (define-key xah-fly-key-map (kbd "ff") 'counsel-find-file)
+    (define-key xah-fly-key-map (kbd "ff") '(lambda () (interactive)
+                                              (progn
+                                                (counsel-find-file)
+                                                (delete-window))))
     ;; (define-key xah-fly-key-map (kbd "ff") 'counsel-projectile-find-file)
     (define-key xah-fly-key-map (kbd "fp") 'helm-projectile)
     (define-key xah-fly-key-map (kbd "fo") 'counsel-outline)
