@@ -33,6 +33,7 @@
           treemacs-space-between-root-nodes t
           treemacs-tag-follow-cleanup t
           treemacs-tag-follow-delay 1.5
+          treemacs-display-in-side-window nil
           treemacs-width 35)
 
     (defun my/treemacs-quit-buffer ()
@@ -47,23 +48,18 @@
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
+    (treemacs-resize-icons 14)
 
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode t)
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null (executable-find "python3"))))
-      (`(t . t)
-       (treemacs-git-mode 'extended))
-      (`(t . _)
-       (treemacs-git-mode 'simple))))
+    (treemacs-fringe-indicator-mode t))
   :bind
   (:map treemacs-mode-map
         ("j" . treemacs-next-line)
         ("k" . treemacs-previous-line)
         ("u" . treemacs-root-up)
         ("h" . treemacs-goto-parent-node)
+        ("i" . treemacs-TAB-action)
         ("ww" . ace-window)
         ("q" . my/treemacs-quit-buffer)))
 

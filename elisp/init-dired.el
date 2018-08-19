@@ -486,7 +486,8 @@ or file under cursor if no file is marked."
 
 (use-package all-the-icons-dired
   ;; :if (display-graphic-p)
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :diminish all-the-icons-dired-mode
   :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 

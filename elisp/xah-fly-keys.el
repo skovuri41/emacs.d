@@ -1912,7 +1912,10 @@ If `universal-argument' is called first, do switch frame."
    ("g" . counsel-ag-projectile)
    ("o" . projectile-find-other-file)
    ("h" . hydra-projectile/body)
-   ("p" . projectile-switch-project)
+   ("p" . (lambda () (interactive)
+            (progn
+              (projectile-switch-project)
+              (delete-other-windows))))
    ("l" . magit-list-repositories)
    ("r" . projectile-run-shell-command-in-root)))
 

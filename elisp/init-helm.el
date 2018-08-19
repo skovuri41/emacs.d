@@ -57,6 +57,7 @@
 
   (use-package helm-backup
     ;; :bind ("C-c b" . helm-backup)
+    :disabled t
     :config
     (add-hook 'after-save-hook 'helm-backup-versioning))
 

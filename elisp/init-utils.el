@@ -1,6 +1,7 @@
 (use-package symon
-  :ensure t
+  ;; :ensure t
   :defer 20
+  :disabled t
   :config
   (validate-setq symon-refresh-rate 5
                  symon-delay 45)

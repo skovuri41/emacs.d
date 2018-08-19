@@ -62,7 +62,8 @@
   :interpreter (("emacs" . emacs-lisp-mode)))
 
 (use-package yaml-mode
-  :mode ("\\.yml$" . yaml-mode))
+  :mode ("\\.yml$" . yaml-mode)
+  :ensure t)
 
 (use-package csv-mode
   :ensure t
