@@ -4,7 +4,7 @@
   )
 (require 'org)
 (require 'org-element)
-(require 'org-pomodoro)
+;; (require 'org-pomodoro)
 ;;(require 'org-drill)
 ;;(require 'org-jira-protocol)
 ;;(require 'org-gogs-protocol)

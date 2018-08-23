@@ -73,7 +73,8 @@
 
 (use-package org-pomodoro
   :commands (org-pomodoro)
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (progn
     (setq org-pomodoro-length 2)
@@ -115,6 +116,11 @@
   :init
   (progn
     (add-hook 'org-mode-hook 'org-download-enable)))
+
+(use-package org-autolist
+  :ensure t
+  :init
+  (add-hook 'org-mode-hook (lambda () (org-autolist-mode))))
 
 (provide 'org-extras)
 ;;; org-extra.el ends here

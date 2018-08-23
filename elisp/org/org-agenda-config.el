@@ -20,6 +20,7 @@
                            ("~/org/tickler.org" :maxlevel . 2)
                            ("~/org/inbox.org" :maxlevel . 1)))
 
+(setq org-outline-path-complete-in-steps nil)
 (validate-setq org-refile-use-outline-path 'file)
 (setq org-agenda-start-with-log-mode t)
 (validate-setq org-agenda-dim-blocked-tasks t)
