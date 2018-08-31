@@ -1,6 +1,6 @@
 (use-package treemacs
   :ensure t
-  :defer t
+  ;; :defer t
   :init
   ;; (progn
   ;;   (unbind-key "w" treemacs-mode-map)
@@ -11,6 +11,7 @@
     (progn
       (unbind-key "w" treemacs-mode-map)
       (unbind-key "u" treemacs-mode-map)
+      (unbind-key "i" treemacs-mode-map)
       (unbind-key "h" treemacs-mode-map))
     (setq treemacs-collapse-dirs (if (executable-find "python") 3 0)
           treemacs-deferred-git-apply-delay 0.5
