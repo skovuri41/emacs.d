@@ -1,5 +1,6 @@
 (use-package popwin
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (progn
     (defvar popwin:special-display-config-backup popwin:special-display-config)
@@ -71,7 +72,8 @@
     (popwin-mode t)))
 
 (use-package popup-switcher
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :config
   (progn
     (define-key popup-menu-keymap [escape] 'keyboard-quit)
@@ -87,6 +89,7 @@
     (setq psw-use-flx t)))
 
 (use-package popup-imenu
+  :disabled t
   :commands (popup-imenu))
 
 (use-package flyspell-popup

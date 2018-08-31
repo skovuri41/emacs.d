@@ -122,6 +122,16 @@
   :init
   (add-hook 'org-mode-hook (lambda () (org-autolist-mode))))
 
+(use-package org-projectile
+  :requires (org projectile)
+  :config
+  ;; (setq org-projectile-projects-file
+  ;;       "~/Dropbox/org/project_todos.org")
+  (push (org-projectile-project-todo-entry) org-capture-templates)
+  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+  ;; (global-set-key (kbd "C-c n p") 'org-projectile-project-todo-completing-read)
+  )
+
 (provide 'org-extras)
 ;;; org-extra.el ends here
 

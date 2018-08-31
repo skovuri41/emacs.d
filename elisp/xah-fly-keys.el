@@ -2106,7 +2106,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "fr") '(lambda () (interactive)
                                               (progn
                                                 (counsel-recentf)
-                                                (delete-window))))
+                                                ;; (delete-window)
+                                                )))
     (define-key xah-fly-key-map (kbd "fD") 'counsel-goto-recent-directory)
     (define-key xah-fly-key-map (kbd "fd") 'counsel-projectile-find-dir)
     (define-key xah-fly-key-map (kbd "ff") '(lambda () (interactive)

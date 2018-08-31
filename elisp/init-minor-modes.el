@@ -236,8 +236,8 @@
     #'kill-this-buffer))
 
 (use-package fullframe
-  :ensure t
-  ;; :disabled t
+  ;; :ensure t
+  :disabled t
   :config
   (progn
     (after 'magit
