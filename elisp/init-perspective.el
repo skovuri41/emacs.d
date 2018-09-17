@@ -149,6 +149,13 @@
           (magit-status-mode :select t :inhibit-window-quit t :same t)
           (magit-log-mode :select t :inhibit-window-quit t :same t)))
 
+  ;; A bit of trickery to have the final layout be adjusted by golden ratio.
+  (defun adjust-ratio-golden-ratio (buffer alist plist)
+    (progn
+      (golden-ratio)))
+
+  (add-function :after (symbol-function 'shackle-display-buffer) #'adjust-ratio-golden-ratio)
+
   (shackle-mode 1)
 
   ;; (setq shackle-default-rule '(:select t))
