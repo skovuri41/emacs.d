@@ -1946,18 +1946,18 @@ rather than FUN itself, to `minibuffer-setup-hook'."
   "Various enhancements to Dired."
   :prefix "diredp-" :group 'dired
   :link `(url-link :tag "Send Bug Report"
-          ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=\
+                   ,(concat "mailto:" "drew.adams" "@" "oracle" ".com?subject=\
 dired+.el bug: \
 &body=Describe bug here, starting with `emacs -q'.  \
 Don't forget to mention your Emacs and library versions."))
   :link '(url-link :tag "Other Libraries by Drew"
-          "https://www.emacswiki.org/emacs/DrewsElispLibraries")
+                   "https://www.emacswiki.org/emacs/DrewsElispLibraries")
   :link '(url-link :tag "Download"
-          "https://www.emacswiki.org/emacs/download/dired%2b.el")
+                   "https://www.emacswiki.org/emacs/download/dired%2b.el")
   :link '(url-link :tag "Description"
-          "https://www.emacswiki.org/emacs/DiredPlus")
+                   "https://www.emacswiki.org/emacs/DiredPlus")
   :link '(emacs-commentary-link :tag "Commentary" "dired+"))
- 
+
 ;;; Variables
 
 ;; `dired-do-toggle' was renamed to `dired-toggle-marks' after Emacs 20.

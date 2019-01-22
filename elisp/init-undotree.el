@@ -1,5 +1,6 @@
 (use-package undo-tree
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :diminish undo-tree-mode
   :config
   (progn

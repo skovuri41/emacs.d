@@ -19,14 +19,14 @@
 
 (use-package typit
   :ensure t
-  :defer 20)
+  :defer 20
+  )
 
 (use-package define-word
   :ensure t)
 
 (use-package chess
-  ;; :ensure t
-  :disabled t
+:disabled t
   :defer 20
   :commands chess
   :config
@@ -39,7 +39,7 @@
   :commands lorem-ipsum-insert-paragraphs)
 
 (use-package boxquote
-  ;; :ensure t
+  :ensure t
   :disabled t
   :config
   (setq-default  boxquote-bottom-corner "╰"      ; U+2570
@@ -103,7 +103,7 @@
     (back-button-mode 1)))
 
 (use-package col-highlight
-  ;; :ensure t
+  :ensure t
   :disabled t
   :config
   (set-face-background 'col-highlight "#ddd")
@@ -117,7 +117,7 @@
     (setq elpamr-default-output-directory "~/.emacs.d/myelpa")))
 
 (use-package sublimity
-  ;; :ensure t
+  :ensure t
   :disabled t
   :init
   (setq sublimity-auto-hscroll-mode nil
@@ -157,8 +157,7 @@
 
 (use-package spray
   :commands spray-mode
-  ;; :ensure t
-  :disabled t
+  :ensure t
   :init
   (progn
     (defun speed-reading/start-spray ()
@@ -199,6 +198,10 @@
 
 ;; (advice-add 'recentf-cleanup :around 'imalison:shut-up-around)
 ;; (shut-up (helm-projectile-on))
+
+(use-package xah-find
+  :ensure t
+  :disabled t)
 
 (use-package stripe-buffer
   :ensure t

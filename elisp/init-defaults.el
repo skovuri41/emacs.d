@@ -265,6 +265,7 @@
 
 (use-package hungry-delete
   :ensure t
+  :disabled t
   :config
   (progn
     (setq hungry-delete-chars-to-skip " \t\r\f\v")
@@ -300,44 +301,7 @@
       '("emacs@" (:eval (system-name)) ": "(:eval (if (buffer-file-name)
                                                       (abbreviate-file-name (buffer-file-name))
                                                     "%b")) " [%*]"))
-(when (executable-find "hunspell")
-  (setq ispell-program-name "hunspell")
-  (setq-default ispell-program-name "hunspell")
-  (setq ispell-extra-args '("-d en_US"))
-  (setq ispell-really-hunspell t))
-(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))
-(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
-;; No flyspell.
-(eval-after-load "flyspell"
-  '(defun flyspell-mode (&optional arg)))
-
-;; Autocomplete with a dictionary and hippie-expand
-;; The actual expansion function
-(defun try-expand-by-dict (old)
-  ;; old is true if we have already attempted an expansion
-  (unless (bound-and-true-p ispell-minor-mode)
-    (ispell-minor-mode 1))
-
-  ;; english-words.txt is the fallback dicitonary
-  (if (not ispell-alternate-dictionary)
-      (setq ispell-alternate-dictionary (file-truename "~/.emacs.d/misc/english-words.txt")))
-  (let ((lookup-func (if (fboundp 'ispell-lookup-words)
-                         'ispell-lookup-words
-                       'lookup-words)))
-    (unless old
-      (he-init-string (he-lisp-symbol-beg) (point))
-      (if (not (he-string-member he-search-string he-tried-table))
-          (setq he-tried-table (cons he-search-string he-tried-table)))
-      (setq he-expand-list
-            (and (not (equal he-search-string ""))
-                 (funcall lookup-func (concat (buffer-substring-no-properties (he-lisp-symbol-beg) (point)) "*")))))
-    (if (null he-expand-list)
-        (if old (he-reset-string))
-      (he-substitute-string (car he-expand-list))
-      (setq he-expand-list (cdr he-expand-list))
-      t)))
+(require 'init-spell-check)
 
 ;; Hippie expand.
 (setq hippie-expand-try-functions-list

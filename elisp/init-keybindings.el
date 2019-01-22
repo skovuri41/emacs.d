@@ -70,6 +70,26 @@
                   (interactive)
                   (ignore-errors (previous-line 5))))
 
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'super)
+  (setq mac-control-modifier 'control)  ; make Control key do Control
+  (setq ns-function-modifier 'hyper)    ; make Fn key do Hyper
+  )
+
+(global-set-key (kbd "s-<right>") (kbd "C-e"))
+(global-set-key (kbd "S-s-<right>") (kbd "C-S-e"))
+(global-set-key (kbd "s-<left>") (kbd "M-m"))
+(global-set-key (kbd "S-s-<left>") (kbd "M-S-m"))
+(global-set-key (kbd "s-<up>") 'beginning-of-buffer)
+(global-set-key (kbd "s-<down>") 'end-of-buffer)
+(global-set-key (kbd "s-a") 'mark-whole-buffer)       ;; select all
+(global-set-key (kbd "s-s") 'save-buffer)             ;; save
+(global-set-key (kbd "s-S") 'write-file)              ;; save as
+(global-set-key (kbd "s-q") 'save-buffers-kill-emacs) ;; quit
+(global-set-key (kbd "s-z") 'undo)
+
+
 (define-key occur-mode-map "k" 'previous-line)
 (define-key occur-mode-map "j" 'next-line)
 (define-key occur-mode-map "l" 'occur-mode-goto-occurrence)
@@ -144,21 +164,6 @@ _o_rg e_l_isp _e_macs _h_yperspec"
   ("e" (ora-open-info "emacs" "*emacs info*"))
   ("h" (ora-open-info "gcl" "*hyperspec*")))
 
-;; swith meta and mac command key for mac port emacs build
-(when (eq system-type 'darwin)
-  (setq mac-option-modifier 'meta))
-;; mac switch meta key
-(defun mac-switch-meta ()
-  "switch meta between Option and Command"
-  (interactive)
-  (if (eq mac-option-modifier nil)
-      (progn
-        (message "switching meta and command")
-        (setq mac-option-modifier 'meta)
-        (setq mac-command-modifier 'hyper))
-    (progn
-      (setq mac-option-modifier nil)
-      (setq mac-command-modifier 'meta))))
 
 
 ;;;;;; aliases
@@ -217,7 +222,8 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'gwsm 'global-whitespace-mode)
 (defalias 'vlm 'visual-line-mode)
 (defalias 'glm 'global-linum-mode)
-(defalias 'setnu 'global-linum-mode)
+;; (defalias 'setnu 'global-linum-mode)
+(defalias 'setnu 'display-line-numbers-mode)
 (defalias 'fm 'focus-mode)
 (defalias 'xi 'xah-fly-insert-mode-activate)
 (defalias 'xc 'xah-fly-command-mode-activate)

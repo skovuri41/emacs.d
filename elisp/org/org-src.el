@@ -13,7 +13,6 @@
    (ditaa      . t)
    (ledger     . t)
    (perl       . t)
-   (scala      . t)
    (clojure    . t)
    (python     . t)
    (ruby       . t)

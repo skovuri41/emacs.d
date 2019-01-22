@@ -57,7 +57,9 @@
                                               zenburn-theme
                                               spacemacs-theme
                                               apropospriate-theme
-                                              birds-of-paradise-plus-theme))
+                                              birds-of-paradise-plus-theme
+                                              tsdh-light
+                                              tsdh-dark))
     (ensure-packages-installed packages-appearance)))
 
 (provide 'init-color-theme)

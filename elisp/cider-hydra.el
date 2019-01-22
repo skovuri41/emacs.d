@@ -81,7 +81,7 @@ CIDER Connections Menu
  _P_:  cider-assoc-project-with-connection      _S_:  cider-create-sibling-cljs-repl
  _l_:  cider-clear-buffer-local-connection      _N_:  cider-describe-nrepl-session
  _x_:  cider-close-nrepl-session                _i_:  cider-display-connection-info
- _c_:  cider-connect                            _j_:  cider-jack-in
+ _c_:  cider-connect                            _j_:  cider
  _w_:  cider-connection-browser                 _J_:  cider-jack-in-clojurescript
  _g_:  cider-connections-buffer-mode            _d_:  cider-make-connection-default
  _h_:  cider-connections-close-connection       _p_:  cider-ping

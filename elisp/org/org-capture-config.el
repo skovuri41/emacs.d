@@ -27,19 +27,12 @@
 ;; Org todo keywords
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)" "CANCELLED(c)")
-        (sequence "FEATURE(f)" "|" "COMPLETED(c)")
-        (sequence "BUG(b)" "|" "FIXED(x)")
-        (sequence "APPT(p)" "|" "DONE(d)" "CANCELLED(a)")
-        (sequence "WAITING(w!)" "|" "DONE(d)")))
+        (sequence "APPT(p)" "|" "DONE(d)" "CANCELLED(a)")))
 
 ;; Org faces
 (validate-setq org-todo-keyword-faces
                '(("TODO" :foreground "red" :weight bold)
-                 ("FEATURE" :foreground "deep sky blue" :weight bold)
-                 ("BUG" :foreground "purple" :weight bold)
-                 ("FIXED" :foreground "#edd400" :weight bold)
                  ("DONE" :foreground "forest green" :weight bold)
-                 ("WAITING" :foreground "orange" :weight bold)
                  ("APPT" :foreground "magenta" :weight bold)
                  ("CANCELLED" :foreground "forest green" :weight bold)))
 
@@ -50,12 +43,8 @@
 ;; add or remove tags on state change
 (validate-setq org-todo-state-tags-triggers
                '(("CANCELLED" ("CANCELLED" . t))
-                 ("WAITING" ("WAITING" . t))
                  ("DONE" ("WAITING"))
-                 ("TODO" ("WAITING") ("CANCELLED"))
-                 ("BUG" ("BUG" . t))
-                 ("FIXED" ("BUG"))
-                 ("DONE" ("WAITING") ("CANCELLED"))))
+                 ("TODO" ("WAITING") ("CANCELLED"))))
 
 ;; quick access to common tags
 (setq org-tag-alist

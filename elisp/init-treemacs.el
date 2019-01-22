@@ -49,7 +49,7 @@
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
-    (treemacs-resize-icons 14)
+    (treemacs-resize-icons 13)
 
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)

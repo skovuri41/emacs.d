@@ -79,6 +79,7 @@
                                  yas-ido-prompt
                                  yas-dropdown-prompt))
     (define-key yas-minor-mode-map (kbd "<escape>") 'yas-exit-snippet)
-    (use-package clojure-snippets)))
+    (use-package clojure-snippets
+      :ensure t)))
 
 (provide 'init-yasnippet)

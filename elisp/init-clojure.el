@@ -13,6 +13,8 @@
     ;;(add-to-list 'auto-mode-alist '("\\.cljs\\" . clojurescript-mode))
     ;;(add-to-list 'auto-mode-alist '("\\.clj\\" . clojure-mode))
 
+    (setq clojure-align-forms-automatically t)
+
     (use-package clj-refactor
       :ensure t
       :init
@@ -168,10 +170,11 @@
     (setq cider-overlays-use-font-lock t)
     ;; (setq cider-pprint-fn 'puget)
     (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
-    (setq cider-repl-pop-to-buffer-on-connect nil)
+    ;; (setq cider-repl-pop-to-buffer-on-connect nil)
+    (setq cider-repl-pop-to-buffer-on-connect 'display-only)
     ;; (setq cider-repl-use-clojure-font-lock nil)
+    (setq cider-repl-scroll-on-output nil)
     (setq cider-repl-use-clojure-font-lock t)
-    (setq cider-repl-pop-to-buffer-on-connect nil)
     (setq cider-repl-wrap-history t)
     (setq cider-repl-history-size 1000)
     (setq cider-repl-shortcut-dispatch-char ?\;)
@@ -203,6 +206,14 @@
   :defer t
   :config
   (eval-after-load 'flycheck '(flycheck-clojure-setup)))
+
+(use-package flycheck-joker
+  :ensure t
+  :init
+  (progn
+    (require 'flycheck-joker)
+    (defun clj-joker-hook () (flycheck-mode 1))
+    (add-hook 'clojure-mode-hook #'clj-joker-hook)))
 
 (use-package 4clojure
   :ensure t

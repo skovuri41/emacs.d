@@ -448,6 +448,18 @@ _~_: modified      ^ ^                ^ ^                ^^                     
       ("k" previous-error "previous" :bind nil)
       ("l" flycheck-list-errors "list-errors" :exit t))
 
+    (defhydra hydra-flycheck
+      (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
+            :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+            :hint nil)
+      "Errors"
+      ("f" flycheck-error-list-set-filter "Filter")
+      ("j" flycheck-next-error "Next")
+      ("k" flycheck-previous-error "Previous")
+      ("gg" flycheck-first-error "First")
+      ("G" (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
+      ("q" nil))
+
     (defhydra hydra-outline
       (:hint nil :body-pre (outline-minor-mode 1))
       "
@@ -498,6 +510,7 @@ _f_: fwd
       ("c" helpful-command "helpful command" )
       ("f" helpful-function "helpful function" )
       ("m" helpful-macro "helpful macro" )
+      ("k" helpful-key "helpful key" )
       ("u" helpful-update "helpful update")
       ("q" nil "quit" :exit t))
 
@@ -551,8 +564,16 @@ _<SPC>_ →Cap→UP→down→
       ("<SPC>" xah-toggle-letter-case :color red)
       ("q" nil "cancel" :color blue))
 
-
-
+    (defhydra hydra-register (:color teal)
+      ("p" (point-to-register ?1))
+      ("j" (jump-to-register ?1))
+      ("c" xah-copy-to-register-1)
+      ("i" xah-paste-from-register-1)
+      ("r" copy-rectangle-to-register)
+      ("w" window-configuration-to-register)
+      ("n" number-to-register)
+      ("+" increment-register)
+      ("q" nil))
     ))
 
 (provide 'init-hydra)

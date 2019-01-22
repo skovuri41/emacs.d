@@ -62,10 +62,10 @@
   :ensure t)
 
 (use-package outshine
+  :ensure t
   :diminish outline-minor-mode
-  :commands outshine-hook-function
   :init
-  (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+  (add-hook 'outline-minor-mode-hook 'outshine-mode)
   (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
   (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
   (add-hook 'picolisp-mode-hook 'outline-minor-mode)
@@ -387,5 +387,33 @@
                ("C-p" . jump-char-repeat-backward)
                ("C-'" . jump-char-switch-to-ace))))
 
+(use-package vi-tilde-fringe
+  :ensure t
+  :defer t
+  :hook (prog-mode . vi-tilde-fringe-mode)
+  :config
+  (global-vi-tilde-fringe-mode 1))
+
+(use-package simpleclip
+  :ensure t
+  :config
+  (simpleclip-mode 1))
+
+(use-package hl-todo
+  :ensure t
+  :config
+  (global-hl-todo-mode 1))
+
+(use-package visual-fill-column
+  :diminish visual-fill-column-mode
+  :disabled t
+  :config
+  (add-hook 'prog-mode-hook #'visual-line-mode)
+  (add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
+
+
+;; (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+;; (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+;; TODO figure out handling long line mode, still problematic
 
 (provide 'init-minor-modes)
