@@ -491,6 +491,11 @@ or file under cursor if no file is marked."
   :diminish all-the-icons-dired-mode
   :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
 (use-package all-the-icons-ivy
   ;; :if (display-graphic-p)
   :ensure t

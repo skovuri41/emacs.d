@@ -123,7 +123,7 @@
   (add-hook 'org-mode-hook (lambda () (org-autolist-mode))))
 
 (use-package org-projectile
-  :requires (org projectile)
+  :disabled t
   :config
   ;; (setq org-projectile-projects-file
   ;;       "~/Dropbox/org/project_todos.org")

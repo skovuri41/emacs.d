@@ -31,6 +31,9 @@
   :ensure t
   :disabled t)
 
+(use-package doom-themes
+  :ensure t)
+
 (use-package spacemacs-theme
   :disabled t
   :quelpa (spacemacs-theme :fetcher github :repo "surya46584/spacemacs-theme"))
