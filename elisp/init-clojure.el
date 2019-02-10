@@ -62,6 +62,10 @@
       (specify 1)
       (specify! 1))
 
+    (csetq clojure-indent-style :always-align)
+    (csetq clojure-indent-style :always-indent)
+    (csetq clojure-indent-style :align-arguments)
+
     (setq clojure--prettify-symbols-alist
           '(("fn" . ?λ)
             ("not=" . ?≠)
@@ -140,16 +144,20 @@
       (bind-keys :map clojure-mode-map
                  ("C-x C-e" . cider-eval-last-sexp)
                  ("C-c C-r" . cider-repl-reset)
-                 ("C-c C-v" . cider-send-and-evaluate-sexp))
+                 ("C-c C-v" . cider-send-and-evaluate-sexp)
+                 ("C-:" . counsel-clj))
+      ;; (define-key clojure-mode-map (kbd "C-:") nil)
+      ;; (define-key clojure-mode-map (kbd "β") 'counsel-clj)
       (bind-keys :map cider-browse-ns-mode-map
                  ("j" . next-line)
                  ("k" . previous-line))
       (unbind-key (kbd "/") clj-refactor-map)
       (unbind-key (kbd ",") cider-repl-mode-map)
 
-      (define-key cider-mode-map (kbd "C-:") nil)
+      ;; (define-key cider-mode-map (kbd "C-:") nil)
       (define-key cider-repl-mode-map (kbd "C-x C-l") 'cider-repl-clear-buffer)
-      (define-key cider-repl-mode-map (kbd "C-:") nil))
+      ;; (define-key cider-repl-mode-map (kbd "C-:") nil)
+      )
 
     (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
 
@@ -163,7 +171,10 @@
     (add-hook 'cider-repl-mode-hook 'company-mode)
     (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'cider-mode-hook 'company-mode)
-    (add-hook 'cider-repl-mode-hook 'subword-mode))
+    (add-hook 'cider-repl-mode-hook 'subword-mode)
+    (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+    (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
+    )
   :config
   (progn
     (setq cider-prompt-for-symbol nil)
@@ -193,6 +204,7 @@
     (setq cider-stacktrace-fill-column 80)
     (setq cider-test-show-report-on-success t)
     (setq cider-repl-use-pretty-printing t)
+    (setq cider-default-repl-command "lein")
     (require 'cider-hydra)
     ))
 

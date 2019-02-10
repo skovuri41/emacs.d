@@ -2,18 +2,6 @@
 (source gnu)
 (source org)
 
-(depends-on "clojure-mode")
-(depends-on "clojure-snippets")
-(depends-on "cider")
-(depends-on "clj-refactor")
-(depends-on "clojure-cheatsheet")
-(depends-on "typed-clojure-mode")
-(depends-on "eval-sexp-fu")
-(depends-on "cider-eval-sexp-fu")
-(depends-on "4clojure")
-(depends-on "cljsbuild-mode")
-(depends-on "helm-cider")
-
 
 (source melpa)
 ;; (source marmalade)
