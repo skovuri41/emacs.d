@@ -416,4 +416,17 @@
 ;; (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; TODO figure out handling long line mode, still problematic
 
+
+(use-package nswbuff                 ; Quick switching between buffers
+  :ensure t
+  :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
+          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
+  :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
+                nswbuff-display-intermediate-buffers t
+                nswbuff-clear-delay 1
+                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")
+                nswbuff-include-buffer-regexps '("*cider-repl*")))
+
+
+
 (provide 'init-minor-modes)

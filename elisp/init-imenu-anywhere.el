@@ -13,9 +13,9 @@
   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
   (local-set-key "\C-c?" 'semantic-analyze-proto-impl-toggle))
 
-(add-hook 'c-mode-hook #'my/setup-semantic-mode)
-(add-hook 'java-mode-hook #'my/setup-semantic-mode)
-(add-hook 'emacs-lisp-mode-hook #'semantic-mode)
+;; (add-hook 'c-mode-hook #'my/setup-semantic-mode)
+;; (add-hook 'java-mode-hook #'my/setup-semantic-mode)
+;; (add-hook 'emacs-lisp-mode-hook #'semantic-mode)
 
 (defun my:setup-imenu-for-use-package ()
   "Recognize `use-package` in imenu"

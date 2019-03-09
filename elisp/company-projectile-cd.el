@@ -8,7 +8,7 @@
 
 (require 'cl-lib)
 (require 'company)
-(require 'dash)
+;; (require 'dash)
 (require 'f)
 (require 'projectile)
 

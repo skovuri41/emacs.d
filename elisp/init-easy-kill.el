@@ -30,9 +30,6 @@
         (add-to-list 'easy-kill-alist '(?t string-to-char-backward ""))
         (add-to-list 'easy-kill-alist '(?T string-up-to-char-backward "")))
 
-      (easy-kill-config)
-
-      )
-    ))
+      (easy-kill-config))))
 
 (provide 'init-easy-kill)

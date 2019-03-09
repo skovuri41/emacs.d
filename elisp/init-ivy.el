@@ -252,11 +252,4 @@
             ;; Do not align the virtual buffers, breaks ivy-rich
             (setq ivy-rich-switch-buffer-align-virtual-buffer nil)))
 
-(use-package flyspell-correct-ivy
-  :ensure t
-  :after flyspell
-  :config
-  (progn
-    (bind-key [remap ispell-word] 'flyspell-correct-word-generic)))
-
 (provide 'init-ivy)

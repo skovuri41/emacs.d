@@ -19,11 +19,6 @@
       (sgml-pretty-print (point-min) (point-max))
       (indent-region (point-min) (point-max))))
 
-  (defun nxml-pretty-print-buffer ()
-    "pretty print the XML in a buffer."
-    (interactive)
-    (nxml-pretty-print-region (point-min) (point-max)))
-
   ;; XML pretty print
   (defun pretty-print-xml-region (begin end)
     (interactive "r")
@@ -34,6 +29,11 @@
         (backward-char) (insert "\n"))
       (indent-region begin end))
     (message "Ah, much better!"))
+
+  (defun nxml-pretty-print-buffer ()
+    "pretty print the XML in a buffer."
+    (interactive)
+    (nxml-pretty-print-region (point-min) (point-max)))
 
   ;; See: http://sinewalker.wordpress.com/2008/06/26/pretty-printing-xml-with-emacs-nxml-mode/
   (defun pp-xml-region (beg end)
