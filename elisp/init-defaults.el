@@ -180,8 +180,8 @@
 (setq enable-recursive-minibuffers t)
 (setq minibuffer-auto-raise nil)
 
-;; Don't be so stingy on the memory, we have lots now. It's the distant future.
-(setq gc-cons-threshold (* 500 1024 1024))
+;; Don't be so stingy on the memory, we hav\e lots now. It's the distant future.
+(setq gc-cons-threshold (* 1024 1024 1024))
 (setq large-file-warning-threshold (* 25 1024 1024))
 
 ;; enable erase-buffer command

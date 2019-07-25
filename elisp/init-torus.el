@@ -6,6 +6,8 @@
    ("s-/" . torus-search-history)
    :map torus-map
    ("t" . torus-copy-to-circle))
+  :hook ((emacs-startup . torus-start)
+	 (kill-emacs . torus-quit))
   :custom
   ((torus-prefix-key "s-t")
    (torus-binding-level 3)
@@ -18,10 +20,14 @@
    (torus-history-maximum-elements 30)
    (torus-maximum-horizontal-split 3)
    (torus-maximum-vertical-split 4)
-   (torus-prefix-separator " : ")
-   (torus-join-separator " - "))
+   (torus-display-tab-bar t)
+   (torus-separator-torus-circle " >> ")
+   (torus-separator-circle-location " > ")
+   (torus-prefix-separator "/")
+   (torus-join-separator " & "))
   :config
   (torus-init)
   (torus-install-default-bindings))
+
 
 (provide 'init-torus)

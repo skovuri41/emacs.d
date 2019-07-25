@@ -352,6 +352,8 @@ Try the repeated popping up to 10 times."
 (advice-add 'pop-to-mark-command :around
             #'modi/multi-pop-to-mark)
 
+(advice-add 'sematinc-idle-scheduler-function :around #'ignore)
+
 (defun xah-html-decode-percent-encoded-url ()
   "Decode percent encoded URI of URI under cursor or selection.
 
@@ -828,6 +830,20 @@ With a prefix argument, select the part after point."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; hello this is comment in commment box                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;###autoload
+(defun emacs-display-version ()
+  "Display Emacs version and system details in a temporary buffer."
+  (interactive)
+  (let ((buffer-name "*version*"))
+    (with-help-window buffer-name
+      (with-current-buffer buffer-name
+        (insert (emacs-version) "\n")
+        (insert "\nRepository revision: " emacs-repository-version "\n")
+        (when (and system-configuration-options
+                   (not (equal system-configuration-options "")))
+          (insert "\nConfigured using:\n"
+                  system-configuration-options))))))
 
 
 (provide 'init-defuns)

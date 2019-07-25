@@ -574,6 +574,30 @@ _<SPC>_ →Cap→UP→down→
       ("n" number-to-register)
       ("+" increment-register)
       ("q" nil))
+
+
+    (defhydra hydra-torus (:color red :exit t
+                                  :columns 3)
+      "torus"
+      ("h" torus-previous-circle "prev circle" :color red)
+      ("l" torus-next-circle "next circle" :color red)
+      ("k" torus-next-location "next location" :color red)
+      ("j" torus-previous-location "previous location" :color red)
+      ("w" torus-history-older "hist older" :color red)
+      ("s" torus-history-newer "hist newer" :color red)
+      ("z" torus-alternate "alternate" :color red)
+      ("/" torus-search "search")
+      ("al" torus-add-location "add location")
+      ("ac" torus-add-circle "add circle")
+      ("dc" torus-delete-circle "delete circle")
+      ("dl" torus-delete-location "delete location")
+      ("vl" torus-switch-location "switch location")
+      ("vc" torus-switch-circle "switch circle")
+      ("vt" torus-switch-torus "switch torus")
+      ("|" torus-split-vertically "switch vertically")
+      ("-" torus-split-horizontally "switch horizontally")
+      ("q" nil "quit" :exit t))
+
     ))
 
 (provide 'init-hydra)

@@ -80,6 +80,7 @@
 (require 'init-xah-fly-keys)
 (require 'init-composable)
 (require 'init-tabbar)
+(require 'init-torus)
 (require 'init-keybindings)
 (require 'startscreen)
 

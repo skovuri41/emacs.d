@@ -4,6 +4,8 @@
          ("\\.clj$" . clojure-mode)
          ("\\.cljs$" . clojurescript-mode)
          ("\\.cljx$" . clojurex-mode))
+  :hook ((clojure-mode . cider-mode)
+         (clojure-mode . subword-mode))
   :config
   (progn
     ;;(add-to-list 'auto-mode-alist '("\\.boot\\" . clojure-mode))
@@ -14,6 +16,7 @@
     ;;(add-to-list 'auto-mode-alist '("\\.clj\\" . clojure-mode))
 
     (setq clojure-align-forms-automatically t)
+    (setq clojure-align-reader-conditionals t)
 
     (use-package clj-refactor
       :ensure t
@@ -173,8 +176,7 @@
     (add-hook 'cider-mode-hook 'company-mode)
     (add-hook 'cider-repl-mode-hook 'subword-mode)
     (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
-    (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion)
-    )
+    (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
   :config
   (progn
     (setq cider-prompt-for-symbol nil)
@@ -205,8 +207,13 @@
     (setq cider-test-show-report-on-success t)
     (setq cider-repl-use-pretty-printing t)
     (setq cider-default-repl-command "lein")
-    (require 'cider-hydra)
-    ))
+    (setq cider-ns-refresh-before-fn "user/stop"
+          cider-ns-refresh-after-fn "user/start")
+    (setq cider-font-lock-dynamically t
+          cider-invert-insert-eval-p t
+          cider-switch-to-repl-after-insert-p nil))
+
+  (require 'cider-hydra))
 
 (use-package typed-clojure-mode
   :disabled t
