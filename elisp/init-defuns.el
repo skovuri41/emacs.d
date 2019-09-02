@@ -769,7 +769,8 @@ With a prefix argument, select the part after point."
 (setq my/read-only-cursor-type 'hbar)
 (setq my/overwrite-color "red")
 (setq my/overwrite-cursor-type 'box)
-(setq my/normal-color "white")
+(setq my/normal-color "purple")
+(setq my/normal-color "grey")
 (setq my/normal-cursor-type 'bar)
 (defun my/set-cursor-according-to-mode ()
   "change cursor color and type according to some minor modes."

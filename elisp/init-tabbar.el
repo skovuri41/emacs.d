@@ -1,5 +1,21 @@
-(use-package tabbar
+(use-package centaur-tabs
   :ensure t
+  :config
+  (progn
+    (setq centaur-tabs-style "bar")
+    (setq centaur-tabs-height 24)
+    (setq centaur-tabs-set-icons nil)
+    (setq centaur-tabs-set-bar 'left)
+    (setq centaur-tabs-set-modified-marker t)
+    (centaur-tabs-enable-buffer-reordering)
+    (setq centaur-tabs-adjust-buffer-order 'right)
+    (centaur-tabs-mode t)
+    (centaur-tabs-headline-match)))
+
+
+(use-package tabbar
+  ;; :ensure t
+  :disabled t
   :init
   ;; (setq tabbar-background-color nil)
   (setq tabbar-use-images t)

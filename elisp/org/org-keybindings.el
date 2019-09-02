@@ -56,23 +56,23 @@
         (sk/hydra-org-template/body)
       (self-insert-command 1))))
 
-(bind-keys :map orgstruct-mode-map
-           ((kbd "M-H") . org-metaleft)
-           ((kbd "M-j") . org-shiftdown)
-           ((kbd "M-J") . org-metadown)
-           ((kbd "M-k") . org-shiftright)
-           ((kbd "M-K") . org-metaup)
-           ((kbd "M-L") . org-metaright)
-           ((kbd "M-o") . (lambda () (interactive)
-                            (org-eol-call
-                             '(lambda()
-                                (org-insert-heading)
-                                (org-metaright)))))
-           ((kbd "M-t") .     ((lambda () (interactive)
-                                 (org-eol-call
-                                  '(lambda()
-                                     (org-insert-todo-heading nil)
-                                     (org-metaright)))))))
+;; (bind-keys :map orgstruct-mode-map
+;;            ((kbd "M-H") . org-metaleft)
+;;            ((kbd "M-j") . org-shiftdown)
+;;            ((kbd "M-J") . org-metadown)
+;;            ((kbd "M-k") . org-shiftright)
+;;            ((kbd "M-K") . org-metaup)
+;;            ((kbd "M-L") . org-metaright)
+;;            ((kbd "M-o") . (lambda () (interactive)
+;;                             (org-eol-call
+;;                              '(lambda()
+;;                                 (org-insert-heading)
+;;                                 (org-metaright)))))
+;;            ((kbd "M-t") .     ((lambda () (interactive)
+;;                                  (org-eol-call
+;;                                   '(lambda()
+;;                                      (org-insert-todo-heading nil)
+;;                                      (org-metaright)))))))
 
 (bind-keys :map org-agenda-mode-map
            ("j" . org-agenda-next-line)

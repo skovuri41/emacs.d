@@ -418,7 +418,8 @@
 
 
 (use-package nswbuff                 ; Quick switching between buffers
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
   :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
@@ -426,6 +427,13 @@
                 nswbuff-clear-delay 1
                 nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")
                 nswbuff-include-buffer-regexps '("*cider-repl*")))
+
+
+(use-package point-history
+  :load-path "elisp/"
+  :config
+  (progn
+    (point-history-mode t)))
 
 
 
