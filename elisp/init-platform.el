@@ -10,6 +10,18 @@
  *cygwin* (eq system-type 'cygwin)
  *is-gnu-linux* (eq system-type 'gnu/linux))
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
+(add-to-list 'package-pinned-packages '(cider-eval-sexp-fu. "melpa-stable") t)
+
 (when *is-gnu-linux*
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -18,6 +30,7 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
   (add-to-list 'package-archives
                '("melpa-stable" . "http://stable.melpa.org/packages/"))
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
   (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
   (add-to-list 'package-pinned-packages '(ac-cider . "melpa-stable") t)
   (add-to-list 'package-pinned-packages '(clojure-mode . "melpa-stable") t)
@@ -29,19 +42,6 @@
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
-
-  (use-package quelpa
-    :defer 10
-    :ensure t
-    :init
-    (setq quelpa-update-melpa-p nil))
-
-  ;; Enable the use of Quelpa with use-package.
-  (use-package quelpa-use-package
-    :defer 10
-    :ensure t
-    :config
-    (quelpa-use-package-activate-advice))
 
   ;; ;; Install all packages required
   (load-file (expand-file-name "elisp/init-elpa-list.el" user-emacs-directory))
@@ -70,33 +70,9 @@
    x-select-enable-clipboard t))
 
 (when *is-a-mac*
-  ;; Bootstrap quelpa
-  ;; (if (require 'quelpa nil t)
-  ;;     (quelpa-self-upgrade)
-  ;;   (with-temp-buffer
-  ;;     (url-insert-file-contents
-  ;;      "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-  ;;     (eval-buffer)))
 
   ;; with no self upgrade
   (package-initialize)
-  (unless (require 'quelpa nil t)
-    (with-temp-buffer
-      (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-      (eval-buffer)))
-
-  ;; Make Quelpa prefer MELPA-stable over melpa. This is optional but
-  ;; highly recommended.
-  ;;
-  ;; (setq quelpa-stable-p t)
-
-  (quelpa
-   '(quelpa-use-package
-     :fetcher github
-     :repo "quelpa/quelpa-use-package"))
-  
-  (require 'quelpa-use-package)
-
   (setq
    ;; for multilingual environments
    default-input-method "MacOSX"

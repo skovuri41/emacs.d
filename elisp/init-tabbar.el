@@ -6,6 +6,7 @@
     (setq centaur-tabs-height 24)
     (setq centaur-tabs-set-icons nil)
     (setq centaur-tabs-set-bar 'left)
+    ;; (setq centaur-tabs-set-bar 'over)
     (setq centaur-tabs-set-modified-marker t)
     (centaur-tabs-enable-buffer-reordering)
     (setq centaur-tabs-adjust-buffer-order 'right)

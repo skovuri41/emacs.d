@@ -114,7 +114,7 @@
   :commands (elpamr-create-mirror-for-installed)
   :config
   (progn
-    (setq elpamr-default-output-directory "~/.emacs.d/myelpa")))
+    (setq elpamr-default-output-directory "~/Projects/gitrepos/myelpa")))
 
 (use-package sublimity
   :ensure t
