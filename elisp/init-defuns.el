@@ -846,5 +846,12 @@ With a prefix argument, select the part after point."
           (insert "\nConfigured using:\n"
                   system-configuration-options))))))
 
+(defun xah-toggle-line-spacing ()
+  "Toggle line spacing between no extra space to extra half line height."
+  (interactive)
+  (if line-spacing
+      (setq line-spacing nil)
+    (setq line-spacing 1.2))
+  (redraw-frame (selected-frame)))
 
 (provide 'init-defuns)

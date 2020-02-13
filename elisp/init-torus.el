@@ -1,4 +1,5 @@
 (use-package torus
+  :ensure t
   :demand
   :bind-keymap ("s-t" . torus-map)
   :bind

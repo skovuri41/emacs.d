@@ -5,7 +5,7 @@
     (validate-setq company-auto-complete nil)
     (validate-setq company-require-match nil)
     (validate-setq company-minimum-prefix-length 3)
-    (validate-setq company-show-numbers t)
+    (setq company-show-numbers t)
     ;; If I actually get the point, this variable `company-begin-commands` controls
     ;; what commands of emacs can triger the starting of company.
     ;; `self-insert-command` means typing IO.

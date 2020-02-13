@@ -66,7 +66,8 @@
   :ensure t)
 
 (use-package csv-mode
-  :ensure t
+  ;;:ensure t
+  :disabled t
   :mode (("\\.csv\\'" . csv-mode))
   :mode ("\\.tsv\\'" . csv-mode)
   :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode))
