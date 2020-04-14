@@ -56,18 +56,19 @@
   (setq frame-resize-pixelwise t)
   ;; (set-face-italic 'tabbar-unselected nil)
   (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 1920 1080 t)
+  (set-frame-size (selected-frame) 1800 920 t)
   (setq
    ;; font
    ;; default-frame-alist '((font . "Monaco-10"))
    ;; default-frame-alist '((font . "Fira Code-11"))
-   default-frame-alist '((font . "Hasklig-12"))
+   ;;default-frame-alist '((font . "Hasklig-12"))
+   default-frame-alist '((font . "JetBrainsMono-11"))
    ;; default-frame-alist '((font . "Hasklig-12")
    ;;                       (width . 120) ;character
    ;;                       (height . 40))
                                         ; lines
    ;; make emacs use the clipboard
-   x-select-enable-clipboard t))
+   select-enable-clipboard t))
 
 (when *is-a-mac*
 
