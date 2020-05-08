@@ -7,16 +7,15 @@
 
 ;;; Code:
 
-(defvar my/org-agenda-file "~/org/agenda.org")
-
 (setq org-agenda-files `(,org-default-notes-file
-                         ,my/org-agenda-file
+                         "~/org/agenda.org"
                          "~/org/gtd.org"
+                         "~/org/diary.org"
                          "~/org/tickler.org"))
 
 (setq org-refile-targets `(("~/org/gtd.org" :maxlevel . 3)
                            ("~/org/someday.org" :level . 1)
-                           (,my/org-agenda-file :level . 1)
+                           ("~/org/agenda.org" :level . 1)
                            ("~/org/tickler.org" :maxlevel . 2)
                            ("~/org/inbox.org" :maxlevel . 1)))
 

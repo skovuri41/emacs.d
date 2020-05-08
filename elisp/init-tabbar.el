@@ -1,10 +1,11 @@
 (use-package centaur-tabs
   :ensure t
+  ;; :disabled t
   :config
   (progn
     (setq centaur-tabs-style "bar")
     (setq centaur-tabs-height 24)
-    (setq centaur-tabs-set-icons nil)
+    (setq centaur-tabs-set-icons t)
     (setq centaur-tabs-set-bar 'left)
     ;; (setq centaur-tabs-set-bar 'over)
     (setq centaur-tabs-set-modified-marker t)

@@ -257,7 +257,7 @@
 
 (use-package exec-path-from-shell
   :ensure exec-path-from-shell
-  :disabled t
+  ;; :disabled t
   :config
   (progn
     (exec-path-from-shell-copy-env "PATH")
