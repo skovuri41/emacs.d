@@ -70,7 +70,7 @@
                     smooth-scrolling
                     link-hint
                     highlight-parentheses
-                    neotree
+                    ;; neotree
                     quickrun
                     kurecolor
                     java-imports

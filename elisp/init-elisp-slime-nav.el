@@ -13,7 +13,8 @@
       "Jump to a pane and do elisp-slime-nav-describe-elisp-thing-at-point"
       (interactive (list (elisp-slime-nav--read-symbol-at-point)))
       (help-xref-interned (intern sym-name))
-      (switch-to-buffer-other-window "*Help*" t))
+      ;; (switch-to-buffer-other-window "*Help*" t)
+      )
     ))
 
 (provide 'init-elisp-slime-nav)

@@ -19,13 +19,13 @@
 
 (defun save-macro (name)
   "Save a macro. Take a NAME as argument and save the last defined macro under this name at the end of your .emacs."
-  (interactive "SName of the macro :")  ; ask for the name of the macro
-  (kmacro-name-last-macro name)         ; use this name for the macro
-  (find-file user-init-file)            ; open ~/.emacs or other user init file
-  (goto-char (point-max))               ; go to the end of the .emacs
-  (newline)                             ; insert a newline
-  (insert-kbd-macro name)               ; copy the macro
-  (newline)                             ; insert a newline
+  (interactive "SName of the macro :") ; ask for the name of the macro
+  (kmacro-name-last-macro name)        ; use this name for the macro
+  (find-file user-init-file)   ; open ~/.emacs or other user init file
+  (goto-char (point-max))      ; go to the end of the .emacs
+  (newline)                    ; insert a newline
+  (insert-kbd-macro name)      ; copy the macro
+  (newline)                    ; insert a newline
   (switch-to-buffer nil))               ; return to the initial buffer
 
 (defun user--save-macro (name)
@@ -88,8 +88,8 @@ Position the cursor at its beginning, according to the current mode."
   "Insert an empty line after current line.  Keep existing position."
   (interactive)
   (save-mark-and-excursion
-   (end-of-line)
-   (newline)))
+    (end-of-line)
+    (newline)))
 
 (defun open-line-above ()
   (interactive)
@@ -203,15 +203,6 @@ Useful if something is watching file modification times."
   "Insert a nicely formated date string."
   (interactive)
   (insert (format-time-string "%a %b %d %H:%M:%S %Y")))
-
-(defun my/mkdir ()
-  "Create directory."
-  (interactive)
-  (if (equal major-mode 'dired-mode)
-      (call-interactively 'dired-create-directory)
-    (if (equal major-mode 'neotree-mode)
-        (call-interactively 'neotree-create-node)
-      (call-interactively 'make-directory))))
 
 (defun delete-this-file ()
   "Delete the current file, and kill the buffer. The `delete-file'
@@ -853,5 +844,12 @@ With a prefix argument, select the part after point."
       (setq line-spacing nil)
     (setq line-spacing 1.2))
   (redraw-frame (selected-frame)))
+
+;; define function to shutdown emacs server instance
+(defun server-shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
+  (interactive)
+  (save-some-buffers)
+  (kill-emacs))
 
 (provide 'init-defuns)

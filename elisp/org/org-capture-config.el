@@ -28,12 +28,13 @@
 (require 'org-capture)
 ;; Org todo keywords
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "|" "DONE(d)" "CANCELLED(c)")
-        (sequence "APPT(p)" "|" "DONE(d)" "CANCELLED(a)")))
+      '((sequence "TODO(t)" "INPROGRESS(i)" "|" "DONE(d!)" "CANCELLED(c@)")
+        (sequence "APPT(p)" "|" "DONE(d!)" "CANCELLED(c@)")))
 
 ;; Org faces
 (validate-setq org-todo-keyword-faces
                '(("TODO" :foreground "red" :weight bold)
+                 ("INPROGRESS" :foreground "#9f7e7e" :weight normal :underline t)
                  ("DONE" :foreground "forest green" :weight bold)
                  ("APPT" :foreground "magenta" :weight bold)
                  ("CANCELLED" :foreground "forest green" :weight bold)))
@@ -55,9 +56,10 @@
         ("home" . ?h)
         ("work" . ?w)
         ("book" . ?b)
-        ("support" . ?s)
+        ("office" . ?o)
         ("docs" . ?d)
-        ("emacs" . ?e)
+        ("emacs" . ?x)
+        ("errand" . ?e)
         ("noexport" . ?n)
         ("recurring" . ?r)))
 
@@ -70,11 +72,11 @@
 (setq org-capture-templates
       (quote (
               ("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-               "* TODO %?
+               "* TODO %? %:description %^g
 :PROPERTIES:
 :CREATED: %U
 :END:
-                 " :clock-in t :clock-resume t :empty-lines 1)
+" :clock-in t :clock-resume t :empty-lines 1)
 
               ("n" "Note" entry (file+headline org-default-notes-file "Notes")
                "* %? :NOTE:
@@ -104,12 +106,11 @@
 :END:
 %(org-cliplink-capture)
 ")
+              ("s" "Code Snippet" entry
+               (file+headline org-default-notes-file "Code")
+               ;; Prompt for tag and language
+               "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
 
-              ("s" "Code Snippet" entry (file+headline org-default-notes-file "Code")
-               "* %?
-:PROPERTIES:
-:CREATED: %U
-:END:")
               ("j" "Journal" entry (file+olp+datetree "~/org/diary.org")
                "* %?
 :PROPERTIES:
@@ -131,34 +132,40 @@
   "Advise capture-destroy to close the frame"
   (xah-fly-command-mode-activate))
 
-;; make the frame contain a single window. by default org-capture
-;; splits the window.
-;; (add-hook 'org-capture-mode-hook 'delete-other-windows)
-
 (defadvice org-switch-to-buffer-other-window
     (after supress-window-splitting activate)
   "Delete the extra window if we're in a capture frame"
   (if (equal "emacs-capture" (frame-parameter nil 'name))
       (delete-other-windows)))
 
-;; (defadvice org-capture
-;;     (after make-full-window-frame activate)
-;;   "Advise capture to be the only window when used as a popup"
-;;   (if (equal "emacs-capture" (frame-parameter nil 'name))
-;;       (delete-other-windows)))
-
 (defadvice org-capture-finalize
     (after delete-capture-frame activate)
   "Advise capture-finalize to close the frame"
   (if (equal "emacs-capture" (frame-parameter nil 'name))
       (progn (delete-frame)
-             (xah-fly-command-mode-activate))))
+             (xah-fly-command-mode-activate))
+    (xah-fly-command-mode-activate)))
 
-;; (defun post-capture ()
-;;   (if (equal "emacs-capture" (frame-parameter nil 'name))
-;;       (delete-frame)))
+(defvar my-org-capture-before-config nil
+  "Window configuration before `org-capture'.")
 
-;; (add-hook 'org-capture-after-finalize-hook 'post-capture)
+(defadvice org-capture (before save-config activate)
+  "Save the window configuration before `org-capture'."
+  (setq my-org-capture-before-config (current-window-configuration)))
+
+(add-hook 'org-capture-mode-hook 'delete-other-windows)
+
+(defun my-org-capture-cleanup ()
+  "Clean up the frame created while capturing via org-protocol."
+  ;; In case we run capture from emacs itself and not an external app,
+  ;; we want to restore the old window config
+  (when my-org-capture-before-config
+    (set-window-configuration my-org-capture-before-config))
+  (-when-let ((&alist 'name name) (frame-parameters))
+    (when (memq name '("org-protocol-capture" "emacs-capture"))
+      (delete-frame))))
+
+(add-hook 'org-capture-after-finalize-hook 'my-org-capture-cleanup)
 
 (provide 'org-capture-config)
 ;;; org-capture-config.el ends here

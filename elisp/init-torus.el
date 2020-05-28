@@ -1,7 +1,6 @@
 (use-package torus
   :ensure t
   :demand
-  :bind-keymap ("s-t" . torus-map)
   :bind
   (("C-^" . torus-alternate)
    ("s-/" . torus-search-history)
@@ -10,8 +9,7 @@
   :hook ((emacs-startup . torus-start)
 	 (kill-emacs . torus-quit))
   :custom
-  ((torus-prefix-key "s-t")
-   (torus-binding-level 3)
+  ((torus-binding-level 3)
    (torus-verbosity 2)
    (torus-dirname "~/.emacs.d/torus/")
    (torus-load-on-startup t)

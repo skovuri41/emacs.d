@@ -12,15 +12,20 @@
                          "~/org/gtd.org"
                          "~/org/diary.org"
                          "~/org/tickler.org"))
+;; "~/org/someday.org" is not part of agenda files
+;; [[https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html][Orgmode for GTD]]
+
 
 (setq org-refile-targets `(("~/org/gtd.org" :maxlevel . 3)
+                           ("~/org/diary.org" :level . 3)
                            ("~/org/someday.org" :level . 1)
                            ("~/org/agenda.org" :level . 1)
                            ("~/org/tickler.org" :maxlevel . 2)
                            ("~/org/inbox.org" :maxlevel . 1)))
 
 (setq org-outline-path-complete-in-steps nil)
-(validate-setq org-refile-use-outline-path 'file)
+(setq org-refile-use-outline-path 'file)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
 (setq org-agenda-start-with-log-mode t)
 (validate-setq org-agenda-dim-blocked-tasks t)
 (setq org-agenda-include-all-todo t)
@@ -65,6 +70,14 @@
  ;; Show all agenda dates - even if they are empty
  org-agenda-show-all-dates t)
 
+;; (add-hook 'org-agenda-mode-hook
+;;           '(lambda ()
+;;              (xah-fly-insert-mode-activate)))
+
+;; (add-hook 'org-agenda-finalize-hook
+;;           '(lambda ()
+;;              (xah-fly-command-mode-activate)))
+
 (defun org-current-is-todo ()
   (string= "TODO" (org-get-todo-state)))
 
@@ -81,6 +94,14 @@
 
 ;; save all the agenda files after each capture
 (add-hook 'org-capture-after-finalize-hook 'my/save-all-agenda-buffers)
+
+
+(use-package org-super-agenda
+  :ensure t
+  :diminish
+  :hook (org-agenda-mode . org-super-agenda-mode)
+  :config)
+
 
 
 (provide 'org-agenda-config)
