@@ -56,19 +56,44 @@
   (setq frame-resize-pixelwise t)
   ;; (set-face-italic 'tabbar-unselected nil)
   (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 1800 920 t)
-  (setq
-   ;; font
-   ;; default-frame-alist '((font . "Monaco-10"))
-   ;; default-frame-alist '((font . "Fira Code-11"))
-   ;;default-frame-alist '((font . "Hasklig-12"))
-   default-frame-alist '((font . "JetBrainsMono-11"))
-   ;; default-frame-alist '((font . "Hasklig-12")
-   ;;                       (width . 120) ;character
-   ;;                       (height . 40))
-                                        ; lines
-   ;; make emacs use the clipboard
-   select-enable-clipboard t))
+  ;; (set-frame-size (selected-frame) 1800 920 t)
+  ;; (setq
+  ;;  ;; font
+  ;;  ;; default-frame-alist '((font . "Monaco-10"))
+  ;;  ;; default-frame-alist '((font . "Fira Code-11"))
+  ;;  ;;default-frame-alist '((font . "Hasklig-12"))
+  ;;  default-frame-alist '((font . "JetBrains Mono-11"))
+  ;;  ;; ;; default-frame-alist '((font . "Hasklig-12")
+  ;;  ;; ;;                       (width . 120) ;character
+  ;;  ;; ;;                       (height . 40))
+  ;;  ;;                                      ; lines
+  ;;  ;; ;; make emacs use the clipboard
+  ;;  select-enable-clipboard t)
+  ;; (set-frame-font "JetBrainsMono 11" nil t)
+  (set-face-attribute 'default
+                      nil
+                      :font "JetBrainsMono"
+                      :height 105
+                      :weight 'normal)
+  ;; (set-face-attribute 'default
+  ;;                     nil
+  ;;                     :font "JetBrainsMono"
+  ;;                     :height 105
+  ;;                     :weight 'medium)
+
+  ;; (set-frame-font "Fira Code 11" nil t)
+
+  (defun linux-copy (beg end)
+    (interactive "r")
+    (call-process-region beg end  "xclip" nil nil nil "-selection" "c"))
+
+  (defun linux-paste ()
+    (interactive)
+    (if (region-active-p) (delete-region (region-beginning) (region-end)) nil)
+    (call-process "xsel" nil t nil "-b"))
+
+  (setq select-enable-clipboard t)
+  (setq interprogram-paste-function 'x-selection-value))
 
 (when *is-a-mac*
 
@@ -91,5 +116,9 @@
   (require 'init-fira)
   (require 'init-cask)
   (require 'init-pbcopy))
+
+;; (message
+;;     (mapconcat (quote identity)
+;;         (sort (font-family-list) #'string-lessp) "\n"))
 
 (provide 'init-platform)

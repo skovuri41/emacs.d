@@ -955,7 +955,10 @@ FUN function callback"
               (lambda () (my/org-custom-id-get (point) 'create)))
     ))
 
-(use-package org-cliplink :ensure t)
+(use-package org-cliplink
+  :ensure t
+  :init
+  (setq org-cliplink-simpleclip-source t))
 
 (use-package org-protocol)
 
@@ -991,6 +994,5 @@ FUN function callback"
   :config
   (bind-keys :map worf-mode-map
              ("M-j" . nil)))
-
 
 (provide 'init-org-2)

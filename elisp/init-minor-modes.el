@@ -100,11 +100,12 @@
       (tabulated-list-init-header))))
 
 ;; https://www.emacswiki.org/emacs/sequential-command-config.el
+
 (use-package sequential-command
   :ensure t
   :config
   (progn
-    (define-sequential-command my-quit-dwim quit-window popwin:close-popup-window)
+    (define-sequential-command my-quit-dwim xah-quit-window popwin:close-popup-window)
     (define-sequential-command my-lispy-hungry-delete lispy-delete-backward-or-splice-or-slurp hungry-delete-backward)))
 
 (use-package smartrep
@@ -248,6 +249,8 @@
     (fullframe ibuffer ibuffer-quit)
     ;; (fullframe find-file quit-window true)
     (fullframe dired-up-directory quit-window)
+    (fullframe org-capture quit-window)
+
     ;; (fullframe projectile-switch-project quit-window)
     ;; (fullframe list-packages quit-window)
     ))
@@ -269,68 +272,6 @@
   :ensure t
   :config (setq graphviz-dot-indent-width 4))
 
-(use-package region-bindings-mode
-  :ensure t
-  :after xah-fly-keys
-  :disabled t
-  :config
-  (progn
-    ;; Do not activate `region-bindings-mode' in Special modes like `dired' and
-    ;; `ibuffer'. Single-key bindings like 'm' are useful in those modes even
-    ;; when a region is selected.
-    (setq region-bindings-mode-disabled-modes '(dired-mode
-                                                ibuffer-mode))
-    (region-bindings-mode-enable)
-
-    (defun modi/disable-rbm-deactivate-mark ()
-      "Disable `region-bindings-mode' and deactivate mark."
-      (interactive)
-      (region-bindings-mode -1)
-      (deactivate-mark)
-      (message "Mark deactivated"))
-
-    (bind-keys
-     :map region-bindings-mode-map
-     ("x" . xah-cut-line-or-region)
-     ("y" . xah-copy-line-or-region)
-     ("(" . lispy-parens)
-     ("{" . lispy-braces)
-     ("'" . lispy-quotes)
-     ("\"" . lispy-doublequote)
-     ("c" . duplicate-current-line-or-region)
-     ("n" . fancy-narrow-to-region)
-     ("E" . eval-region)
-     ("/" . swiper-the-thing)
-     ("q" . anzu-query-replace)
-     ("<C-SPC>" . modi/disable-rbm-deactivate-mark))))
-
-(use-package selected
-  :ensure t
-  :after xah-fly-keys
-  :disabled t
-  :commands selected-minor-mode
-  :init
-  (setq selected-org-mode-map (make-sparse-keymap))
-  (selected-global-mode)
-  :bind (:map selected-keymap
-              ("x" . xah-cut-line-or-region)
-              ("y" . xah-copy-line-or-region)
-              ("(" . lispy-parens)
-              ("{" . lispy-braces)
-              ("'" . lispy-quotes)
-              ("\"" . lispy-doublequote)
-              ("c" . duplicate-current-line-or-region)
-              ("n" . fancy-narrow-to-region)
-              ("E" . eval-region)
-              ("/" . swiper-the-thing)
-              ("q" . anzu-query-replace)
-              ("<C-SPC>" . modi/disable-rbm-deactivate-mark)
-              ("l" . xah-toggle-letter-case)
-              ("w" . count-words-region)
-              ("m" . apply-macro-to-region-lines)
-              :map selected-org-mode-map
-              ("t" . org-table-convert-region)))
-
 (use-package page-break-lines
   :ensure t
   :diminish page-break-lines-mode
@@ -341,7 +282,8 @@
 (use-package log4j-mode
   :ensure t
   :disabled t
-  :init
+  (define-key xah-fly-key-map (kbd "<C-f11>") 'xah-previous-user-buffer)
+  (define-key xah-fly-key-map (kbd "<C-f12>") 'xah-next-user-buffer)  :init
   (autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
   :config
   (progn
@@ -417,24 +359,28 @@
 ;; TODO figure out handling long line mode, still problematic
 
 
-(use-package nswbuff                 ; Quick switching between buffers
-  ;; :ensure t
-  :disabled t
-  :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
-          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
-  :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
-                nswbuff-display-intermediate-buffers t
-                nswbuff-clear-delay 1
-                nswbuff-exclude-buffer-regexps '("^ .*" "^\\*.*\\*")
-                nswbuff-include-buffer-regexps '("*cider-repl*")))
-
-
 (use-package point-history
   :load-path "elisp/"
   :config
   (progn
     (point-history-mode t)))
 
+(use-package literate-calc-mode
+  :ensure t)
 
+
+(use-package buffer-flip
+  :ensure t
+  :bind  (("M-<tab>" . buffer-flip)
+          :map buffer-flip-map
+          ( "M-<tab>" .   buffer-flip-forward)
+          ( "M-S-<tab>" . buffer-flip-backward)
+          ( "M-S-<iso-lefttab>" . buffer-flip-backward)
+          ( "M-<iso-lefttab>" . buffer-flip-backward)
+          ( "M-ESC" .     buffer-flip-abort))
+  :config
+  (setq buffer-flip-skip-patterns
+        '("^\\*helm\\b"
+          "^\\*swiper\\*$")))
 
 (provide 'init-minor-modes)

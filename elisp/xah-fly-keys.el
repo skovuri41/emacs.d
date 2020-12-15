@@ -2333,6 +2333,12 @@ If `universal-argument' is called first, do switch frame."
   (when (buffer-file-name)
     (save-buffer)))
 
+(defun xah-quit-window ()
+  (interactive)
+  (progn
+    (quit-window)
+    (xah-fly-command-mode-activate)))
+
 (defun xah-fly-command-mode-activate ()
   "Activate command mode."
   (interactive)
@@ -2420,6 +2426,12 @@ If `universal-argument' is called first, do switch frame."
      (lispy-define-key lispy-mode-map "n" 'lispy-occur)
      (lispy-define-key lispy-mode-map "P" 'lispy-eval-other-window)))
 
+(defun xah-command-mode-wrapper (fun)
+  (interactive)
+  (progn
+    (xah-fly-command-mode-activate)
+    (funcall fun)))
+
 (defun xah-insert-mode-wrapper (fun)
   (interactive)
   (progn
@@ -2436,6 +2448,7 @@ If `universal-argument' is called first, do switch frame."
 ;; when in shell mode,switch to insertion mode.
 (add-hook 'shell-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'eshell-mode-hook 'xah-fly-insert-mode-activate)
+(add-hook 'calendar-mode-hook 'xah-fly-insert-mode-activate)
 (add-hook 'xah-fly-command-mode-activate-hook '(lambda () (lispy-mode 0)))
 (add-hook 'xah-fly-command-mode-activate-hook 'hydra-commands-activate)
 (add-hook 'xah-fly-insert-mode-activate-hook 'lispy-mode-activate)

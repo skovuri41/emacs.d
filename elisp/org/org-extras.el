@@ -106,7 +106,10 @@
     ;; (org-crypt-use-before-save-magic)
     (setq org-tags-exclude-from-inheritance (quote ("crypt")))))
 
-(use-package org-cliplink :ensure t)
+(use-package org-cliplink
+  :ensure t
+  :init
+  (setq org-cliplink-simpleclip-source t))
 
 (use-package org-download
   :ensure t
@@ -125,12 +128,8 @@
 (use-package org-projectile
   :disabled t
   :config
-  ;; (setq org-projectile-projects-file
-  ;;       "~/Dropbox/org/project_todos.org")
   (push (org-projectile-project-todo-entry) org-capture-templates)
-  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-  ;; (global-set-key (kbd "C-c n p") 'org-projectile-project-todo-completing-read)
-  )
+  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
 
 (require 'org-id)
 (use-package org-id

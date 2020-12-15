@@ -132,7 +132,8 @@
       (cider-switch-to-repl-buffer)
       (cider-repl-closing-return)
       (cider-switch-to-last-clojure-buffer)
-      (message ""))
+      ;; (message "")
+      )
 
     (defun cider-eval-defun-or-region ()
       "Eval defun at point or region when it is active"

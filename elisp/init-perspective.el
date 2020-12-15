@@ -146,7 +146,9 @@
           ("\\`\\*helm.*?\\*\\'" :regexp t :size 0.3 :align t)
           ("*Calendar*" :select t :size 0.3 :align below)
           ("*info*" :select t :inhibit-window-quit t :same t)
+          ("*Org Select*" :select t :inhibit-window-quit t :same t)
           (magit-status-mode :select t :inhibit-window-quit t :same t)
+          (magit-log-mode :select t :inhibit-window-quit t :same t)
           (magit-log-mode :select t :inhibit-window-quit t :same t)))
 
   ;; A bit of trickery to have the final layout be adjusted by golden ratio.

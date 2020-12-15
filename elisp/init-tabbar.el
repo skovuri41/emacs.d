@@ -1,6 +1,5 @@
 (use-package centaur-tabs
   :ensure t
-  ;; :disabled t
   :config
   (progn
     (setq centaur-tabs-style "bar")

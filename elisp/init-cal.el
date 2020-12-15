@@ -80,10 +80,13 @@
   :config
   (bind-keys
    :map calendar-mode-map
+   ("q" . xah-quit-window)
    ("." . calendar-goto-today)
    ("?" . calendar-goto-info-node)
    ("C-," . (lambda () (interactive) (calendar-backward-month 1)))
+   ("<" . (lambda () (interactive) (calendar-backward-month 1)))
    ("C-." . (lambda () (interactive) (calendar-forward-month 1)))
+   (">" . (lambda () (interactive) (calendar-forward-month 1)))
    ("C-h" . (lambda () (interactive) (calendar-backward-day 1)))
    ("C-j" . (lambda () (interactive) (calendar-forward-week 1)))
    ("C-k" . (lambda () (interactive) (calendar-backward-week 1)))

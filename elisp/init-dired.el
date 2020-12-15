@@ -143,7 +143,8 @@
   (defun my-diredp-find-file-reuse-dir-buffer ()
     (interactive)
     (diredp-find-file-reuse-dir-buffer)
-    (delete-other-windows))
+    ;; (delete-other-windows)
+    )
 
   (defun ora-dired-get-size ()
     (interactive)

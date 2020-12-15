@@ -30,31 +30,13 @@
 (validate-setq org-agenda-dim-blocked-tasks t)
 (setq org-agenda-include-all-todo t)
 (validate-setq org-agenda-include-diary t)
+(setq holiday-bahai-holidays nil
+      holiday-hebrew-holidays nil
+      holiday-islamic-holidays nil)
 ;;(validate-setqorg-agenda-ndays7)
 (validate-setq org-agenda-skip-deadline-if-done t)
 (validate-setq org-agenda-skip-scheduled-if-done t)
-;;;add state to the sorting strategy of todo
-(setcdr (assq 'todo org-agenda-sorting-strategy)
-        '(todo-state-up priority-down category-keep))
 (setq
- ;; Sorting order for tasks on the agenda
- org-agenda-sorting-strategy
- '((agenda habit-down
-           time-up
-           priority-down
-           user-defined-up
-           effort-up
-           category-keep)
-   (todo priority-down category-up effort-up)
-   (tags priority-down category-up effort-up)
-   (search priority-down category-up))
-
- ;; Enable display of the time grid so we can see the marker for the
- ;; current time
- org-agenda-time-grid
- '((daily today remove-match)
-   #("----------------" 0 16 (org-heading t))
-   (900 1100 1300 1500 1700))
  ;; keep the agenda filter until manually removed
  org-agenda-persistent-filter t
  ;; show all occurrences of repeating tasks
@@ -69,14 +51,6 @@
  org-agenda-compact-blocks t
  ;; Show all agenda dates - even if they are empty
  org-agenda-show-all-dates t)
-
-;; (add-hook 'org-agenda-mode-hook
-;;           '(lambda ()
-;;              (xah-fly-insert-mode-activate)))
-
-;; (add-hook 'org-agenda-finalize-hook
-;;           '(lambda ()
-;;              (xah-fly-command-mode-activate)))
 
 (defun org-current-is-todo ()
   (string= "TODO" (org-get-todo-state)))
@@ -102,6 +76,10 @@
   :hook (org-agenda-mode . org-super-agenda-mode)
   :config)
 
+(use-package org-ql
+  :ensure t)
 
+(use-package org-sidebar
+  :ensure t)
 
 (provide 'org-agenda-config)

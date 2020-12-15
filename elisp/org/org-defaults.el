@@ -62,11 +62,19 @@
 (validate-setq org-cycle-separator-lines 0)
 (validate-setq org-cycle-include-plain-lists t)
 (validate-setq org-blank-before-new-entry (quote ((heading)
-                                         (plain-list-item . auto))))
-(validate-setq org-use-speed-commands t)
+                                                  (plain-list-item . auto))))
 (validate-setq org-hide-emphasis-markers t)
 (validate-setq org-reverse-note-order nil)
-(validate-setq org-tags-column 80)
+;; (validate-setq org-tags-column 80)
+
+(add-hook 'focus-in-hook
+          (lambda () (progn
+                  (setq org-tags-column (- 5 (window-body-width)))) (org-align-all-tags)))
+
+(add-hook 'focus-out-hook
+          (lambda () (progn
+                  (setq org-tags-column (- 5 (window-body-width)))) (org-align-all-tags)))
+
 ;; Block entries from changing state to DONE while they have children
 ;; that are not DONE
 (validate-setq org-enforce-todo-dependencies t)
@@ -76,7 +84,11 @@
 (validate-setq org-log-done (quote time))
 (validate-setq org-log-redeadline (quote time))
 (validate-setq org-log-reschedule (quote time))
-
 (validate-setq org-ellipsis "⤵")
+
+(validate-setq org-use-speed-commands t)
+
+
+
 
 (provide 'org-defaults)

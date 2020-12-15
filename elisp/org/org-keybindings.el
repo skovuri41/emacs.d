@@ -81,13 +81,20 @@
            ((kbd "M-k") . org-agenda-previous-item)
            ((kbd "M-h") . org-agenda-earlier)
            ((kbd "M-l") . org-agenda-later)
+           ("l" 'org-agenda-later)
+           ("h" 'org-agenda-earlier)
+           ;; ((kbd "RET") 'org-agenda-switch-to)
+           ([escape] 'org-agenda-quit)
+           ;; ("q" 'org-agenda-quit)
+           ("s" 'org-agenda-save-all-org-buffers)
+           ("t" 'org-agenda-todo)
+           ((kbd "SPC") 'org-agenda-show-and-scroll-up)
            ("i" . org-agenda-clock-in)
            ("o" . org-agenda-clock-out)
            ("0" . ora-org-schedule-today)
            ("1" . ora-org-schedule-tomorrow)
            ("v" . sk/hydra-org-agenda-view)
            ("T" . worf-clock-in-and-out))
-
 
 (which-key-add-key-based-replacements
   "SPC o <" "org date from calendar"
@@ -128,7 +135,7 @@
   "SPC o o" "org organize"
   "SPC o p" "org practice"
   "SPC o q" "org quit special buffer"
-  "SPC o r" "org ref"
+  "SPC o r" "org refile"
   "SPC o s" "org store link"
   "SPC o t" "org tags command"
   "SPC o v" "org agenda view"
@@ -183,7 +190,8 @@
            ("p" . org-pomodoro)
            ("P" . sk/hydra-org-property/body)
            ("q" . org-edit-src-exit)
-           ("r" . sk/hydra-org-drill/body)
+           ;; ("r" . sk/hydra-org-drill/body)
+           ("r" . #'my-org-refile-hydra/body)
            ("R" . org-refile)
            ("s" . org-store-link)
            ("S" . org-list-make-subtree)

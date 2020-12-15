@@ -498,4 +498,33 @@ _u_: Update field _F_: file funcs
   ("C" sk/org-ref-cite-hydra/body)
   ("q" nil :color blue))
 
+;; https://fuco1.github.io/2019-02-10-Refiling-hydra-with-pre-defined-targets.html
+(defmacro my-org-make-refile-command (fn-suffix refile-targets)
+  "Generate a command to call `org-refile' with modified targets."
+  `(defun ,(intern (concat "my-org-refile-" (symbol-name fn-suffix))) ()
+     ,(format "`org-refile' to %S" refile-targets)
+     (interactive)
+     (org-refile-cache-clear)
+     (let ((org-refile-target-verify-function nil)
+           (org-refile-targets ,refile-targets))
+       (call-interactively 'org-refile))))
+
+(my-org-make-refile-command someday '(("~/org/someday.org" :maxlevel . 9)))
+(my-org-make-refile-command agenda '(("~/org/agenda.org" :maxlevel . 9)))
+(my-org-make-refile-command this-file `((,(buffer-file-name) :maxlevel . 9)))
+
+(defhydra my-org-refile-hydra (:color blue :hint nil)
+  "
+_t_his file
+
+Special files:
+---------------------
+_s_omeday.org    _a_genda.org"
+  ("a" my-org-refile-agenda)
+  ("s" my-org-refile-someday)
+  ("t" my-org-refile-this-file))
+
+;; (bind-key "C-c r" #'my-org-refile-hydra/body org-mode-map)
+
+
 (provide 'org-hydra)
