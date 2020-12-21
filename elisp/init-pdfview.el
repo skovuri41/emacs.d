@@ -154,6 +154,7 @@
 (use-package org-pdfview
   :if (eq system-type 'darwin)
   :ensure t
+  :disabled t
   :after pdf-tools)
 
 (use-package interleave
