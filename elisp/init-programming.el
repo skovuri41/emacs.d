@@ -32,7 +32,8 @@
     (add-hook 'js-mode-hook (lambda () (setq js-indent-level 2)))))
 
 (use-package json-navigator
-  :ensure t)
+  ;;:ensure t
+  :disabled t)
 
 (use-package js2-mode
   :mode (("\\.js$" . js2-mode)
