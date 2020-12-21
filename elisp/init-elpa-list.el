@@ -48,12 +48,12 @@
                     zop-to-char
                     web-mode
                     csv-mode
-                    csv-nav
+                    ;;csv-nav
                     rainbow-delimiters
                     imenu-anywhere
                     aggressive-indent
                     iedit
-                    tidy
+                    ;;tidy
                     drag-stuff
                     elisp-slime-nav
                     better-defaults
@@ -97,12 +97,12 @@
                     clojure-mode
                     clojure-snippets
                     cider
-                    clojure-cheatsheet
+                    ;;clojure-cheatsheet
                     cider-eval-sexp-fu
                     4clojure
                     paren-face
                     clj-refactor
-                    typed-clojure-mode
+                    ;;typed-clojure-mode
                     transpose-frame
                     auto-compile
                     sqlup-mode

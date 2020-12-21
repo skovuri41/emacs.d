@@ -70,7 +70,7 @@
 ;; Block entries from changing state to DONE while they have children
 ;; that are not DONE
 (validate-setq org-enforce-todo-dependencies t)
-(validate-setq org-use-fast-todo-selection t)
+(setq org-use-fast-todo-selection t)
 ;; put state change log messages into a drawer
 (validate-setq org-log-into-drawer t)
 (validate-setq org-log-done (quote time))

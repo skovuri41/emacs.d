@@ -661,7 +661,6 @@ not prevent downloading the actual packages (obviously)."
   (let ((comint-buffer-maximum-size 0))
     (comint-truncate-buffer)))
 
-(require 'f)
 
 ;;;; files related to buffers
 (defun path-for-current-buffer ()
