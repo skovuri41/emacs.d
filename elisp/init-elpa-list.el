@@ -1,45 +1,45 @@
 (setq my-packages '(company
                     company-quickhelp
-		    direx
-		    drag-stuff
+                    direx
+                    drag-stuff
                     all-the-icons
-		    expand-region
+                    expand-region
                     evil-leader
                     evil-nerd-commenter
                     evil-matchit
                     evil-visualstar
                     flx-ido
-		    flyspell
+                    flyspell
                     flycheck
                     fancy-narrow
-		    gitconfig-mode
-		    gitignore-mode
-		    grizzl
-		    guide-key
-		    helm
-		    helm-descbinds
-		    helm-gtags
-		    helm-projectile
-		    helm-swoop
+                    gitconfig-mode
+                    gitignore-mode
+                    grizzl
+                    guide-key
+                    helm
+                    helm-descbinds
+                    helm-gtags
+                    helm-projectile
+                    helm-swoop
                     helm-ag
                     helm-backup
-		    ido-vertical-mode
-		    json-mode
-		    magit
-		    multiple-cursors
-		    org
-		    org-bullets
+                    ido-vertical-mode
+                    json-mode
+                    magit
+                    multiple-cursors
+                    org
+                    org-bullets
                     ;; org-pomodoro
                     ;; org-drill
-		    projectile
-		    smart-mode-line
-		    ;; smartparens
-		    smex
-		    undo-tree
-		    use-package
+                    projectile
+                    smart-mode-line
+                    ;; smartparens
+                    smex
+                    undo-tree
+                    use-package
                     which-key
-		    yasnippet
-		    zenburn-theme
+                    yasnippet
+                    zenburn-theme
                     ace-jump-buffer
                     ace-window
                     projectile
@@ -82,7 +82,7 @@
                     git-timemachine
                     git-gutter-fringe+
                     git-gutter+
-		    hydra
+                    hydra
                     spaceline
                     restclient
                     restclient-helm
@@ -113,7 +113,7 @@
                     embrace
                     key-chord
                     mwim
-                    worf
+                    ;;worf
                     tiny
                     outshine
                     outorg
@@ -129,5 +129,6 @@
                     fullframe
                     engine-mode
                     dired-subtree
-                    shut-up
-                    ))
+                    lsp-mode
+                    lsp-treemacs
+                    shut-up))

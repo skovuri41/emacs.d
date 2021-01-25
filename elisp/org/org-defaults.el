@@ -33,7 +33,7 @@
 (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
 ;; (add-hook 'org-mode-hook #'my/org-mode-key-bindings)
 
-(validate-setq org-directory (file-truename "~/org"))
+(validate-setq org-directory (file-truename "~/Documents/org"))
 (validate-setq org-default-notes-file (concat org-directory "/inbox.org"))
 (validate-setq org-replace-disputed-keys t)
 (validate-setq org-startup-folded t)

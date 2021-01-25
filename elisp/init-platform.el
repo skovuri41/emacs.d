@@ -73,7 +73,7 @@
   (set-face-attribute 'default
                       nil
                       :font "JetBrainsMono"
-                      :height 105
+                      :height 132
                       :weight 'normal)
   ;; (set-face-attribute 'default
   ;;                     nil

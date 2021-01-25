@@ -1,13 +1,12 @@
 (use-package torus
   :ensure t
-  :demand
   :bind
   (("C-^" . torus-alternate)
    ("s-/" . torus-search-history)
    :map torus-map
    ("t" . torus-copy-to-circle))
   :hook ((emacs-startup . torus-start)
-	 (kill-emacs . torus-quit))
+         (kill-emacs . torus-quit))
   :custom
   ((torus-binding-level 3)
    (torus-verbosity 2)

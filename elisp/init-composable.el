@@ -12,6 +12,7 @@
 
 
     (bind-keys :map composable-object-mode-map
+               ("m". set-mark-command)
                ("b" . backward-word)
                ("B" . mark-whole-buffer)
                ("d" . er/mark-defun)

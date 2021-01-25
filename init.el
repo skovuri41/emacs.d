@@ -1,4 +1,4 @@
-(package-initialize)
+;; (package-initialize)
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq default-directory (getenv "HOME"))
@@ -9,6 +9,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 (require 'init-platform)
 (require 'use-package)
+(require 'init-straight)
 (require 'init-defaults)
 (require 'init-defuns)
 (require 'init-ediff)

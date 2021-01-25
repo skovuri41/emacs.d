@@ -14,6 +14,18 @@
     ;;(add-to-list 'auto-mode-alist '("\\.cljx\\" . clojurex-mode))
     ;;(add-to-list 'auto-mode-alist '("\\.cljs\\" . clojurescript-mode))
     ;;(add-to-list 'auto-mode-alist '("\\.clj\\" . clojure-mode))
+    (add-hook 'clojure-mode-hook 'lsp)
+    (add-hook 'clojurescript-mode-hook 'lsp)
+    (add-hook 'clojurec-mode-hook 'lsp)
+
+    (setq lsp-lens-enable t
+          lsp-signature-auto-activate nil
+          ;; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+          ;; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+          )
+    (setq lsp-enable-completion-at-point nil) ; use cider completion
+
+    ;; install it using M-x lsp-install-server RET clojure-lsp
 
     (setq clojure-align-forms-automatically t)
     (setq clojure-align-reader-conditionals t)

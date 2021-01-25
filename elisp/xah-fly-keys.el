@@ -1976,7 +1976,7 @@ If `universal-argument' is called first, do switch frame."
       (define-key xah-fly-key-map (kbd "C--") 'text-scale-decrease)
       (define-key xah-fly-key-map (kbd "C-0") (lambda () (interactive) (text-scale-set 0)))))
 
-  ;; (define-key xah-fly-key-map (kbd "<f2>") 'xah-pop-local-mark-ring)
+  (define-key xah-fly-key-map (kbd "<f7>") 'xah-pop-local-mark-ring)
   ;; (define-key xah-fly-key-map (kbd "<S-f2>") 'pop-global-mark)
   ;; (define-key xah-fly-key-map (kbd "M-RET") 'xah-cycle-hyphen-underscore-space)
   (define-key xah-fly-key-map (kbd "M-c") 'hydra-change-case/body)
@@ -1988,7 +1988,8 @@ If `universal-argument' is called first, do switch frame."
   ;; (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete)
   (define-key xah-fly-key-map (kbd "C-d") 'lispy-delete-or-splice-or-slurp)
   ;; (define-key xah-fly-key-map (kbd "C-e") 'lispy-move-end-of-line)
-  (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
+  (define-key xah-fly-key-map (kbd "M-SPC") 'major-mode-hydra)
+  ;; (define-key xah-fly-key-map (kbd "M-SPC") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "DEL") 'my-lispy-hungry-delete)
   (define-key xah-fly-key-map (kbd "<home>") 'xah-fly-command-mode-activate)
   (define-key xah-fly-key-map (kbd "<menu>") 'xah-fly-command-mode-activate)
@@ -2152,6 +2153,8 @@ If `universal-argument' is called first, do switch frame."
     (define-key xah-fly-key-map (kbd "gx") 'counsel-osx-app)
     (define-key xah-fly-key-map (kbd "gl") 'link-hint-open-link)
     (define-key xah-fly-key-map (kbd "gL") 'link-hint-open-multiple-links)
+    (define-key xah-fly-key-map (kbd "gm") 'pop-global-mark)
+
     (define-key xah-fly-key-map (kbd "j") 'next-line)
     (define-key xah-fly-key-map (kbd "h") 'backward-char)
     (define-key xah-fly-key-map (kbd "i") 'xah-fly-insert-mode-activate)
@@ -2389,6 +2392,7 @@ If `universal-argument' is called first, do switch frame."
                                     cider-docview-mode
                                     cider-stacktrace-mode
                                     clojurec-mode
+                                    clojure-mode
                                     clojurex-mode))
     (define-key xah-fly-key-map (kbd "c") 'hydra-cider-main/body))
    ((memq major-mode '(java-mode))

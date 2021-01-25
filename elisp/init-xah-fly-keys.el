@@ -23,6 +23,6 @@
     (key-chord-define minibuffer-local-map "kj" (kbd "C-g"))
     (key-chord-define ivy-minibuffer-map "kj" (kbd "C-g"))
     (key-chord-define company-active-map "kj" 'company-abort)
-    ))
+    (key-chord-define-global "cv" 'xah-pop-local-mark-ring)))
 
 (provide 'init-xah-fly-keys)

@@ -1,19 +1,37 @@
 (use-package org-roam
   :ensure nil
+  :diminish org-roam-mode
   :hook
   (after-init . org-roam-mode)
   :commands (org-roam-build-cache)
   :straight (:host github :repo "jethrokuan/org-roam" :branch "master")
   :config
   (progn
-    (setq org-roam-directory "~/org/notes")
-    (setq org-roam-completion-system 'ivy))
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-show-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert)))
+    (require 'org-roam-protocol)
+    (setq org-roam-directory "~/Documents/org/notes")
+    (setq org-roam-graph-extra-config '(("overlap" . "prism")
+                                        ("color" . "skyblue")))
+    (setq org-roam-capture-templates
+          '(("d"
+             "default"
+             plain
+             #'org-roam-capture--get-point
+             "%?"
+             :file-name "%<%Y-%m-%d_%H:%M>-${slug}"
+             :head "#+title: ${title}\n* Tasks\n"
+             :unnarrowed t)))
+
+    (defhydra hydra-org-roam (:exit t :idle 0.8)
+      "Launcher for `org-roam'."
+      ("r" org-roam "roam")
+      ("i" org-roam-insert "insert")
+      ("f" org-roam-find-file "find-file")
+      ("r" org-roam-random-note "random")
+      ("v" org-roam-buffer-activate "view backlinks")
+      ("b" org-roam-find-backlink "find backlink")
+      ("t" org-roam-today "todo")
+      ("g" org-roam-show-graph "show graph"))
+    (setq org-roam-buffer-position 'bottom))
   :custom-face
   (org-roam-link ((t (:inherit org-link :foreground "#C991E1")))))
 
@@ -32,12 +50,15 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/org/notes"))
+  (deft-directory "~/Documents/org/notes"))
 
 (use-package org-journal
   :bind
   ("C-c n j" . org-journal-new-entry)
   :custom
-  (org-journal-dir "~/org/notes")
+  (org-journal-dir "~/Documents/org/notes")
   (org-journal-date-prefix "#+TITLE: ")
   (org-journal-file-format "%Y-%m-%d.org"))
+
+
+(provide 'ora-org-roam)

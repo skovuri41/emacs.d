@@ -1,5 +1,94 @@
 ;;; Code:
 
+(pretty-hydra-define clj-hydra-repl
+  (:color teal :quit-key "q")
+  ("REPL"
+   (("j" cider-jack-in "jack in clj")
+    ("J" cider-jack-in-clojurescript "jack in cljs")
+    ("c" cider-connect "connect")
+    ("b" cider-switch-to-repl-buffer "switch to repl")
+    ("l" cider-repl-clear-output "clear repl output")
+    ("q" cider-quit "quit repl")
+    ("n" cider-repl-set-ns "set-repl-ns")
+    ("r" cider-restart "restart")
+    ("i" cider-interrupt "interrupt"))))
+
+(pretty-hydra-define clj-hydra-eval
+  (:color teal :quit-key "q")
+  ("Eval"
+   (("b" cider-eval-buffer "eval buffer")
+    ("e" cider-eval-last-sexp "eval last sexp")
+    ("." cider-eval-last-sexp-to-repl "eval last to repl")
+    ("v" cider-eval-last-sexp-and-replace "eval last sexp and replace")
+    ("d" cider-eval-defun-at-point "eval defun at point")
+    ("f" cider-load-file "file")
+    ("r" cider-eval-region "eval region")
+    ("n" cider-eval-ns-form "eval ns form")
+    ("h" cider-ns-refresh "ns-reload")
+    ("m" cider-macroexpand-1 "macroexpand-1")
+    ("M" cider-macroexpand-all "macroexpand all")
+    ("i" cider-inspect-last-result "inspect-last-result"))))
+
+(pretty-hydra-define clj-hydra-docs
+  (:color teal :quit-key "q")
+  ("Documentation"
+   (("a" cider-apropos "apropos")
+    ("h" cider-doc "doc")
+    ("j" cider-javadoc "javadoc")
+    ("n" cider-browse-ns "browse namespace")
+    ("N" cider-browse-ns-all "browse all namespaces"))))
+
+(pretty-hydra-define clj-hydra-jump
+  (:color teal :quit-key "q")
+  ("Jump"
+   (("g" (lambda (p) (interactive "P") (cider-find-var (if p nil (list 4)))) "find var")
+    ("b" cider-pop-back "pop back")
+    ("n" cider-find-ns "ns"))))
+
+(pretty-hydra-define clj-hydra-refactor
+  (:color teal :quit-key "q")
+  ("Refactor"
+   (("s" cljstyle-region "cljstyle region")
+    ("S" cljstyle-current-file "cljstyle current file"))))
+
+(pretty-hydra-define clj-hydra-test
+  (:color teal :quit-key "q")
+  ("Test"
+   (("a" cider-test-run-ns-tests "run ns tests")
+    ("r" cider-test-show-report "show test report")
+    ("l" cider-test-run-loaded-tests "loaded")
+    ("A" cider-auto-test-mode "toggle auto test mode")
+    ("f" cider-test-rerun-failed-tests "rerun failed tests"))))
+
+(pretty-hydra-define clj-hydra-namespace
+  (:color teal :quit-key "q")
+  ("Namespace"
+   (("n" clojure-insert-ns-form "insert ns form")
+    ("h" clojure-insert-ns-form-at-point "insert ns form here")
+    ("p" clojure-update-ns "update ns form")
+    ("s" clojure-sort-ns "sort ns"))))
+
+(pretty-hydra-define clj-hydra-collections
+  (:color teal :quit-key "q")
+  ("Collections"
+   (("l" clojure-convert-collection-to-list "to list")
+    ("q" clojure-convert-collection-to-quoted-list "to quoted list")
+    ("m" clojure-convert-collection-to-map "to map")
+    ("v" clojure-convert-collection-to-vector "to vector")
+    ("s" clojure-convert-collection-to-set "to set"))))
+
+(major-mode-hydra-define (clojure-mode clojurescript-mode clojurec-mode cider-repl-mode) (:title "Clojure" :quit-key "q")
+  ("Menu"
+   (("c" clj-hydra-repl/body "Repl")
+    ("e" clj-hydra-eval/body "Eval")
+    ("d" clj-hydra-docs/body "Documentation")
+    ("j" clj-hydra-jump/body "Jump")
+    ("r" clj-hydra-refactor/body "Refactor")
+    ("n" clj-hydra-namespace/body "Namespace")
+    ("k" clj-hydra-collections/body "Collections")
+    ("t" clj-hydra-test/body "Test"))))
+
+
 ;;; *** main
 (defhydra hydra-cider-main (:hint nil :color teal)
   "

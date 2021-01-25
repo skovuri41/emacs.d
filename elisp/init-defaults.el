@@ -15,12 +15,13 @@
 
 ;; Allow pasting selection outside of Emacs
 (setq select-enable-clipboard t)
-
+(setq select-enable-primary t)
 ;; window focus follows the mouse pointer
 (setq  mouse-autoselect-window t)
 
 ;; copy by just selecting with mouse
 (setq mouse-drag-copy-region t)
+
 
 ;;make mouse scrolling smooth
 (setq  mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control))))
@@ -140,6 +141,8 @@
 (save-place-mode +1)
 (setq save-place-version-control "never")
 (setq save-place-forget-unreadable-files nil)
+(setq mark-ring-max 6)
+(setq global-mark-ring-max 6)
 
 (use-package winner
   :config
@@ -183,6 +186,7 @@
 ;; Don't be so stingy on the memory, we hav\e lots now. It's the distant future.
 (setq gc-cons-threshold (* 1024 1024 1024))
 (setq large-file-warning-threshold (* 25 1024 1024))
+(setq read-process-output-max (* 1024 1024))
 
 ;; enable erase-buffer command
 (put 'erase-buffer 'disabled nil)

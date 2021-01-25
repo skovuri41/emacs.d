@@ -383,4 +383,7 @@
         '("^\\*helm\\b"
           "^\\*swiper\\*$")))
 
+(use-package major-mode-hydra
+  :ensure t)
+
 (provide 'init-minor-modes)

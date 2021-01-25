@@ -598,6 +598,56 @@ _<SPC>_ →Cap→UP→down→
       ("-" torus-split-horizontally "switch horizontally")
       ("q" nil "quit" :exit t))
 
-    ))
+    )
+
+  (major-mode-hydra-define emacs-lisp-mode nil
+    ("Eval"
+     (("b" eval-buffer "buffer")
+      ("e" eval-defun "defun")
+      ("r" eval-region "region"))
+     "REPL"
+     (("I" ielm "ielm"))
+     "Test"
+     (("t" ert "prompt")
+      ("T" (ert t) "all")
+      ("F" (ert :failed) "failed"))
+     "Doc"
+     (("d" elisp-slime-nav-find-elisp-thing-at-point "thing-at-pt")
+      ("f" describe-function "function")
+      ("v" describe-variable "variable")
+      ("i" info-lookup-symbol "info lookup"))))
+
+  (pretty-hydra-define hydra-lsp
+    (:color teal :quit-key "q")
+    ("Connection"
+     (("ss" lsp "session start")
+      ("sr" lsp-restart-workspace "session restart")
+      ("sd" lsp-describe-session "session describe")
+      ("Q" lsp-disconnect "disconnect"))
+     "Find & Goto"
+     (("d" lsp-describe-thing-at-point "describe symbol")
+      ("f" lsp-find-references "find references")
+      ("h" lsp-treemacs-call-hierarchy "show call hierarchy"))
+     "Refactor"
+     (("r" lsp-rename "rename")
+      ("=" lsp-format-buffer "format"))
+     "Toggles"
+     (("l" lsp-lens-mode "toggle lens" :toggle t :exit nil)
+      ("s" lsp-toggle-symbol-highlight "toggle symbol highlight" :toggle t :exit nil))))
+
+  (pretty-hydra-define hydra-git-timemachine
+    (:color teal :quit-key "q")
+    ("Actions"
+     (("b" git-timemachine-blame "run `magit-blame' on the current revision")
+      ("c" git-timemachine-show-commit "show current commit using magit")
+      ("g" git-timemachine-show-nth-revision "goto nth revision")
+      ("n" git-timemachine-show-next-revision "next revision")
+      ("p" git-timemachine-show-previous-revision "previous revision")
+      ("t" git-timemachine-show-revision-fuzzy "goto revision by selected commit message")
+      ("w" git-timemachine-kill-abbreviated-revision "copy current abbreviated hash")
+      ("W" git-timemachine-kill-revision "copy current full hash")
+      ("q" git-timemachine-quit "quit the time machine"))))
+
+  )
 
 (provide 'init-hydra)

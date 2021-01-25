@@ -89,7 +89,7 @@
 (global-set-key (kbd "s-S") 'write-file)              ;; save as
 (global-set-key (kbd "s-q") 'save-buffers-kill-emacs) ;; quit
 (global-set-key (kbd "s-z") 'undo)
-
+(global-set-key (kbd "<ESC>") 'kj-chord-dwim)
 
 (define-key occur-mode-map "k" 'previous-line)
 (define-key occur-mode-map "j" 'next-line)
