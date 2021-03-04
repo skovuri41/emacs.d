@@ -47,7 +47,7 @@
   :ensure t)
 
 (use-package shrink-whitespace
-  :ensure t)
+  :disabled t)
 
 (use-package ws-butler
   :ensure t

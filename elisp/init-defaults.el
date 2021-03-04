@@ -210,16 +210,12 @@
   (global-prettify-symbols-mode +1))
 
 ;; savehist
-(use-package savehist
-  :config
-  (progn
-    (setq savehist-additional-variables
-          ;; also save my search entries
-          '(search-ring regexp-search-ring kill-ring)
-          savehist-file "~/.emacs.d/savehist")
-    (setq savehist-save-minibuffer-history t
-          savehist-autosave-interval 180)
-    (savehist-mode)))
+(setq savehist-additional-variables
+      '(search-ring regexp-search-ring kill-ring)
+      savehist-file "~/.emacs.d/savehist")
+(setq savehist-save-minibuffer-history t
+      savehist-autosave-interval 180)
+(savehist-mode 1)
 
 ;; Match fringe colour to background colour
 (defun my/set-fringe-bg()

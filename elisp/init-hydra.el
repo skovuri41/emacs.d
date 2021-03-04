@@ -600,7 +600,8 @@ _<SPC>_ →Cap→UP→down→
 
     )
 
-  (major-mode-hydra-define emacs-lisp-mode nil
+  (major-mode-hydra-define emacs-lisp-mode
+    (:color teal :quit-key "q")
     ("Eval"
      (("b" eval-buffer "buffer")
       ("e" eval-defun "defun")
@@ -620,20 +621,26 @@ _<SPC>_ →Cap→UP→down→
   (pretty-hydra-define hydra-lsp
     (:color teal :quit-key "q")
     ("Connection"
-     (("ss" lsp "session start")
-      ("sr" lsp-restart-workspace "session restart")
-      ("sd" lsp-describe-session "session describe")
-      ("Q" lsp-disconnect "disconnect"))
+     (("cc" lsp "session start")
+      ("cr" lsp-restart-workspace "session restart")
+      ("cd" lsp-describe-session "session describe")
+      ("ca" lsp-execute-code-action "code action")
+      ("co" lsp-organize-imports "organize imports")
+      ("cQ" lsp-disconnect "disconnect"))
      "Find & Goto"
-     (("d" lsp-describe-thing-at-point "describe symbol")
-      ("f" lsp-find-references "find references")
-      ("h" lsp-treemacs-call-hierarchy "show call hierarchy"))
+     (("gr" lsp-ui-peek-find-references "references")
+      ("gd" lsp-ui-peek-find-definitions "definitions")
+      ("gf" lsp-ivy-workspace-symbol "workspace symbol")
+      ("gp" lsp-describe-thing-at-point "describe symbol")
+      ("gr" lsp-find-references "find references")
+      ("gt" lsp-treemacs-call-hierarchy "show call hierarchy"))
      "Refactor"
-     (("r" lsp-rename "rename")
-      ("=" lsp-format-buffer "format"))
+     (("rr" lsp-rename "rename")
+      ("r=" lsp-format-buffer "format"))
      "Toggles"
-     (("l" lsp-lens-mode "toggle lens" :toggle t :exit nil)
-      ("s" lsp-toggle-symbol-highlight "toggle symbol highlight" :toggle t :exit nil))))
+     (("ol" lsp-lens-mode "toggle lens" :toggle t :exit nil)
+      ("od" lsp-ui-doc-mode "toggle hover doc" :toggle t :exit nil)
+      ("os" lsp-ui-sideline-mode "toggle sideline" :toggle t :exit nil))))
 
   (pretty-hydra-define hydra-git-timemachine
     (:color teal :quit-key "q")

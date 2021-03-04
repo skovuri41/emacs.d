@@ -58,7 +58,7 @@
                     elisp-slime-nav
                     better-defaults
                     color-identifiers-mode
-                    whitespace-cleanup-mode
+                    ;; whitespace-cleanup-mode
                     powerline
                     anzu
                     thingatpt
@@ -131,4 +131,5 @@
                     dired-subtree
                     lsp-mode
                     lsp-treemacs
+                    major-mode-hydra
                     shut-up))

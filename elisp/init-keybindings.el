@@ -20,7 +20,7 @@
 (global-set-key [remap mark-sexp] 'easy-mark)
 (global-set-key [remap kill-ring-save] 'composable-save-region)
 ;; (global-set-key [remap kill-ring-save] 'easy-kill)
-(global-set-key (kbd "<f7>") 'repeat-complex-command)
+;; (global-set-key (kbd "<f7>") 'repeat-complex-command)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -36,12 +36,16 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x r N") 'number-rectangle)
 (global-set-key (kbd "C-c r") 'ora-occur)
+(bind-key "ESC" nil)
 (global-set-key (kbd "M-k") 'my/kill-sentence-dwim)
 (global-set-key (kbd "M-`") 'helm-all-mark-rings)
 (global-set-key (kbd "M-i") 'iedit-mode)
 (global-set-key (kbd "M-,") 'pop-tag-mark)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
+(global-set-key (kbd "M-x") 'execute-extended-command)
+(bind-key "M-x" 'execute-extended-command)
+
 (global-set-key (kbd "M-g d") 'dumb-jump-go)
 (global-set-key (kbd "M-g b") 'dumb-jump-back)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
@@ -89,7 +93,7 @@
 (global-set-key (kbd "s-S") 'write-file)              ;; save as
 (global-set-key (kbd "s-q") 'save-buffers-kill-emacs) ;; quit
 (global-set-key (kbd "s-z") 'undo)
-(global-set-key (kbd "<ESC>") 'kj-chord-dwim)
+;; (global-set-key (kbd "<ESC>") 'kj-chord-dwim)
 
 (define-key occur-mode-map "k" 'previous-line)
 (define-key occur-mode-map "j" 'next-line)

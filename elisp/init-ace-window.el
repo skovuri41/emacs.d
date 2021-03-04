@@ -10,6 +10,7 @@
     (validate-setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))))
 
 (use-package ace-link
+  :ensure t
   :config (ace-link-setup-default))
 
 (provide 'init-ace-window)

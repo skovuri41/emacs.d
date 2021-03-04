@@ -70,53 +70,59 @@
 (require 'org-contacts)
 (setq org-capture-templates '())
 (setq org-capture-templates
-      (quote (
-              ("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-               "* TODO %? %:description %^g
+      '(
+        ("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
+         "* TODO %? %:description %^g
 :PROPERTIES:
 :CREATED: %U
 :END:
 " :clock-in t :clock-resume t :empty-lines 1)
 
-              ("n" "Note" entry (file+headline org-default-notes-file "Notes")
-               "* %? :NOTE:
+	
+	("w" "Link" entry (file+headline "~/Documents/org/links.org" "Test")
+         "* %? [[%:link][%:description]] \nCaptured On: %U")
+
+
+        ("n" "Note" entry (file+headline org-default-notes-file "Notes")
+         "* %? :NOTE:
 :PROPERTIES:
 :CREATED: %U
 :END:
 %a
 " :clock-in t :clock-resume t :empty-lines 1)
 
-              ("a" "Appointment" entry (file+headline "~/org/agenda.org" "Appointment")
-               "* APPT %i%? \n %^T")
+        ("a" "Appointment" entry (file+headline "~/Documents/org/agenda.org" "Appointment")
+         "* APPT %i%? \n %^T")
+        ("l" "Link" entry (file+headline "~/Documents/org/links.org" "Links")
+         "* TODO %a\n%?%T\n%i" :immediate-finish t)
+        ("T" "Tickler" entry (file+headline "~/Documents/org/tickler.org" "Tickler")
+         "* %i%? \n %^t" )
 
-              ("T" "Tickler" entry (file+headline "~/org/tickler.org" "Tickler")
-               "* %i%? \n %^t")
-
-              ("c" "Contacts" entry (file "~/org/contacts.org")
-               "* %(org-contacts-template-name)
+        ("c" "Contacts" entry (file "~/Documents/org/contacts.org")
+         "* %(org-contacts-template-name)
 :PROPERTIES:
 :EMAIL: %(org-contacts-template-email)
 :END:")
 
-              ("b" "Link from browser" entry (file+headline org-default-notes-file "Bookmarks")
-               "* TODO %? %:description %^g
+        ("b" "Link from browser" entry (file+headline org-default-notes-file "Bookmarks")
+         "* TODO %? %:description %^g
 :PROPERTIES:
 :CREATED: %U
 :SOURCE:
 :END:
 %(org-cliplink-capture)
 ")
-              ("s" "Code Snippet" entry
-               (file+headline org-default-notes-file "Code")
-               ;; Prompt for tag and language
-               "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
+        ("s" "Code Snippet" entry
+         (file+headline org-default-notes-file "Code")
+         ;; Prompt for tag and language
+         "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
 
-              ("j" "Journal" entry (file+olp+datetree "~/org/diary.org")
-               "* %?
+        ("j" "Journal" entry (file+olp+datetree "~/Documents/org/diary.org")
+         "* %?
 :PROPERTIES:
 :CREATED: %U
 :END:
-" :clock-in t :clock-resume t :empty-lines 1))))
+" :clock-in t :clock-resume t :empty-lines 1)))
 
 (add-hook 'org-capture-mode-hook
           '(lambda ()

@@ -75,6 +75,7 @@
 (require 'init-docker)
 (require 'init-local)
 (require 'init-ivy)
+;; (require 'init-selectrum)
 (require 'init-utils)
 (require 'init-xah-fly-keys)
 (require 'init-composable)

@@ -23,6 +23,7 @@
     (setq ivy-use-virtual-buffers t
           ivy-display-style 'fancy)
     (setq ivy-count-format "(%d/%d) ")
+    (setq ivy-use-selectable-prompt t)
     (setq ivy-initial-inputs-alist nil)
     (validate-setq ivy-re-builders-alist
                    '((read-file-name-internal . ivy--regex-fuzzy)
@@ -95,11 +96,11 @@
       (interactive)
       (if ivy--directory
           (ivy-quit-and-run
-           (dired ivy--directory)
-           (when (re-search-forward
-                  (regexp-quote
-                   (substring ivy--current 0 -1)) nil t)
-             (goto-char (match-beginning 0))))
+            (dired ivy--directory)
+            (when (re-search-forward
+                   (regexp-quote
+                    (substring ivy--current 0 -1)) nil t)
+              (goto-char (match-beginning 0))))
         (user-error
          "Not completing files currently")))
     (define-key ivy-minibuffer-map (kbd "C-:") 'ivy-dired)

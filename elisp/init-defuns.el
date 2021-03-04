@@ -204,6 +204,11 @@ Useful if something is watching file modification times."
   (interactive)
   (insert (format-time-string "%a %b %d %H:%M:%S %Y")))
 
+(defun insert-date ()
+  "Insert a timestamp according to locale's date and time format."
+  (interactive)
+  (insert (format-time-string "%c" (current-time))))
+
 (defun delete-this-file ()
   "Delete the current file, and kill the buffer. The `delete-file'
 function does not kill the buffer."

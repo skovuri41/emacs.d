@@ -1,16 +1,14 @@
 ;;; org-functions.el --- org functions               -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2018  shyam
-
-;; Author: shyam <shyam@hanuman>
-;; Keywords: files,
-
 (defun set-org-mode-app-defaults ()
   (setq org-file-apps
-        '(((auto-mode . emacs)
-           ("\\.mm\\'" . default)
-           ("\\.x?html?\\'" . system)
-           ("\\.pdf\\'" . system)))))
+        '((auto-mode . emacs)
+          (directory . emacs)
+          ("\\.org\\'" . emacs)
+          ("\\.txt\\'" . emacs)
+          ("\\.mm\\'" . default)
+          ("\\.x?html?\\'" . system)
+          ("\\.pdf\\'" . system))))
 
 (defun clever-insert-item ()
   "Clever insertion of org item."
@@ -130,5 +128,16 @@ buffer to the matched subtree."
      (org-archive-subtree)
      (setq org-map-continue-from (outline-previous-heading)))
    "/DONE" 'file))
+
+(defun org-toggle-link-display ()
+  "Toggle the literal or descriptive display of links."
+  (interactive)
+  (if org-descriptive-links
+      (progn (org-remove-from-invisibility-spec '(org-link))
+             (org-restart-font-lock)
+             (setq org-descriptive-links nil))
+    (progn (add-to-invisibility-spec '(org-link))
+           (org-restart-font-lock)
+           (setq org-descriptive-links t))))
 
 (provide 'org-functions)

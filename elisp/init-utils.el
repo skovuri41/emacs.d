@@ -224,4 +224,61 @@
              beginend-prog-mode
              beginend-vc-dir-mode))
 
+(use-package emms
+  :ensure t
+  :config
+  (require 'emms-setup)
+  (require 'emms-player-mpd)
+  (emms-all)
+  (setq emms-seek-seconds 5)
+  (setq emms-player-list '(emms-player-mpd emms-player-mpv))
+  (setq emms-info-functions '(emms-info-mpd))
+  (setq emms-player-mpd-server-name "localhost")
+  (setq emms-player-mpd-server-port "6601")
+  :commands hydra-emms/body
+  :bind
+  (("<XF86AudioPrev>" . emms-previous)
+   ("<XF86AudioNext>" . emms-next)
+   ("<XF86AudioPlay>" . emms-pause)
+   ("<XF86AudioStop>" . emms-stop)))
+
+(setq mpc-host "localhost:6600")
+(setq emms-player-mpd-server-port "6600")
+
+(defun mpd/start-music-daemon ()
+  "Start MPD, connects to it and syncs the metadata cache."
+  (interactive)
+  (shell-command "mpd")
+  (mpd/update-database)
+  (emms-player-mpd-connect)
+  (emms-cache-set-from-mpd-all)
+  (message "MPD Started!"))
+
+(defun mpd/kill-music-daemon ()
+  "Stops playback and kill the music daemon."
+  (interactive)
+  (emms-stop)
+  (call-process "killall" nil nil nil "mpd")
+  (message "MPD Killed!"))
+
+(defun mpd/update-database ()
+  "Updates the MPD database synchronously."
+  (interactive)
+  (call-process "mpc" nil nil nil "update")
+  (message "MPD Database Updated!"))
+
+(defhydra hydra-emms (:color teal
+                             :hint nil)
+  "
+    _p_:laylist  _b_:rowse  _r_:eset  _c_:onnect
+    _k_:ill      _u_:pdate
+  "
+  ("q" nil "quit")
+  ("p" emms)
+  ("b" emms-smart-browse)
+  ("r" emms-player-mpd-update-all-reset-cache)
+  ("c" mpd/start-music-daemon)
+  ("k" mpd/kill-music-daemon)
+  ("u" mpd/update-database))
+
 (provide 'init-utils)

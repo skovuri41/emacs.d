@@ -135,7 +135,7 @@
   "SPC o o" "org organize"
   "SPC o p" "org practice"
   "SPC o q" "org quit special buffer"
-  "SPC o r" "org refile"
+  "SPC o r" "org roam"
   "SPC o s" "org store link"
   "SPC o t" "org tags command"
   "SPC o v" "org agenda view"
@@ -191,8 +191,8 @@
            ("P" . sk/hydra-org-property/body)
            ("q" . org-edit-src-exit)
            ;; ("r" . sk/hydra-org-drill/body)
-           ("r" . #'my-org-refile-hydra/body)
-           ("R" . org-refile)
+           ("r" . hydra-roam/body)
+           ("R" . #'my-org-refile-hydra/body)
            ("s" . org-store-link)
            ("S" . org-list-make-subtree)
            ("y" . org-copy-subtree)
