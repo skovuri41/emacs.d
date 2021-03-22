@@ -6,10 +6,14 @@
    (("j" cider-jack-in "jack in clj")
     ("J" cider-jack-in-clojurescript "jack in cljs")
     ("c" cider-connect "connect")
-    ("b" cider-switch-to-repl-buffer "switch to repl")
+    ("b" (if (memq major-mode '(cider-repl-mode
+                                cider-stacktrace-mode))
+             (cider-switch-to-last-clojure-buffer)
+           (cider-switch-to-repl-buffer)) "switch to repl")
     ("l" cider-repl-clear-output "clear repl output")
-    ("q" cider-quit "quit repl")
-    ("n" cider-repl-set-ns "set-repl-ns")
+    ("x" cider-quit "quit repl"))
+   ""
+   (("n" cider-repl-set-ns "set-repl-ns")
     ("r" cider-restart "restart")
     ("i" cider-interrupt "interrupt"))))
 
@@ -21,13 +25,25 @@
     ("." cider-eval-last-sexp-to-repl "eval last to repl")
     ("v" cider-eval-last-sexp-and-replace "eval last sexp and replace")
     ("d" cider-eval-defun-at-point "eval defun at point")
-    ("f" cider-load-file "file")
-    ("r" cider-eval-region "eval region")
+    ("f" cider-load-file "file"))
+   ""
+   (("r" cider-eval-region "eval region")
     ("n" cider-eval-ns-form "eval ns form")
     ("h" cider-ns-refresh "ns-reload")
-    ("m" cider-macroexpand-1 "macroexpand-1")
-    ("M" cider-macroexpand-all "macroexpand all")
-    ("i" cider-inspect-last-result "inspect-last-result"))))
+    ("xo" cider-macroexpand-1 "macroexpand-1")
+    ("xa" cider-macroexpand-all "macroexpand all")
+    ("i" cider-inspect-last-result "inspect-last-result"))
+   ""
+   (("c" cider-eval-defun-to-comment)
+    ("t" cider-eval-sexp-at-point)
+    ("m" cider-eval-defun-or-region)
+    ("pd" cider-pprint-eval-defun-at-point)
+    ("pe" cider-pprint-eval-last-sexp)
+    ("pr" cider-eval-print-last-sexp))
+   ""
+   (("u" cider-undef)
+    ("r" cider-refresh)
+    ("k" cider-benchmark-defun-at-point))))
 
 (pretty-hydra-define clj-hydra-docs
   (:color teal :quit-key "q")
@@ -77,16 +93,41 @@
     ("v" clojure-convert-collection-to-vector "to vector")
     ("s" clojure-convert-collection-to-set "to set"))))
 
-(major-mode-hydra-define (clojure-mode clojurescript-mode clojurec-mode cider-repl-mode) (:title "Clojure" :quit-key "q")
+(pretty-hydra-define hydra-cider-help
+  (:color teal :quit-key "q")
+  ("Help"
+   (("q" hydra-cider-main/body)
+    ("a" cider-drink-a-sip)
+    ("b" cider-report-bug)
+    ("c" cider-version)
+    ("d" cider-view-manual)
+    ("e" cider-view-refcard)
+    ("s" clojure-cheatsheet))))
+
+(pretty-hydra-define hydra-cider-insert
+  (:color teal :quit-key "q")
+  ("Insert"
+   (("q" hydra-cider-main/body)
+    ("d" cider-insert-defun-in-repl)
+    ("e" cider-insert-last-sexp-in-repl)
+    ("n" cider-insert-ns-form-in-repl)
+    ("m" cider-insert-region-in-repl)
+    ("s" cider-send-and-evaluate-sexp))))
+
+(major-mode-hydra-define (clojure-mode clojurescript-mode clojurec-mode cider-repl-mode)
+  (:title "Clojure" :quit-key "q")
   ("Menu"
    (("c" clj-hydra-repl/body "Repl")
     ("e" clj-hydra-eval/body "Eval")
     ("d" clj-hydra-docs/body "Documentation")
     ("j" clj-hydra-jump/body "Jump")
-    ("r" clj-hydra-refactor/body "Refactor")
+    ("r" clj-hydra-refactor/body "Refactor"))
+   ""
+   (("." clj-hydra-insert/body "Insert")
     ("n" clj-hydra-namespace/body "Namespace")
     ("k" clj-hydra-collections/body "Collections")
-    ("t" clj-hydra-test/body "Test"))))
+    ("t" clj-hydra-test/body "Test")
+    ("h" clj-hydra-help/body "Help"))))
 
 
 ;;; *** main

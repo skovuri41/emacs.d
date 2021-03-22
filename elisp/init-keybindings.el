@@ -252,6 +252,9 @@ _o_rg e_l_isp _e_macs _h_yperspec"
 (defalias 'ppx'pretty-print-xml-region)
 (defalias 'ppj 'beautify-json)
 
+(defalias 'bbs 'babashka-connect)
+(defalias 'bbq 'babashka-quit)
+
 (set-register ?x '(file . "~/.emacs.d/elisp/xah-fly-keys.el"))
 (set-register ?i '(file . "~/.emacs.d/init.el"))
 

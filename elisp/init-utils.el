@@ -281,4 +281,20 @@
   ("k" mpd/kill-music-daemon)
   ("u" mpd/update-database))
 
+;; envrc: Emacs support for direnv which operates buffer-locally
+;; https://github.com/purcell/envrc
+(use-package envrc
+  :defer 2
+  :ensure t
+  :commands (envrc-allow)
+  :if (executable-find "direnv")
+  :bind (:map envrc-mode-map
+              ("C-c d" . envrc-command-map))
+  :config (envrc-global-mode))
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (provide 'init-utils)

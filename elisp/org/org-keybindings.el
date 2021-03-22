@@ -8,7 +8,10 @@
 (define-key org-agenda-mode-map (kbd "C-c C-j") #'avy-goto-word-1)
 (define-key org-mode-map (kbd "M-i") #'my-org-imenu)
 (define-key org-mode-map (kbd "<M-S-return>") 'my-org-insert-todo-heading)
-
+(define-key org-mode-map [remap org-return] (lambda () (interactive)
+                                                (if (org-in-src-block-p)
+                                                    (org-return)
+                                                  (org-return-indent))))
 
 ;;calendar tool on C-c .
 (define-key org-read-date-minibuffer-local-map (kbd "M-h")
@@ -48,13 +51,6 @@
                                 (org-insert-todo-heading nil)
                                 (org-metaright))))))
 
-
-(define-key org-mode-map "<"
-  (defun org-self-insert-or-less ()
-    (interactive)
-    (if (looking-back "^")
-        (sk/hydra-org-template/body)
-      (self-insert-command 1))))
 
 ;; (bind-keys :map orgstruct-mode-map
 ;;            ((kbd "M-H") . org-metaleft)

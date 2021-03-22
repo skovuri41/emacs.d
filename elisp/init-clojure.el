@@ -1,3 +1,6 @@
+(use-package flycheck-clj-kondo
+  :ensure t)
+
 (use-package clojure-mode
   :mode (("\\.edn$" . clojure-mode)
          ("\\.boot$" . clojure-mode)
@@ -14,18 +17,38 @@
     ;;(add-to-list 'auto-mode-alist '("\\.cljx\\" . clojurex-mode))
     ;;(add-to-list 'auto-mode-alist '("\\.cljs\\" . clojurescript-mode))
     ;;(add-to-list 'auto-mode-alist '("\\.clj\\" . clojure-mode))
-    (add-hook 'clojure-mode-hook 'lsp)
-    (add-hook 'clojurescript-mode-hook 'lsp)
-    (add-hook 'clojurec-mode-hook 'lsp)
-
-    (setq lsp-lens-enable t
-          lsp-signature-auto-activate nil
-          ;; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
-          ;; lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
-          )
-    (setq lsp-enable-completion-at-point nil) ; use cider completion
+    (require 'flycheck-clj-kondo)
+    (add-hook 'clojure-mode-hook 'company-mode)
 
     ;; install it using M-x lsp-install-server RET clojure-lsp
+    (use-package lsp-mode
+      :ensure t
+      :hook ((clojure-mode . lsp)
+             (clojurescript-mode . lsp)
+             (clojurec-mode . lsp))
+      :commands (lsp lsp-execute-code-action)
+      :hook ((lsp-mode . lsp-enable-which-key-integration)
+             (lsp-mode . lsp-modeline-diagnostics-mode))
+      :config
+      (add-hook 'clojure-mode-hook 'lsp)
+      (add-hook 'clojurescript-mode-hook 'lsp)
+      (add-hook 'clojurec-mode-hook 'lsp)
+      (setq lsp-print-performance t)
+      (setq lsp-log-io t)
+      (setq lsp-modeline-diagnostics-scope :project)
+      (setq lsp-headerline-breadcrumb-enable nil)
+      (setq lsp-file-watch-threshold 5000)
+      (setq lsp-enable-file-watchers nil)
+      (setq lsp-lens-enable t
+            lsp-ui
+            lsp-signature-auto-activate nil
+            ;; lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+            lsp-completion-enable nil))
+
+
+    (use-package lsp-ivy
+      :ensure t
+      :after (ivy lsp-mode))
 
     (setq clojure-align-forms-automatically t)
     (setq clojure-align-reader-conditionals t)
@@ -35,51 +58,13 @@
       :init
       (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1))))
 
-    (define-clojure-indent
-      (defroutes 'defun)
-      (GET 2)
-      (POST 2)
-      (PUT 2)
-      (DELETE 2)
-      (HEAD 2)
-      (ANY 2)
-      (context 2)
-      (let-routes 1))
-
-    (define-clojure-indent
-      (form-to 1))
-
-    (define-clojure-indent
-      (match 1)
-      (are 2)
-      (checking 2)
-      (async 1))
-
-    (define-clojure-indent
-      (select 1)
-      (insert 1)
-      (update 1)
-      (delete 1))
-
-    (define-clojure-indent
-      (run* 1)
-      (fresh 1))
-
-    (define-clojure-indent
-      (extend-freeze 2)
-      (extend-thaw 1))
-
-    (define-clojure-indent
-      (go-loop 1))
-
-    (define-clojure-indent
-      (this-as 1)
-      (specify 1)
-      (specify! 1))
-
-    (csetq clojure-indent-style :always-align)
-    (csetq clojure-indent-style :always-indent)
-    (csetq clojure-indent-style :align-arguments)
+    (require 'cljstyle-mode)
+    (defun turn-on-cljstyle ()
+      "Utility function to turn on `cljstyle-mode' and auto-formatting."
+      (if (executable-find "cljstyle")
+          (cljstyle-mode 1)
+        (message "Could not find `cljstyle' on $PATH. Please ensure you have installed it correctly.")))
+    (add-hook 'clojure-mode-hook 'turn-on-cljstyle)
 
     (setq clojure--prettify-symbols-alist
           '(("fn" . ?λ)
@@ -143,9 +128,7 @@
          (buffer-substring (region-beginning) (region-end)) nil))
       (cider-switch-to-repl-buffer)
       (cider-repl-closing-return)
-      (cider-switch-to-last-clojure-buffer)
-      ;; (message "")
-      )
+      (cider-switch-to-last-clojure-buffer))
 
     (defun cider-eval-defun-or-region ()
       "Eval defun at point or region when it is active"
@@ -183,7 +166,31 @@
       ;; (define-key cider-repl-mode-map (kbd "C-:") nil)
       )
 
-    (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)))
+    (add-hook 'clojure-mode-hook #'clj-mode-keys-setup)
+
+    (defun babashka-connect--process-filter (proc string)
+      "Run cider-connect once babashka nrepl server is ready."
+      (when (string-match "Started nREPL server at .+:\\([0-9]+\\)" string)
+        (cider-connect-clj (list :host "localhost" :port (match-string 1 string))))
+      ;; Default behavior: write to process buffer
+      (internal-default-process-filter proc string))
+
+    (defun babashka-connect ()
+      "Start babashka on a random port."
+      (interactive)
+      (let ((port (+ 1230 (cl-random 300))))
+        (set-process-filter
+         (start-process "babashka"
+                        "*babashka*"
+                        "bb" "--nrepl-server" (number-to-string port))
+         'babashka-connect--process-filter)))
+
+    (defun babashka-quit ()
+      "Quit cider and kill babashka process."
+      (interactive)
+      (cider-quit)
+      (kill-process (get-process "babashka"))
+      (message "quit babashka"))))
 
 (use-package cider
   :commands (cider cider-connect cider-jack-in)
@@ -236,11 +243,6 @@
 
   (require 'cider-hydra))
 
-(use-package typed-clojure-mode
-  :disabled t
-  :config
-  (add-hook 'clojure-mode-hook 'typed-clojure-mode))
-
 (use-package flycheck-clojure
   :ensure t
   :defer t
@@ -248,7 +250,7 @@
   (eval-after-load 'flycheck '(flycheck-clojure-setup)))
 
 (use-package flycheck-joker
-  :ensure t
+  :disabled t
   :init
   (progn
     (require 'flycheck-joker)
@@ -267,8 +269,6 @@
       (require 'cider-eval-sexp-fu))
     (add-hook 'cider-mode-hook 'config-init-cider-eval-sexp-fu)))
 
-;;; clojurescript (build from emacs, and pop up stacktrack when
-;;; there's a error):
 (use-package cljsbuild-mode
   :ensure t
   :diminish cljsbuild-mode)
@@ -278,5 +278,10 @@
   :config
   ;; (define-key clojure-mode-map (kbd "H-h") 'html-to-hiccup-convert-region)
   )
+
+(use-package counsel-lsp-clj
+  :quelpa (counsel-lsp-clj
+           :fetcher github
+           :repo "philjackson/counsel-lsp-clj"))
 
 (provide 'init-clojure)

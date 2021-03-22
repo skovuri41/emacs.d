@@ -34,11 +34,6 @@ FUN function callback"
   (interactive)
   (org-agenda-schedule 0 "+1d"))
 
-(defun hot-expand (str)
-  "Expand org template."
-  (insert str)
-  (org-try-structure-completion))
-
 ;; Don't use the same TODO state as the current heading for new heading
 (defun my-org-insert-todo-heading ()
   (interactive)

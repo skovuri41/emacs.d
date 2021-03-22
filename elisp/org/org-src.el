@@ -21,11 +21,10 @@
    (plantuml   . t)))
 
 ;; Let's have pretty source code blocks
-(validate-setq org-edit-src-content-indentation 0
+(setq org-edit-src-content-indentation 0
                org-src-tab-acts-natively t
                org-src-fontify-natively t
                org-confirm-babel-evaluate nil)
-(validate-setq org-src-tab-acts-natively t)
 ;; preserve the indentation inside of source blocks
 (validate-setq org-src-preserve-indentation t)
 (validate-setq org-confirm-babel-evaluate nil)

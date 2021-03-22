@@ -352,7 +352,7 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
      (org-agenda-redo)))
   ("q" nil :color blue))
 
-(defhydra sk/hydra-org-template (:color blue
+(defhydra sk-hydra-org-template (:color blue
                                         :hint nil)
   "
  ^One liners^                                        ^Blocks^                                      ^Properties^
@@ -400,6 +400,38 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   ("b" (hot-expand "<b"))
   ("<" self-insert-command)
   ("q" nil :color blue))
+
+  (require 'org-tempo) ; Required from org 9 onwards for old template expansion
+  ;; Reset the org-template expnsion system, this is need after upgrading to org 9 for some reason
+  (setq org-structure-template-alist (eval (car (get 'org-structure-template-alist 'standard-value))))
+  (defun hot-expand (str &optional mod header)
+    "Expand org template.
+
+STR is a structure template string recognized by org like <s. MOD is a
+string with additional parameters to add the begin line of the
+structure element. HEADER string includes more parameters that are
+prepended to the element after the #+HEADER: tag."
+    (let (text)
+      (when (region-active-p)
+        (setq text (buffer-substring (region-beginning) (region-end)))
+        (delete-region (region-beginning) (region-end))
+        (deactivate-mark))
+      (when header (insert "#+HEADER: " header) (forward-line))
+      (insert str)
+      (org-tempo-complete-tag)
+      (when mod (insert mod) (forward-line))
+      (when text (insert text))))
+
+  (define-key org-mode-map "<"
+    (lambda () (interactive)
+      (if (or (region-active-p) (looking-back "^"))
+          (sk-hydra-org-template/body)
+        (self-insert-command 1))))
+
+  (eval-after-load "org"
+    '(cl-pushnew
+      '("not" . "note")
+      org-structure-template-alist))
 
 (defhydra sk/hydra-org-drill (:color blue
                                      :hint nil)

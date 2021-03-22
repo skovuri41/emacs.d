@@ -3,7 +3,7 @@
   :diminish super-save-mode
   :config
   (setq super-save-auto-save-when-idle t
-        super-save-idle-duration 5
+        super-save-idle-duration 15
         ;; super-save-triggers (append super-save-triggers '("magit-status"))
         )
   ;; (add-to-list 'super-save-triggers "eyebrowse-switch-to-window-config")

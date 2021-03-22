@@ -44,63 +44,12 @@
                                 " --ignore-dir="))))))
       (setq projectile-generic-command command))
 
-    (defun projectile-custom-mode-line ()
-      (if (projectile-project-p)
-          (let* ((project-name (projectile-project-name))
-                 (project-name-mode-line (if (> (length project-name) 12)
-                                             (substring project-name 0 8)
-                                           project-name)))
-            (format " P[%s] " project-name-mode-line))
-        ""))
-    ;; (setq-default projectile-mode-line '(:eval (projectile-custom-mode-line)))
     (setq-default projectile-mode-line nil)
     (setq projectile-completion-system 'ivy)
     (setq projectile-indexing-method 'alien)
     (setq projectile-switch-project-action 'projectile-dired)
     (defadvice projectile-dired (after xah-wrapper-dired-commands activate)
       (xah-wrapper-dired-commands))
-
-    (def-projectile-commander-method ?s
-      "Open a *shell* buffer for the project."
-      (shell (get-buffer-create
-              (format "*shell %s*"
-                      (projectile-project-name)))))
-
-    (def-projectile-commander-method ?c
-      "Run `compile' in the project."
-      (call-interactively #'compile))
-
-    (def-projectile-commander-method ?p
-      "Go back to project selection."
-      (projectile-switch-project))
-
-    (def-projectile-commander-method ?d
-      "Open project root in dired."
-      (projectile-dired))
-
-    (def-projectile-commander-method ?F
-      "Git fetch."
-      ;; (magit-status)
-      (call-interactively #'magit-status)
-      ;; (call-interactively #'magit-fetch-popup)
-      )
-
-    (def-projectile-commander-method ?j
-      "Jack-in."
-      (let* ((opts (projectile-current-project-files))
-             (file (ido-completing-read
-                    "Find file: "
-                    opts
-                    nil nil nil nil
-                    (car (cl-member-if
-                          (lambda (f)
-                            (string-match "core\\.clj\\'" f))
-                          opts)))))
-        (find-file (expand-file-name
-                    file (projectile-project-root)))
-        (run-hooks 'projectile-find-file-hook)
-        (cider-jack-in)))
-
     (setq projectile-globally-ignored-directories
           '(".idea"
             ".eunit"
@@ -142,7 +91,6 @@
     (add-to-list 'projectile-globally-ignored-directories ".m2")
     (setq projectile-sort-order 'recently-active)
 
-    (projectile-mode)
-    ))
+    (projectile-mode)))
 
 (provide 'init-projectile)
