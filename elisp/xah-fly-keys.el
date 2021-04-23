@@ -1928,6 +1928,9 @@ If `universal-argument' is called first, do switch frame."
    ("qt" . anzu-query-replace-at-cursor-thing)
    ("qc" . anzu-replace-at-cursor-thing)
    ("rg" . counsel-projectile-rg)
+   ("s" . ctrlf-forward-alternate)
+   ("." . ctrlf-forward-symbol-at-point)
+   ("w" . ctrlf-forward-symbol)
    ("e" . hydra-engine/body)))
 
 (progn
@@ -1966,8 +1969,8 @@ If `universal-argument' is called first, do switch frame."
       (define-key xah-fly-key-map (kbd "C-z") 'undo)
       ;; (define-key xah-fly-key-map (kbd "C-o") 'find-file)
       ;; (define-key xah-fly-key-map (kbd "C-s") 'isearch-forward)
-      (define-key xah-fly-key-map (kbd "C-s") 'swiper)
-      (define-key xah-fly-key-map (kbd "C-r") 'swiper-the-thing)
+      ;; (define-key xah-fly-key-map (kbd "C-s") 'swiper)
+      ;; (define-key xah-fly-key-map (kbd "C-r") 'swiper-the-thing)
 
       (define-key xah-fly-key-map (kbd "C-S-s") 'write-file)
       (define-key xah-fly-key-map (kbd "C-S-t") 'xah-open-last-closed)

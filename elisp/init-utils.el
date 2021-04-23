@@ -297,4 +297,13 @@
   :config
   (editorconfig-mode 1))
 
+(use-package ctrlf
+  :ensure t
+  :config
+  (add-to-list 'ctrlf-minibuffer-bindings
+               '("C-n" . ctrlf-next-match))
+  (add-to-list 'ctrlf-minibuffer-bindings
+               '("C-p" . ctrlf-previous-match))
+  (ctrlf-mode 1))
+
 (provide 'init-utils)
