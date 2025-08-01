@@ -30,7 +30,7 @@
 (add-hook 'org-mode-hook #'my/org-mode-hook)
 (add-hook 'org-mode-hook 'yas-minor-mode-on)
 (add-hook 'org-mode-hook 'company-mode)
-(add-hook 'org-mode-hook 'set-org-mode-app-defaults)
+;; (add-hook 'org-mode-hook 'set-org-mode-app-defaults)
 ;; (add-hook 'org-mode-hook #'my/org-mode-key-bindings)
 
 (validate-setq org-directory (file-truename "~/Documents/org"))

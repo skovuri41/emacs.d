@@ -44,9 +44,4 @@ In that case, insert the number."
   (define-key company-active-map (kbd "<tab>") #'company-other-backend)
   (define-key company-active-map (kbd "C-.") #'company-try-hard))
 
-(use-package company-box
-  :ensure t
-  :hook (company-mode . company-box-mode))
-
-
 (provide 'init-company2)

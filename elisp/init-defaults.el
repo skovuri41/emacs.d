@@ -196,6 +196,10 @@
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; if the buffer file has a shebang (e.g. #!/bin/ruby) in it and then it modifies its permissions,
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
 (use-package uniquify
   :config
   (setq uniquify-separator "/")

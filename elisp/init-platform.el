@@ -22,6 +22,19 @@
 (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
 (add-to-list 'package-pinned-packages '(cider-eval-sexp-fu. "melpa-stable") t)
 
+(unless (package-installed-p 'quelpa)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+    (eval-buffer)
+    (quelpa-self-upgrade)))
+
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+
+(require 'quelpa-use-package)
+
 (when *is-gnu-linux*
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setq exec-path (append exec-path '("/usr/local/bin")))
@@ -116,9 +129,4 @@
   (require 'init-fira)
   (require 'init-cask)
   (require 'init-pbcopy))
-
-;; (message
-;;     (mapconcat (quote identity)
-;;         (sort (font-family-list) #'string-lessp) "\n"))
-
 (provide 'init-platform)

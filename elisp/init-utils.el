@@ -149,6 +149,7 @@
 ;; $ sudo fc-cache -f -v
 (use-package all-the-icons
   :ensure t
+  :disabled t
   :commands (all-the-icons-for-buffer all-the-icons-alltheicon))
 
 (use-package startscreen
@@ -304,6 +305,10 @@
                '("C-n" . ctrlf-next-match))
   (add-to-list 'ctrlf-minibuffer-bindings
                '("C-p" . ctrlf-previous-match))
+  (add-to-list 'ctrlf-minibuffer-bindings
+               '("M-<" . ctrlf-first-match))
+  (add-to-list 'ctrlf-minibuffer-bindings
+               '("M->" . ctrlf-last-match))
   (ctrlf-mode 1))
 
 (provide 'init-utils)

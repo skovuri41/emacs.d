@@ -60,7 +60,7 @@
   (org-roam-link ((t (:inherit org-link :foreground "#C991E1")))))
 
 (use-package org-roam-server
-  :ensure t
+  :disabled t
   :after org-roam
   :config
   (setq org-roam-server-host "127.0.0.1"

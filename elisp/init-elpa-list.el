@@ -2,13 +2,11 @@
                     company-quickhelp
                     direx
                     drag-stuff
-                    all-the-icons
                     expand-region
                     evil-leader
                     evil-nerd-commenter
                     evil-matchit
                     evil-visualstar
-                    flx-ido
                     flyspell
                     flycheck
                     fancy-narrow
@@ -33,7 +31,6 @@
                     ;; org-drill
                     projectile
                     smart-mode-line
-                    ;; smartparens
                     smex
                     undo-tree
                     use-package
@@ -93,7 +90,6 @@
                     pbcopy
                     ctags-update
                     workgroups2
-                    smartparens
                     clojure-mode
                     clojure-snippets
                     cider

@@ -8,7 +8,7 @@
 (require 'org-extras)
 (require 'org-keybindings)
 (require 'org-hydra)
-(require 'init-org-roam)
+;;(require 'init-org-roam)
 
 
 (provide 'init-org)

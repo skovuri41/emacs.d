@@ -1,14 +1,16 @@
 ;;; org-functions.el --- org functions               -*- lexical-binding: t; -*-
 
-(defun set-org-mode-app-defaults ()
-  (setq org-file-apps
-        '((auto-mode . emacs)
-          (directory . emacs)
-          ("\\.org\\'" . emacs)
-          ("\\.txt\\'" . emacs)
-          ("\\.mm\\'" . default)
-          ("\\.x?html?\\'" . system)
-          ("\\.pdf\\'" . system))))
+(setq org-file-apps
+      '((auto-mode . emacs)
+        (directory . emacs)
+        ("\\.org\\'" . emacs)
+        ("\\.txt\\'" . emacs)
+        ("\\.mm\\'" . default)
+        ("\\.x?html?\\'" . system)
+        ("\\.pdf::\\([0-9]+\\)?\\'" . "zathura %s -P %1")
+        ("\\.pdf\\'" . "zathura %s")))
+
+
 
 (defun clever-insert-item ()
   "Clever insertion of org item."
@@ -134,5 +136,18 @@ buffer to the matched subtree."
     (progn (add-to-invisibility-spec '(org-link))
            (org-restart-font-lock)
            (setq org-descriptive-links t))))
+
+(defun org-set-line-checkbox (arg)
+  (interactive "P")
+  (let ((n (or arg 1)))
+    (when (region-active-p)
+      (setq n (count-lines (region-beginning)
+                           (region-end)))
+      (goto-char (region-beginning)))
+    (dotimes (i n)
+      (beginning-of-line)
+      (insert "- [ ] ")
+      (forward-line))
+    (beginning-of-line)))
 
 (provide 'org-functions)

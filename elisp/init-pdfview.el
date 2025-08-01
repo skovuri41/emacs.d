@@ -159,7 +159,7 @@
 
 (use-package interleave
   :after pdf-tools
-  :ensure t
+  :disabled t
   :config
   ;; (setq interleave-org-notes-dir-list '("." "~/txt/notes"))
   )
